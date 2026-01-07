@@ -1,5 +1,3 @@
-# Quickstart: Running Your First Tests
-
 This guide walks you from zero to your first successful test run in a few minutes.
 
 ## 1. Create a project

@@ -1,5 +1,3 @@
-# Muggle Test Overview
-
 Muggle Test is an AI-powered web testing platform that discovers user flows in your product and keeps them covered with executable tests.
 
 ## When to use Muggle Test

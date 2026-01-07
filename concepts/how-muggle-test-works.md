@@ -1,5 +1,3 @@
-# How Muggle Test Works
-
 At a high level, Muggle Test does three things:
 
 1. **Discover** important flows in your app.

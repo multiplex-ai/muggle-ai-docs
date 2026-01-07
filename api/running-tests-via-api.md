@@ -1,5 +1,3 @@
-# Running Tests via API
-
 This guide shows how to trigger test runs and retrieve their results using the Muggle Test API.
 
 ## 1. Trigger a run

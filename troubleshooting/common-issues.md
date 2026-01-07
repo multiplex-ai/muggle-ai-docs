@@ -1,5 +1,3 @@
-# Common Issues & Fixes
-
 This page lists frequent issues and quick checks you can use to resolve them.
 
 ## Login keeps failing

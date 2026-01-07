@@ -1,5 +1,3 @@
-# API Overview
-
 You can trigger runs and fetch results programmatically using the Muggle Test API.
 
 This is useful for:
