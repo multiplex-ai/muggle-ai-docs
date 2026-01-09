@@ -1,4 +1,4 @@
-# muggle-ai-docs
+# muggle-ai-docs repo
 
 Muggle AI's customer-facing documentation repository for **Muggle Test** and related products.
 
