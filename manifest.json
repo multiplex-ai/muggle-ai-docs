@@ -1,84 +1,90 @@
 {
-  "version": "v0.1.0",
-  "lastUpdatedAtUtc": "2025-01-01T00:00:00Z",
-  "sections": [
-    {
-      "sectionId": "getting-started",
-      "label": "Getting Started",
-      "order": 1,
-      "articles": [
+    "version": "v0.1.0",
+    "lastUpdatedAtUtc": "2025-01-01T00:00:00Z",
+    "sections": [
         {
-          "articleId": "overview",
-          "title": "Muggle Test Overview",
-          "summary": "High-level introduction to Muggle Test and when to use it.",
-          "relativePath": "getting-started/overview.md",
-          "order": 1,
-          "tags": ["intro", "overview"]
+            "sectionId": "getting-started",
+            "label": "Getting Started",
+            "order": 1,
+            "articles": [
+                {
+                    "articleId": "welcome",
+                    "title": "Welcome to Muggle Test",
+                    "summary": "Quick orientation for the docs and recommended starting points.",
+                    "relativePath": "getting-started/welcome.md",
+                    "order": 0,
+                    "tags": ["intro", "welcome"]
+                },
+                {
+                    "articleId": "overview",
+                    "title": "Muggle Test Overview",
+                    "summary": "High-level introduction to Muggle Test and when to use it.",
+                    "relativePath": "getting-started/overview.md",
+                    "order": 1,
+                    "tags": ["intro", "overview"]
+                },
+                {
+                    "articleId": "quickstart-running-tests",
+                    "title": "Quickstart: Running Your First Tests",
+                    "summary": "Step-by-step guide to create a project and run your first test suite.",
+                    "relativePath": "getting-started/quickstart-running-tests.md",
+                    "order": 2,
+                    "tags": ["quickstart"]
+                }
+            ]
         },
         {
-          "articleId": "quickstart-running-tests",
-          "title": "Quickstart: Running Your First Tests",
-          "summary": "Step-by-step guide to create a project and run your first test suite.",
-          "relativePath": "getting-started/quickstart-running-tests.md",
-          "order": 2,
-          "tags": ["quickstart"]
-        }
-      ]
-    },
-    {
-      "sectionId": "concepts",
-      "label": "Key Concepts",
-      "order": 2,
-      "articles": [
-        {
-          "articleId": "how-muggle-test-works",
-          "title": "How Muggle Test Works",
-          "summary": "Core concepts: scanning, flows, scripts, runs, and reports.",
-          "relativePath": "concepts/how-muggle-test-works.md",
-          "order": 1,
-          "tags": ["architecture", "concepts"]
-        }
-      ]
-    },
-    {
-      "sectionId": "api",
-      "label": "API Usage",
-      "order": 3,
-      "articles": [
-        {
-          "articleId": "api-overview",
-          "title": "API Overview",
-          "summary": "Authentication, base URLs, and general patterns for using the Muggle Test API.",
-          "relativePath": "api/api-overview.md",
-          "order": 1,
-          "tags": ["api"]
+            "sectionId": "concepts",
+            "label": "Key Concepts",
+            "order": 2,
+            "articles": [
+                {
+                    "articleId": "how-muggle-test-works",
+                    "title": "How Muggle Test Works",
+                    "summary": "Core concepts: scanning, flows, scripts, runs, and reports.",
+                    "relativePath": "concepts/how-muggle-test-works.md",
+                    "order": 1,
+                    "tags": ["architecture", "concepts"]
+                }
+            ]
         },
         {
-          "articleId": "running-tests-via-api",
-          "title": "Running Tests via API",
-          "summary": "How to trigger runs and fetch results programmatically.",
-          "relativePath": "api/running-tests-via-api.md",
-          "order": 2,
-          "tags": ["api", "runs"]
-        }
-      ]
-    },
-    {
-      "sectionId": "troubleshooting",
-      "label": "Troubleshooting",
-      "order": 4,
-      "articles": [
+            "sectionId": "api",
+            "label": "API Usage",
+            "order": 3,
+            "articles": [
+                {
+                    "articleId": "api-overview",
+                    "title": "API Overview",
+                    "summary": "Authentication, base URLs, and general patterns for using the Muggle Test API.",
+                    "relativePath": "api/api-overview.md",
+                    "order": 1,
+                    "tags": ["api"]
+                },
+                {
+                    "articleId": "running-tests-via-api",
+                    "title": "Running Tests via API",
+                    "summary": "How to trigger runs and fetch results programmatically.",
+                    "relativePath": "api/running-tests-via-api.md",
+                    "order": 2,
+                    "tags": ["api", "runs"]
+                }
+            ]
+        },
         {
-          "articleId": "common-issues",
-          "title": "Common Issues & Fixes",
-          "summary": "Answers for the most common setup and runtime problems.",
-          "relativePath": "troubleshooting/common-issues.md",
-          "order": 1,
-          "tags": ["troubleshooting", "faq"]
+            "sectionId": "troubleshooting",
+            "label": "Troubleshooting",
+            "order": 4,
+            "articles": [
+                {
+                    "articleId": "common-issues",
+                    "title": "Common Issues & Fixes",
+                    "summary": "Answers for the most common setup and runtime problems.",
+                    "relativePath": "troubleshooting/common-issues.md",
+                    "order": 1,
+                    "tags": ["troubleshooting", "faq"]
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }
-
-
