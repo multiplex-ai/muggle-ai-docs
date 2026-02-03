@@ -1,0 +1,466 @@
+# MCP API Reference
+
+Complete reference for all MCP Gateway tools.
+
+## Overview
+
+The MCP Gateway exposes tools organized into these categories:
+
+| Category | Tools | Purpose |
+|----------|-------|---------|
+| [Project](#project-tools) | 4 | Create and manage testing projects |
+| [PRD Files](#prd-file-tools) | 3 | Upload requirements documents |
+| [Secrets](#secret-tools) | 5 | Manage test credentials |
+| [Use Cases](#use-case-tools) | 4 | Discover and approve use cases |
+| [Workflows](#workflow-tools) | 17 | Execute testing workflows |
+| [Artifacts](#artifact-tools) | 9 | Inspect test cases and scripts |
+| [Reports](#report-tools) | 4 | Generate and deliver reports |
+| [Recommendations](#recommendation-tools) | 2 | Get scheduling guidance |
+
+---
+
+## Project Tools
+
+### qa_project_create
+
+Create a new QA testing project.
+
+**Input:**
+```json
+{
+  "projectName": "My Website Tests",
+  "description": "End-to-end tests for example.com",
+  "url": "https://example.com",
+  "testRequirements": "Test login, checkout, and search flows"
+}
+```
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| projectName | string | Yes | Name of the project (max 255 chars) |
+| description | string | No | Project description |
+| url | string | No | Target website URL |
+| testRequirements | string | No | Testing scope and requirements |
+
+**Output:**
+```json
+{
+  "projectId": "proj_abc123",
+  "projectName": "My Website Tests",
+  "createdAt": "2024-01-15T10:30:00Z"
+}
+```
+
+### qa_project_get
+
+Get details of a specific project by ID.
+
+### qa_project_update
+
+Update an existing project's details.
+
+### qa_project_list
+
+List all projects accessible to you with pagination.
+
+---
+
+## PRD File Tools
+
+### qa_prd_file_upload
+
+Upload a Product Requirements Document to help AI generate accurate use cases.
+
+**Input:**
+```json
+{
+  "projectId": "proj_abc123",
+  "fileName": "requirements.pdf",
+  "contentBase64": "JVBERi0xLjQKJ...",
+  "contentType": "application/pdf"
+}
+```
+
+**Supported formats:** PDF, DOCX, TXT, MD
+
+### qa_prd_file_list_by_project
+
+List all PRD files for a project.
+
+### qa_prd_file_delete
+
+Delete a PRD file.
+
+---
+
+## Secret Tools
+
+Secrets store credentials needed for testing. Values are encrypted and never returned in responses.
+
+### qa_secret_create
+
+Create a new secret.
+
+**Input:**
+```json
+{
+  "projectId": "proj_abc123",
+  "name": "TEST_USER_PASSWORD",
+  "value": "secretpassword123",
+  "description": "Password for test user account"
+}
+```
+
+### qa_secret_list
+
+List all secrets for a project. Values are not returned.
+
+### qa_secret_get
+
+Get secret metadata (value is not returned).
+
+### qa_secret_update
+
+Update a secret's name, value, or description.
+
+### qa_secret_delete
+
+Delete a secret.
+
+---
+
+## Use Case Tools
+
+### qa_use_case_discovery_memory_get
+
+Get discovered use case candidates with evidence (screenshots, notes).
+
+**Output:**
+```json
+{
+  "projectId": "proj_abc123",
+  "useCaseCandidates": [
+    {
+      "id": "cand_001",
+      "status": "candidate",
+      "useCase": {
+        "title": "User Login",
+        "description": "Authenticate user with email and password"
+      },
+      "comments": [
+        {
+          "pageUrl": "https://example.com/login",
+          "screenshotUrl": "https://storage.muggle-ai.com/screenshots/...",
+          "notes": "Found login form with email and password fields"
+        }
+      ]
+    }
+  ]
+}
+```
+
+**Candidate statuses:** `draft`, `candidate`, `graduated`, `dropped`
+
+### qa_use_case_candidates_approve
+
+Approve (graduate) selected candidates into active use cases.
+
+**Input:**
+```json
+{
+  "projectId": "proj_abc123",
+  "approvedCandidateIds": ["cand_001", "cand_002"]
+}
+```
+
+### qa_use_case_list
+
+List graduated use cases for a project.
+
+### qa_use_case_get
+
+Get details of a specific use case.
+
+---
+
+## Workflow Tools
+
+Workflows are long-running operations. After starting, use `get_latest_run` tools to check status.
+
+### Website Scan
+
+#### qa_workflow_start_website_scan
+
+Start scanning a website to discover use cases.
+
+**Input:**
+```json
+{
+  "projectId": "proj_abc123",
+  "url": "https://example.com",
+  "description": "Discover e-commerce user flows",
+  "archiveUnapproved": true
+}
+```
+
+**Output:**
+```json
+{
+  "workflowRuntimeId": "wfrt_scan_123"
+}
+```
+
+#### qa_workflow_get_website_scan_latest_run
+
+Check scan status.
+
+**Output:**
+```json
+{
+  "workflowRunId": "wfrun_456",
+  "status": "succeeded",
+  "updatedAt": "2024-01-15T10:35:00Z"
+}
+```
+
+**Statuses:** `queued`, `running`, `succeeded`, `failed`, `cancelled`
+
+#### qa_workflow_list_website_scan_runtimes
+
+List all website scan runtimes.
+
+### Test Case Detection
+
+#### qa_workflow_start_test_case_detection
+
+Generate test cases from approved use cases.
+
+#### qa_workflow_get_test_case_detection_latest_run
+
+Check test case detection status.
+
+#### qa_workflow_list_test_case_detection_runtimes
+
+List test case detection runtimes.
+
+### Test Script Generation
+
+#### qa_workflow_start_test_script_generation
+
+Generate executable test scripts from test cases.
+
+**Input:**
+```json
+{
+  "projectId": "proj_abc123",
+  "testCaseId": "tc_201",
+  "useCaseId": "uc_101"
+}
+```
+
+#### qa_workflow_get_test_script_generation_latest_run
+
+Check script generation status.
+
+#### qa_workflow_get_latest_test_script_generation_runtime_by_test_case
+
+Get the latest generation runtime for a specific test case.
+
+### Test Script Replay
+
+#### qa_workflow_start_test_script_replay
+
+Execute a single test script.
+
+#### qa_workflow_start_test_script_replay_bulk
+
+Execute multiple test scripts in parallel.
+
+**Input:**
+```json
+{
+  "projectId": "proj_abc123",
+  "testScriptIds": ["ts_301", "ts_302"],
+  "name": "Nightly regression"
+}
+```
+
+#### qa_workflow_get_test_script_replay_bulk_latest_run
+
+Check bulk replay status.
+
+#### qa_workflow_get_replay_bulk_run_batch_summary
+
+Get detailed summary of a bulk run batch.
+
+**Output:**
+```json
+{
+  "runBatchId": "batch_789",
+  "totalScripts": 10,
+  "passed": 8,
+  "failed": 2
+}
+```
+
+### Workflow Management
+
+#### qa_workflow_cancel_run
+
+Cancel a specific workflow run.
+
+#### qa_workflow_cancel_runtime
+
+Cancel a workflow runtime and all its runs.
+
+---
+
+## Artifact Tools
+
+### Test Cases
+
+#### qa_test_case_list
+
+List test cases for a project.
+
+#### qa_test_case_get
+
+Get test case details including steps and expected outcomes.
+
+#### qa_test_case_list_by_use_case
+
+List test cases for a specific use case.
+
+### Test Scripts
+
+#### qa_test_script_list
+
+List test scripts for a project.
+
+#### qa_test_script_get
+
+Get test script details including executable steps.
+
+#### qa_test_script_list_paginated
+
+List test scripts with full pagination.
+
+### Summaries
+
+#### qa_project_test_results_summary_get
+
+Get aggregated test results summary.
+
+**Output:**
+```json
+{
+  "projectId": "proj_abc123",
+  "totalTests": 25,
+  "passed": 22,
+  "failed": 3,
+  "passRate": 88.0
+}
+```
+
+#### qa_project_test_scripts_summary_get
+
+Get test scripts summary.
+
+#### qa_project_test_runs_summary_get
+
+Get recent test runs summary.
+
+---
+
+## Report Tools
+
+### qa_report_stats_summary_get
+
+Get report statistics and health score.
+
+### qa_report_cost_query
+
+Query usage and cost data.
+
+### qa_report_preferences_upsert
+
+Configure report delivery preferences.
+
+**Input:**
+```json
+{
+  "projectId": "proj_abc123",
+  "channels": ["email", "webhook"],
+  "emails": ["team@example.com"],
+  "webhookUrl": "https://hooks.example.com/muggle"
+}
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| channels | string[] | `email`, `sms`, `webhook` |
+| emails | string[] | Email addresses |
+| phones | string[] | Phone numbers for SMS |
+| webhookUrl | string | Webhook endpoint |
+
+### qa_report_final_generate
+
+Generate a final test report (async operation).
+
+---
+
+## Recommendation Tools
+
+These tools provide guidance without making changes.
+
+### qa_recommend_schedule
+
+Get test scheduling recommendations.
+
+**Output:**
+```json
+{
+  "recommendations": [
+    {
+      "title": "Nightly Regression Tests",
+      "rationale": "Running tests every night catches regressions quickly",
+      "schedule": "0 2 * * *",
+      "tradeoffs": ["Pro: Fresh results every morning", "Con: Delayed feedback"]
+    }
+  ]
+}
+```
+
+### qa_recommend_cicd_setup
+
+Get CI/CD integration templates for GitHub Actions, Azure DevOps, GitLab CI, etc.
+
+---
+
+## Error Responses
+
+All tools may return errors:
+
+```json
+{
+  "error": "ERROR_CODE",
+  "message": "Human-readable description",
+  "details": {}
+}
+```
+
+| Error Code | Description |
+|------------|-------------|
+| UNAUTHORIZED | Missing or invalid authentication |
+| FORBIDDEN | Access denied |
+| NOT_FOUND | Resource doesn't exist |
+| INVALID_ARGUMENT | Invalid input parameters |
+| UPSTREAM_ERROR | Backend service error |
+
+---
+
+## Next Steps
+
+- **[MCP Quickstart](../getting-started/mcp-quickstart.md)** - Get started
+- **[MCP Concepts](./mcp-concepts.md)** - Understand the architecture
+- **[CI/CD Integration](./mcp-cicd-integration.md)** - Automate in pipelines

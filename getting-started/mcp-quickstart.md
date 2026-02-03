@@ -1,0 +1,172 @@
+# MCP Quickstart
+
+Connect your AI assistant to Muggle Test in under 5 minutes.
+
+## Prerequisites
+
+- A Muggle Test account with an active subscription
+- An API key from your [Muggle Test Dashboard](https://app.muggle-ai.com/settings/api-keys)
+- An MCP-compatible client (Claude Desktop, Cursor, or any MCP client)
+
+## Step 1: Get Your API Key
+
+1. Log in to your [Muggle Test Dashboard](https://app.muggle-ai.com)
+2. Navigate to **Settings** → **API Keys**
+3. Click **Create API Key**
+4. Copy and securely store your key (format: `mai_sk_...`)
+
+> **Important**: Keep your API key secure. Never commit it to version control or share it publicly.
+
+## Step 2: Configure Your MCP Client
+
+### Claude Desktop
+
+Add the following to your Claude Desktop configuration (`claude_desktop_config.json`):
+
+```json
+{
+  "mcpServers": {
+    "muggle-test": {
+      "url": "https://mcp.muggle-ai.com/mcp",
+      "headers": {
+        "x-api-key": "YOUR_API_KEY_HERE"
+      }
+    }
+  }
+}
+```
+
+**Config file location:**
+- macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
+- Windows: `%APPDATA%\Claude\claude_desktop_config.json`
+
+### Cursor IDE
+
+Add to your Cursor MCP settings (Settings → MCP):
+
+```json
+{
+  "mcp": {
+    "servers": {
+      "muggle-test": {
+        "url": "https://mcp.muggle-ai.com/mcp",
+        "headers": {
+          "x-api-key": "YOUR_API_KEY_HERE"
+        }
+      }
+    }
+  }
+}
+```
+
+### Other MCP Clients
+
+Use the following connection details:
+- **Endpoint**: `https://mcp.muggle-ai.com/mcp`
+- **Transport**: Streamable HTTP
+- **Authentication**: Header `x-api-key: YOUR_API_KEY`
+
+## Step 3: Run Your First Test
+
+Once connected, interact with Muggle Test through natural language:
+
+### Create a Project
+
+> "Create a new QA project called 'My Website Tests' for testing https://example.com"
+
+### Discover Use Cases
+
+> "Scan https://example.com and discover potential test use cases"
+
+This crawls your site and identifies testable user flows.
+
+### Review and Approve
+
+> "Show me the discovered use case candidates"
+
+Review the candidates with their screenshots and descriptions, then:
+
+> "Approve the login flow and checkout flow use cases"
+
+### Generate and Run Tests
+
+> "Generate test cases and scripts for the approved use cases, then run all tests"
+
+### View Results
+
+> "Show me the test results summary"
+
+Or generate a full report:
+
+> "Generate a test report and send it to team@example.com"
+
+## Example Conversation
+
+Here's a complete example:
+
+**You**: I want to set up automated testing for my e-commerce site at https://shop.example.com
+
+**Assistant**: I'll help you set up automated testing. Let me create a project first.
+
+*[Creates project]*
+
+Done! I've created a project called "shop.example.com Tests". Now let me scan your website to discover testable user flows.
+
+*[Starts website scan]*
+
+The scan is running. This usually takes a few minutes depending on your site's size.
+
+**You**: What use cases did you find?
+
+**Assistant**: I found 5 potential use cases:
+1. **User Registration** - New user signup flow
+2. **User Login** - Authentication flow  
+3. **Product Search** - Search and filter products
+4. **Add to Cart** - Shopping cart functionality
+5. **Checkout** - Complete purchase flow
+
+Each has screenshots and notes. Would you like to approve any of these?
+
+**You**: Approve all of them and generate tests
+
+**Assistant**: Done! I've created 12 test cases across the 5 use cases, and generated executable test scripts for each. Would you like me to run them now?
+
+**You**: Yes, run all tests
+
+**Assistant**: Tests are running...
+
+*[After completion]*
+
+Results: ✅ 10 passed, ❌ 2 failed (Checkout flow - payment validation)
+
+Would you like to see the detailed report?
+
+## Troubleshooting
+
+### Connection Issues
+
+If your MCP client can't connect:
+1. Verify your API key is correct
+2. Check that the endpoint URL is `https://mcp.muggle-ai.com/mcp`
+3. Ensure your firewall allows outbound HTTPS connections
+4. Restart your MCP client after configuration changes
+
+### Authentication Errors
+
+If you see "UNAUTHORIZED" errors:
+1. Confirm your API key hasn't expired
+2. Check your subscription status in the dashboard
+3. Regenerate your API key if needed
+
+### Timeout Errors
+
+Long-running operations (website scans, test runs) may take several minutes:
+1. Wait for the operation to complete
+2. Use status-checking commands like "What's the status of the scan?"
+3. For very large sites, consider testing sections separately
+
+## Next Steps
+
+- **[MCP Concepts](../mcp/mcp-concepts.md)** - Understand the architecture
+- **[MCP API Reference](../mcp/mcp-api-reference.md)** - Complete tool documentation
+- **[CI/CD Integration](../mcp/mcp-cicd-integration.md)** - Automate in your pipeline

@@ -1,6 +1,6 @@
 {
-    "version": "v0.1.0",
-    "lastUpdatedAtUtc": "2025-01-01T00:00:00Z",
+    "version": "v0.2.0",
+    "lastUpdatedAtUtc": "2026-02-01T00:00:00Z",
     "sections": [
         {
             "sectionId": "getting-started",
@@ -30,6 +30,14 @@
                     "relativePath": "getting-started/quickstart-running-tests.md",
                     "order": 2,
                     "tags": ["quickstart"]
+                },
+                {
+                    "articleId": "mcp-quickstart",
+                    "title": "MCP Quickstart: AI Assistant Integration",
+                    "summary": "Connect Claude, Cursor, or any MCP client to Muggle Test in 5 minutes.",
+                    "relativePath": "getting-started/mcp-quickstart.md",
+                    "order": 3,
+                    "tags": ["quickstart", "mcp", "ai"]
                 }
             ]
         },
@@ -49,9 +57,48 @@
             ]
         },
         {
+            "sectionId": "mcp",
+            "label": "MCP Gateway",
+            "order": 3,
+            "articles": [
+                {
+                    "articleId": "mcp-overview",
+                    "title": "MCP Gateway Overview",
+                    "summary": "Use AI assistants to control Muggle Test through the Model Context Protocol.",
+                    "relativePath": "mcp/overview.md",
+                    "order": 1,
+                    "tags": ["mcp", "overview", "ai"]
+                },
+                {
+                    "articleId": "mcp-concepts",
+                    "title": "MCP Concepts & Architecture",
+                    "summary": "Understanding workflows, tools, and how the MCP Gateway connects to Muggle Test.",
+                    "relativePath": "mcp/mcp-concepts.md",
+                    "order": 2,
+                    "tags": ["mcp", "architecture", "concepts"]
+                },
+                {
+                    "articleId": "mcp-api-reference",
+                    "title": "MCP API Reference",
+                    "summary": "Complete reference for all 46+ MCP tools: projects, workflows, reports, and more.",
+                    "relativePath": "mcp/mcp-api-reference.md",
+                    "order": 3,
+                    "tags": ["mcp", "api", "reference"]
+                },
+                {
+                    "articleId": "mcp-cicd-integration",
+                    "title": "CI/CD Integration",
+                    "summary": "Integrate Muggle Test into GitHub Actions, Azure DevOps, GitLab CI, and more.",
+                    "relativePath": "mcp/mcp-cicd-integration.md",
+                    "order": 4,
+                    "tags": ["mcp", "cicd", "automation", "github", "azure"]
+                }
+            ]
+        },
+        {
             "sectionId": "api",
             "label": "API Usage",
-            "order": 3,
+            "order": 4,
             "articles": [
                 {
                     "articleId": "api-overview",
@@ -74,7 +121,7 @@
         {
             "sectionId": "troubleshooting",
             "label": "Troubleshooting",
-            "order": 4,
+            "order": 5,
             "articles": [
                 {
                     "articleId": "common-issues",
