@@ -18,12 +18,12 @@ This page helps you find the right documentation based on what you're trying to 
 ## Recommended Reading Path
 
 ```mermaid
-flowchart TD
+flowchart LR
     A["1. Overview<br/><i>What is Muggle Test?</i>"] --> B["2. Quickstart<br/><i>Run your first tests</i>"]
     B --> C{"What's next?"}
-    C -->|Deeper understanding| D["How It Works"]
-    C -->|Automate| E["API Integration"]
-    C -->|AI Assistants| F["MCP Gateway"]
+    C -->|"Deeper understanding"| D["How It Works"]
+    C -->|"Automate"| E["API Integration"]
+    C -->|"AI Assistants"| F["MCP Gateway"]
 
     style A fill:#e3f2fd
     style B fill:#e8f5e9

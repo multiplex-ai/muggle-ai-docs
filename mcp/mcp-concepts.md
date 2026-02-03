@@ -5,28 +5,31 @@ Understanding how the MCP Gateway works with Muggle Test.
 ## System Architecture
 
 ```mermaid
-flowchart TB
+flowchart LR
     subgraph env["Your Environment"]
         client["AI Assistant<br/>(Claude, Cursor, Custom MCP Client)"]
     end
     
     subgraph cloud["Muggle AI Cloud"]
         subgraph gateway["MCP QA Gateway"]
+            direction TB
             proto["Protocol Translation"]
             auth["Auth Forwarding"]
             rate["Rate Limiting"]
         end
         
         subgraph platform["Muggle Test Platform"]
-            proj["Project<br/>Management"]
-            workflow["Workflow<br/>Engine"]
-            report["Report<br/>Generator"]
+            direction TB
+            proj["Project Management"]
+            workflow["Workflow Engine"]
+            report["Report Generator"]
         end
         
         subgraph exec["Test Execution"]
-            browser["Browser<br/>Automation"]
-            ai["AI<br/>Analysis"]
-            screenshot["Screenshot<br/>Capture"]
+            direction TB
+            browser["Browser Automation"]
+            ai["AI Analysis"]
+            screenshot["Screenshot Capture"]
         end
     end
     
@@ -52,7 +55,7 @@ The [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) is an open 
 A **Project** is the top-level container for all your testing artifacts. Each project typically corresponds to one website or application.
 
 ```mermaid
-graph TD
+graph LR
     P[Project] --> UC[Use Cases]
     P --> S[Secrets]
     P --> PRD[PRD Files]
@@ -136,9 +139,9 @@ stateDiagram-v2
 ## Testing Flow
 
 ```mermaid
-flowchart TD
-    A["1. Create Project"] --> B["2. Website Scan<br/><i>Discover user flows</i>"]
-    B --> C["3. Review & Approve<br/><i>Select use cases</i>"]
+flowchart LR
+    A["1. Create Project"] --> B["2. Website Scan"]
+    B --> C["3. Review & Approve"]
     C --> D["4. Generate Test Cases"]
     D --> E["5. Generate Scripts"]
     E --> F["6. Run Tests"]
