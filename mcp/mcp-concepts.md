@@ -219,6 +219,6 @@ The gateway provides 46+ tools organized into categories:
 
 ## Next Steps
 
-- **[MCP Quickstart](../getting-started/mcp-quickstart.md)** - Get started in 5 minutes
-- **[MCP API Reference](./mcp-api-reference.md)** - Complete tool documentation
-- **[CI/CD Integration](./mcp-cicd-integration.md)** - Automate in your pipeline
+- **[MCP Quickstart](getting-started/mcp-quickstart.md)** - Get started in 5 minutes
+- **[MCP API Reference](mcp/mcp-api-reference.md)** - Complete tool documentation
+- **[CI/CD Integration](mcp/mcp-cicd-integration.md)** - Automate in your pipeline

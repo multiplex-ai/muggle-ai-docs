@@ -31,10 +31,10 @@ Content-Type: application/json
 
 ### Request Body Fields
 
-| Field | Type | Required | Description |
-|:------|:-----|:--------:|:------------|
-| `scriptIds` | string[] | | Scripts to run (omit for all) |
-| `runName` | string | | Label for this run |
+| Field       | Type     | Required | Description                   |
+| :---------- | :------- | :------: | :---------------------------- |
+| `scriptIds` | string[] |          | Scripts to run (omit for all) |
+| `runName`   | string   |          | Label for this run            |
 
 ### Response
 
@@ -46,11 +46,11 @@ Content-Type: application/json
 }
 ```
 
-| Field | Type | Description |
-|:------|:-----|:------------|
-| `runId` | string | Unique identifier for polling |
-| `status` | string | Initial status (`queued`) |
-| `createdAt` | string | ISO 8601 timestamp |
+| Field       | Type   | Description                   |
+| :---------- | :----- | :---------------------------- |
+| `runId`     | string | Unique identifier for polling |
+| `status`    | string | Initial status (`queued`)     |
+| `createdAt` | string | ISO 8601 timestamp            |
 
 ## Step 2: Poll Run Status
 
@@ -81,22 +81,22 @@ Authorization: Bearer YOUR_API_KEY
 
 ### Status Values
 
-| Status | Description | Terminal? |
-|:-------|:------------|:---------:|
-| `queued` | Waiting to start | |
-| `running` | In progress | |
-| `completed` | Finished successfully | ✓ |
-| `failed` | Finished with failures | ✓ |
-| `cancelled` | Stopped by user | ✓ |
+| Status      | Description            | Terminal? |
+| :---------- | :--------------------- | :-------: |
+| `queued`    | Waiting to start       |           |
+| `running`   | In progress            |           |
+| `completed` | Finished successfully  |     ✓     |
+| `failed`    | Finished with failures |     ✓     |
+| `cancelled` | Stopped by user        |     ✓     |
 
 ### Polling Best Practices
 
-| Practice | Recommendation |
-|:---------|:---------------|
-| Initial delay | Wait 5 seconds before first poll |
-| Poll interval | 10-30 seconds between checks |
-| Timeout | Set maximum wait (e.g., 30 minutes) |
-| Backoff | Increase interval if no progress |
+| Practice      | Recommendation                      |
+| :------------ | :---------------------------------- |
+| Initial delay | Wait 5 seconds before first poll    |
+| Poll interval | 10-30 seconds between checks        |
+| Timeout       | Set maximum wait (e.g., 30 minutes) |
+| Backoff       | Increase interval if no progress    |
 
 ## Step 3: Fetch Reports
 
@@ -176,17 +176,17 @@ done
 
 ## Error Responses
 
-| Error | Cause | Solution |
-|:------|:------|:---------|
-| `404 Project not found` | Invalid project ID | Verify ID in dashboard |
-| `404 Run not found` | Invalid run ID | Check trigger response |
-| `400 No scripts` | Project has no scripts | Generate scripts first |
-| `429 Rate limited` | Too many requests | Back off and retry |
+| Error                   | Cause                  | Solution               |
+| :---------------------- | :--------------------- | :--------------------- |
+| `404 Project not found` | Invalid project ID     | Verify ID in dashboard |
+| `404 Run not found`     | Invalid run ID         | Check trigger response |
+| `400 No scripts`        | Project has no scripts | Generate scripts first |
+| `429 Rate limited`      | Too many requests      | Back off and retry     |
 
 ## Next Steps
 
-| Goal | Resource |
-|:-----|:---------|
-| Full CI/CD examples | [CI/CD Integration](../mcp/mcp-cicd-integration.md) |
-| Use AI assistants | [MCP Gateway](../mcp/overview.md) |
-| Troubleshooting | [Common Issues](../troubleshooting/common-issues.md) |
+| Goal                | Resource                                             |
+| :------------------ | :--------------------------------------------------- |
+| Full CI/CD examples | [CI/CD Integration](mcp/mcp-cicd-integration.md)     |
+| Use AI assistants   | [MCP Gateway](mcp/mcp-overview)                      |
+| Troubleshooting     | [Common Issues](troubleshooting/common-issues.md)    |

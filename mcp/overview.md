@@ -63,9 +63,9 @@ The gateway exposes 46+ tools covering the complete Muggle Test workflow:
 
 Ready to connect your AI assistant to Muggle Test?
 
-1. **[MCP Quickstart](../getting-started/mcp-quickstart.md)** - Connect in 5 minutes
-2. **[MCP Concepts](./mcp-concepts.md)** - Understand the architecture
-3. **[MCP API Reference](./mcp-api-reference.md)** - Complete tool documentation
+1. **[MCP Quickstart](getting-started/mcp-quickstart.md)** - Connect in 5 minutes
+2. **[MCP Concepts](mcp/mcp-concepts.md)** - Understand the architecture
+3. **[MCP API Reference](mcp/mcp-api-reference.md)** - Complete tool documentation
 
 ## Prerequisites
 

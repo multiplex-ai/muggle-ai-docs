@@ -6,16 +6,16 @@ Complete reference for all MCP Gateway tools.
 
 The MCP Gateway exposes tools organized into these categories:
 
-| Category | Count | Purpose | Link |
-|:---------|------:|:--------|:-----|
-| Project | 4 | Create and manage testing projects | [Jump](#project-tools) |
-| PRD Files | 3 | Upload requirements documents | [Jump](#prd-file-tools) |
-| Secrets | 5 | Manage test credentials | [Jump](#secret-tools) |
-| Use Cases | 4 | Discover and approve use cases | [Jump](#use-case-tools) |
-| Workflows | 17 | Execute testing workflows | [Jump](#workflow-tools) |
-| Artifacts | 9 | Inspect test cases and scripts | [Jump](#artifact-tools) |
-| Reports | 4 | Generate and deliver reports | [Jump](#report-tools) |
-| Recommendations | 2 | Get scheduling guidance | [Jump](#recommendation-tools) |
+| Category        | Count | Purpose                            | Link                          |
+| :-------------- | ----: | :--------------------------------- | :---------------------------- |
+| Project         |     4 | Create and manage testing projects | [Jump](#project-tools)        |
+| PRD Files       |     3 | Upload requirements documents      | [Jump](#prd-file-tools)       |
+| Secrets         |     5 | Manage test credentials            | [Jump](#secret-tools)         |
+| Use Cases       |     4 | Discover and approve use cases     | [Jump](#use-case-tools)       |
+| Workflows       |    17 | Execute testing workflows          | [Jump](#workflow-tools)       |
+| Artifacts       |     9 | Inspect test cases and scripts     | [Jump](#artifact-tools)       |
+| Reports         |     4 | Generate and deliver reports       | [Jump](#report-tools)         |
+| Recommendations |     2 | Get scheduling guidance            | [Jump](#recommendation-tools) |
 
 ---
 
@@ -36,12 +36,12 @@ Create a new QA testing project.
 }
 ```
 
-| Field | Type | Required | Description |
-|:------|:-----|:--------:|:------------|
-| `projectName` | string | ✓ | Name of the project (max 255 chars) |
-| `description` | string | | Project description |
-| `url` | string | | Target website URL |
-| `testRequirements` | string | | Testing scope and requirements |
+| Field              | Type   | Required | Description                         |
+| :----------------- | :----- | :------: | :---------------------------------- |
+| `projectName`      | string |    ✓     | Name of the project (max 255 chars) |
+| `description`      | string |          | Project description                 |
+| `url`              | string |          | Target website URL                  |
+| `testRequirements` | string |          | Testing scope and requirements      |
 
 **Output:**
 
@@ -57,29 +57,29 @@ Create a new QA testing project.
 
 Get details of a specific project by ID.
 
-| Field | Type | Required | Description |
-|:------|:-----|:--------:|:------------|
-| `projectId` | string | ✓ | Project ID to retrieve |
+| Field       | Type   | Required | Description            |
+| :---------- | :----- | :------: | :--------------------- |
+| `projectId` | string |    ✓     | Project ID to retrieve |
 
 ### qa_project_update
 
 Update an existing project's details.
 
-| Field | Type | Required | Description |
-|:------|:-----|:--------:|:------------|
-| `projectId` | string | ✓ | Project ID to update |
-| `projectName` | string | | New project name |
-| `description` | string | | Updated description |
-| `url` | string | | Updated target URL |
+| Field         | Type   | Required | Description          |
+| :------------ | :----- | :------: | :------------------- |
+| `projectId`   | string |    ✓     | Project ID to update |
+| `projectName` | string |          | New project name     |
+| `description` | string |          | Updated description  |
+| `url`         | string |          | Updated target URL   |
 
 ### qa_project_list
 
 List all projects accessible to you with pagination.
 
-| Field | Type | Required | Default | Description |
-|:------|:-----|:--------:|:--------|:------------|
-| `page` | number | | 1 | Page number |
-| `pageSize` | number | | 20 | Items per page (max 100) |
+| Field      | Type   | Required | Default | Description              |
+| :--------- | :----- | :------: | :------ | :----------------------- |
+| `page`     | number |          | 1       | Page number              |
+| `pageSize` | number |          | 20      | Items per page (max 100) |
 
 ---
 
@@ -100,21 +100,21 @@ Upload a Product Requirements Document to help AI generate accurate use cases.
 }
 ```
 
-| Field | Type | Required | Description |
-|:------|:-----|:--------:|:------------|
-| `projectId` | string | ✓ | Project to associate the file with |
-| `fileName` | string | ✓ | Name of the file |
-| `contentBase64` | string | ✓ | Base64-encoded file content |
-| `contentType` | string | | MIME type (default: `application/octet-stream`) |
+| Field           | Type   | Required | Description                                     |
+| :-------------- | :----- | :------: | :---------------------------------------------- |
+| `projectId`     | string |    ✓     | Project to associate the file with              |
+| `fileName`      | string |    ✓     | Name of the file                                |
+| `contentBase64` | string |    ✓     | Base64-encoded file content                     |
+| `contentType`   | string |          | MIME type (default: `application/octet-stream`) |
 
 **Supported formats:**
 
-| Format | Extension | MIME Type |
-|:-------|:----------|:----------|
-| PDF | `.pdf` | `application/pdf` |
-| Word | `.docx` | `application/vnd.openxmlformats-officedocument.wordprocessingml.document` |
-| Text | `.txt` | `text/plain` |
-| Markdown | `.md` | `text/markdown` |
+| Format   | Extension | MIME Type                                                                 |
+| :------- | :-------- | :------------------------------------------------------------------------ |
+| PDF      | `.pdf`    | `application/pdf`                                                         |
+| Word     | `.docx`   | `application/vnd.openxmlformats-officedocument.wordprocessingml.document` |
+| Text     | `.txt`    | `text/plain`                                                              |
+| Markdown | `.md`     | `text/markdown`                                                           |
 
 ### qa_prd_file_list_by_project
 
@@ -145,12 +145,12 @@ Create a new secret.
 }
 ```
 
-| Field | Type | Required | Description |
-|:------|:-----|:--------:|:------------|
-| `projectId` | string | ✓ | Project to create secret for |
-| `name` | string | ✓ | Secret name/key |
-| `value` | string | ✓ | Secret value (encrypted at rest) |
-| `description` | string | | Description of the secret |
+| Field         | Type   | Required | Description                      |
+| :------------ | :----- | :------: | :------------------------------- |
+| `projectId`   | string |    ✓     | Project to create secret for     |
+| `name`        | string |    ✓     | Secret name/key                  |
+| `value`       | string |    ✓     | Secret value (encrypted at rest) |
+| `description` | string |          | Description of the secret        |
 
 ### qa_secret_list
 
@@ -205,12 +205,12 @@ Get discovered use case candidates with evidence (screenshots, notes).
 
 **Candidate statuses:**
 
-| Status | Description |
-|:-------|:------------|
-| `draft` | Initial discovery, not yet evaluated |
-| `candidate` | Evaluated and ready for review |
-| `graduated` | Approved and promoted to use case |
-| `dropped` | Rejected and archived |
+| Status      | Description                          |
+| :---------- | :----------------------------------- |
+| `draft`     | Initial discovery, not yet evaluated |
+| `candidate` | Evaluated and ready for review       |
+| `graduated` | Approved and promoted to use case    |
+| `dropped`   | Rejected and archived                |
 
 ### qa_use_case_candidates_approve
 
@@ -225,10 +225,10 @@ Approve (graduate) selected candidates into active use cases.
 }
 ```
 
-| Field | Type | Required | Description |
-|:------|:-----|:--------:|:------------|
-| `projectId` | string | ✓ | Project ID |
-| `approvedCandidateIds` | string[] | ✓ | IDs of candidates to approve |
+| Field                  | Type     | Required | Description                  |
+| :--------------------- | :------- | :------: | :--------------------------- |
+| `projectId`            | string   |    ✓     | Project ID                   |
+| `approvedCandidateIds` | string[] |    ✓     | IDs of candidates to approve |
 
 ### qa_use_case_list
 
@@ -270,12 +270,12 @@ Start scanning a website to discover use cases.
 }
 ```
 
-| Field | Type | Required | Description |
-|:------|:-----|:--------:|:------------|
-| `projectId` | string | ✓ | Target project |
-| `url` | string | ✓ | Website URL to scan |
-| `description` | string | ✓ | What to look for |
-| `archiveUnapproved` | boolean | | Archive existing unapproved candidates first |
+| Field               | Type    | Required | Description                                  |
+| :------------------ | :------ | :------: | :------------------------------------------- |
+| `projectId`         | string  |    ✓     | Target project                               |
+| `url`               | string  |    ✓     | Website URL to scan                          |
+| `description`       | string  |    ✓     | What to look for                             |
+| `archiveUnapproved` | boolean |          | Archive existing unapproved candidates first |
 
 **Output:**
 
@@ -301,13 +301,13 @@ Check scan status.
 
 **Workflow statuses:**
 
-| Status | Description |
-|:-------|:------------|
-| `queued` | Waiting to start |
-| `running` | In progress |
+| Status      | Description            |
+| :---------- | :--------------------- |
+| `queued`    | Waiting to start       |
+| `running`   | In progress            |
 | `succeeded` | Completed successfully |
-| `failed` | Completed with errors |
-| `cancelled` | Stopped by user |
+| `failed`    | Completed with errors  |
+| `cancelled` | Stopped by user        |
 
 #### qa_workflow_list_website_scan_runtimes
 
@@ -319,10 +319,10 @@ List all website scan runtimes.
 
 Generate test cases from approved use cases.
 
-| Field | Type | Required | Description |
-|:------|:-----|:--------:|:------------|
-| `projectId` | string | ✓ | Target project |
-| `useCaseId` | string | | Specific use case (omit for all) |
+| Field       | Type   | Required | Description                      |
+| :---------- | :----- | :------: | :------------------------------- |
+| `projectId` | string |    ✓     | Target project                   |
+| `useCaseId` | string |          | Specific use case (omit for all) |
 
 #### qa_workflow_get_test_case_detection_latest_run
 
@@ -338,11 +338,11 @@ List test case detection runtimes.
 
 Generate executable test scripts from test cases.
 
-| Field | Type | Required | Description |
-|:------|:-----|:--------:|:------------|
-| `projectId` | string | ✓ | Target project |
-| `testCaseId` | string | | Specific test case |
-| `useCaseId` | string | | Specific use case |
+| Field        | Type   | Required | Description        |
+| :----------- | :----- | :------: | :----------------- |
+| `projectId`  | string |    ✓     | Target project     |
+| `testCaseId` | string |          | Specific test case |
+| `useCaseId`  | string |          | Specific use case  |
 
 #### qa_workflow_get_test_script_generation_latest_run
 
@@ -358,10 +358,10 @@ Get the latest generation runtime for a specific test case.
 
 Execute a single test script.
 
-| Field | Type | Required | Description |
-|:------|:-----|:--------:|:------------|
-| `projectId` | string | ✓ | Target project |
-| `testScriptId` | string | ✓ | Script to execute |
+| Field          | Type   | Required | Description       |
+| :------------- | :----- | :------: | :---------------- |
+| `projectId`    | string |    ✓     | Target project    |
+| `testScriptId` | string |    ✓     | Script to execute |
 
 #### qa_workflow_start_test_script_replay_bulk
 
@@ -377,11 +377,11 @@ Execute multiple test scripts in parallel.
 }
 ```
 
-| Field | Type | Required | Description |
-|:------|:-----|:--------:|:------------|
-| `projectId` | string | ✓ | Target project |
-| `testScriptIds` | string[] | | Specific scripts (omit for all) |
-| `name` | string | | Name for this run batch |
+| Field           | Type     | Required | Description                     |
+| :-------------- | :------- | :------: | :------------------------------ |
+| `projectId`     | string   |    ✓     | Target project                  |
+| `testScriptIds` | string[] |          | Specific scripts (omit for all) |
+| `name`          | string   |          | Name for this run batch         |
 
 #### qa_workflow_get_test_script_replay_bulk_latest_run
 
@@ -482,11 +482,11 @@ Get report statistics and health score.
 
 Query usage and cost data.
 
-| Field | Type | Required | Description |
-|:------|:-----|:--------:|:------------|
-| `projectId` | string | ✓ | Target project |
-| `startDateKey` | string | | Start date (YYYYMMDD) |
-| `endDateKey` | string | | End date (YYYYMMDD) |
+| Field          | Type   | Required | Description           |
+| :------------- | :----- | :------: | :-------------------- |
+| `projectId`    | string |    ✓     | Target project        |
+| `startDateKey` | string |          | Start date (YYYYMMDD) |
+| `endDateKey`   | string |          | End date (YYYYMMDD)   |
 
 ### qa_report_preferences_upsert
 
@@ -503,21 +503,21 @@ Configure report delivery preferences.
 }
 ```
 
-| Field | Type | Required | Description |
-|:------|:-----|:--------:|:------------|
-| `projectId` | string | ✓ | Target project |
-| `channels` | string[] | ✓ | Delivery channels |
-| `emails` | string[] | | Email addresses (for email channel) |
-| `phones` | string[] | | Phone numbers (for SMS channel) |
-| `webhookUrl` | string | | Webhook endpoint (for webhook channel) |
+| Field        | Type     | Required | Description                            |
+| :----------- | :------- | :------: | :------------------------------------- |
+| `projectId`  | string   |    ✓     | Target project                         |
+| `channels`   | string[] |    ✓     | Delivery channels                      |
+| `emails`     | string[] |          | Email addresses (for email channel)    |
+| `phones`     | string[] |          | Phone numbers (for SMS channel)        |
+| `webhookUrl` | string   |          | Webhook endpoint (for webhook channel) |
 
 **Available channels:**
 
-| Channel | Description |
-|:--------|:------------|
-| `email` | Send reports as PDF attachments |
-| `sms` | Send summary notifications |
-| `webhook` | POST JSON payload to endpoint |
+| Channel   | Description                     |
+| :-------- | :------------------------------ |
+| `email`   | Send reports as PDF attachments |
+| `sms`     | Send summary notifications      |
+| `webhook` | POST JSON payload to endpoint   |
 
 ### qa_report_final_generate
 
@@ -552,10 +552,10 @@ Get test scheduling recommendations.
 
 Get CI/CD integration templates for GitHub Actions, Azure DevOps, GitLab CI, etc.
 
-| Field | Type | Options |
-|:------|:-----|:--------|
+| Field                | Type   | Options                                    |
+| :------------------- | :----- | :----------------------------------------- |
 | `repositoryProvider` | string | `github`, `azureDevOps`, `gitlab`, `other` |
-| `cadence` | string | `onPullRequest`, `nightly`, `onDemand` |
+| `cadence`            | string | `onPullRequest`, `nightly`, `onDemand`     |
 
 ---
 
@@ -571,19 +571,19 @@ All tools may return errors:
 }
 ```
 
-| Error Code | HTTP Status | Description |
-|:-----------|:-----------:|:------------|
-| `UNAUTHORIZED` | 401 | Missing or invalid authentication |
-| `FORBIDDEN` | 403 | Access denied to resource |
-| `NOT_FOUND` | 404 | Resource doesn't exist |
-| `INVALID_ARGUMENT` | 400 | Invalid input parameters |
-| `UPSTREAM_ERROR` | 502 | Backend service error |
-| `INTERNAL_ERROR` | 500 | Unexpected server error |
+| Error Code         | HTTP Status | Description                       |
+| :----------------- | :---------: | :-------------------------------- |
+| `UNAUTHORIZED`     |     401     | Missing or invalid authentication |
+| `FORBIDDEN`        |     403     | Access denied to resource         |
+| `NOT_FOUND`        |     404     | Resource doesn't exist            |
+| `INVALID_ARGUMENT` |     400     | Invalid input parameters          |
+| `UPSTREAM_ERROR`   |     502     | Backend service error             |
+| `INTERNAL_ERROR`   |     500     | Unexpected server error           |
 
 ---
 
 ## Next Steps
 
-- **[MCP Quickstart](../getting-started/mcp-quickstart.md)** - Get started
-- **[MCP Concepts](./mcp-concepts.md)** - Understand the architecture
-- **[CI/CD Integration](./mcp-cicd-integration.md)** - Automate in pipelines
+- **[MCP Quickstart](getting-started/mcp-quickstart.md)** - Get started
+- **[MCP Concepts](mcp/mcp-concepts.md)** - Understand the architecture
+- **[CI/CD Integration](mcp/mcp-cicd-integration.md)** - Automate in pipelines

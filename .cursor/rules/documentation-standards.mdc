@@ -33,13 +33,13 @@ flowchart LR
 
 ### Common Diagram Types
 
-| Type | Use Case |
-|:-----|:---------|
-| `flowchart LR` | Horizontal process flows |
-| `flowchart TD` | Vertical hierarchies |
+| Type              | Use Case                   |
+| :---------------- | :------------------------- |
+| `flowchart LR`    | Horizontal process flows   |
+| `flowchart TD`    | Vertical hierarchies       |
 | `stateDiagram-v2` | State machines, lifecycles |
-| `graph TD` | Tree structures |
-| `sequenceDiagram` | API call sequences |
+| `graph TD`        | Tree structures            |
+| `sequenceDiagram` | API call sequences         |
 
 ## Tables
 
@@ -48,30 +48,30 @@ Use proper markdown table alignment:
 ```markdown
 <!-- ❌ BAD: No alignment -->
 | Field | Type | Description |
-|-------|------|-------------|
+| ----- | ---- | ----------- |
 
 <!-- ✅ GOOD: Explicit alignment -->
-| Field | Type | Required | Description |
-|:------|:-----|:--------:|:------------|
-| `name` | string | ✓ | Display name |
-| `count` | number | | Item count |
+| Field   | Type   | Required | Description  |
+| :------ | :----- | :------: | :----------- |
+| `name`  | string |    ✓     | Display name |
+| `count` | number |          | Item count   |
 ```
 
 ### Alignment Guide
 
-| Alignment | Syntax | Use For |
-|:----------|:-------|:--------|
-| Left | `:----` | Text, descriptions |
-| Center | `:---:` | Boolean, status, icons |
-| Right | `----:` | Numbers, counts |
+| Alignment | Syntax  | Use For                |
+| :-------- | :------ | :--------------------- |
+| Left      | `:----` | Text, descriptions     |
+| Center    | `:---:` | Boolean, status, icons |
+| Right     | `----:` | Numbers, counts        |
 
 ### Symbols
 
-| Symbol | Meaning |
-|:-------|:--------|
-| ✓ | Required field |
-| ✅ | Supported/enabled |
-| ❌ | Not supported/disabled |
+| Symbol | Meaning                |
+| :----- | :--------------------- |
+| ✓      | Required field         |
+| ✅      | Supported/enabled      |
+| ❌      | Not supported/disabled |
 
 ## Writing Style
 

@@ -29,21 +29,21 @@ flowchart LR
 
 ## Prerequisites
 
-| Requirement | Description |
-|:------------|:------------|
-| Muggle Test project | With test scripts ready to run |
-| Project ID | Found in dashboard URL or project settings |
-| API key | With appropriate permissions |
+| Requirement         | Description                                |
+| :------------------ | :----------------------------------------- |
+| Muggle Test project | With test scripts ready to run             |
+| Project ID          | Found in dashboard URL or project settings |
+| API key             | With appropriate permissions               |
 
 ## Supported Platforms
 
-| Platform | Trigger | Schedule | Status Checks |
-|:---------|:-------:|:--------:|:-------------:|
-| GitHub Actions | ✅ | ✅ | ✅ |
-| Azure DevOps | ✅ | ✅ | ✅ |
-| GitLab CI | ✅ | ✅ | ✅ |
-| Jenkins | ✅ | ✅ | ✅ |
-| CircleCI | ✅ | ✅ | ✅ |
+| Platform       | Trigger | Schedule | Status Checks |
+| :------------- | :-----: | :------: | :-----------: |
+| GitHub Actions |    ✅    |    ✅     |       ✅       |
+| Azure DevOps   |    ✅    |    ✅     |       ✅       |
+| GitLab CI      |    ✅    |    ✅     |       ✅       |
+| Jenkins        |    ✅    |    ✅     |       ✅       |
+| CircleCI       |    ✅    |    ✅     |       ✅       |
 
 ## GitHub Actions
 
@@ -103,11 +103,11 @@ jobs:
 
 ### Setup Steps
 
-| Step | Action |
-|:-----|:-------|
-| 1 | Add `MUGGLE_AI_API_KEY` to repository **Secrets** |
-| 2 | Add `MUGGLE_PROJECT_ID` to repository **Variables** |
-| 3 | Commit the workflow file |
+| Step | Action                                              |
+| :--- | :-------------------------------------------------- |
+| 1    | Add `MUGGLE_AI_API_KEY` to repository **Secrets**   |
+| 2    | Add `MUGGLE_PROJECT_ID` to repository **Variables** |
+| 3    | Commit the workflow file                            |
 
 ## Azure DevOps
 
@@ -227,19 +227,19 @@ Configure webhooks to receive test results in your systems:
 
 ### Use Dedicated API Keys
 
-| Practice | Benefit |
-|:---------|:--------|
-| Separate keys per environment | Better access control |
-| Rotate periodically | Limits exposure if compromised |
-| Descriptive names | Easier audit trail |
+| Practice                      | Benefit                        |
+| :---------------------------- | :----------------------------- |
+| Separate keys per environment | Better access control          |
+| Rotate periodically           | Limits exposure if compromised |
+| Descriptive names             | Easier audit trail             |
 
 ### Set Appropriate Timeouts
 
-| Test Type | Recommended Timeout |
-|:----------|--------------------:|
-| Smoke tests | 5-10 minutes |
-| Feature tests | 15-30 minutes |
-| Full regression | 30-60 minutes |
+| Test Type       | Recommended Timeout |
+| :-------------- | ------------------: |
+| Smoke tests     |        5-10 minutes |
+| Feature tests   |       15-30 minutes |
+| Full regression |       30-60 minutes |
 
 ### Run Subset on PRs
 
@@ -260,16 +260,16 @@ schedules:
 
 ## Troubleshooting
 
-| Issue | Possible Cause | Solution |
-|:------|:---------------|:---------|
-| Tests not starting | Invalid API key | Verify key in dashboard |
-| Tests not starting | Invalid project ID | Check ID format |
-| Timeout errors | Tests taking too long | Increase poll timeout |
-| Timeout errors | Too many tests | Run subset on PRs |
-| Authentication errors | Expired API key | Regenerate key |
-| Authentication errors | Wrong environment | Check key matches env |
+| Issue                 | Possible Cause        | Solution                |
+| :-------------------- | :-------------------- | :---------------------- |
+| Tests not starting    | Invalid API key       | Verify key in dashboard |
+| Tests not starting    | Invalid project ID    | Check ID format         |
+| Timeout errors        | Tests taking too long | Increase poll timeout   |
+| Timeout errors        | Too many tests        | Run subset on PRs       |
+| Authentication errors | Expired API key       | Regenerate key          |
+| Authentication errors | Wrong environment     | Check key matches env   |
 
 ## Next Steps
 
-- **[MCP Quickstart](../getting-started/mcp-quickstart.md)** - Interactive setup
-- **[MCP API Reference](./mcp-api-reference.md)** - Complete documentation
+- **[MCP Quickstart](getting-started/mcp-quickstart.md)** - Interactive setup
+- **[MCP API Reference](mcp/mcp-api-reference.md)** - Complete documentation

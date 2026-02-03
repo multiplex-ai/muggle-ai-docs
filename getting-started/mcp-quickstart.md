@@ -4,11 +4,11 @@ Connect your AI assistant to Muggle Test in under 5 minutes.
 
 ## Prerequisites
 
-| Requirement | Description |
-|:------------|:------------|
-| Muggle Test account | Active subscription required |
-| API key | From your [Dashboard](https://app.muggle-ai.com/settings/api-keys) |
-| MCP client | Claude Desktop, Cursor, or any MCP-compatible client |
+| Requirement         | Description                                                        |
+| :------------------ | :----------------------------------------------------------------- |
+| Muggle Test account | Active subscription required                                       |
+| API key             | From your [Dashboard](https://app.muggle-ai.com/settings/api-keys) |
+| MCP client          | Claude Desktop, Cursor, or any MCP-compatible client               |
 
 ## Step 1: Get Your API Key
 
@@ -40,10 +40,10 @@ Add the following to your Claude Desktop configuration:
 
 **Config file location:**
 
-| Platform | Path |
-|:---------|:-----|
-| macOS | `~/Library/Application Support/Claude/claude_desktop_config.json` |
-| Windows | `%APPDATA%\Claude\claude_desktop_config.json` |
+| Platform | Path                                                              |
+| :------- | :---------------------------------------------------------------- |
+| macOS    | `~/Library/Application Support/Claude/claude_desktop_config.json` |
+| Windows  | `%APPDATA%\Claude\claude_desktop_config.json`                     |
 
 ### Cursor IDE
 
@@ -66,10 +66,10 @@ Add to your Cursor MCP settings (Settings → MCP):
 
 ### Other MCP Clients
 
-| Setting | Value |
-|:--------|:------|
-| **Endpoint** | `https://mcp.muggle-ai.com/mcp` |
-| **Transport** | Streamable HTTP |
+| Setting            | Value                            |
+| :----------------- | :------------------------------- |
+| **Endpoint**       | `https://mcp.muggle-ai.com/mcp`  |
+| **Transport**      | Streamable HTTP                  |
 | **Authentication** | Header `x-api-key: YOUR_API_KEY` |
 
 ## Step 3: Run Your First Test
@@ -139,13 +139,13 @@ The scan is running. This usually takes a few minutes depending on your site's s
 
 **Assistant**: I found 5 potential use cases:
 
-| # | Use Case | Description |
-|:-:|:---------|:------------|
-| 1 | **User Registration** | New user signup flow |
-| 2 | **User Login** | Authentication flow |
-| 3 | **Product Search** | Search and filter products |
-| 4 | **Add to Cart** | Shopping cart functionality |
-| 5 | **Checkout** | Complete purchase flow |
+|   #   | Use Case              | Description                 |
+| :---: | :-------------------- | :-------------------------- |
+|   1   | **User Registration** | New user signup flow        |
+|   2   | **User Login**        | Authentication flow         |
+|   3   | **Product Search**    | Search and filter products  |
+|   4   | **Add to Cart**       | Shopping cart functionality |
+|   5   | **Checkout**          | Complete purchase flow      |
 
 Each has screenshots and notes. Would you like to approve any of these?
 
@@ -163,10 +163,10 @@ Each has screenshots and notes. Would you like to approve any of these?
 
 *[After completion]*
 
-| Result | Count |
-|:-------|------:|
-| ✅ Passed | 10 |
-| ❌ Failed | 2 |
+| Result   | Count |
+| :------- | ----: |
+| ✅ Passed |    10 |
+| ❌ Failed |     2 |
 
 Failed tests: Checkout flow - payment validation
 
@@ -180,35 +180,35 @@ Would you like to see the detailed report?
 
 If your MCP client can't connect:
 
-| Check | Solution |
-|:------|:---------|
-| API key correct? | Verify key matches dashboard |
+| Check                 | Solution                                |
+| :-------------------- | :-------------------------------------- |
+| API key correct?      | Verify key matches dashboard            |
 | Endpoint URL correct? | Must be `https://mcp.muggle-ai.com/mcp` |
-| Firewall blocking? | Allow outbound HTTPS |
-| Config updated? | Restart MCP client after changes |
+| Firewall blocking?    | Allow outbound HTTPS                    |
+| Config updated?       | Restart MCP client after changes        |
 
 ### Authentication Errors
 
 If you see "UNAUTHORIZED" errors:
 
-| Check | Solution |
-|:------|:---------|
-| Key expired? | Regenerate in dashboard |
-| Subscription active? | Check subscription status |
-| Key format correct? | Should start with `mai_sk_` |
+| Check                | Solution                    |
+| :------------------- | :-------------------------- |
+| Key expired?         | Regenerate in dashboard     |
+| Subscription active? | Check subscription status   |
+| Key format correct?  | Should start with `mai_sk_` |
 
 ### Timeout Errors
 
 Long-running operations (website scans, test runs) may take several minutes:
 
-| Situation | Solution |
-|:----------|:---------|
-| Operation in progress | Wait for completion |
-| Need status update | Ask "What's the status of the scan?" |
-| Very large site | Consider testing sections separately |
+| Situation             | Solution                             |
+| :-------------------- | :----------------------------------- |
+| Operation in progress | Wait for completion                  |
+| Need status update    | Ask "What's the status of the scan?" |
+| Very large site       | Consider testing sections separately |
 
 ## Next Steps
 
-- **[MCP Concepts](../mcp/mcp-concepts.md)** - Understand the architecture
-- **[MCP API Reference](../mcp/mcp-api-reference.md)** - Complete tool documentation
-- **[CI/CD Integration](../mcp/mcp-cicd-integration.md)** - Automate in your pipeline
+- **[MCP Concepts](mcp/mcp-concepts.md)** - Understand the architecture
+- **[MCP API Reference](mcp/mcp-api-reference.md)** - Complete tool documentation
+- **[CI/CD Integration](mcp/mcp-cicd-integration.md)** - Automate in your pipeline

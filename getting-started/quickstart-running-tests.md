@@ -20,11 +20,11 @@ flowchart LR
 
 ### Recommendations
 
-| Setting | Recommendation |
-|:--------|:---------------|
-| **Environment** | Use a stable staging environment |
-| **2FA / CAPTCHA** | Disable on test environment for reliable automation |
-| **Test account** | Create a dedicated account with necessary permissions |
+| Setting           | Recommendation                                        |
+| :---------------- | :---------------------------------------------------- |
+| **Environment**   | Use a stable staging environment                      |
+| **2FA / CAPTCHA** | Disable on test environment for reliable automation   |
+| **Test account**  | Create a dedicated account with necessary permissions |
 
 ## Step 2: Let Muggle Test Explore Your Site
 
@@ -32,20 +32,20 @@ After creating the project, start a **Deep Scan** to let the agent discover key 
 
 ### What Gets Discovered
 
-| Flow Type | Examples |
-|:----------|:---------|
-| Authentication | Login, logout, password reset |
-| CRUD operations | Create, read, update, delete items |
-| Search & filters | Search bars, faceted navigation |
-| Dashboards | Analytics, reports, admin panels |
+| Flow Type        | Examples                           |
+| :--------------- | :--------------------------------- |
+| Authentication   | Login, logout, password reset      |
+| CRUD operations  | Create, read, update, delete items |
+| Search & filters | Search bars, faceted navigation    |
+| Dashboards       | Analytics, reports, admin panels   |
 
 ### Managing Discovered Flows
 
-| Action | When to Use |
-|:-------|:------------|
-| **Rename** | Match your domain language |
-| **Disable** | Exclude flows you don't care about |
-| **Prioritize** | Mark critical business flows |
+| Action         | When to Use                        |
+| :------------- | :--------------------------------- |
+| **Rename**     | Match your domain language         |
+| **Disable**    | Exclude flows you don't care about |
+| **Prioritize** | Mark critical business flows       |
 
 ## Step 3: Generate and Run Tests
 
@@ -55,12 +55,12 @@ After creating the project, start a **Deep Scan** to let the agent discover key 
 
 ### What Happens During a Run
 
-| Step | Description |
-|:-----|:------------|
-| Browser opens | Real browser environment launches |
+| Step          | Description                                 |
+| :------------ | :------------------------------------------ |
+| Browser opens | Real browser environment launches           |
 | Steps execute | Each action in the script runs sequentially |
-| Validation | Assertions check expected outcomes |
-| Capture | Screenshots and logs saved for debugging |
+| Validation    | Assertions check expected outcomes          |
+| Capture       | Screenshots and logs saved for debugging    |
 
 ## Step 4: Review Results
 
@@ -68,27 +68,27 @@ Once runs complete, open the **Report** tab for your project.
 
 ### Filtering Results
 
-| Filter | Use Case |
-|:-------|:---------|
-| **Status** | Show only passed or failed tests |
-| **Flow name** | Focus on specific user journeys |
-| **Date range** | Compare results over time |
+| Filter         | Use Case                         |
+| :------------- | :------------------------------- |
+| **Status**     | Show only passed or failed tests |
+| **Flow name**  | Focus on specific user journeys  |
+| **Date range** | Compare results over time        |
 
 ### Investigating Failures
 
 For each failing step, you can see:
 
-| Information | Purpose |
-|:------------|:--------|
-| **Action** | Exact step that failed |
-| **Screenshot** | Visual state at failure time |
+| Information       | Purpose                         |
+| :---------------- | :------------------------------ |
+| **Action**        | Exact step that failed          |
+| **Screenshot**    | Visual state at failure time    |
 | **Error message** | Technical details for debugging |
-| **Page URL** | Where the failure occurred |
+| **Page URL**      | Where the failure occurred      |
 
 ## Next Steps
 
-| Goal | Resource |
-|:-----|:---------|
-| Understand the architecture | [How Muggle Test Works](../concepts/how-muggle-test-works.md) |
-| Automate via API | [Running Tests via API](../api/running-tests-via-api.md) |
-| Use AI assistants | [MCP Quickstart](./mcp-quickstart.md) |
+| Goal                        | Resource                                                      |
+| :-------------------------- | :------------------------------------------------------------ |
+| Understand the architecture | [How Muggle Test Works](concepts/how-muggle-test-works.md)                |
+| Automate via API            | [Running Tests via API](api/running-tests-via-api.md)                     |
+| Use AI assistants           | [MCP Quickstart](getting-started/mcp-quickstart.md)                       |

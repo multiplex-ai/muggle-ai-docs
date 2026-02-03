@@ -40,19 +40,19 @@ Muggle Test uses an AI agent in a real browser to explore your application.
 
 ### How Discovery Works
 
-| Phase | Description |
-|:------|:------------|
-| **Crawl** | Start from your base URL and navigate links/buttons |
+| Phase        | Description                                                |
+| :----------- | :--------------------------------------------------------- |
+| **Crawl**    | Start from your base URL and navigate links/buttons        |
 | **Identify** | Recognize key pages and actions (login, forms, dashboards) |
-| **Propose** | Create labeled scenarios in your project |
+| **Propose**  | Create labeled scenarios in your project                   |
 
 ### What the Agent Handles
 
-| Challenge | How It's Solved |
-|:----------|:----------------|
-| Multi-step workflows | Agent follows realistic user paths |
-| Dynamic content | Waits for async loading to complete |
-| Authentication | Uses provided credentials to access protected areas |
+| Challenge            | How It's Solved                                     |
+| :------------------- | :-------------------------------------------------- |
+| Multi-step workflows | Agent follows realistic user paths                  |
+| Dynamic content      | Waits for async loading to complete                 |
+| Authentication       | Uses provided credentials to access protected areas |
 
 ## Test Scripts
 
@@ -60,21 +60,21 @@ Each discovered scenario becomes a sequence of concrete steps.
 
 ### Example Steps
 
-| Step | Description |
-|:-----|:------------|
-| 1 | Click **Sign in** button |
-| 2 | Type email into field labeled **Email** |
-| 3 | Type password into field labeled **Password** |
-| 4 | Click **Submit** |
-| 5 | Wait for dashboard to finish loading |
+| Step | Description                                   |
+| :--- | :-------------------------------------------- |
+| 1    | Click **Sign in** button                      |
+| 2    | Type email into field labeled **Email**       |
+| 3    | Type password into field labeled **Password** |
+| 4    | Click **Submit**                              |
+| 5    | Wait for dashboard to finish loading          |
 
 ### Script Stability
 
-| Strategy | Benefit |
-|:---------|:--------|
-| Human-visible labels | More stable than brittle CSS selectors |
-| Flexible matching | Tolerates minor layout and content changes |
-| Smart waits | Handles varying load times |
+| Strategy             | Benefit                                    |
+| :------------------- | :----------------------------------------- |
+| Human-visible labels | More stable than brittle CSS selectors     |
+| Flexible matching    | Tolerates minor layout and content changes |
+| Smart waits          | Handles varying load times                 |
 
 ## Runs and Reports
 
@@ -94,25 +94,25 @@ flowchart LR
 
 ### What's Captured on Failure
 
-| Artifact | Purpose |
-|:---------|:--------|
-| **URL** | Where the failure occurred |
-| **Step description** | What action was attempted |
-| **Screenshot** | Visual state at failure time |
-| **Error summary** | Technical details for debugging |
+| Artifact             | Purpose                         |
+| :------------------- | :------------------------------ |
+| **URL**              | Where the failure occurred      |
+| **Step description** | What action was attempted       |
+| **Screenshot**       | Visual state at failure time    |
+| **Error summary**    | Technical details for debugging |
 
 ### How Reports Help
 
-| Use Case | Benefit |
-|:---------|:--------|
-| See health at a glance | Know which flows are working |
-| Prioritize fixes | Focus on business-critical failures |
-| Share with team | Non-engineers can understand results |
+| Use Case               | Benefit                              |
+| :--------------------- | :----------------------------------- |
+| See health at a glance | Know which flows are working         |
+| Prioritize fixes       | Focus on business-critical failures  |
+| Share with team        | Non-engineers can understand results |
 
 ## Next Steps
 
-| Goal | Resource |
-|:-----|:---------|
-| Get started | [Quickstart: Running Tests](../getting-started/quickstart-running-tests.md) |
-| Integrate via API | [API Overview](../api/api-overview.md) |
-| Use AI assistants | [MCP Gateway Overview](../mcp/overview.md) |
+| Goal              | Resource                                                                    |
+| :---------------- | :-------------------------------------------------------------------------- |
+| Get started       | [Quickstart: Running Tests](getting-started/quickstart-running-tests.md)    |
+| Integrate via API | [API Overview](api/api-overview.md)                                         |
+| Use AI assistants | [MCP Gateway Overview](mcp/mcp-overview)                                    |
