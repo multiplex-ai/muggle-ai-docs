@@ -6,11 +6,44 @@ Integrate Muggle Test into your continuous integration and deployment pipelines.
 
 While the MCP Gateway is designed for interactive AI assistant use, you can also trigger tests programmatically in CI/CD pipelines using the REST API directly.
 
+```mermaid
+flowchart LR
+    subgraph ci["CI/CD Pipeline"]
+        trigger["Trigger Tests"]
+        poll["Poll Status"]
+        result["Check Result"]
+    end
+    
+    subgraph muggle["Muggle Test"]
+        api["REST API"]
+        exec["Test Execution"]
+    end
+    
+    trigger --> api
+    api --> exec
+    exec --> poll
+    poll --> result
+    result -->|Pass| pass["✅ Continue"]
+    result -->|Fail| fail["❌ Block"]
+```
+
 ## Prerequisites
 
-- A Muggle Test project with test scripts ready to run
-- Your project ID (found in dashboard URL or project settings)
-- An API key with appropriate permissions
+| Requirement | Description |
+|:------------|:------------|
+| Muggle Test project | With test scripts ready to run |
+| Project ID | Found in dashboard URL or project settings |
+| API key | With appropriate permissions |
+
+## Supported Platforms
+
+| Platform | Trigger | Schedule | Status Checks |
+|:---------|:-------:|:--------:|:-------------:|
+| GitHub Actions | ✅ | ✅ | ✅ |
+| Azure DevOps | ✅ | ✅ | ✅ |
+| GitLab CI | ✅ | ✅ | ✅ |
+| Jenkins | ✅ | ✅ | ✅ |
+| CircleCI | ✅ | ✅ | ✅ |
 
 ## GitHub Actions
 
@@ -70,9 +103,11 @@ jobs:
 
 ### Setup Steps
 
-1. Add `MUGGLE_AI_API_KEY` to repository secrets
-2. Add `MUGGLE_PROJECT_ID` to repository variables
-3. Commit the workflow file
+| Step | Action |
+|:-----|:-------|
+| 1 | Add `MUGGLE_AI_API_KEY` to repository **Secrets** |
+| 2 | Add `MUGGLE_PROJECT_ID` to repository **Variables** |
+| 3 | Commit the workflow file |
 
 ## Azure DevOps
 
@@ -161,7 +196,9 @@ muggle-tests:
 
 ## Webhook Notifications
 
-Configure webhooks to receive test results:
+Configure webhooks to receive test results in your systems:
+
+**Configuration:**
 
 ```json
 {
@@ -171,12 +208,13 @@ Configure webhooks to receive test results:
 }
 ```
 
-Your endpoint receives:
+**Payload received:**
 
 ```json
 {
   "event": "test_run_completed",
   "projectId": "proj_abc123",
+  "timestamp": "2024-01-15T10:35:00Z",
   "results": {
     "total": 10,
     "passed": 8,
@@ -189,13 +227,19 @@ Your endpoint receives:
 
 ### Use Dedicated API Keys
 
-Create separate API keys for CI/CD for easier rotation and better audit trails.
+| Practice | Benefit |
+|:---------|:--------|
+| Separate keys per environment | Better access control |
+| Rotate periodically | Limits exposure if compromised |
+| Descriptive names | Easier audit trail |
 
 ### Set Appropriate Timeouts
 
-- Simple flows: 5-10 minutes
-- Complex flows: 15-30 minutes
-- Full regression: 30-60 minutes
+| Test Type | Recommended Timeout |
+|:----------|--------------------:|
+| Smoke tests | 5-10 minutes |
+| Feature tests | 15-30 minutes |
+| Full regression | 30-60 minutes |
 
 ### Run Subset on PRs
 
@@ -216,11 +260,14 @@ schedules:
 
 ## Troubleshooting
 
-**Tests not starting**: Verify API key and project ID are correct.
-
-**Timeout issues**: Increase polling timeout or run fewer tests.
-
-**Authentication errors**: Check if API key has expired or been rotated.
+| Issue | Possible Cause | Solution |
+|:------|:---------------|:---------|
+| Tests not starting | Invalid API key | Verify key in dashboard |
+| Tests not starting | Invalid project ID | Check ID format |
+| Timeout errors | Tests taking too long | Increase poll timeout |
+| Timeout errors | Too many tests | Run subset on PRs |
+| Authentication errors | Expired API key | Regenerate key |
+| Authentication errors | Wrong environment | Check key matches env |
 
 ## Next Steps
 

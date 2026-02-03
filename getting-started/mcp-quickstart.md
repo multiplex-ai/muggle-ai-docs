@@ -4,9 +4,11 @@ Connect your AI assistant to Muggle Test in under 5 minutes.
 
 ## Prerequisites
 
-- A Muggle Test account with an active subscription
-- An API key from your [Muggle Test Dashboard](https://app.muggle-ai.com/settings/api-keys)
-- An MCP-compatible client (Claude Desktop, Cursor, or any MCP client)
+| Requirement | Description |
+|:------------|:------------|
+| Muggle Test account | Active subscription required |
+| API key | From your [Dashboard](https://app.muggle-ai.com/settings/api-keys) |
+| MCP client | Claude Desktop, Cursor, or any MCP-compatible client |
 
 ## Step 1: Get Your API Key
 
@@ -21,7 +23,7 @@ Connect your AI assistant to Muggle Test in under 5 minutes.
 
 ### Claude Desktop
 
-Add the following to your Claude Desktop configuration (`claude_desktop_config.json`):
+Add the following to your Claude Desktop configuration:
 
 ```json
 {
@@ -37,8 +39,11 @@ Add the following to your Claude Desktop configuration (`claude_desktop_config.j
 ```
 
 **Config file location:**
-- macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
-- Windows: `%APPDATA%\Claude\claude_desktop_config.json`
+
+| Platform | Path |
+|:---------|:-----|
+| macOS | `~/Library/Application Support/Claude/claude_desktop_config.json` |
+| Windows | `%APPDATA%\Claude\claude_desktop_config.json` |
 
 ### Cursor IDE
 
@@ -61,14 +66,24 @@ Add to your Cursor MCP settings (Settings → MCP):
 
 ### Other MCP Clients
 
-Use the following connection details:
-- **Endpoint**: `https://mcp.muggle-ai.com/mcp`
-- **Transport**: Streamable HTTP
-- **Authentication**: Header `x-api-key: YOUR_API_KEY`
+| Setting | Value |
+|:--------|:------|
+| **Endpoint** | `https://mcp.muggle-ai.com/mcp` |
+| **Transport** | Streamable HTTP |
+| **Authentication** | Header `x-api-key: YOUR_API_KEY` |
 
 ## Step 3: Run Your First Test
 
 Once connected, interact with Muggle Test through natural language:
+
+```mermaid
+flowchart LR
+    A["Create Project"] --> B["Scan Website"]
+    B --> C["Review & Approve"]
+    C --> D["Generate Tests"]
+    D --> E["Run Tests"]
+    E --> F["View Results"]
+```
 
 ### Create a Project
 
@@ -104,6 +119,8 @@ Or generate a full report:
 
 Here's a complete example:
 
+---
+
 **You**: I want to set up automated testing for my e-commerce site at https://shop.example.com
 
 **Assistant**: I'll help you set up automated testing. Let me create a project first.
@@ -116,20 +133,29 @@ Done! I've created a project called "shop.example.com Tests". Now let me scan yo
 
 The scan is running. This usually takes a few minutes depending on your site's size.
 
+---
+
 **You**: What use cases did you find?
 
 **Assistant**: I found 5 potential use cases:
-1. **User Registration** - New user signup flow
-2. **User Login** - Authentication flow  
-3. **Product Search** - Search and filter products
-4. **Add to Cart** - Shopping cart functionality
-5. **Checkout** - Complete purchase flow
+
+| # | Use Case | Description |
+|:-:|:---------|:------------|
+| 1 | **User Registration** | New user signup flow |
+| 2 | **User Login** | Authentication flow |
+| 3 | **Product Search** | Search and filter products |
+| 4 | **Add to Cart** | Shopping cart functionality |
+| 5 | **Checkout** | Complete purchase flow |
 
 Each has screenshots and notes. Would you like to approve any of these?
+
+---
 
 **You**: Approve all of them and generate tests
 
 **Assistant**: Done! I've created 12 test cases across the 5 use cases, and generated executable test scripts for each. Would you like me to run them now?
+
+---
 
 **You**: Yes, run all tests
 
@@ -137,33 +163,49 @@ Each has screenshots and notes. Would you like to approve any of these?
 
 *[After completion]*
 
-Results: ✅ 10 passed, ❌ 2 failed (Checkout flow - payment validation)
+| Result | Count |
+|:-------|------:|
+| ✅ Passed | 10 |
+| ❌ Failed | 2 |
+
+Failed tests: Checkout flow - payment validation
 
 Would you like to see the detailed report?
+
+---
 
 ## Troubleshooting
 
 ### Connection Issues
 
 If your MCP client can't connect:
-1. Verify your API key is correct
-2. Check that the endpoint URL is `https://mcp.muggle-ai.com/mcp`
-3. Ensure your firewall allows outbound HTTPS connections
-4. Restart your MCP client after configuration changes
+
+| Check | Solution |
+|:------|:---------|
+| API key correct? | Verify key matches dashboard |
+| Endpoint URL correct? | Must be `https://mcp.muggle-ai.com/mcp` |
+| Firewall blocking? | Allow outbound HTTPS |
+| Config updated? | Restart MCP client after changes |
 
 ### Authentication Errors
 
 If you see "UNAUTHORIZED" errors:
-1. Confirm your API key hasn't expired
-2. Check your subscription status in the dashboard
-3. Regenerate your API key if needed
+
+| Check | Solution |
+|:------|:---------|
+| Key expired? | Regenerate in dashboard |
+| Subscription active? | Check subscription status |
+| Key format correct? | Should start with `mai_sk_` |
 
 ### Timeout Errors
 
 Long-running operations (website scans, test runs) may take several minutes:
-1. Wait for the operation to complete
-2. Use status-checking commands like "What's the status of the scan?"
-3. For very large sites, consider testing sections separately
+
+| Situation | Solution |
+|:----------|:---------|
+| Operation in progress | Wait for completion |
+| Need status update | Ask "What's the status of the scan?" |
+| Very large site | Consider testing sections separately |
 
 ## Next Steps
 

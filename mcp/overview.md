@@ -12,11 +12,19 @@ The MCP Gateway is a hosted service that exposes Muggle Test capabilities throug
 
 ## Architecture
 
-```
-┌─────────────────┐         ┌─────────────────┐         ┌─────────────────┐
-│  AI Assistant   │  MCP    │   MCP Gateway   │  API    │  Muggle Test    │
-│  (Claude, etc.) │ ──────▶ │                 │ ──────▶ │  Platform       │
-└─────────────────┘         └─────────────────┘         └─────────────────┘
+```mermaid
+flowchart LR
+    subgraph Your Environment
+        A[AI Assistant<br/>Claude, Cursor, etc.]
+    end
+    
+    subgraph Muggle AI Cloud
+        B[MCP Gateway]
+        C[Muggle Test<br/>Platform]
+    end
+    
+    A -->|MCP Protocol<br/>+ API Key| B
+    B -->|REST API| C
 ```
 
 Your AI assistant connects to the MCP Gateway using your API key. The gateway translates MCP tool calls into Muggle Test API requests and returns results.
@@ -32,17 +40,24 @@ Instead of navigating dashboards, simply tell your AI assistant what you want:
 ### Seamless Integration
 
 Works with any MCP-compatible client:
-- **Claude Desktop** - Anthropic's AI assistant
-- **Cursor** - AI-powered code editor
-- **Custom clients** - Build your own MCP integration
+
+| Client | Description |
+|:-------|:------------|
+| **Claude Desktop** | Anthropic's AI assistant |
+| **Cursor** | AI-powered code editor |
+| **Custom clients** | Build your own MCP integration |
 
 ### Full Platform Access
 
 The gateway exposes 46+ tools covering the complete Muggle Test workflow:
-- Project management
-- Use case discovery and approval
-- Test generation and execution
-- Results and reporting
+
+| Capability | Description |
+|:-----------|:------------|
+| Project management | Create, configure, and organize test projects |
+| Use case discovery | Automatically find testable user flows |
+| Test generation | Generate test cases and automation scripts |
+| Test execution | Run tests and collect results |
+| Reporting | Generate and deliver test reports |
 
 ## Getting Started
 

@@ -4,53 +4,46 @@ Understanding how the MCP Gateway works with Muggle Test.
 
 ## System Architecture
 
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                         Your Environment                             │
-│  ┌──────────────┐                                                   │
-│  │  AI Assistant │  (Claude, Cursor, Custom MCP Client)             │
-│  │  ┌─────────┐ │                                                   │
-│  │  │   MCP   │ │                                                   │
-│  │  │ Client  │ │                                                   │
-│  └──┴────┬────┴─┘                                                   │
-└──────────┼──────────────────────────────────────────────────────────┘
-           │ HTTPS (MCP Streamable HTTP)
-           │ + API Key Authentication
-           ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│                      Muggle AI Cloud                                 │
-│  ┌──────────────────────────────────────────────────────────────┐   │
-│  │                    MCP QA Gateway                             │   │
-│  │  • Protocol translation (MCP ↔ REST)                         │   │
-│  │  • Authentication forwarding                                  │   │
-│  │  • Rate limiting & security                                   │   │
-│  └──────────────────────────┬───────────────────────────────────┘   │
-│                             │                                        │
-│  ┌──────────────────────────▼───────────────────────────────────┐   │
-│  │                    Muggle Test Platform                       │   │
-│  │  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐          │   │
-│  │  │   Project   │  │   Workflow  │  │   Report    │          │   │
-│  │  │  Management │  │   Engine    │  │  Generator  │          │   │
-│  │  └─────────────┘  └─────────────┘  └─────────────┘          │   │
-│  └──────────────────────────────────────────────────────────────┘   │
-│                             │                                        │
-│  ┌──────────────────────────▼───────────────────────────────────┐   │
-│  │                    Test Execution                             │   │
-│  │  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐          │   │
-│  │  │   Browser   │  │     AI      │  │  Screenshot │          │   │
-│  │  │  Automation │  │   Analysis  │  │   Capture   │          │   │
-│  │  └─────────────┘  └─────────────┘  └─────────────┘          │   │
-│  └──────────────────────────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TB
+    subgraph env["Your Environment"]
+        client["AI Assistant<br/>(Claude, Cursor, Custom MCP Client)"]
+    end
+    
+    subgraph cloud["Muggle AI Cloud"]
+        subgraph gateway["MCP QA Gateway"]
+            proto["Protocol Translation"]
+            auth["Auth Forwarding"]
+            rate["Rate Limiting"]
+        end
+        
+        subgraph platform["Muggle Test Platform"]
+            proj["Project<br/>Management"]
+            workflow["Workflow<br/>Engine"]
+            report["Report<br/>Generator"]
+        end
+        
+        subgraph exec["Test Execution"]
+            browser["Browser<br/>Automation"]
+            ai["AI<br/>Analysis"]
+            screenshot["Screenshot<br/>Capture"]
+        end
+    end
+    
+    client -->|"HTTPS + API Key"| gateway
+    gateway --> platform
+    platform --> exec
 ```
 
 ## What is MCP?
 
-The [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) is an open standard for connecting AI assistants to external tools and data sources. It provides:
+The [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) is an open standard for connecting AI assistants to external tools and data sources.
 
-- **Standardized Interface**: Common protocol for tool invocation across different AI assistants
-- **Streaming Support**: Real-time updates for long-running operations
-- **Tool Discovery**: AI assistants can automatically discover available capabilities
+| Feature | Description |
+|:--------|:------------|
+| **Standardized Interface** | Common protocol for tool invocation across different AI assistants |
+| **Streaming Support** | Real-time updates for long-running operations |
+| **Tool Discovery** | AI assistants automatically discover available capabilities |
 
 ## Core Concepts
 
@@ -58,14 +51,15 @@ The [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) is an open 
 
 A **Project** is the top-level container for all your testing artifacts. Each project typically corresponds to one website or application.
 
-```
-Project
-├── Use Cases (user flows to test)
-│   ├── Test Cases (specific scenarios)
-│   │   └── Test Scripts (executable automation)
-├── Secrets (stored credentials)
-├── PRD Files (requirements documents)
-└── Reports (test results)
+```mermaid
+graph TD
+    P[Project] --> UC[Use Cases]
+    P --> S[Secrets]
+    P --> PRD[PRD Files]
+    P --> R[Reports]
+    
+    UC --> TC[Test Cases]
+    TC --> TS[Test Scripts]
 ```
 
 ### Use Cases
@@ -74,46 +68,51 @@ A **Use Case** represents a user flow or feature to test (e.g., "User Login", "C
 
 **Lifecycle:**
 
-```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   Website   │────▶│  Candidate  │────▶│  Graduated  │
-│    Scan     │     │   (Draft)   │     │ (Approved)  │
-└─────────────┘     └─────────────┘     └─────────────┘
-                          │
-                          ▼
-                    ┌─────────────┐
-                    │   Dropped   │
-                    │ (Rejected)  │
-                    └─────────────┘
+```mermaid
+flowchart LR
+    scan["Website<br/>Scan"] --> candidate["Candidate<br/>(Draft)"]
+    candidate --> graduated["Graduated<br/>(Approved)"]
+    candidate --> dropped["Dropped<br/>(Rejected)"]
+    
+    style graduated fill:#d4edda,stroke:#28a745
+    style dropped fill:#f8d7da,stroke:#dc3545
+    style candidate fill:#fff3cd,stroke:#ffc107
 ```
 
-1. **Discovery**: Website scan identifies potential use cases
-2. **Candidate**: Proposed use cases await your review
-3. **Graduated**: Approved use cases become active test targets
-4. **Dropped**: Rejected candidates are archived
+| Stage | Description |
+|:------|:------------|
+| **Discovery** | Website scan identifies potential use cases |
+| **Candidate** | Proposed use cases await your review |
+| **Graduated** | Approved use cases become active test targets |
+| **Dropped** | Rejected candidates are archived |
 
 ### Test Cases
 
 A **Test Case** is a specific scenario derived from a use case. Each use case may have multiple test cases:
 
-- Use Case: "User Login"
-  - Test Case 1: Valid credentials → successful login
-  - Test Case 2: Invalid password → error message
-  - Test Case 3: Empty fields → validation errors
+| Use Case | Test Cases |
+|:---------|:-----------|
+| User Login | Valid credentials → successful login |
+| | Invalid password → error message |
+| | Empty fields → validation errors |
+| | Account locked → lockout message |
 
 ### Test Scripts
 
 A **Test Script** is executable automation generated from a test case. Scripts contain:
-- Step-by-step browser actions
-- Assertions and validations
-- Screenshots at each step
+
+| Component | Description |
+|:----------|:------------|
+| **Browser Actions** | Step-by-step navigation, clicks, form fills |
+| **Assertions** | Validations and expected outcomes |
+| **Screenshots** | Visual capture at each step |
 
 ### Workflows
 
 **Workflows** are long-running operations:
 
 | Workflow | Purpose | Output |
-|----------|---------|--------|
+|:---------|:--------|:-------|
 | Website Scan | Discover use cases | Use case candidates |
 | Test Case Detection | Generate test cases | Test cases |
 | Test Script Generation | Create automation | Test scripts |
@@ -121,48 +120,33 @@ A **Test Script** is executable automation generated from a test case. Scripts c
 | Report Generation | Create reports | PDF/HTML reports |
 
 **Workflow states:**
-- `queued` - Waiting to start
-- `running` - In progress
-- `succeeded` - Completed successfully
-- `failed` - Completed with errors
-- `cancelled` - Stopped by user
+
+```mermaid
+stateDiagram-v2
+    [*] --> queued
+    queued --> running
+    running --> succeeded
+    running --> failed
+    running --> cancelled
+    succeeded --> [*]
+    failed --> [*]
+    cancelled --> [*]
+```
 
 ## Testing Flow
 
-```
-                    ┌─────────────────────────────┐
-                    │     1. CREATE PROJECT       │
-                    └─────────────┬───────────────┘
-                                  │
-                    ┌─────────────▼───────────────┐
-                    │     2. WEBSITE SCAN         │
-                    │   Discover user flows       │
-                    └─────────────┬───────────────┘
-                                  │
-                    ┌─────────────▼───────────────┐
-                    │  3. REVIEW & APPROVE        │
-                    │   Select use cases          │
-                    └─────────────┬───────────────┘
-                                  │
-                    ┌─────────────▼───────────────┐
-                    │  4. GENERATE TEST CASES     │
-                    └─────────────┬───────────────┘
-                                  │
-                    ┌─────────────▼───────────────┐
-                    │  5. GENERATE SCRIPTS        │
-                    └─────────────┬───────────────┘
-                                  │
-                    ┌─────────────▼───────────────┐
-                    │     6. RUN TESTS            │
-                    └─────────────┬───────────────┘
-                                  │
-                    ┌─────────────▼───────────────┐
-                    │   7. VIEW RESULTS           │
-                    └─────────────┬───────────────┘
-                                  │
-                    ┌─────────────▼───────────────┐
-                    │   8. GENERATE REPORT        │
-                    └─────────────────────────────┘
+```mermaid
+flowchart TD
+    A["1. Create Project"] --> B["2. Website Scan<br/><i>Discover user flows</i>"]
+    B --> C["3. Review & Approve<br/><i>Select use cases</i>"]
+    C --> D["4. Generate Test Cases"]
+    D --> E["5. Generate Scripts"]
+    E --> F["6. Run Tests"]
+    F --> G["7. View Results"]
+    G --> H["8. Generate Report"]
+    
+    style A fill:#e3f2fd
+    style H fill:#e8f5e9
 ```
 
 ## Authentication
@@ -173,46 +157,54 @@ API keys provide programmatic access:
 
 ```
 mai_sk_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-└─┬──┘ └─┬──────────────────────────────┘
-  │      │
-  │      └── Secret portion (keep private)
-  └── Prefix identifying key type
+│     │
+│     └── Secret portion (keep private)
+└── Prefix identifying key type
 ```
 
 **Best practices:**
-- Rotate keys periodically
-- Use separate keys for different environments
-- Never expose keys in client-side code
-- Store keys in environment variables or secrets managers
+
+| Practice | Reason |
+|:---------|:-------|
+| Rotate keys periodically | Limits exposure if compromised |
+| Use separate keys per environment | Better access control |
+| Never expose in client-side code | Prevents unauthorized access |
+| Store in secrets managers | Secure storage |
 
 ### Authorization
 
 All API calls are scoped to your account:
-- You can only access projects you own or have been granted access to
-- Team members can be granted specific roles
-- API keys inherit the permissions of the creating user
+
+| Scope | Description |
+|:------|:------------|
+| **Projects** | Access only projects you own or have been granted access to |
+| **Team Roles** | Members can be granted viewer, editor, or admin roles |
+| **API Keys** | Inherit permissions of the creating user |
 
 ## Rate Limits
 
 The gateway enforces rate limits to ensure fair usage:
 
-| Tier | Requests/minute | Concurrent workflows |
-|------|-----------------|---------------------|
+| Tier | Requests/min | Concurrent Workflows |
+|:-----|-------------:|---------------------:|
 | Free | 20 | 1 |
 | Pro | 60 | 5 |
 | Enterprise | 300 | 20 |
 
-Rate limit headers are included in responses:
-- `X-RateLimit-Limit`: Maximum requests allowed
-- `X-RateLimit-Remaining`: Requests remaining
-- `X-RateLimit-Reset`: Time when limit resets
+**Rate limit headers:**
+
+| Header | Description |
+|:-------|:------------|
+| `X-RateLimit-Limit` | Maximum requests allowed |
+| `X-RateLimit-Remaining` | Requests remaining in window |
+| `X-RateLimit-Reset` | Time when limit resets (Unix timestamp) |
 
 ## Available Tools
 
 The gateway provides 46+ tools organized into categories:
 
-| Category | Tools | Purpose |
-|----------|-------|---------|
+| Category | Count | Purpose |
+|:---------|------:|:--------|
 | Project | 4 | Create and manage projects |
 | PRD Files | 3 | Upload requirements documents |
 | Secrets | 5 | Manage test credentials |
