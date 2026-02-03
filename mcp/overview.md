@@ -13,12 +13,13 @@ The MCP Gateway is a hosted service that exposes Muggle Test capabilities throug
 ## Architecture
 
 ```mermaid
-flowchart LR
+flowchart TB
     subgraph Your Environment
         A[AI Assistant<br/>Claude, Cursor, etc.]
     end
     
     subgraph Muggle AI Cloud
+        direction LR
         B[MCP Gateway]
         C[Muggle Test<br/>Platform]
     end
