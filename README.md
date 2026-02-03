@@ -1,50 +1,65 @@
-# muggle-ai-docs repo
+# Muggle AI Documentation
 
 Muggle AI's customer-facing documentation repository for **Muggle Test** and related products.
 
 This repo is consumed at runtime by the `muggle-prompt-ui` frontend, which:
 
-- Loads `manifest.json` to build the docs sidebar and routing.
-- Fetches individual markdown files referenced by `relativePath` in the manifest.
+- Loads `manifest.json` to build the docs sidebar and routing
+- Fetches individual markdown files referenced by `relativePath` in the manifest
 
-## Repository structure
+## Repository Structure
 
-- `manifest.json` – machine-readable index of sections and articles.
-- `getting-started/` – onboarding and first-run guides.
-- `concepts/` – deeper explanations of how Muggle Test works.
-- `api/` – API usage, authentication, and examples.
-- `troubleshooting/` – common issues and resolutions.
+| Folder | Contents |
+|:-------|:---------|
+| `getting-started/` | Onboarding and first-run guides |
+| `concepts/` | Deeper explanations of how Muggle Test works |
+| `api/` | API usage, authentication, and examples |
+| `mcp/` | MCP Gateway documentation for AI assistant integration |
+| `troubleshooting/` | Common issues and resolutions |
 
-You can add more sections later as long as they are represented in `manifest.json`.
+## Editing and Adding Documentation
 
-## Editing and adding documentation
+### 1. Add or Update Markdown Files
 
-1. **Add or update markdown files**
-   - Create or edit `.md` files under the appropriate section folder.
-   - Keep filenames descriptive and URL-friendly, for example:
-     - `getting-started/overview.md`
-     - `api/running-tests-via-api.md`
+Create or edit `.md` files under the appropriate section folder.
 
-2. **Update `manifest.json`**
-   - Each article must appear under a `section` entry with:
-     - `articleId` – short identifier used in URLs.
-     - `title` – display title in the UI.
-     - `summary` – 1–2 sentence description used in search and lists.
-     - `relativePath` – path to the markdown file from the repo root.
-     - `order` – numeric sort order within the section.
-   - Sections themselves have:
-     - `sectionId`, `label`, and `order`.
+| Guideline | Example |
+|:----------|:--------|
+| Descriptive filenames | `getting-started/overview.md` |
+| URL-friendly names | `api/running-tests-via-api.md` |
+| Follow doc standards | See `.cursor/rules/documentation-standards.mdc` |
 
-3. **Push to the main branch**
-   - The UI reads from the default branch (e.g. `main`) via a raw Git URL.
-   - Once merged, changes are visible immediately in the docs UI.
+### 2. Update `manifest.json`
 
-## Manifest schema (high level)
+Each article must appear under a `section` entry:
+
+| Field | Description |
+|:------|:------------|
+| `articleId` | Short identifier used in URLs |
+| `title` | Display title in the UI |
+| `summary` | 1-2 sentence description for search/lists |
+| `relativePath` | Path to markdown file from repo root |
+| `order` | Numeric sort order within section |
+| `tags` | Keywords for search |
+
+Sections have:
+
+| Field | Description |
+|:------|:------------|
+| `sectionId` | Unique section identifier |
+| `label` | Display name in sidebar |
+| `order` | Sort order among sections |
+
+### 3. Push to Main Branch
+
+The UI reads from the default branch (e.g., `main`) via raw Git URL. Changes are visible immediately after merge.
+
+## Manifest Schema
 
 ```jsonc
 {
-  "version": "v0.1.0",
-  "lastUpdatedAtUtc": "2025-01-01T00:00:00Z",
+  "version": "v0.2.0",
+  "lastUpdatedAtUtc": "2026-02-01T00:00:00Z",
   "sections": [
     {
       "sectionId": "getting-started",
@@ -54,7 +69,7 @@ You can add more sections later as long as they are represented in `manifest.jso
         {
           "articleId": "overview",
           "title": "Muggle Test Overview",
-          "summary": "High-level introduction to Muggle Test and when to use it.",
+          "summary": "High-level introduction to Muggle Test.",
           "relativePath": "getting-started/overview.md",
           "order": 1,
           "tags": ["intro", "overview"]
@@ -65,6 +80,17 @@ You can add more sections later as long as they are represented in `manifest.jso
 }
 ```
 
-When editing `manifest.json`, keep it valid JSON (no comments) and ensure every `relativePath` points to a real file.
+> **Note**: Keep `manifest.json` as valid JSON (no comments) and ensure every `relativePath` points to a real file.
 
- 
+## Documentation Standards
+
+This repo follows specific standards for customer-facing documentation:
+
+| Standard | Requirement |
+|:---------|:------------|
+| **Diagrams** | Use Mermaid, not ASCII art |
+| **Tables** | Use proper alignment (`:---` left, `---:` right, `:---:` center) |
+| **Security** | Never expose internal details or sensitive information |
+| **Style** | Use second person ("you"), keep sentences concise |
+
+See `.cursor/rules/documentation-standards.mdc` for full guidelines.

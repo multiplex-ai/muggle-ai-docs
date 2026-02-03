@@ -1,21 +1,51 @@
+# Muggle Test Overview
+
 Muggle Test is an AI-powered web testing platform that discovers user flows in your product and keeps them covered with executable tests.
 
-## When to use Muggle Test
+## When to Use Muggle Test
 
-- You ship changes to your web app weekly or faster.
-- You do not want to maintain a large end-to-end test suite by hand.
-- You care about realistic, user-centric coverage instead of brittle DOM selectors.
+| Scenario | Muggle Test Helps By |
+|:---------|:---------------------|
+| You ship changes weekly or faster | Catching regressions before they reach users |
+| You don't want to maintain E2E tests by hand | Auto-generating and updating test scripts |
+| You care about realistic coverage | Testing actual user journeys, not brittle selectors |
 
-## What you get
+## What You Get
 
-- Automatically discovered user flows (login, CRUD, search, dashboards, and more).
-- Executable test scripts that can be re-run on every change.
-- Human-readable reports that your whole team can understand.
+| Feature | Description |
+|:--------|:------------|
+| **Auto-discovered flows** | Login, CRUD, search, dashboards, and more |
+| **Executable test scripts** | Re-run on every change |
+| **Human-readable reports** | Share results with your whole team |
 
-## How it fits into your workflow
+## How It Fits Into Your Workflow
 
-- **Before release**: run generated tests against staging to catch regressions.
-- **After release**: schedule regular runs to make sure critical flows keep working.
-- **During development**: quickly verify that new features did not break existing journeys.
+```mermaid
+flowchart LR
+    subgraph dev["Development"]
+        code["Code Changes"]
+    end
+    
+    subgraph staging["Staging"]
+        deploy["Deploy"]
+        test["Run Muggle Tests"]
+    end
+    
+    subgraph prod["Production"]
+        release["Release"]
+        monitor["Scheduled Tests"]
+    end
+    
+    code --> deploy
+    deploy --> test
+    test -->|Pass| release
+    test -->|Fail| code
+    release --> monitor
+    monitor -->|Issues| code
+```
 
-
+| Stage | How Muggle Test Helps |
+|:------|:----------------------|
+| **Before release** | Run tests against staging to catch regressions |
+| **After release** | Schedule regular runs to verify critical flows |
+| **During development** | Quickly verify new features don't break existing journeys |

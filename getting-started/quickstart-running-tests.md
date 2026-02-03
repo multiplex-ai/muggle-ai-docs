@@ -1,51 +1,94 @@
+# Quickstart: Running Your First Tests
+
 This guide walks you from zero to your first successful test run in a few minutes.
 
-## 1. Create a project
+## Overview
 
-1. Go to **Dashboard → Projects → New Project**.
-2. Enter the **base URL** of the environment you want to test.
-3. Optionally add **login credentials** so we can cover authenticated flows.
+```mermaid
+flowchart LR
+    A["1. Create Project"] --> B["2. Deep Scan"]
+    B --> C["3. Generate Tests"]
+    C --> D["4. Run Tests"]
+    D --> E["5. Review Results"]
+```
 
-Recommendations:
+## Step 1: Create a Project
 
-- Use a **stable staging environment** where you can safely run tests.
-- Disable 2FA and CAPTCHA on that environment so the agent can log in reliably.
+1. Go to **Dashboard → Projects → New Project**
+2. Enter the **base URL** of the environment you want to test
+3. Optionally add **login credentials** for authenticated flows
 
-## 2. Let Muggle Test explore your site
+### Recommendations
 
-After creating the project:
+| Setting | Recommendation |
+|:--------|:---------------|
+| **Environment** | Use a stable staging environment |
+| **2FA / CAPTCHA** | Disable on test environment for reliable automation |
+| **Test account** | Create a dedicated account with necessary permissions |
 
-- Start a **Deep Scan** to let the agent discover key user flows.
-- You will see candidate flows such as _Login_, _Create Item_, _Edit Item_, _Search_, and dashboards.
+## Step 2: Let Muggle Test Explore Your Site
 
-You can:
+After creating the project, start a **Deep Scan** to let the agent discover key user flows.
 
-- Rename flows to match your domain language.
-- Disable flows you do not care about to keep reports focused.
+### What Gets Discovered
 
-## 3. Generate and run tests
+| Flow Type | Examples |
+|:----------|:---------|
+| Authentication | Login, logout, password reset |
+| CRUD operations | Create, read, update, delete items |
+| Search & filters | Search bars, faceted navigation |
+| Dashboards | Analytics, reports, admin panels |
 
-1. Select the flows you care about most.
-2. Click **Generate Tests**.
-3. When scripts are ready, click **Run All**.
+### Managing Discovered Flows
 
-Muggle Test will:
+| Action | When to Use |
+|:-------|:------------|
+| **Rename** | Match your domain language |
+| **Disable** | Exclude flows you don't care about |
+| **Prioritize** | Mark critical business flows |
 
-- Open a real browser.
-- Execute each step in the generated scripts.
-- Capture screenshots and logs for debugging.
+## Step 3: Generate and Run Tests
 
-## 4. Review results
+1. Select the flows you care about most
+2. Click **Generate Tests**
+3. When scripts are ready, click **Run All**
 
-Once runs complete:
+### What Happens During a Run
 
-- Open the **Report** tab for the project.
-- Filter by **status** (pass/fail) or by **flow name**.
-- Drill down into failing steps to see:
-  - The exact action that failed.
-  - The page screenshot.
-  - Any useful error messages.
+| Step | Description |
+|:-----|:------------|
+| Browser opens | Real browser environment launches |
+| Steps execute | Each action in the script runs sequentially |
+| Validation | Assertions check expected outcomes |
+| Capture | Screenshots and logs saved for debugging |
 
-From here you can fix issues in your app and re-run the affected tests to confirm the fix.
+## Step 4: Review Results
 
+Once runs complete, open the **Report** tab for your project.
 
+### Filtering Results
+
+| Filter | Use Case |
+|:-------|:---------|
+| **Status** | Show only passed or failed tests |
+| **Flow name** | Focus on specific user journeys |
+| **Date range** | Compare results over time |
+
+### Investigating Failures
+
+For each failing step, you can see:
+
+| Information | Purpose |
+|:------------|:--------|
+| **Action** | Exact step that failed |
+| **Screenshot** | Visual state at failure time |
+| **Error message** | Technical details for debugging |
+| **Page URL** | Where the failure occurred |
+
+## Next Steps
+
+| Goal | Resource |
+|:-----|:---------|
+| Understand the architecture | [How Muggle Test Works](../concepts/how-muggle-test-works.md) |
+| Automate via API | [Running Tests via API](../api/running-tests-via-api.md) |
+| Use AI assistants | [MCP Quickstart](./mcp-quickstart.md) |

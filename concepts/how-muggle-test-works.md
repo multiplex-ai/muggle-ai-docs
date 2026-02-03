@@ -1,47 +1,115 @@
+# How Muggle Test Works
+
 At a high level, Muggle Test does three things:
 
-1. **Discover** important flows in your app.
-2. **Generate** executable test scripts from those flows.
-3. **Re-run** those scripts on every change and surface regressions.
+1. **Discover** important flows in your app
+2. **Generate** executable test scripts from those flows
+3. **Re-run** those scripts on every change and surface regressions
+
+```mermaid
+flowchart TD
+    subgraph discovery["1. Discovery"]
+        crawl["AI Agent crawls site"]
+        identify["Identifies key flows"]
+        propose["Proposes scenarios"]
+    end
+    
+    subgraph generation["2. Script Generation"]
+        steps["Converts to concrete steps"]
+        selectors["Uses stable selectors"]
+        assertions["Adds validations"]
+    end
+    
+    subgraph execution["3. Execution & Reporting"]
+        run["Runs in real browser"]
+        capture["Captures evidence"]
+        report["Generates reports"]
+    end
+    
+    discovery --> generation
+    generation --> execution
+    execution -->|Regressions found| discovery
+```
 
 ## Discovery
 
-Muggle Test uses an AI agent in a real browser to:
+Muggle Test uses an AI agent in a real browser to explore your application.
 
-- Crawl your site starting from the base URL you provide.
-- Identify key pages and actions (login, search, forms, dashboards, etc.).
-- Propose flows as labeled scenarios in your project.
+### How Discovery Works
 
-The agent is optimized for:
+| Phase | Description |
+|:------|:------------|
+| **Crawl** | Start from your base URL and navigate links/buttons |
+| **Identify** | Recognize key pages and actions (login, forms, dashboards) |
+| **Propose** | Create labeled scenarios in your project |
 
-- Navigating realistic multi-step workflows.
-- Handling dynamic content and asynchronous loading.
+### What the Agent Handles
 
-## Test scripts
+| Challenge | How It's Solved |
+|:----------|:----------------|
+| Multi-step workflows | Agent follows realistic user paths |
+| Dynamic content | Waits for async loading to complete |
+| Authentication | Uses provided credentials to access protected areas |
 
-Each scenario is turned into a sequence of concrete steps, for example:
+## Test Scripts
 
-- “Click **Sign in** button.”
-- “Type email into field labeled **Email**.”
-- “Wait for dashboard to finish loading.”
+Each discovered scenario becomes a sequence of concrete steps.
 
-Muggle Test keeps scripts as stable as possible by:
+### Example Steps
 
-- Preferring human-visible labels over brittle CSS selectors.
-- Allowing for minor layout and content changes.
+| Step | Description |
+|:-----|:------------|
+| 1 | Click **Sign in** button |
+| 2 | Type email into field labeled **Email** |
+| 3 | Type password into field labeled **Password** |
+| 4 | Click **Submit** |
+| 5 | Wait for dashboard to finish loading |
 
-## Runs and reports
+### Script Stability
 
-When you run tests:
+| Strategy | Benefit |
+|:---------|:--------|
+| Human-visible labels | More stable than brittle CSS selectors |
+| Flexible matching | Tolerates minor layout and content changes |
+| Smart waits | Handles varying load times |
 
-- Scripts are executed in a browser environment.
-- Each step is evaluated as pass/fail.
-- Failures capture enough context to debug quickly (URL, step description, screenshot, and summary).
+## Runs and Reports
 
-Reports help you:
+When you run tests, scripts execute in a browser environment.
 
-- See which flows are currently healthy.
-- Prioritize fixes by business impact.
-- Share understandable results with non-engineers.
+```mermaid
+flowchart LR
+    trigger["Trigger Run"] --> execute["Execute Scripts"]
+    execute --> evaluate["Evaluate Steps"]
+    evaluate --> pass["✅ Pass"]
+    evaluate --> fail["❌ Fail"]
+    pass --> report["Generate Report"]
+    fail --> report
+    fail --> capture["Capture Debug Info"]
+    capture --> report
+```
 
+### What's Captured on Failure
 
+| Artifact | Purpose |
+|:---------|:--------|
+| **URL** | Where the failure occurred |
+| **Step description** | What action was attempted |
+| **Screenshot** | Visual state at failure time |
+| **Error summary** | Technical details for debugging |
+
+### How Reports Help
+
+| Use Case | Benefit |
+|:---------|:--------|
+| See health at a glance | Know which flows are working |
+| Prioritize fixes | Focus on business-critical failures |
+| Share with team | Non-engineers can understand results |
+
+## Next Steps
+
+| Goal | Resource |
+|:-----|:---------|
+| Get started | [Quickstart: Running Tests](../getting-started/quickstart-running-tests.md) |
+| Integrate via API | [API Overview](../api/api-overview.md) |
+| Use AI assistants | [MCP Gateway Overview](../mcp/overview.md) |

@@ -3,28 +3,45 @@ title: Welcome to Muggle Test
 summary: Get oriented with the docs and learn where to start.
 ---
 
+# Welcome to Muggle Test
+
 Muggle Test is an AI-powered web testing platform that discovers realistic user flows and keeps them covered with executable tests.
 
-This short page gives you a quick map of the documentation and suggests a path depending on what you are trying to do.
+This page helps you find the right documentation based on what you're trying to do.
 
-## If you are brand new
+## Quick Navigation
 
-- Start with **[Muggle Test Overview](./overview.md)** for a high-level introduction and when to use Muggle Test.
-- Then follow **[Quickstart: Running Your First Tests](./quickstart-running-tests.md)** to go from zero to your first successful run.
+| If you want to... | Start here |
+|:------------------|:-----------|
+| Learn what Muggle Test is | [Muggle Test Overview](./overview.md) |
+| Get your first tests running | [Quickstart: Running Tests](./quickstart-running-tests.md) |
+| Understand the architecture | [How Muggle Test Works](../concepts/how-muggle-test-works.md) |
+| Integrate via API | [API Overview](../api/api-overview.md) |
+| Use AI assistants (MCP) | [MCP Quickstart](./mcp-quickstart.md) |
+| Fix a problem | [Common Issues](../troubleshooting/common-issues.md) |
 
-## If you want to understand the architecture
+## Recommended Reading Path
 
-- Read **[How Muggle Test Works](/concepts/how-muggle-test-works.md)** to learn how discovery, scripts, runs, and reports fit together.
+```mermaid
+flowchart TD
+    A["1. Overview<br/><i>What is Muggle Test?</i>"] --> B["2. Quickstart<br/><i>Run your first tests</i>"]
+    B --> C{"What's next?"}
+    C -->|Deeper understanding| D["How It Works"]
+    C -->|Automate| E["API Integration"]
+    C -->|AI Assistants| F["MCP Gateway"]
+    
+    style A fill:#e3f2fd
+    style B fill:#e8f5e9
+```
 
-## If you plan to integrate via API
+## Documentation Sections
 
-- Begin with **[API Overview](/api/api-overview.md)** for authentication, base URLs, and common patterns.
-- Then see **[Running Tests via API](/api/running-tests-via-api.md)** to trigger runs and fetch results programmatically.
+| Section | Contents |
+|:--------|:---------|
+| **Getting Started** | Onboarding, quickstart guides |
+| **Concepts** | Architecture, how discovery and testing work |
+| **API** | Authentication, endpoints, integration examples |
+| **MCP Gateway** | AI assistant integration via Model Context Protocol |
+| **Troubleshooting** | Common issues and solutions |
 
-## If you are troubleshooting
-
-- Check **[Common Issues & Fixes](/troubleshooting/common-issues.md)** for answers to the most frequent setup and runtime problems.
-
-From here, you can always use the in-app sidebar search to jump directly to topics, or browse the sections listed on the left.
-
-
+Use the sidebar search to jump directly to topics, or browse sections on the left.
