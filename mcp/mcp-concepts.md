@@ -5,11 +5,11 @@ Understanding how the MCP Gateway works with Muggle Test.
 ## System Architecture
 
 ```mermaid
-flowchart LR
+flowchart TB
     subgraph env["Your Environment"]
         client["AI Assistant<br/>(Claude, Cursor, Custom MCP Client)"]
     end
-    
+
     subgraph cloud["Muggle AI Cloud"]
         subgraph gateway["MCP QA Gateway"]
             direction TB
@@ -17,14 +17,14 @@ flowchart LR
             auth["Auth Forwarding"]
             rate["Rate Limiting"]
         end
-        
+
         subgraph platform["Muggle Test Platform"]
             direction TB
             proj["Project Management"]
             workflow["Workflow Engine"]
             report["Report Generator"]
         end
-        
+
         subgraph exec["Test Execution"]
             direction TB
             browser["Browser Automation"]
@@ -32,7 +32,7 @@ flowchart LR
             screenshot["Screenshot Capture"]
         end
     end
-    
+
     client -->|"HTTPS + API Key"| gateway
     gateway --> platform
     platform --> exec
@@ -42,11 +42,11 @@ flowchart LR
 
 The [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) is an open standard for connecting AI assistants to external tools and data sources.
 
-| Feature | Description |
-|:--------|:------------|
+| Feature                    | Description                                                        |
+| :------------------------- | :----------------------------------------------------------------- |
 | **Standardized Interface** | Common protocol for tool invocation across different AI assistants |
-| **Streaming Support** | Real-time updates for long-running operations |
-| **Tool Discovery** | AI assistants automatically discover available capabilities |
+| **Streaming Support**      | Real-time updates for long-running operations                      |
+| **Tool Discovery**         | AI assistants automatically discover available capabilities        |
 
 ## Core Concepts
 
@@ -60,7 +60,7 @@ graph LR
     P --> S[Secrets]
     P --> PRD[PRD Files]
     P --> R[Reports]
-    
+
     UC --> TC[Test Cases]
     TC --> TS[Test Scripts]
 ```
@@ -76,51 +76,51 @@ flowchart LR
     scan["Website<br/>Scan"] --> candidate["Candidate<br/>(Draft)"]
     candidate --> graduated["Graduated<br/>(Approved)"]
     candidate --> dropped["Dropped<br/>(Rejected)"]
-    
+
     style graduated fill:#d4edda,stroke:#28a745
     style dropped fill:#f8d7da,stroke:#dc3545
     style candidate fill:#fff3cd,stroke:#ffc107
 ```
 
-| Stage | Description |
-|:------|:------------|
-| **Discovery** | Website scan identifies potential use cases |
-| **Candidate** | Proposed use cases await your review |
+| Stage         | Description                                   |
+| :------------ | :-------------------------------------------- |
+| **Discovery** | Website scan identifies potential use cases   |
+| **Candidate** | Proposed use cases await your review          |
 | **Graduated** | Approved use cases become active test targets |
-| **Dropped** | Rejected candidates are archived |
+| **Dropped**   | Rejected candidates are archived              |
 
 ### Test Cases
 
 A **Test Case** is a specific scenario derived from a use case. Each use case may have multiple test cases:
 
-| Use Case | Test Cases |
-|:---------|:-----------|
+| Use Case   | Test Cases                           |
+| :--------- | :----------------------------------- |
 | User Login | Valid credentials → successful login |
-| | Invalid password → error message |
-| | Empty fields → validation errors |
-| | Account locked → lockout message |
+|            | Invalid password → error message     |
+|            | Empty fields → validation errors     |
+|            | Account locked → lockout message     |
 
 ### Test Scripts
 
 A **Test Script** is executable automation generated from a test case. Scripts contain:
 
-| Component | Description |
-|:----------|:------------|
+| Component           | Description                                 |
+| :------------------ | :------------------------------------------ |
 | **Browser Actions** | Step-by-step navigation, clicks, form fills |
-| **Assertions** | Validations and expected outcomes |
-| **Screenshots** | Visual capture at each step |
+| **Assertions**      | Validations and expected outcomes           |
+| **Screenshots**     | Visual capture at each step                 |
 
 ### Workflows
 
 **Workflows** are long-running operations:
 
-| Workflow | Purpose | Output |
-|:---------|:--------|:-------|
-| Website Scan | Discover use cases | Use case candidates |
-| Test Case Detection | Generate test cases | Test cases |
-| Test Script Generation | Create automation | Test scripts |
-| Test Script Replay | Execute tests | Test results |
-| Report Generation | Create reports | PDF/HTML reports |
+| Workflow               | Purpose             | Output              |
+| :--------------------- | :------------------ | :------------------ |
+| Website Scan           | Discover use cases  | Use case candidates |
+| Test Case Detection    | Generate test cases | Test cases          |
+| Test Script Generation | Create automation   | Test scripts        |
+| Test Script Replay     | Execute tests       | Test results        |
+| Report Generation      | Create reports      | PDF/HTML reports    |
 
 **Workflow states:**
 
@@ -147,7 +147,7 @@ flowchart LR
     E --> F["6. Run Tests"]
     F --> G["7. View Results"]
     G --> H["8. Generate Report"]
-    
+
     style A fill:#e3f2fd
     style H fill:#e8f5e9
 ```
@@ -167,55 +167,55 @@ mai_sk_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 **Best practices:**
 
-| Practice | Reason |
-|:---------|:-------|
-| Rotate keys periodically | Limits exposure if compromised |
-| Use separate keys per environment | Better access control |
-| Never expose in client-side code | Prevents unauthorized access |
-| Store in secrets managers | Secure storage |
+| Practice                          | Reason                         |
+| :-------------------------------- | :----------------------------- |
+| Rotate keys periodically          | Limits exposure if compromised |
+| Use separate keys per environment | Better access control          |
+| Never expose in client-side code  | Prevents unauthorized access   |
+| Store in secrets managers         | Secure storage                 |
 
 ### Authorization
 
 All API calls are scoped to your account:
 
-| Scope | Description |
-|:------|:------------|
-| **Projects** | Access only projects you own or have been granted access to |
-| **Team Roles** | Members can be granted viewer, editor, or admin roles |
-| **API Keys** | Inherit permissions of the creating user |
+| Scope          | Description                                                 |
+| :------------- | :---------------------------------------------------------- |
+| **Projects**   | Access only projects you own or have been granted access to |
+| **Team Roles** | Members can be granted viewer, editor, or admin roles       |
+| **API Keys**   | Inherit permissions of the creating user                    |
 
 ## Rate Limits
 
 The gateway enforces rate limits to ensure fair usage:
 
-| Tier | Requests/min | Concurrent Workflows |
-|:-----|-------------:|---------------------:|
-| Free | 20 | 1 |
-| Pro | 60 | 5 |
-| Enterprise | 300 | 20 |
+| Tier       | Requests/min | Concurrent Workflows |
+| :--------- | -----------: | -------------------: |
+| Free       |           20 |                    1 |
+| Pro        |           60 |                    5 |
+| Enterprise |          300 |                   20 |
 
 **Rate limit headers:**
 
-| Header | Description |
-|:-------|:------------|
-| `X-RateLimit-Limit` | Maximum requests allowed |
-| `X-RateLimit-Remaining` | Requests remaining in window |
-| `X-RateLimit-Reset` | Time when limit resets (Unix timestamp) |
+| Header                  | Description                             |
+| :---------------------- | :-------------------------------------- |
+| `X-RateLimit-Limit`     | Maximum requests allowed                |
+| `X-RateLimit-Remaining` | Requests remaining in window            |
+| `X-RateLimit-Reset`     | Time when limit resets (Unix timestamp) |
 
 ## Available Tools
 
 The gateway provides 46+ tools organized into categories:
 
-| Category | Count | Purpose |
-|:---------|------:|:--------|
-| Project | 4 | Create and manage projects |
-| PRD Files | 3 | Upload requirements documents |
-| Secrets | 5 | Manage test credentials |
-| Use Cases | 4 | Discover and approve use cases |
-| Workflows | 17 | Execute testing workflows |
-| Artifacts | 9 | Inspect test cases and scripts |
-| Reports | 4 | Generate and deliver reports |
-| Recommendations | 2 | Get scheduling guidance |
+| Category        | Count | Purpose                        |
+| :-------------- | ----: | :----------------------------- |
+| Project         |     4 | Create and manage projects     |
+| PRD Files       |     3 | Upload requirements documents  |
+| Secrets         |     5 | Manage test credentials        |
+| Use Cases       |     4 | Discover and approve use cases |
+| Workflows       |    17 | Execute testing workflows      |
+| Artifacts       |     9 | Inspect test cases and scripts |
+| Reports         |     4 | Generate and deliver reports   |
+| Recommendations |     2 | Get scheduling guidance        |
 
 ## Next Steps
 
