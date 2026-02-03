@@ -1,0 +1,82 @@
+---
+description: Customer-facing documentation standards for Muggle AI docs
+globs: "**/*.md"
+alwaysApply: false
+---
+
+# Documentation Standards
+
+This is a **customer-facing documentation repository**. Follow these standards when creating or editing docs.
+
+## Security
+
+- **NEVER** expose internal implementation details, internal URLs, or sensitive information
+- Use placeholder URLs like `https://app.muggle-ai.com` for public endpoints
+- Do not reference internal service names, database schemas, or infrastructure details
+
+## Diagrams
+
+Use **Mermaid** diagrams instead of ASCII art for better rendering:
+
+```markdown
+<!-- ❌ BAD: ASCII art -->
+┌─────────┐     ┌─────────┐
+│  Client │────▶│  Server │
+└─────────┘     └─────────┘
+
+<!-- ✅ GOOD: Mermaid -->
+```mermaid
+flowchart LR
+    A[Client] --> B[Server]
+```
+```
+
+### Common Diagram Types
+
+| Type | Use Case |
+|:-----|:---------|
+| `flowchart LR` | Horizontal process flows |
+| `flowchart TD` | Vertical hierarchies |
+| `stateDiagram-v2` | State machines, lifecycles |
+| `graph TD` | Tree structures |
+| `sequenceDiagram` | API call sequences |
+
+## Tables
+
+Use proper markdown table alignment:
+
+```markdown
+<!-- ❌ BAD: No alignment -->
+| Field | Type | Description |
+|-------|------|-------------|
+
+<!-- ✅ GOOD: Explicit alignment -->
+| Field | Type | Required | Description |
+|:------|:-----|:--------:|:------------|
+| `name` | string | ✓ | Display name |
+| `count` | number | | Item count |
+```
+
+### Alignment Guide
+
+| Alignment | Syntax | Use For |
+|:----------|:-------|:--------|
+| Left | `:----` | Text, descriptions |
+| Center | `:---:` | Boolean, status, icons |
+| Right | `----:` | Numbers, counts |
+
+### Symbols
+
+| Symbol | Meaning |
+|:-------|:--------|
+| ✓ | Required field |
+| ✅ | Supported/enabled |
+| ❌ | Not supported/disabled |
+
+## Writing Style
+
+- Use second person ("you", "your") when addressing users
+- Keep sentences concise and scannable
+- Use bullet points and tables for lists of items
+- Include code examples with proper syntax highlighting
+- Add troubleshooting sections with problem/solution tables

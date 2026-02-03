@@ -1,0 +1,35 @@
+---
+description: General guidelines for Muggle AI customer documentation
+alwaysApply: true
+---
+
+# Muggle AI Documentation Repository
+
+This is the **customer-facing documentation** for Muggle AI products. All content is publicly visible.
+
+## Repository Structure
+
+```
+muggle-ai-docs/
+├── manifest.json          # Index of all articles (MUST update when adding docs)
+├── getting-started/       # Onboarding and quickstart guides
+├── concepts/              # Core concepts and architecture
+├── api/                   # API reference documentation
+├── mcp/                   # MCP Gateway documentation
+└── troubleshooting/       # Common issues and solutions
+```
+
+## Adding New Documentation
+
+1. Create `.md` file in appropriate folder
+2. **Update `manifest.json`** with new article entry:
+   - Add to correct section's `articles` array
+   - Include: `articleId`, `title`, `summary`, `relativePath`, `order`, `tags`
+3. Follow documentation standards (see `documentation-standards.mdc`)
+
+## Key Reminders
+
+- This is PUBLIC documentation - no internal details
+- Use Mermaid for diagrams, not ASCII art
+- Format tables with proper column alignment
+- Cross-link related articles using relative paths
