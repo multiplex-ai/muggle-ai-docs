@@ -185,8 +185,8 @@ done
 
 ## Next Steps
 
-| Goal                | Resource                                             |
-| :------------------ | :--------------------------------------------------- |
-| Full CI/CD examples | [CI/CD Integration](mcp/mcp-cicd-integration.md)     |
-| Use AI assistants   | [MCP Gateway](mcp/mcp-overview)                      |
-| Troubleshooting     | [Common Issues](troubleshooting/common-issues.md)    |
+| Goal                | Resource                                          |
+| :------------------ | :------------------------------------------------ |
+| Full CI/CD examples | [CI/CD Integration](mcp/mcp-cicd-integration.md)  |
+| Use AI assistants   | [MCP Gateway](mcp/mcp-overview)                   |
+| Troubleshooting     | [Common Issues](troubleshooting/common-issues.md) |

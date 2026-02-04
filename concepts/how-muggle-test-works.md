@@ -111,8 +111,8 @@ flowchart LR
 
 ## Next Steps
 
-| Goal              | Resource                                                                    |
-| :---------------- | :-------------------------------------------------------------------------- |
-| Get started       | [Quickstart: Running Tests](getting-started/quickstart-running-tests.md)    |
-| Integrate via API | [API Overview](api/api-overview.md)                                         |
-| Use AI assistants | [MCP Gateway Overview](mcp/mcp-overview)                                    |
+| Goal              | Resource                                                                 |
+| :---------------- | :----------------------------------------------------------------------- |
+| Get started       | [Quickstart: Running Tests](getting-started/quickstart-running-tests.md) |
+| Integrate via API | [API Overview](api/api-overview.md)                                      |
+| Use AI assistants | [MCP Gateway Overview](mcp/mcp-overview)                                 |

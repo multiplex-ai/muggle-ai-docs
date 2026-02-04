@@ -90,8 +90,8 @@ Rate limit headers are included in responses:
 
 ## Next Steps
 
-| Goal              | Resource                                            |
-| :---------------- | :-------------------------------------------------- |
-| Trigger test runs | [Running Tests via API](api/running-tests-via-api.md)         |
-| Use AI assistants | [MCP Gateway](mcp/mcp-overview)                               |
-| CI/CD integration | [CI/CD Integration](mcp/mcp-cicd-integration.md)              |
+| Goal              | Resource                                              |
+| :---------------- | :---------------------------------------------------- |
+| Trigger test runs | [Running Tests via API](api/running-tests-via-api.md) |
+| Use AI assistants | [MCP Gateway](mcp/mcp-overview)                       |
+| CI/CD integration | [CI/CD Integration](mcp/mcp-cicd-integration.md)      |

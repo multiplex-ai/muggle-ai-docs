@@ -41,23 +41,23 @@ Instead of navigating dashboards, simply tell your AI assistant what you want:
 
 Works with any MCP-compatible client:
 
-| Client | Description |
-|:-------|:------------|
-| **Claude Desktop** | Anthropic's AI assistant |
-| **Cursor** | AI-powered code editor |
+| Client             | Description                    |
+| :----------------- | :----------------------------- |
+| **Claude Desktop** | Anthropic's AI assistant       |
+| **Cursor**         | AI-powered code editor         |
 | **Custom clients** | Build your own MCP integration |
 
 ### Full Platform Access
 
 The gateway exposes 46+ tools covering the complete Muggle Test workflow:
 
-| Capability | Description |
-|:-----------|:------------|
+| Capability         | Description                                   |
+| :----------------- | :-------------------------------------------- |
 | Project management | Create, configure, and organize test projects |
-| Use case discovery | Automatically find testable user flows |
-| Test generation | Generate test cases and automation scripts |
-| Test execution | Run tests and collect results |
-| Reporting | Generate and deliver test reports |
+| Use case discovery | Automatically find testable user flows        |
+| Test generation    | Generate test cases and automation scripts    |
+| Test execution     | Run tests and collect results                 |
+| Reporting          | Generate and deliver test reports             |
 
 ## Getting Started
 

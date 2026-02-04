@@ -87,8 +87,8 @@ For each failing step, you can see:
 
 ## Next Steps
 
-| Goal                        | Resource                                                      |
-| :-------------------------- | :------------------------------------------------------------ |
-| Understand the architecture | [How Muggle Test Works](concepts/how-muggle-test-works.md)                |
-| Automate via API            | [Running Tests via API](api/running-tests-via-api.md)                     |
-| Use AI assistants           | [MCP Quickstart](getting-started/mcp-quickstart.md)                       |
+| Goal                        | Resource                                                   |
+| :-------------------------- | :--------------------------------------------------------- |
+| Understand the architecture | [How Muggle Test Works](concepts/how-muggle-test-works.md) |
+| Automate via API            | [Running Tests via API](api/running-tests-via-api.md)      |
+| Use AI assistants           | [MCP Quickstart](getting-started/mcp-quickstart.md)        |
