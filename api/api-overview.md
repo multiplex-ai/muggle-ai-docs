@@ -88,9 +88,7 @@ Rate limit headers are included in responses:
 | `X-RateLimit-Remaining` | Requests remaining          |
 | `X-RateLimit-Reset`     | Reset time (Unix timestamp) |
 
-## Next Steps
-
-| Goal              | Resource                                              |
+## Next Steps| Goal              | Resource                                              |
 | :---------------- | :---------------------------------------------------- |
 | Trigger test runs | [Running Tests via API](api/running-tests-via-api.md) |
 | Use AI assistants | [MCP Gateway](mcp/mcp-overview)                       |

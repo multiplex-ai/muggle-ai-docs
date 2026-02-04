@@ -109,9 +109,7 @@ flowchart LR
 | Prioritize fixes       | Focus on business-critical failures  |
 | Share with team        | Non-engineers can understand results |
 
-## Next Steps
-
-| Goal              | Resource                                                                 |
+## Next Steps| Goal              | Resource                                                                 |
 | :---------------- | :----------------------------------------------------------------------- |
 | Get started       | [Quickstart: Running Tests](getting-started/quickstart-running-tests.md) |
 | Integrate via API | [API Overview](api/api-overview.md)                                      |

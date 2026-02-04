@@ -183,9 +183,7 @@ done
 | `400 No scripts`        | Project has no scripts | Generate scripts first |
 | `429 Rate limited`      | Too many requests      | Back off and retry     |
 
-## Next Steps
-
-| Goal                | Resource                                          |
+## Next Steps| Goal                | Resource                                          |
 | :------------------ | :------------------------------------------------ |
 | Full CI/CD examples | [CI/CD Integration](mcp/mcp-cicd-integration.md)  |
 | Use AI assistants   | [MCP Gateway](mcp/mcp-overview)                   |
