@@ -36,15 +36,29 @@ flowchart LR
 
 ## Discovery
 
-Muggle Test uses an AI agent in a real browser to explore your application.
+Muggle Test offers two ways to discover test scenarios:
 
-### How Discovery Works
+### Option 1: Automatic Scanning
+
+An AI agent explores your application in a real browser.
 
 | Phase        | Description                                                |
 | :----------- | :--------------------------------------------------------- |
 | **Crawl**    | Start from your base URL and navigate links/buttons        |
 | **Identify** | Recognize key pages and actions (login, forms, dashboards) |
 | **Propose**  | Create labeled scenarios in your project                   |
+
+### Option 2: PRD Upload
+
+Upload your requirements documents and let AI extract scenarios.
+
+| Phase        | Description                                                |
+| :----------- | :--------------------------------------------------------- |
+| **Upload**   | Provide a PRD file (TXT, PDF, DOC, DOCX)                   |
+| **Extract**  | AI identifies user stories and acceptance criteria         |
+| **Generate** | Scenarios become use cases ready for test scripts          |
+
+See [Uploading PRD Files](prd-upload.md) for detailed guidance.
 
 ### What the Agent Handles
 
@@ -109,8 +123,11 @@ flowchart LR
 | Prioritize fixes       | Focus on business-critical failures  |
 | Share with team        | Non-engineers can understand results |
 
-## Next Steps| Goal              | Resource                                                                 |
-| :---------------- | :----------------------------------------------------------------------- |
-| Get started       | [Quickstart: Running Tests](getting-started/quickstart-running-tests.md) |
-| Integrate via API | [API Overview](api/api-overview.md)                                      |
-| Use AI assistants | [MCP Gateway Overview](mcp/mcp-overview)                                 |
+## Next Steps
+
+| Goal              | Resource                                                                    |
+| :---------------- | :-------------------------------------------------------------------------- |
+| Get started       | [Quickstart: Running Tests](../getting-started/quickstart-running-tests.md) |
+| Upload PRD files  | [Uploading PRD Files](prd-upload.md)                                        |
+| Integrate via API | [API Overview](../api/api-overview.md)                                      |
+| Use AI assistants | [MCP Gateway Overview](../mcp/overview.md)                                  |

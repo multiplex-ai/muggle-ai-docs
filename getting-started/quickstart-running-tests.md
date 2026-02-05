@@ -26,11 +26,13 @@ flowchart LR
 | **2FA / CAPTCHA** | Disable on test environment for reliable automation   |
 | **Test account**  | Create a dedicated account with necessary permissions |
 
-## Step 2: Let Muggle Test Explore Your Site
+## Step 2: Add Use Cases
 
-After creating the project, start a **Deep Scan** to let the agent discover key user flows.
+You have two options to populate your project with test scenarios:
 
-### What Gets Discovered
+### Option A: Deep Scan (Automatic Discovery)
+
+Start a **Deep Scan** to let the AI agent explore your site and discover key user flows.
 
 | Flow Type        | Examples                           |
 | :--------------- | :--------------------------------- |
@@ -38,6 +40,23 @@ After creating the project, start a **Deep Scan** to let the agent discover key 
 | CRUD operations  | Create, read, update, delete items |
 | Search & filters | Search bars, faceted navigation    |
 | Dashboards       | Analytics, reports, admin panels   |
+
+### Option B: Upload PRD (From Documentation)
+
+If you have existing requirements documents, upload them to extract test scenarios automatically.
+
+1. Click **Add Use Cases from PRD**
+2. Upload your PRD file (TXT, PDF, DOC, or DOCX)
+3. Wait for AI to extract scenarios
+4. Review and approve the generated use cases
+
+| When to Use PRD Upload | Benefit |
+| :--------------------- | :------ |
+| You have detailed requirements docs | Faster than manual entry |
+| Testing specific features | Focused test coverage |
+| Onboarding a new project | Leverage existing documentation |
+
+See [Uploading PRD Files](../concepts/prd-upload.md) for detailed guidance.
 
 ### Managing Discovered Flows
 
@@ -85,8 +104,11 @@ For each failing step, you can see:
 | **Error message** | Technical details for debugging |
 | **Page URL**      | Where the failure occurred      |
 
-## Next Steps| Goal                        | Resource                                                   |
+## Next Steps
+
+| Goal                        | Resource                                                   |
 | :-------------------------- | :--------------------------------------------------------- |
-| Understand the architecture | [How Muggle Test Works](concepts/how-muggle-test-works.md) |
-| Automate via API            | [Running Tests via API](api/running-tests-via-api.md)      |
-| Use AI assistants           | [MCP Quickstart](getting-started/mcp-quickstart.md)        |
+| Understand the architecture | [How Muggle Test Works](../concepts/how-muggle-test-works.md) |
+| Upload requirements docs    | [Uploading PRD Files](../concepts/prd-upload.md)           |
+| Automate via API            | [Running Tests via API](../api/running-tests-via-api.md)   |
+| Use AI assistants           | [MCP Quickstart](mcp-quickstart.md)                        |

@@ -1,6 +1,6 @@
 {
-    "version": "v0.2.0",
-    "lastUpdatedAtUtc": "2026-02-01T00:00:00Z",
+    "version": "v0.2.1",
+    "lastUpdatedAtUtc": "2026-02-05T00:00:00Z",
     "sections": [
         {
             "sectionId": "getting-started",
@@ -53,6 +53,14 @@
                     "relativePath": "concepts/how-muggle-test-works.md",
                     "order": 1,
                     "tags": ["architecture", "concepts"]
+                },
+                {
+                    "articleId": "prd-upload",
+                    "title": "Uploading PRD Files",
+                    "summary": "Extract test scenarios automatically from your Product Requirements Documents.",
+                    "relativePath": "concepts/prd-upload.md",
+                    "order": 2,
+                    "tags": ["prd", "upload", "use-cases", "concepts"]
                 }
             ]
         },
@@ -119,9 +127,32 @@
             ]
         },
         {
+            "sectionId": "billing",
+            "label": "Billing & Limits",
+            "order": 5,
+            "articles": [
+                {
+                    "articleId": "subscription-plans",
+                    "title": "Subscription Plans",
+                    "summary": "Overview of plan tiers and included quotas for use cases, test cases, and workflows.",
+                    "relativePath": "billing/subscription-plans.md",
+                    "order": 1,
+                    "tags": ["billing", "plans", "pricing", "quotas"]
+                },
+                {
+                    "articleId": "quotas-and-limits",
+                    "title": "Quotas and Limits",
+                    "summary": "How quota enforcement works, what counts toward limits, and managing your usage.",
+                    "relativePath": "billing/quotas-and-limits.md",
+                    "order": 2,
+                    "tags": ["billing", "quotas", "limits", "usage"]
+                }
+            ]
+        },
+        {
             "sectionId": "troubleshooting",
             "label": "Troubleshooting",
-            "order": 5,
+            "order": 6,
             "articles": [
                 {
                     "articleId": "common-issues",
