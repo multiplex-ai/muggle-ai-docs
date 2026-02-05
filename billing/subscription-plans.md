@@ -6,13 +6,23 @@ Muggle Test offers different subscription tiers to match your testing needs. Eac
 
 | Feature | Free | Professional | Enterprise |
 | :------ | :--- | :----------- | :--------- |
-| **Use Cases** | 3 | 10 | Unlimited |
-| **Test Cases** | 10 | 50 | Unlimited |
-| **Auto-detected Candidates** | 20 | 100 | Unlimited |
-| **Concurrent Workflows** | 1 | 3 | 10+ |
-| **Monthly Tokens** | 5,000 | 50,000 | Custom |
+| **Journeys Scanned** | 20 | 50 | 50+ |
+| **Use Cases** | 3 | 20 | 100+ |
+| **Test Cases** | 10 | 60 | 300+ |
+| **Concurrent Workflows** | 3 | 10 | 50+ |
+| **Monthly Tokens** | ~5,000 | ~50,000 | Custom |
 
 ## Understanding Quotas
+
+### Journeys Scanned
+
+When you run a website scan, Muggle Test's AI agent discovers potential use cases (journeys). The scan limit determines how many journeys can be detected per scan.
+
+| Plan | Journeys Limit |
+| :--- | :------------- |
+| Free | 20 per scan |
+| Professional | 50 per scan |
+| Enterprise | 50+ (customizable) |
 
 ### Use Cases
 
@@ -21,8 +31,8 @@ Use cases represent the high-level user journeys you want to test (e.g., "User L
 | Plan | Use Case Limit |
 | :--- | :------------- |
 | Free | 3 per project |
-| Professional | 10 per project |
-| Enterprise | Unlimited |
+| Professional | 20 per project |
+| Enterprise | 100+ |
 
 ### Test Cases
 
@@ -31,18 +41,8 @@ Test cases are the specific test scenarios generated from use cases. Each use ca
 | Plan | Test Case Limit |
 | :--- | :-------------- |
 | Free | 10 per project |
-| Professional | 50 per project |
-| Enterprise | Unlimited |
-
-### Auto-detected Candidates
-
-When you run a website scan, Muggle Test's AI agent discovers potential use cases. These are called "candidates" and are shown for your approval before becoming active use cases.
-
-| Plan | Candidate Limit |
-| :--- | :-------------- |
-| Free | 20 per scan |
-| Professional | 100 per scan |
-| Enterprise | Unlimited |
+| Professional | 60 per project |
+| Enterprise | 300+ |
 
 ### Concurrent Workflows
 
@@ -50,9 +50,9 @@ This controls how many workflows (scans, test generations, replays) can run simu
 
 | Plan | Concurrent Limit |
 | :--- | :--------------- |
-| Free | 1 |
-| Professional | 3 |
-| Enterprise | 10+ (customizable) |
+| Free | 3 |
+| Professional | 10 |
+| Enterprise | 50+ (customizable) |
 
 ## What Happens When You Hit a Limit
 
