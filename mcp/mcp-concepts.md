@@ -114,13 +114,14 @@ A **Test Script** is executable automation generated from a test case. Scripts c
 
 **Workflows** are long-running operations:
 
-| Workflow               | Purpose             | Output              |
-| :--------------------- | :------------------ | :------------------ |
-| Website Scan           | Discover use cases  | Use case candidates |
-| Test Case Detection    | Generate test cases | Test cases          |
-| Test Script Generation | Create automation   | Test scripts        |
-| Test Script Replay     | Execute tests       | Test results        |
-| Report Generation      | Create reports      | PDF/HTML reports    |
+| Workflow               | Purpose                    | Output              |
+| :--------------------- | :------------------------- | :------------------ |
+| PRD File Processing    | Extract use cases from PRD | Use case candidates |
+| Website Scan           | Discover use cases         | Use case candidates |
+| Test Case Detection    | Generate test cases        | Test cases          |
+| Test Script Generation | Create automation          | Test scripts        |
+| Test Script Replay     | Execute tests              | Test results        |
+| Report Generation      | Create reports             | PDF/HTML reports    |
 
 **Workflow states:**
 
@@ -140,8 +141,10 @@ stateDiagram-v2
 
 ```mermaid
 flowchart LR
-    A["1. Create Project"] --> B["2. Website Scan"]
-    B --> C["3. Review & Approve"]
+    A["1. Create Project"] --> B1["2a. Website Scan"]
+    A --> B2["2b. Upload PRD"]
+    B1 --> C["3. Review & Approve"]
+    B2 --> C
     C --> D["4. Generate Test Cases"]
     D --> E["5. Generate Scripts"]
     E --> F["6. Run Tests"]
@@ -151,6 +154,8 @@ flowchart LR
     style A fill:#e3f2fd
     style H fill:#e8f5e9
 ```
+
+You can discover use cases via website scanning, PRD file processing, or both.
 
 ## Authentication
 
@@ -204,12 +209,12 @@ The gateway enforces rate limits to ensure fair usage:
 
 ## Available Tools
 
-The gateway provides 46+ tools organized into categories:
+The gateway provides 50+ tools organized into categories:
 
 | Category        | Count | Purpose                        |
 | :-------------- | ----: | :----------------------------- |
-| Project         |     4 | Create and manage projects     |
-| PRD Files       |     3 | Upload requirements documents  |
+| Project         |     5 | Create and manage projects     |
+| PRD Files       |     5 | Upload and process PRD files   |
 | Secrets         |     5 | Manage test credentials        |
 | Use Cases       |     4 | Discover and approve use cases |
 | Workflows       |    17 | Execute testing workflows      |

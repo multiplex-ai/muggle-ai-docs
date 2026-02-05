@@ -49,7 +49,7 @@ Works with any MCP-compatible client:
 
 ### Full Platform Access
 
-The gateway exposes 46+ tools covering the complete Muggle Test workflow:
+The gateway exposes 50+ tools covering the complete Muggle Test workflow:
 
 | Capability         | Description                                   |
 | :----------------- | :-------------------------------------------- |

@@ -8,8 +8,8 @@ The MCP Gateway exposes tools organized into these categories:
 
 | Category        | Count | Purpose                            | Link                          |
 | :-------------- | ----: | :--------------------------------- | :---------------------------- |
-| Project         |     4 | Create and manage testing projects | [Jump](#project-tools)        |
-| PRD Files       |     3 | Upload requirements documents      | [Jump](#prd-file-tools)       |
+| Project         |     5 | Create and manage testing projects | [Jump](#project-tools)        |
+| PRD Files       |     5 | Upload and process PRD documents   | [Jump](#prd-file-tools)       |
 | Secrets         |     5 | Manage test credentials            | [Jump](#secret-tools)         |
 | Use Cases       |     4 | Discover and approve use cases     | [Jump](#use-case-tools)       |
 | Workflows       |    17 | Execute testing workflows          | [Jump](#workflow-tools)       |
@@ -31,24 +31,22 @@ Create a new QA testing project.
 {
   "projectName": "My Website Tests",
   "description": "End-to-end tests for example.com",
-  "url": "https://example.com",
-  "testRequirements": "Test login, checkout, and search flows"
+  "url": "https://example.com"
 }
 ```
 
-| Field              | Type   | Required | Description                         |
-| :----------------- | :----- | :------: | :---------------------------------- |
-| `projectName`      | string |    ✓     | Name of the project (max 255 chars) |
-| `description`      | string |          | Project description                 |
-| `url`              | string |          | Target website URL                  |
-| `testRequirements` | string |          | Testing scope and requirements      |
+| Field         | Type   | Required | Description                         |
+| :------------ | :----- | :------: | :---------------------------------- |
+| `projectName` | string |    ✓     | Name of the project (max 255 chars) |
+| `description` | string |    ✓     | Project description                 |
+| `url`         | string |    ✓     | Target website URL                  |
 
 **Output:**
 
 ```json
 {
-  "projectId": "proj_abc123",
-  "projectName": "My Website Tests",
+  "id": "proj_abc123",
+  "name": "My Website Tests",
   "createdAt": "2024-01-15T10:30:00Z"
 }
 ```
@@ -80,6 +78,24 @@ List all projects accessible to you with pagination.
 | :--------- | :----- | :------: | :------ | :----------------------- |
 | `page`     | number |          | 1       | Page number              |
 | `pageSize` | number |          | 20      | Items per page (max 100) |
+
+### qa_project_delete
+
+Delete a project and all associated entities (use cases, test cases, test scripts). This is a soft delete - the project can be restored.
+
+| Field       | Type   | Required | Description          |
+| :---------- | :----- | :------: | :------------------- |
+| `projectId` | string |    ✓     | Project ID to delete |
+
+**Output:**
+
+```json
+{
+  "id": "proj_abc123",
+  "name": "My Website Tests",
+  "deletedAt": "2024-01-15T12:00:00Z"
+}
+```
 
 ---
 
@@ -115,6 +131,74 @@ Upload a Product Requirements Document to help AI generate accurate use cases.
 | Word     | `.docx`   | `application/vnd.openxmlformats-officedocument.wordprocessingml.document` |
 | Text     | `.txt`    | `text/plain`                                                              |
 | Markdown | `.md`     | `text/markdown`                                                           |
+
+**Output:**
+
+```json
+{
+  "message": "PRD file uploaded successfully.",
+  "prdFilePath": "gs://muggle-ai.appspot.com/muggle-test/user_data/.../prd_file/requirements.pdf"
+}
+```
+
+### qa_workflow_start_prd_file_process
+
+Start processing an uploaded PRD file to extract use cases. This is an async workflow.
+
+**Input:**
+
+```json
+{
+  "projectId": "proj_abc123",
+  "name": "PRD Processing - Jan 2024",
+  "description": "Extract use cases from Q1 requirements",
+  "prdFilePath": "gs://muggle-ai.appspot.com/.../requirements.pdf",
+  "originalFileName": "requirements.pdf",
+  "url": "https://example.com"
+}
+```
+
+| Field              | Type   | Required | Description                            |
+| :----------------- | :----- | :------: | :------------------------------------- |
+| `projectId`        | string |    ✓     | Target project                         |
+| `name`             | string |    ✓     | Workflow name                          |
+| `description`      | string |    ✓     | Description of the processing workflow |
+| `prdFilePath`      | string |    ✓     | Storage path from upload response      |
+| `originalFileName` | string |    ✓     | Original file name                     |
+| `url`              | string |    ✓     | Target website URL for context         |
+
+**Output:**
+
+```json
+{
+  "workflowRuntime": {
+    "id": "wfrt_prd_123",
+    "status": "ACTIVE"
+  },
+  "prdFile": {
+    "id": "prd_456",
+    "fileName": "requirements.pdf"
+  }
+}
+```
+
+### qa_workflow_get_prd_file_process_latest_run
+
+Check the status of a PRD file processing workflow.
+
+| Field               | Type   | Required | Description         |
+| :------------------ | :----- | :------: | :------------------ |
+| `workflowRuntimeId` | string |    ✓     | Workflow runtime ID |
+
+**Output:**
+
+```json
+{
+  "status": "COMPLETED",
+  "progress": 100,
+  "updatedAt": "2024-01-15T10:35:00Z"
+}
+```
 
 ### qa_prd_file_list_by_project
 

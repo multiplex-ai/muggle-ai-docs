@@ -78,7 +78,7 @@ Once connected, interact with Muggle Test through natural language:
 
 ```mermaid
 flowchart LR
-    A["Create Project"] --> B["Scan Website"]
+    A["Create Project"] --> B["Discover Use Cases"]
     B --> C["Review & Approve"]
     C --> D["Generate Tests"]
     D --> E["Run Tests"]
@@ -91,9 +91,19 @@ flowchart LR
 
 ### Discover Use Cases
 
+You can discover use cases in two ways:
+
+**Option A: Website Scan**
+
 > "Scan https://example.com and discover potential test use cases"
 
 This crawls your site and identifies testable user flows.
+
+**Option B: Upload PRD**
+
+> "Upload my requirements document and extract use cases from it"
+
+Upload a PDF, Word doc, or text file containing your product requirements.
 
 ### Review and Approve
 
