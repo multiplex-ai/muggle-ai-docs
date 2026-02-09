@@ -104,9 +104,7 @@ For each failing step, you can see:
 | **Error message** | Technical details for debugging |
 | **Page URL**      | Where the failure occurred      |
 
-## Next Steps
-
-| Goal                        | Resource                                                   |
+## Next Steps| Goal                        | Resource                                                   |
 | :-------------------------- | :--------------------------------------------------------- |
 | Understand the architecture | [How Muggle Test Works](../concepts/how-muggle-test-works.md) |
 | Upload requirements docs    | [Uploading PRD Files](../concepts/prd-upload.md)           |

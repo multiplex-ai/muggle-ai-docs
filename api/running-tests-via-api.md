@@ -181,9 +181,7 @@ done
 | `404 Project not found` | Invalid project ID     | Verify ID in dashboard |
 | `404 Run not found`     | Invalid run ID         | Check trigger response |
 | `400 No scripts`        | Project has no scripts | Generate scripts first |
-| `429 Rate limited`      | Too many requests      | Back off and retry     |
-
-## Next Steps| Goal                | Resource                                          |
+| `429 Rate limited`      | Too many requests      | Back off and retry     |## Next Steps| Goal                | Resource                                          |
 | :------------------ | :------------------------------------------------ |
 | Full CI/CD examples | [CI/CD Integration](mcp/mcp-cicd-integration.md)  |
 | Use AI assistants   | [MCP Gateway](mcp/mcp-overview)                   |

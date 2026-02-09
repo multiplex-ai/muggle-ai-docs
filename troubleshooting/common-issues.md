@@ -105,9 +105,7 @@ If these solutions don't resolve your issue:
 | :------------------------ | :------------------------------ |
 | **In-app chat**           | Quick questions, account issues |
 | **support@muggle-ai.com** | Detailed technical issues       |
-| **Include run link**      | Helps us investigate faster     |
-
-When contacting support, include:- Project ID
+| **Include run link**      | Helps us investigate faster     |When contacting support, include:- Project ID
 - Run ID (if applicable)
 - Steps to reproduce
 - Screenshots or error messages

@@ -123,9 +123,7 @@ flowchart LR
 | Prioritize fixes       | Focus on business-critical failures  |
 | Share with team        | Non-engineers can understand results |
 
-## Next Steps
-
-| Goal              | Resource                                                                    |
+## Next Steps| Goal              | Resource                                                                    |
 | :---------------- | :-------------------------------------------------------------------------- |
 | Get started       | [Quickstart: Running Tests](../getting-started/quickstart-running-tests.md) |
 | Upload PRD files  | [Uploading PRD Files](prd-upload.md)                                        |
