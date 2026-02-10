@@ -1,6 +1,7 @@
 ---
-description: General guidelines for Muggle AI customer documentation
-alwaysApply: true
+description: 
+globs: **/muggle-ai-docs/*
+alwaysApply: false
 ---
 
 # Muggle AI Documentation Repository

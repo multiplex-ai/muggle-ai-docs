@@ -1,0 +1,67 @@
+---
+description: Core coding standards and conventions for the project
+alwaysApply: true
+---
+
+# Coding Standards
+
+## Git & PR Practices
+
+- Do not publish PR automatically
+- One PR does one thing on its own branch
+- Do not reuse PR to merge multiple changes
+- Use a new branch for each PR to avoid overgrowing the PR
+
+## Documentation
+
+- Avoid code in design documents (markdown)
+- Focus on explaining the design and how it integrates with current system
+
+## Code Style
+
+- Always use longform property syntax (eslint: object-shorthand rule)
+- Organize/sort imports according to linter's requirement
+- Comply with eslint import order rules such as "There should be at least one empty line between import groups"
+- Make sure to trigger "order and format imports on file save" after each change
+- ALWAYS use top-level import
+
+## File Organization
+
+- Order each file: constants first, then variables, then public functions, then private functions
+- Keep each function relatively small (50-100 lines is the sweetspot)
+- Separate models and schemas by files
+- Avoid having multiple schemas in one file unless justified
+
+## Function Design
+
+- JSDoc style comment each property and function
+- If a function takes more than 1 arg, use named parameters (e.g. kv args)
+- When passing objects around, use long named properties (e.g. `{ a: value_a, b: value_b }`)
+
+## Error Handling
+
+- Avoid using fallback values
+- If something expected doesn't show up, throw and log the context of missing property for investigation
+
+## Code Reuse & Organization
+
+- Front-load implementation of PRs or changes that are riskless to current code base (adding models, new services not hooked up, etc)
+- Hook the new logics up into the current service at the end
+- Make sure to check all files related to existing change and update them accordingly
+- Maximize code reuse by creating variables, constants and classes when code is potentially referenced in more than one place
+
+## Architecture
+
+- DAO access is allowed only in service code
+- For controllers, call the functions exposed in service code
+- Create new service or function for data access when needed
+
+## Type Safety
+
+- Define interfaces and types in separate files
+- DO NOT create runtime schema or anonymous type
+- Avoid putting type or interface definitions in the same file with logic classes and functions
+- Define type, constant, or enum to avoid defining random strings in code
+- Create interface or type for schema, no runtime schema or anonymous type
+- Strong type everything, pass the type down the stack
+- Don't use "any"
