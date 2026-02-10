@@ -4,13 +4,20 @@ The MCP QA Gateway lets you automate Muggle Test through AI assistants using the
 
 ## What is the MCP Gateway?
 
-The MCP Gateway is a hosted service that exposes Muggle Test capabilities through MCP, enabling:
+The MCP Gateway exposes Muggle Test capabilities through MCP, enabling:
 
 - **AI Assistant Integration**: Control testing workflows through Claude, Cursor, or any MCP-compatible assistant
 - **Natural Language Testing**: Use conversational commands instead of clicking through UIs
 - **Programmable Automation**: Build custom integrations with MCP clients
 
-## Architecture
+## Deployment Options
+
+| Option | Description | Setup |
+| :----- | :---------- | :---- |
+| **Hosted** | Use Muggle AI's hosted gateway | Just configure your MCP client |
+| **Local** | Run gateway on your machine | Install npm package |
+
+### Hosted Mode
 
 ```mermaid
 flowchart LR
@@ -23,11 +30,36 @@ flowchart LR
         C[Muggle Test Platform]
     end
     
-    A -->|"MCP Protocol + API Key"| B
+    A -->|"HTTPS + API Key"| B
     B -->|REST API| C
 ```
 
-Your AI assistant connects to the MCP Gateway using your API key. The gateway translates MCP tool calls into Muggle Test API requests and returns results.
+Your AI assistant connects to the hosted gateway via HTTPS. No installation required.
+
+### Local Mode
+
+```mermaid
+flowchart LR
+    subgraph env["Your Computer"]
+        A2["AI Assistant"]
+        B2["Local Gateway<br/>(npm package)"]
+        A2 -->|"stdin/stdout"| B2
+    end
+    
+    subgraph cloud2["Muggle AI Cloud"]
+        C2[Muggle Test Platform]
+    end
+    
+    B2 -->|"HTTPS + API Key"| C2
+```
+
+Install the gateway locally for lower latency and offline development:
+
+```bash
+npm install -g @muggleai/mcp-qa-gateway
+```
+
+See [MCP Installation](mcp-installation.md) for detailed setup instructions.
 
 ## Key Benefits
 
@@ -63,9 +95,10 @@ The gateway exposes 50+ tools covering the complete Muggle Test workflow:
 
 Ready to connect your AI assistant to Muggle Test?
 
-1. **[MCP Quickstart](getting-started/mcp-quickstart.md)** - Connect in 5 minutes
-2. **[MCP Concepts](mcp/mcp-concepts.md)** - Understand the architecture
-3. **[MCP API Reference](mcp/mcp-api-reference.md)** - Complete tool documentation
+1. **[MCP Quickstart](../getting-started/mcp-quickstart.md)** - Connect in 5 minutes
+2. **[MCP Installation](mcp-installation.md)** - Local vs hosted setup options
+3. **[MCP Concepts](mcp-concepts.md)** - Understand the architecture
+4. **[MCP API Reference](mcp-api-reference.md)** - Complete tool documentation
 
 ## Prerequisites
 

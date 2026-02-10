@@ -2,6 +2,8 @@
 
 Connect your AI assistant to Muggle Test in under 5 minutes.
 
+> **Note**: This guide uses the hosted MCP gateway. For local installation (lower latency, offline use), see [MCP Installation](../mcp/mcp-installation.md).
+
 ## Prerequisites
 
 | Requirement         | Description                                                        |
@@ -217,8 +219,36 @@ Long-running operations (website scans, test runs) may take several minutes:
 | Need status update    | Ask "What's the status of the scan?" |
 | Very large site       | Consider testing sections separately |
 
+## Alternative: Local Installation
+
+For lower latency or offline development, you can run the gateway locally:
+
+```bash
+npm install -g @muggleai/mcp-qa-gateway
+```
+
+Then configure your MCP client to spawn it as a subprocess:
+
+```json
+{
+  "mcpServers": {
+    "muggle-test": {
+      "command": "npx",
+      "args": ["@muggleai/mcp-qa-gateway", "--stdio"],
+      "env": {
+        "PROMPT_SERVICE_BASE_URL": "https://promptservice.muggle-ai.com",
+        "MCP_API_KEY": "YOUR_API_KEY_HERE"
+      }
+    }
+  }
+}
+```
+
+See [MCP Installation](../mcp/mcp-installation.md) for full details.
+
 ## Next Steps
 
-- **[MCP Concepts](mcp/mcp-concepts.md)** - Understand the architecture
-- **[MCP API Reference](mcp/mcp-api-reference.md)** - Complete tool documentation
-- **[CI/CD Integration](mcp/mcp-cicd-integration.md)** - Automate in your pipeline
+- **[MCP Installation](../mcp/mcp-installation.md)** - Local vs hosted deployment
+- **[MCP Concepts](../mcp/mcp-concepts.md)** - Understand the architecture
+- **[MCP API Reference](../mcp/mcp-api-reference.md)** - Complete tool documentation
+- **[CI/CD Integration](../mcp/mcp-cicd-integration.md)** - Automate in your pipeline

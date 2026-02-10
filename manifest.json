@@ -1,6 +1,6 @@
 {
-    "version": "v0.2.1",
-    "lastUpdatedAtUtc": "2026-02-05T00:00:00Z",
+    "version": "v0.2.2",
+    "lastUpdatedAtUtc": "2026-02-10T00:00:00Z",
     "sections": [
         {
             "sectionId": "getting-started",
@@ -78,11 +78,19 @@
                     "tags": ["mcp", "overview", "ai"]
                 },
                 {
+                    "articleId": "mcp-installation",
+                    "title": "MCP Installation",
+                    "summary": "Choose between hosted or local deployment. Install the npm package for lower latency.",
+                    "relativePath": "mcp/mcp-installation.md",
+                    "order": 2,
+                    "tags": ["mcp", "installation", "npm", "local", "hosted"]
+                },
+                {
                     "articleId": "mcp-concepts",
                     "title": "MCP Concepts & Architecture",
                     "summary": "Understanding workflows, tools, and how the MCP Gateway connects to Muggle Test.",
                     "relativePath": "mcp/mcp-concepts.md",
-                    "order": 2,
+                    "order": 3,
                     "tags": ["mcp", "architecture", "concepts"]
                 },
                 {
@@ -90,7 +98,7 @@
                     "title": "MCP API Reference",
                     "summary": "Complete reference for all 46+ MCP tools: projects, workflows, reports, and more.",
                     "relativePath": "mcp/mcp-api-reference.md",
-                    "order": 3,
+                    "order": 4,
                     "tags": ["mcp", "api", "reference"]
                 },
                 {
@@ -98,7 +106,7 @@
                     "title": "CI/CD Integration",
                     "summary": "Integrate Muggle Test into GitHub Actions, Azure DevOps, GitLab CI, and more.",
                     "relativePath": "mcp/mcp-cicd-integration.md",
-                    "order": 4,
+                    "order": 5,
                     "tags": ["mcp", "cicd", "automation", "github", "azure"]
                 }
             ]

@@ -4,14 +4,18 @@ Understanding how the MCP Gateway works with Muggle Test.
 
 ## System Architecture
 
+The MCP QA Gateway supports two deployment modes: **Hosted** and **Local (Self-Hosted)**.
+
+### Hosted Mode (HTTP Transport)
+
 ```mermaid
 flowchart TB
     subgraph env["Your Environment"]
-        client["AI Assistant<br/>(Claude, Cursor, Custom MCP Client)"]
+        client["AI Assistant<br/>(Claude, Cursor)"]
     end
 
     subgraph cloud["Muggle AI Cloud"]
-        subgraph gateway["MCP QA Gateway"]
+        subgraph gateway["Hosted MCP Gateway"]
             direction TB
             proto["Protocol Translation"]
             auth["Auth Forwarding"]
@@ -37,6 +41,54 @@ flowchart TB
     gateway --> platform
     platform --> exec
 ```
+
+Your AI assistant connects to the hosted gateway via HTTPS. The gateway translates MCP tool calls into Muggle Test API requests.
+
+### Local Mode (Stdio Transport)
+
+```mermaid
+flowchart TB
+    subgraph env["Your Computer"]
+        client2["AI Assistant<br/>(Claude, Cursor)"]
+        subgraph local["Local MCP Gateway<br/>(npm package)"]
+            direction TB
+            proto2["Protocol Translation"]
+            auth2["Auth from Env Vars"]
+        end
+        client2 -->|"stdin/stdout"| local
+    end
+
+    subgraph cloud2["Muggle AI Cloud"]
+        subgraph platform2["Muggle Test Platform"]
+            direction TB
+            proj2["Project Management"]
+            workflow2["Workflow Engine"]
+        end
+
+        subgraph exec2["Test Execution"]
+            direction TB
+            browser2["Browser Automation"]
+            ai2["AI Analysis"]
+        end
+    end
+
+    local -->|"HTTPS + API Key"| platform2
+    platform2 --> exec2
+```
+
+Your AI assistant spawns the gateway as a subprocess. They communicate via stdin/stdout (no network hop to gateway). The gateway then calls Muggle Test APIs.
+
+### Deployment Comparison
+
+| Aspect | Hosted (HTTP) | Local (Stdio) |
+| :----- | :------------ | :------------ |
+| **Setup** | None | Install npm package |
+| **Latency** | Network to gateway + backend | Network to backend only |
+| **Credentials** | Sent per-request in headers | Stored in environment variables |
+| **Updates** | Automatic | Manual (`npm update`) |
+| **Best for** | Quick start, teams | Privacy, lower latency |
+
+See [MCP Installation](mcp-installation.md) for detailed setup instructions.
 
 ## What is MCP?
 
