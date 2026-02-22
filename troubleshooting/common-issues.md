@@ -97,6 +97,24 @@ This page lists frequent issues and quick checks to resolve them.
 | Permissions?       | Verify account has report access        |
 | Recent runs exist? | Run tests first before viewing reports  |
 
+## CAPTCHA Blocking Tests
+
+**Symptoms:**
+
+- Tests fail on pages with CAPTCHA challenges
+- Agent requests user intervention for CAPTCHA
+
+**Diagnosis & Solutions:**
+
+| Check                       | Solution                                                              |
+| :-------------------------- | :-------------------------------------------------------------------- |
+| Supported CAPTCHA type?     | See [Automated CAPTCHA Handling](concepts/automated-captcha-handling.md) for supported types |
+| Slider or audio CAPTCHA?    | These are not yet supported; consider testing on staging without them |
+| New CAPTCHA implementation? | Contact support with details about the CAPTCHA type                   |
+| Frequent CAPTCHA triggers?  | Your test account may be flagged; try a new account or whitelist IP   |
+
+**Tip:** If possible, disable CAPTCHAs on your staging environment for faster, more reliable test execution.
+
 ## Getting More Help
 
 If these solutions don't resolve your issue:

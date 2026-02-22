@@ -104,9 +104,12 @@ For each failing step, you can see:
 | **Error message** | Technical details for debugging |
 | **Page URL**      | Where the failure occurred      |
 
-## Next Steps| Goal                        | Resource                                                   |
-| :-------------------------- | :--------------------------------------------------------- |
-| Understand the architecture | [How Muggle Test Works](../concepts/how-muggle-test-works.md) |
-| Upload requirements docs    | [Uploading PRD Files](../concepts/prd-upload.md)           |
-| Automate via API            | [Running Tests via API](../api/running-tests-via-api.md)   |
-| Use AI assistants           | [MCP Quickstart](mcp-quickstart.md)                        |
+## Next Steps
+
+| Goal                        | Resource                                                      |
+| :-------------------------- | :------------------------------------------------------------ |
+| Understand the architecture | [How Muggle Test Works](concepts/how-muggle-test-works.md)    |
+| Upload requirements docs    | [Uploading PRD Files](concepts/prd-upload.md)                 |
+| Test file upload features   | [Workflow Files](concepts/workflow-files.md)                  |
+| Automate via API            | [Running Tests via API](api/running-tests-via-api.md)         |
+| Use AI assistants           | [MCP Quickstart](getting-started/mcp-quickstart.md)           |
