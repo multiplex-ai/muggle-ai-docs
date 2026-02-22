@@ -63,11 +63,19 @@
                     "tags": ["prd", "upload", "use-cases", "concepts"]
                 },
                 {
+                    "articleId": "generating-from-instructions",
+                    "title": "Generating from Instructions",
+                    "summary": "Create use cases and test cases by describing what you want in plain language.",
+                    "relativePath": "concepts/generating-from-instructions.md",
+                    "order": 3,
+                    "tags": ["use-cases", "test-cases", "ai", "generate", "instructions"]
+                },
+                {
                     "articleId": "workflow-files",
                     "title": "Workflow Files",
                     "summary": "Upload files for your tests to use when testing file upload features.",
                     "relativePath": "concepts/workflow-files.md",
-                    "order": 3,
+                    "order": 4,
                     "tags": ["files", "upload", "file-input", "attachments"]
                 },
                 {
@@ -75,7 +83,7 @@
                     "title": "Automated CAPTCHA Handling",
                     "summary": "How Muggle Test automatically solves CAPTCHAs during test execution.",
                     "relativePath": "concepts/automated-captcha-handling.md",
-                    "order": 4,
+                    "order": 5,
                     "tags": ["captcha", "recaptcha", "hcaptcha", "automation"]
                 }
             ]
