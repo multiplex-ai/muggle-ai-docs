@@ -1,6 +1,6 @@
-# MCP Gateway Overview
+# Remote Testing with MCP
 
-The MCP QA Gateway lets you automate Muggle Test through AI assistants using the [Model Context Protocol (MCP)](https://modelcontextprotocol.io/).
+The MCP QA Gateway lets you automate Muggle Test through AI assistants using the [Model Context Protocol (MCP)](https://modelcontextprotocol.io/). Use it to test preview, staging, and production environments.
 
 ## What is the MCP Gateway?
 
@@ -9,13 +9,27 @@ The MCP Gateway exposes Muggle Test capabilities through MCP, enabling:
 - **AI Assistant Integration**: Control testing workflows through Claude, Cursor, or any MCP-compatible assistant
 - **Natural Language Testing**: Use conversational commands instead of clicking through UIs
 - **Programmable Automation**: Build custom integrations with MCP clients
+- **Remote Environments**: Test publicly accessible URLs (preview, staging, production)
+
+## When to Use Remote Testing
+
+Remote Testing with MCP is designed for testing **publicly accessible URLs**:
+
+| Environment | Example URLs | Use Remote Testing? |
+| :---------- | :----------- | :-----------------: |
+| Production | `https://www.example.com` | Yes |
+| Staging | `https://staging.example.com` | Yes |
+| Preview | `https://pr-123.preview.example.com` | Yes |
+| Local Dev | `http://localhost:3000` | No — use [Local Testing](local-testing/overview.md) |
+
+> **Testing localhost?** See [Local Testing with MCP](local-testing/overview.md) to test applications running on your development machine.
 
 ## Deployment Options
 
-| Option | Description | Setup |
-| :----- | :---------- | :---- |
-| **Hosted** | Use Muggle AI's hosted gateway | Just configure your MCP client |
-| **Local** | Run gateway on your machine | Install npm package |
+| Option | Description | Best For |
+| :----- | :---------- | :------- |
+| **Hosted** | Use Muggle AI's hosted gateway | Quick start, no maintenance |
+| **Self-Hosted** | Run gateway on your machine | Lower latency, privacy |
 
 ### Hosted Mode
 

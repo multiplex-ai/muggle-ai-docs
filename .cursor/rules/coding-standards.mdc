@@ -62,6 +62,7 @@ alwaysApply: true
 - DO NOT create runtime schema or anonymous type
 - Avoid putting type or interface definitions in the same file with logic classes and functions
 - Define type, constant, or enum to avoid defining random strings in code
+- Prefer enum over string literal union types for property types (provides better autocomplete, refactoring support, and runtime value validation)
 - Create interface or type for schema, no runtime schema or anonymous type
 - Strong type everything, pass the type down the stack
 - Don't use "any"

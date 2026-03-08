@@ -10,6 +10,7 @@ This page helps you find the right documentation based on what you're trying to 
 | :--------------------------- | :----------------------------------------------------------------------- |
 | Learn what Muggle Test is    | [Muggle Test Overview](getting-started/overview.md)                      |
 | Get your first tests running | [Quickstart: Running Tests](getting-started/quickstart-running-tests.md) |
+| Test localhost apps          | [Local Testing Setup](local-testing/setup.md)                            |
 | Understand the architecture  | [How Muggle Test Works](concepts/how-muggle-test-works.md)               |
 | Integrate via API            | [API Overview](api/api-overview.md)                                      |
 | Use AI assistants (MCP)      | [MCP Quickstart](getting-started/mcp-quickstart.md)                      |
@@ -31,12 +32,13 @@ flowchart LR
 
 ## Documentation Sections
 
-| Section             | Contents                                            |
-| :------------------ | :-------------------------------------------------- |
-| **Getting Started** | Onboarding, quickstart guides                       |
-| **Concepts**        | Architecture, how discovery and testing work        |
-| **API**             | Authentication, endpoints, integration examples     |
-| **MCP Gateway**     | AI assistant integration via Model Context Protocol |
-| **Troubleshooting** | Common issues and solutions                         |
+| Section                    | Contents                                                   |
+| :------------------------- | :--------------------------------------------------------- |
+| **Getting Started**        | Onboarding, quickstart guides                              |
+| **Concepts**               | Architecture, how discovery and testing work               |
+| **Remote Testing with MCP**| Test preview, staging, and production via AI assistants    |
+| **Local Testing with MCP** | Test localhost apps directly from your AI assistant        |
+| **API**                    | Authentication, endpoints, integration examples            |
+| **Troubleshooting**        | Common issues and solutions                                |
 
 Use the sidebar search to jump directly to topics, or browse sections on the left.

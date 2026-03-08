@@ -1,6 +1,6 @@
 {
-    "version": "v0.2.2",
-    "lastUpdatedAtUtc": "2026-02-10T00:00:00Z",
+    "version": "v0.2.5",
+    "lastUpdatedAtUtc": "2026-03-06T00:00:00Z",
     "sections": [
         {
             "sectionId": "getting-started",
@@ -61,21 +61,45 @@
                     "relativePath": "concepts/prd-upload.md",
                     "order": 2,
                     "tags": ["prd", "upload", "use-cases", "concepts"]
+                },
+                {
+                    "articleId": "generating-from-instructions",
+                    "title": "Generating from Instructions",
+                    "summary": "Create use cases and test cases by describing what you want in plain language.",
+                    "relativePath": "concepts/generating-from-instructions.md",
+                    "order": 3,
+                    "tags": ["use-cases", "test-cases", "ai", "generate", "instructions"]
+                },
+                {
+                    "articleId": "workflow-files",
+                    "title": "Workflow Files",
+                    "summary": "Upload files for your tests to use when testing file upload features.",
+                    "relativePath": "concepts/workflow-files.md",
+                    "order": 4,
+                    "tags": ["files", "upload", "file-input", "attachments"]
+                },
+                {
+                    "articleId": "automated-captcha-handling",
+                    "title": "Automated CAPTCHA Handling",
+                    "summary": "How Muggle Test automatically solves CAPTCHAs during test execution.",
+                    "relativePath": "concepts/automated-captcha-handling.md",
+                    "order": 5,
+                    "tags": ["captcha", "recaptcha", "hcaptcha", "automation"]
                 }
             ]
         },
         {
             "sectionId": "mcp",
-            "label": "MCP Gateway",
+            "label": "Remote Testing with MCP",
             "order": 3,
             "articles": [
                 {
                     "articleId": "mcp-overview",
-                    "title": "MCP Gateway Overview",
-                    "summary": "Use AI assistants to control Muggle Test through the Model Context Protocol.",
+                    "title": "Remote Testing Overview",
+                    "summary": "Test preview, staging, and production environments through AI assistants using MCP.",
                     "relativePath": "mcp/overview.md",
                     "order": 1,
-                    "tags": ["mcp", "overview", "ai"]
+                    "tags": ["mcp", "overview", "ai", "remote", "staging", "production"]
                 },
                 {
                     "articleId": "mcp-installation",
@@ -112,9 +136,48 @@
             ]
         },
         {
+            "sectionId": "local-testing",
+            "label": "Local Testing with MCP",
+            "order": 4,
+            "articles": [
+                {
+                    "articleId": "overview",
+                    "title": "Local Testing Overview",
+                    "summary": "Test localhost and development applications directly from your AI assistant.",
+                    "relativePath": "local-testing/overview.md",
+                    "order": 1,
+                    "tags": ["local", "localhost", "development", "mcp"]
+                },
+                {
+                    "articleId": "setup",
+                    "title": "Local Testing Setup",
+                    "summary": "Install and configure Muggle Test Local to test your localhost applications.",
+                    "relativePath": "local-testing/setup.md",
+                    "order": 2,
+                    "tags": ["local", "installation", "setup", "configuration"]
+                },
+                {
+                    "articleId": "tools-reference",
+                    "title": "Local Testing Tools Reference",
+                    "summary": "Complete reference for all Muggle Test Local MCP tools.",
+                    "relativePath": "local-testing/tools-reference.md",
+                    "order": 3,
+                    "tags": ["local", "tools", "api", "reference"]
+                },
+                {
+                    "articleId": "examples",
+                    "title": "Local Testing Examples",
+                    "summary": "Common testing scenarios and example prompts for testing localhost applications.",
+                    "relativePath": "local-testing/examples.md",
+                    "order": 4,
+                    "tags": ["local", "examples", "tutorials", "testing"]
+                }
+            ]
+        },
+        {
             "sectionId": "api",
             "label": "API Usage",
-            "order": 4,
+            "order": 5,
             "articles": [
                 {
                     "articleId": "api-overview",
@@ -137,7 +200,7 @@
         {
             "sectionId": "billing",
             "label": "Billing & Limits",
-            "order": 5,
+            "order": 6,
             "articles": [
                 {
                     "articleId": "subscription-plans",
@@ -160,7 +223,7 @@
         {
             "sectionId": "troubleshooting",
             "label": "Troubleshooting",
-            "order": 6,
+            "order": 7,
             "articles": [
                 {
                     "articleId": "common-issues",

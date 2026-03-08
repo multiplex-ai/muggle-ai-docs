@@ -50,13 +50,25 @@ If you have existing requirements documents, upload them to extract test scenari
 3. Wait for AI to extract scenarios
 4. Review and approve the generated use cases
 
-| When to Use PRD Upload | Benefit |
-| :--------------------- | :------ |
-| You have detailed requirements docs | Faster than manual entry |
-| Testing specific features | Focused test coverage |
-| Onboarding a new project | Leverage existing documentation |
+| When to Use PRD Upload              | Benefit                         |
+| :---------------------------------- | :------------------------------ |
+| You have detailed requirements docs | Faster than manual entry        |
+| Testing specific features           | Focused test coverage           |
+| Onboarding a new project            | Leverage existing documentation |
 
 See [Uploading PRD Files](../concepts/prd-upload.md) for detailed guidance.
+
+### Option C: Generate from Instruction
+
+Describe what you want to test in plain language and let AI generate use cases.
+
+1. Click **Add Use Case** and select **Generate from Instruction**
+2. Write a description of the user flow (e.g., "User logs in, views dashboard, and updates profile")
+3. Click **Generate Preview**
+4. Review and edit the generated use case
+5. Click **Add to test plan**
+
+See [Generating from Instructions](../concepts/generating-from-instructions.md) for detailed guidance.
 
 ### Managing Discovered Flows
 
@@ -104,9 +116,13 @@ For each failing step, you can see:
 | **Error message** | Technical details for debugging |
 | **Page URL**      | Where the failure occurred      |
 
-## Next Steps| Goal                        | Resource                                                   |
-| :-------------------------- | :--------------------------------------------------------- |
-| Understand the architecture | [How Muggle Test Works](../concepts/how-muggle-test-works.md) |
-| Upload requirements docs    | [Uploading PRD Files](../concepts/prd-upload.md)           |
-| Automate via API            | [Running Tests via API](../api/running-tests-via-api.md)   |
-| Use AI assistants           | [MCP Quickstart](mcp-quickstart.md)                        |
+## Next Steps
+
+| Goal                        | Resource                                                                    |
+| :-------------------------- | :-------------------------------------------------------------------------- |
+| Understand the architecture | [How Muggle Test Works](../concepts/how-muggle-test-works.md)               |
+| Generate from instructions  | [Generating from Instructions](../concepts/generating-from-instructions.md) |
+| Upload requirements docs    | [Uploading PRD Files](../concepts/prd-upload.md)                            |
+| Test file upload features   | [Workflow Files](../concepts/workflow-files.md)                             |
+| Automate via API            | [Running Tests via API](../api/running-tests-via-api.md)                    |
+| Use AI assistants           | [MCP Quickstart](mcp-quickstart.md)                                         |
