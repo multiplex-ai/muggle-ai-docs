@@ -44,8 +44,8 @@ Run the MCP gateway locally on your machine. The gateway runs as a subprocess of
 
 | Requirement | Version |
 | :---------- | :------ |
-| Node.js | 18+ |
-| npm | 8+ |
+| Node.js | 22+ |
+| npm | 10+ |
 
 ### Installation
 

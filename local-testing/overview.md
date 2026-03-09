@@ -168,6 +168,6 @@ Ready to test your localhost applications?
 
 | Requirement | Version |
 | :---------- | :------ |
-| Node.js | 18 or later |
+| Node.js | 22 or later |
 | MCP Client | Cursor, Claude Desktop, or compatible |
 | Operating System | macOS, Windows, or Linux |
