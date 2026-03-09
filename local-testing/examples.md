@@ -2,6 +2,45 @@
 
 Common testing scenarios and example prompts for Muggle Test Local.
 
+## Project-Based Testing Workflow
+
+The recommended approach for comprehensive testing is to organize your tests into projects, use cases, and test cases.
+
+### Step 1: Create a Project
+
+> "Create a local project called 'E-commerce App' for localhost:3000 with description 'Testing our shopping cart features'"
+
+### Step 2: Define Use Cases
+
+> "Add a use case to my E-commerce App project called 'Checkout Flow' with the user story: As a customer, I want to complete my purchase so that I can receive my items"
+
+### Step 3: Add Test Cases
+
+> "Create test cases for the Checkout Flow use case:
+> 1. 'Add item to cart' - Add a product and verify cart updates
+> 2. 'Apply discount code' - Enter a valid code and verify discount
+> 3. 'Complete purchase' - Fill shipping/payment and submit order"
+
+### Step 4: Generate Test Scripts
+
+> "Generate a test script for the 'Add item to cart' test case"
+
+The assistant will launch Muggle AI Studio to record the interaction automatically.
+
+### Step 5: Review Results
+
+> "Show me the run results for my E-commerce App project"
+
+### Step 6: Replay Tests
+
+> "Replay the 'Add item to cart' test script"
+
+### Step 7: Publish to Cloud (Optional)
+
+> "Publish the E-commerce App project to the cloud with production URL https://shop.example.com"
+
+---
+
 ## Quick Start Examples
 
 ### Explore a Page
