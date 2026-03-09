@@ -456,6 +456,7 @@ Upload a single test script to the cloud.
 
 ## Next Steps
 
+- **[Agent Skills](skills.md)** — Pre-built workflows that automate multi-step testing
 - **[Example Workflows](examples.md)** — See these tools in action
 - **[Local Testing Setup](setup.md)** — Installation and configuration
 - **[Local Testing Overview](overview.md)** — Understanding the architecture

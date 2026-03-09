@@ -48,6 +48,7 @@ flowchart LR
 | **Test Script Generation** | AI generates repeatable test scripts from test cases |
 | **Browser Automation** | Real browser interactions (click, type, scroll) |
 | **Screenshot Capture** | Visual documentation of test results |
+| **Agent Skills** | Pre-built workflows like "test my changes" with smart change detection |
 | **Publish to Cloud** | Sync local projects to Muggle AI for team collaboration |
 
 ## How It Works
@@ -160,9 +161,10 @@ flowchart LR
 
 Ready to test your localhost applications?
 
-1. **[Local Testing Setup](local-testing/setup.md)** — Install and configure in 10 minutes
-2. **[Available Tools](local-testing/tools-reference.md)** — Complete tool documentation
-3. **[Example Workflows](local-testing/examples.md)** — Common testing scenarios
+1. **[Local Testing Setup](setup.md)** — Install and configure in 10 minutes
+2. **[Agent Skills](skills.md)** — Pre-built workflows for "test my changes" and "publish to cloud"
+3. **[Available Tools](tools-reference.md)** — Complete tool documentation
+4. **[Example Workflows](examples.md)** — Common testing scenarios
 
 ## Requirements
 

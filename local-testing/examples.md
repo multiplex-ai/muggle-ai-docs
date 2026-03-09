@@ -349,8 +349,36 @@ Form submission is working correctly. All tests passed!
 
 ---
 
+## Using Agent Skills
+
+Instead of manually following these workflows, you can install **Agent Skills** that automate common patterns.
+
+### "Test my changes"
+
+With the `test-feature-local` skill installed, simply say:
+
+> "Test my changes"
+
+The agent will:
+1. Analyze your `git diff` to identify impacted features
+2. Find matching test cases in your local projects
+3. Run affected tests and report results
+
+### "Publish to cloud"
+
+With the `publish-to-cloud` skill installed:
+
+> "Publish my project to the cloud"
+
+The agent handles authentication, URL updates, and syncing automatically.
+
+See **[Agent Skills](skills.md)** for installation instructions.
+
+---
+
 ## Next Steps
 
-- **[Tools Reference](local-testing/tools-reference.md)** — Detailed tool documentation
-- **[Local Testing Setup](local-testing/setup.md)** — Installation guide
-- **[Common Issues](troubleshooting/common-issues.md)** — Troubleshooting help
+- **[Agent Skills](skills.md)** — Install pre-built testing workflows
+- **[Tools Reference](tools-reference.md)** — Detailed tool documentation
+- **[Local Testing Setup](setup.md)** — Installation guide
+- **[Common Issues](../troubleshooting/common-issues.md)** — Troubleshooting help
