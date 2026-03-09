@@ -211,6 +211,29 @@ You can discover use cases via website scanning, PRD file processing, or both.
 
 ## Authentication
 
+### Agentic Authentication (Device Code Flow)
+
+AI agents can help users authenticate without a pre-existing API key using the **device code flow**:
+
+```mermaid
+sequenceDiagram
+    participant Agent as AI Agent
+    participant Gateway as MCP Gateway
+    participant User as User
+    participant Auth0 as Auth0
+    
+    Agent->>Gateway: auth_device_code_start()
+    Gateway-->>Agent: URL + code
+    Agent->>User: "Visit URL, enter code"
+    User->>Auth0: Authorizes
+    Agent->>Gateway: auth_device_code_poll()
+    Gateway-->>Gateway: Create API key
+    Gateway-->>Gateway: Update mcp.json
+    Gateway-->>Agent: "Success! Restart client"
+```
+
+**Security**: The API key is written directly to the user's local config file and is **never** returned to the AI agent.
+
 ### API Keys
 
 API keys provide programmatic access:
@@ -263,16 +286,28 @@ The gateway enforces rate limits to ensure fair usage:
 
 The gateway provides 50+ tools organized into categories:
 
-| Category        | Count | Purpose                        |
-| :-------------- | ----: | :----------------------------- |
-| Project         |     5 | Create and manage projects     |
-| PRD Files       |     5 | Upload and process PRD files   |
-| Secrets         |     5 | Manage test credentials        |
-| Use Cases       |     4 | Discover and approve use cases |
-| Workflows       |    17 | Execute testing workflows      |
-| Artifacts       |     9 | Inspect test cases and scripts |
-| Reports         |     4 | Generate and deliver reports   |
-| Recommendations |     2 | Get scheduling guidance        |
+| Category        | Count | Purpose                          |
+| :-------------- | ----: | :------------------------------- |
+| Authentication  |     7 | Authenticate and manage API keys |
+| Project         |     5 | Create and manage projects       |
+| PRD Files       |     5 | Upload and process PRD files     |
+| Secrets         |     5 | Manage test credentials          |
+| Use Cases       |     4 | Discover and approve use cases   |
+| Workflows       |    17 | Execute testing workflows        |
+| Artifacts       |     9 | Inspect test cases and scripts   |
+| Reports         |     4 | Generate and deliver reports     |
+| Recommendations |     2 | Get scheduling guidance          |
+
+## MCP Resources
+
+The gateway also exposes **MCP Resources** - documentation that AI agents can read dynamically:
+
+| Resource URI                       | Description                    |
+| :--------------------------------- | :----------------------------- |
+| `muggle-qa://docs/usage-guide`     | Complete workflow guide        |
+| `muggle-qa://docs/quick-reference` | Quick reference for tool calls |
+
+AI assistants can call `resources/list` to discover available documentation, then `resources/read` to fetch the content. This helps agents understand how to use the tools effectively without you having to explain.
 
 ## Next Steps
 

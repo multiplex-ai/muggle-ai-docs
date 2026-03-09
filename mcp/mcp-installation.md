@@ -183,10 +183,28 @@ Add to Cursor MCP settings (Settings → MCP):
 | `PROMPT_SERVICE_BASE_URL` | Yes | Muggle Test API endpoint | - |
 | `MCP_API_KEY` | Yes* | Your Muggle Test API key | - |
 | `MCP_BEARER_TOKEN` | Yes* | Alternative: JWT token | - |
+| `AUTH0_DOMAIN` | No** | Auth0 domain for device code flow | - |
+| `AUTH0_CLIENT_ID` | No** | Auth0 client ID | - |
+| `AUTH0_AUDIENCE` | No** | Auth0 audience | - |
 | `LOG_LEVEL` | No | Logging verbosity | `info` |
 | `NODE_ENV` | No | Environment mode | `production` |
 
-*One of `MCP_API_KEY` or `MCP_BEARER_TOKEN` is required.
+*One of `MCP_API_KEY` or `MCP_BEARER_TOKEN` is required for most tools.
+
+**Auth0 variables are only needed for agentic authentication (when you don't have an API key yet).
+
+---
+
+## Agentic Authentication
+
+If you don't have an API key, the gateway supports **device code flow authentication**:
+
+1. Configure the gateway with Auth0 variables (no API key needed)
+2. Ask your AI assistant: "Help me authenticate with Muggle Test"
+3. Visit the provided URL and log in
+4. The assistant automatically creates an API key and updates your config
+
+See [MCP API Reference - Authentication Tools](mcp-api-reference.md#authentication-tools) for details.
 
 ---
 

@@ -6,13 +6,32 @@ Connect your AI assistant to Muggle Test in under 5 minutes.
 
 ## Prerequisites
 
-| Requirement         | Description                                                        |
-| :------------------ | :----------------------------------------------------------------- |
-| Muggle Test account | Active subscription required                                       |
-| API key             | From your [Dashboard](https://app.muggle-ai.com/settings/api-keys) |
-| MCP client          | Claude Desktop, Cursor, or any MCP-compatible client               |
+| Requirement         | Description                                          |
+| :------------------ | :--------------------------------------------------- |
+| Muggle Test account | Active subscription required                         |
+| MCP client          | Claude Desktop, Cursor, or any MCP-compatible client |
 
 ## Step 1: Get Your API Key
+
+You have two options to get an API key:
+
+### Option A: Agentic Authentication (Recommended for Cursor)
+
+Let your AI assistant help you authenticate! This is the easiest way if you don't have an API key yet.
+
+1. Configure Cursor with the gateway (without API key - see Step 2 below)
+2. Ask your assistant: **"Help me authenticate with Muggle Test"**
+3. The assistant will:
+   - Call `auth_device_code_start` to get a login URL
+   - Show you a URL and code to enter
+   - You visit the URL and log in with your Muggle AI account
+   - The assistant calls `auth_device_code_poll` to complete setup
+   - Your `mcp.json` is automatically updated with the new API key
+4. Restart Cursor to load the new configuration
+
+> **Security**: The API key is written directly to your config file and is never shown to the AI assistant.
+
+### Option B: Manual API Key Creation
 
 1. Log in to your [Muggle Test Dashboard](https://app.muggle-ai.com)
 2. Navigate to **Settings** → **API Keys**
@@ -22,6 +41,50 @@ Connect your AI assistant to Muggle Test in under 5 minutes.
 > **Important**: Keep your API key secure. Never commit it to version control or share it publicly.
 
 ## Step 2: Configure Your MCP Client
+
+### Cursor IDE (with Agentic Auth)
+
+If using **Option A** (agentic authentication), configure without an API key first:
+
+Edit `~/.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "muggle-test": {
+      "command": "npx",
+      "args": ["@muggleai/mcp-qa-gateway", "--stdio"],
+      "env": {
+        "PROMPT_SERVICE_BASE_URL": "https://promptservice.muggle-ai.com",
+        "AUTH0_DOMAIN": "login.muggle-ai.com",
+        "AUTH0_CLIENT_ID": "YOUR_AUTH0_CLIENT_ID",
+        "AUTH0_AUDIENCE": "https://muggleai.us.auth0.com/api/v2/"
+      }
+    }
+  }
+}
+```
+
+Then ask your assistant to help you authenticate. The API key will be added automatically.
+
+### Cursor IDE (with API Key)
+
+If you already have an API key:
+
+```json
+{
+  "mcpServers": {
+    "muggle-test": {
+      "command": "npx",
+      "args": ["@muggleai/mcp-qa-gateway", "--stdio"],
+      "env": {
+        "PROMPT_SERVICE_BASE_URL": "https://promptservice.muggle-ai.com",
+        "MCP_API_KEY": "mai_sk_your_api_key_here"
+      }
+    }
+  }
+}
+```
 
 ### Claude Desktop
 
@@ -47,19 +110,17 @@ Add the following to your Claude Desktop configuration:
 | macOS    | `~/Library/Application Support/Claude/claude_desktop_config.json` |
 | Windows  | `%APPDATA%\Claude\claude_desktop_config.json`                     |
 
-### Cursor IDE
+### Hosted Gateway (Alternative)
 
-Add to your Cursor MCP settings (Settings → MCP):
+For the hosted gateway (no local installation):
 
 ```json
 {
-  "mcp": {
-    "servers": {
-      "muggle-test": {
-        "url": "https://mcp.muggle-ai.com/mcp",
-        "headers": {
-          "x-api-key": "YOUR_API_KEY_HERE"
-        }
+  "mcpServers": {
+    "muggle-test": {
+      "url": "https://mcp.muggle-ai.com/mcp",
+      "headers": {
+        "x-api-key": "YOUR_API_KEY_HERE"
       }
     }
   }

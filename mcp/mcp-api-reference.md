@@ -8,6 +8,7 @@ The MCP Gateway exposes tools organized into these categories:
 
 | Category        | Count | Purpose                            | Link                          |
 | :-------------- | ----: | :--------------------------------- | :---------------------------- |
+| Authentication  |     7 | Authenticate and manage API keys   | [Jump](#authentication-tools) |
 | Project         |     5 | Create and manage testing projects | [Jump](#project-tools)        |
 | PRD Files       |     5 | Upload and process PRD documents   | [Jump](#prd-file-tools)       |
 | Secrets         |     5 | Manage test credentials            | [Jump](#secret-tools)         |
@@ -16,6 +17,203 @@ The MCP Gateway exposes tools organized into these categories:
 | Artifacts       |     9 | Inspect test cases and scripts     | [Jump](#artifact-tools)       |
 | Reports         |     4 | Generate and deliver reports       | [Jump](#report-tools)         |
 | Recommendations |     2 | Get scheduling guidance            | [Jump](#recommendation-tools) |
+
+---
+
+## Authentication Tools
+
+These tools enable **agentic authentication** - AI agents can help users authenticate without needing a pre-existing API key.
+
+> **Security Note:** API keys obtained through the device code flow are written directly to the user's local config file. They are **never** returned through the MCP protocol to prevent leakage to AI agents or conversation history.
+
+### Device Code Flow
+
+The device code flow allows users to authenticate through their browser:
+
+```mermaid
+sequenceDiagram
+    participant Agent as AI Agent
+    participant Gateway as MCP Gateway
+    participant User as User (Browser)
+    participant Auth0 as Auth0
+    
+    Agent->>Gateway: auth_device_code_start()
+    Gateway->>Auth0: Request device code
+    Auth0-->>Gateway: {userCode, verificationUri}
+    Gateway-->>Agent: "Visit URL, enter code"
+    Agent->>User: Display URL and code
+    User->>Auth0: Visit URL, enter code, login
+    Auth0-->>Auth0: User authorizes
+    Agent->>Gateway: auth_device_code_poll(deviceCode)
+    Gateway->>Auth0: Check authorization
+    Auth0-->>Gateway: Access token
+    Gateway->>Gateway: Create API key
+    Gateway->>Gateway: Write to ~/.cursor/mcp.json
+    Gateway-->>Agent: "Success! Restart Cursor"
+```
+
+### auth_status
+
+Check current authentication status.
+
+**Input:** None required
+
+**Output:**
+
+```json
+{
+  "authenticated": true,
+  "method": "apiKey",
+  "apiKeyHint": "mai_sk_abc...xyz",
+  "message": "Authenticated via API key"
+}
+```
+
+| Field          | Type    | Description                          |
+| :------------- | :------ | :----------------------------------- |
+| `authenticated`| boolean | Whether credentials are present      |
+| `method`       | string  | `"apiKey"`, `"bearer"`, or `"none"`  |
+| `apiKeyHint`   | string  | Masked API key (if using API key)    |
+| `message`      | string  | Human-readable status message        |
+
+### auth_device_code_start
+
+Start the device code authentication flow. Returns a URL for the user to visit.
+
+**Input:** None required
+
+**Output:**
+
+```json
+{
+  "userCode": "ABCD-EFGH",
+  "verificationUri": "https://login.muggle-ai.com/activate",
+  "verificationUriComplete": "https://login.muggle-ai.com/activate?user_code=ABCD-EFGH",
+  "expiresIn": 900,
+  "interval": 5,
+  "instructions": [
+    "1. Open this URL in your browser: https://login.muggle-ai.com/activate",
+    "2. Enter this code: ABCD-EFGH",
+    "3. Log in with your Muggle AI account",
+    "4. Once authorized, call auth_device_code_poll to complete setup"
+  ]
+}
+```
+
+### auth_device_code_poll
+
+Poll for device code authorization completion. Call this after the user has visited the verification URL.
+
+**Input:**
+
+| Field        | Type   | Required | Description                       |
+| :----------- | :----- | :------: | :-------------------------------- |
+| `deviceCode` | string |    ✓     | Device code from start response   |
+
+**Output (pending):**
+
+```json
+{
+  "status": "authorization_pending",
+  "message": "Waiting for user to authorize..."
+}
+```
+
+**Output (success):**
+
+```json
+{
+  "success": true,
+  "status": "authorized",
+  "message": "Authentication successful! API key created.",
+  "apiKey": {
+    "id": "key_abc123",
+    "hint": "mai_sk_abc...xyz",
+    "expiresAt": "2024-04-15T00:00:00Z"
+  },
+  "mcpConfigUpdated": true,
+  "mcpConfigPath": "C:\\Users\\you\\.cursor\\mcp.json",
+  "instructions": [
+    "Your Cursor mcp.json has been automatically updated!",
+    "NEXT STEP: Restart Cursor to load the new configuration.",
+    "SECURITY: The full API key is NOT shown here - it went directly to your config file."
+  ]
+}
+```
+
+### auth_api_key_create
+
+Create a new API key for the authenticated user.
+
+**Input:**
+
+| Field            | Type    | Required | Description                                           |
+| :--------------- | :------ | :------: | :---------------------------------------------------- |
+| `name`           | string  |          | Name for the API key                                  |
+| `expiry`         | string  |          | `"30d"`, `"90d"`, `"1y"`, or `"never"` (default: 90d) |
+| `updateMcpConfig`| boolean |          | Auto-update mcp.json (default: true)                  |
+
+**Output:**
+
+```json
+{
+  "success": true,
+  "apiKey": {
+    "id": "key_abc123",
+    "hint": "mai_sk_abc...xyz",
+    "name": "My Dev Key",
+    "expiresAt": "2024-04-15T00:00:00Z"
+  },
+  "secureFilePath": "C:\\Users\\you\\.muggle-ai-api-key",
+  "mcpConfigUpdated": true
+}
+```
+
+### auth_api_key_list
+
+List all API keys for the authenticated user.
+
+**Output:**
+
+```json
+{
+  "count": 2,
+  "apiKeys": [
+    {
+      "id": "key_abc123",
+      "hint": "mai_sk_abc...xyz",
+      "name": "Production",
+      "status": "active",
+      "createdAt": "2024-01-15T10:00:00Z"
+    }
+  ]
+}
+```
+
+### auth_api_key_get
+
+Get details of a specific API key by ID.
+
+| Field      | Type   | Required | Description    |
+| :--------- | :----- | :------: | :------------- |
+| `apiKeyId` | string |    ✓     | API key ID     |
+
+### auth_api_key_revoke
+
+Revoke an API key. The key will immediately stop working.
+
+| Field      | Type   | Required | Description       |
+| :--------- | :----- | :------: | :---------------- |
+| `apiKeyId` | string |    ✓     | API key to revoke |
+
+**Output:**
+
+```json
+{
+  "success": true,
+  "message": "API key revoked successfully"
+}
+```
 
 ---
 
