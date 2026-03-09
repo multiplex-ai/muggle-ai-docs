@@ -44,9 +44,11 @@ flowchart LR
 | :------ | :---------- |
 | **Localhost Access** | Test `localhost`, `127.0.0.1`, or any local dev server |
 | **AI-Driven Testing** | Describe tests in natural language |
+| **Project Organization** | Manage projects, use cases, and test cases locally |
+| **Test Script Generation** | AI generates repeatable test scripts from test cases |
 | **Browser Automation** | Real browser interactions (click, type, scroll) |
 | **Screenshot Capture** | Visual documentation of test results |
-| **Session Management** | Organized test history with markdown reports |
+| **Publish to Cloud** | Sync local projects to Muggle AI for team collaboration |
 
 ## How It Works
 
@@ -120,6 +122,39 @@ Test completed:
 Screenshot saved to `~/.muggle-ai/sessions/session-xxx/screenshots/step-003.png`
 
 ---
+
+## Local-to-Production Workflow
+
+Local Testing supports a workflow that takes you from development to production:
+
+```mermaid
+flowchart LR
+    subgraph local["Local Development"]
+        A["Create Project<br/>(localhost URL)"]
+        B["Define Use Cases<br/>& Test Cases"]
+        C["Generate Test Scripts"]
+        D["Iterate & Debug"]
+    end
+    
+    subgraph publish["Publish"]
+        E["Publish to Cloud<br/>(production URL)"]
+    end
+    
+    subgraph cloud["Cloud"]
+        F["Team Collaboration"]
+        G["Scheduled Runs"]
+        H["CI/CD Integration"]
+    end
+    
+    A --> B --> C --> D
+    D --> E --> F & G & H
+```
+
+1. **Develop locally** — Create projects with localhost URLs, define test cases
+2. **Generate scripts** — AI creates test scripts by interacting with your app
+3. **Iterate** — Refine test cases as your app evolves
+4. **Publish** — When ready, publish to cloud with production URLs
+5. **Scale** — Cloud enables team collaboration and automated testing
 
 ## Getting Started
 
