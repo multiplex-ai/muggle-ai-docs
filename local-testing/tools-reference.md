@@ -14,6 +14,7 @@ Complete reference for all Muggle Test Local MCP tools.
 | **Execution** | `muggle_execute_*` | Run test generation and replay |
 | **Results** | `muggle_run_result_*` | View execution results |
 | **Publishing** | `muggle_publish_*` | Upload to cloud |
+| **Cloud Pull** | `muggle_cloud_*` | List and pull from cloud |
 
 ---
 
@@ -421,6 +422,80 @@ Upload a single test script to the cloud.
 
 ---
 
+## Cloud Pull Tools
+
+### muggle_cloud_project_list
+
+List all cloud projects for the authenticated user.
+
+| Parameter | Type | Required | Description |
+| :-------- | :--- | :------: | :---------- |
+| (none) | — | — | — |
+
+**Requires:** Authentication
+
+**Returns:**
+- `projects` - Array of cloud projects with IDs, names, URLs
+
+---
+
+### muggle_cloud_pull_project
+
+Pull an entire cloud project to local storage with URL rewriting.
+
+| Parameter | Type | Required | Description |
+| :-------- | :--- | :------: | :---------- |
+| `cloudProjectId` | string | Yes | Cloud project ID to pull |
+| `localUrl` | string | Yes | Local URL for testing (e.g., `http://localhost:3000`) |
+
+**What happens:**
+1. Downloads project metadata from cloud
+2. Creates local project with `localUrl`
+3. Stores original cloud URL in `originalUrl` field
+4. Downloads and creates all use cases
+5. Downloads and creates all test cases with URL rewriting
+6. Maps cloud IDs to local IDs for future sync
+
+**URL Rewriting:**
+- Path is preserved: `https://app.example.com/login` → `http://localhost:3000/login`
+- Original URL stored in `originalUrl` for publishing back
+
+**Requires:** Authentication
+
+---
+
+### muggle_cloud_pull_use_case
+
+Pull a single cloud use case and its test cases to local storage.
+
+| Parameter | Type | Required | Description |
+| :-------- | :--- | :------: | :---------- |
+| `cloudProjectId` | string | Yes | Cloud project ID |
+| `cloudUseCaseId` | string | Yes | Cloud use case ID to pull |
+| `localProjectId` | string | Yes | Local project to save under |
+| `localUrl` | string | Yes | Local URL for testing |
+
+**Requires:** Authentication
+
+---
+
+### muggle_cloud_pull_test_case
+
+Pull a single cloud test case to local storage.
+
+| Parameter | Type | Required | Description |
+| :-------- | :--- | :------: | :---------- |
+| `cloudProjectId` | string | Yes | Cloud project ID |
+| `cloudUseCaseId` | string | Yes | Cloud use case ID |
+| `cloudTestCaseId` | string | Yes | Cloud test case ID to pull |
+| `localProjectId` | string | Yes | Local project to save under |
+| `localUseCaseId` | string | Yes | Local use case to save under |
+| `localUrl` | string | Yes | Local URL for testing |
+
+**Requires:** Authentication
+
+---
+
 ## Tool Selection Guide
 
 ### Project Setup
@@ -428,7 +503,9 @@ Upload a single test script to the cloud.
 | You want to... | Use this tool |
 | :------------- | :------------ |
 | Start a new test project | `muggle_project_create` |
-| See all my projects | `muggle_project_list` |
+| See all my local projects | `muggle_project_list` |
+| See all my cloud projects | `muggle_cloud_project_list` |
+| Pull a project from cloud | `muggle_cloud_pull_project` |
 | Define a user flow | `muggle_use_case_save` |
 | Create a test scenario | `muggle_test_case_save` |
 
@@ -441,7 +518,17 @@ Upload a single test script to the cloud.
 | Run a quick ad-hoc test | `muggle_run_test` |
 | Stop a running test | `muggle_cancel_execution` |
 
-### Browser Interaction
+### Cloud Sync
+
+| You want to... | Use this tool |
+| :------------- | :------------ |
+| List cloud projects | `muggle_cloud_project_list` |
+| Pull project from cloud to local | `muggle_cloud_pull_project` |
+| Pull a single use case | `muggle_cloud_pull_use_case` |
+| Pull a single test case | `muggle_cloud_pull_test_case` |
+| Publish local to cloud | `muggle_publish_project` |
+
+### Common Workflow
 
 | You want to... | Use this tool |
 | :------------- | :------------ |
