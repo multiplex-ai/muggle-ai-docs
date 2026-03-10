@@ -7,28 +7,31 @@ At a high level, Muggle Test does three things:
 3. **Re-run** those scripts on every change and surface regressions
 
 ```mermaid
-flowchart LR
+flowchart TB
     subgraph discovery["1. Discovery"]
-        direction TB
-        crawl["AI Agent crawls site"]
-        identify["Identifies key flows"]
-        propose["Proposes scenarios"]
+        direction LR
+        crawl["Crawl<br/>the site"]
+        identify["Identify<br/>key flows"]
+        propose["Propose<br/>scenarios"]
+        crawl --> identify --> propose
     end
-    
+
     subgraph generation["2. Script Generation"]
-        direction TB
-        steps["Converts to concrete steps"]
-        selectors["Uses stable selectors"]
-        assertions["Adds validations"]
+        direction LR
+        steps["Convert flows<br/>into steps"]
+        selectors["Use stable<br/>selectors"]
+        assertions["Add<br/>validations"]
+        steps --> selectors --> assertions
     end
-    
-    subgraph execution["3. Execution & Reporting"]
-        direction TB
-        run["Runs in real browser"]
-        capture["Captures evidence"]
-        report["Generates reports"]
+
+    subgraph execution["3. Execution and Reporting"]
+        direction LR
+        run["Run in a<br/>real browser"]
+        capture["Capture<br/>evidence"]
+        report["Generate<br/>reports"]
+        run --> capture --> report
     end
-    
+
     discovery --> generation
     generation --> execution
     execution -->|"Regressions found"| discovery
