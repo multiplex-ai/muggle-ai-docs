@@ -292,9 +292,10 @@ The gateway provides 50+ tools organized into categories:
 | Project         |     5 | Create and manage projects       |
 | PRD Files       |     5 | Upload and process PRD files     |
 | Secrets         |     5 | Manage test credentials          |
-| Use Cases       |     4 | Discover and approve use cases   |
+| Wallet          |     5 | Manage payment methods and topups|
+| Use Cases       |     7 | Discover, create, and update use cases |
 | Workflows       |    17 | Execute testing workflows        |
-| Artifacts       |     9 | Inspect test cases and scripts   |
+| Artifacts       |    11 | Inspect test cases and scripts   |
 | Reports         |     4 | Generate and deliver reports     |
 | Recommendations |     2 | Get scheduling guidance          |
 
@@ -306,6 +307,7 @@ The gateway also exposes **MCP Resources** - documentation that AI agents can re
 | :--------------------------------- | :----------------------------- |
 | `muggle-qa://docs/usage-guide`     | Complete workflow guide        |
 | `muggle-qa://docs/quick-reference` | Quick reference for tool calls |
+| `muggle-qa://docs/wallet-quickstart` | Wallet setup and topup quickstart |
 
 AI assistants can call `resources/list` to discover available documentation, then `resources/read` to fetch the content. This helps agents understand how to use the tools effectively without you having to explain.
 

@@ -12,9 +12,10 @@ The MCP Gateway exposes tools organized into these categories:
 | Project         |     5 | Create and manage testing projects | [Jump](#project-tools)        |
 | PRD Files       |     5 | Upload and process PRD documents   | [Jump](#prd-file-tools)       |
 | Secrets         |     5 | Manage test credentials            | [Jump](#secret-tools)         |
-| Use Cases       |     4 | Discover and approve use cases     | [Jump](#use-case-tools)       |
+| Wallet          |     5 | Manage payment methods and topups  | [Jump](#wallet-tools)         |
+| Use Cases       |     7 | Discover, create, and update use cases | [Jump](#use-case-tools)   |
 | Workflows       |    17 | Execute testing workflows          | [Jump](#workflow-tools)       |
-| Artifacts       |     9 | Inspect test cases and scripts     | [Jump](#artifact-tools)       |
+| Artifacts       |    11 | Inspect test cases and scripts     | [Jump](#artifact-tools)       |
 | Reports         |     4 | Generate and deliver reports       | [Jump](#report-tools)         |
 | Recommendations |     2 | Get scheduling guidance            | [Jump](#recommendation-tools) |
 
@@ -451,6 +452,75 @@ Update a secret's name, value, or description.
 ### qa_secret_delete
 
 Delete a secret.
+
+---
+
+## Wallet Tools
+
+Wallet tools help set up billing methods and top up credits.
+
+### qa_wallet_payment_method_create_setup_session
+
+Create a Stripe setup session to add a new saved payment method.
+
+**Input:**
+
+```json
+{
+  "checkoutSuccessCallback": "https://app.example.com/billing/payment-method/success",
+  "checkoutCancelCallback": "https://app.example.com/billing/payment-method/cancel"
+}
+```
+
+### qa_wallet_payment_method_list
+
+List saved payment methods for the authenticated user.
+
+**Input:**
+
+```json
+{}
+```
+
+### qa_wallet_auto_topup_set_payment_method
+
+Set the saved payment method used for auto top-up.
+
+**Input:**
+
+```json
+{
+  "paymentMethodId": "pm_123"
+}
+```
+
+### qa_wallet_auto_topup_update
+
+Update auto-topup settings for threshold/package/enablement.
+
+**Input:**
+
+```json
+{
+  "enabled": true,
+  "topUpTriggerTokenThreshold": 500,
+  "packageId": "starter_pack"
+}
+```
+
+### qa_wallet_topup
+
+Create a one-time checkout session to purchase a token package.
+
+**Input:**
+
+```json
+{
+  "packageId": "starter_pack",
+  "checkoutSuccessCallback": "https://app.example.com/billing/topup/success",
+  "checkoutCancelCallback": "https://app.example.com/billing/topup/cancel"
+}
+```
 
 ---
 
