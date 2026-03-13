@@ -1,12 +1,41 @@
 ---
-description: 
-globs: **/muggle-ai-docs/*
-alwaysApply: false
+description: Core guidelines for Muggle AI customer documentation
+globs: 
+alwaysApply: true
 ---
 
 # Muggle AI Documentation Repository
 
 This is the **customer-facing documentation** for Muggle AI products. All content is publicly visible.
+
+## Critical Guidelines
+
+### No Sensitive Information
+
+This documentation is **customer-facing**. NEVER include:
+- Internal statistics or metrics
+- Internal data (user counts, usage data, performance benchmarks)
+- Internal architecture details (service names, infrastructure, database schemas)
+- Internal URLs, API keys, or credentials
+- Any proprietary implementation details
+
+### No ASCII Tables or Diagrams
+
+Do NOT use ASCII-based formatting - it is error-prone and renders inconsistently:
+
+```markdown
+<!-- ❌ BAD: ASCII tables/diagrams - spacing breaks easily -->
++--------+--------+
+| Header | Header |
++--------+--------+
+
+<!-- ✅ GOOD: Use standard Markdown tables -->
+| Header | Header |
+| :----- | :----- |
+| Value  | Value  |
+
+<!-- ✅ GOOD: Use Mermaid for diagrams -->
+```
 
 ## Repository Structure
 
@@ -30,7 +59,6 @@ muggle-ai-docs/
 
 ## Key Reminders
 
-- This is PUBLIC documentation - no internal details
-- Use Mermaid for diagrams, not ASCII art
-- Format tables with proper column alignment
+- This is PUBLIC documentation - no internal details, stats, or architecture
+- Use Mermaid for diagrams, standard Markdown for tables
 - Cross-link related articles using relative paths
