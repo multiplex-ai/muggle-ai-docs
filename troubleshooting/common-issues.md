@@ -117,9 +117,7 @@ This page lists frequent issues and quick checks to resolve them.
 
 ## Getting More Help
 
-If these solutions don't resolve your issue:
-
-| Resource                  | When to Use                     |
+If these solutions don't resolve your issue:| Resource                  | When to Use                     |
 | :------------------------ | :------------------------------ |
 | **In-app chat**           | Quick questions, account issues |
 | **support@muggle-ai.com** | Detailed technical issues       |

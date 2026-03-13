@@ -124,9 +124,7 @@ flowchart LR
 | :--------------------- | :----------------------------------- |
 | See health at a glance | Know which flows are working         |
 | Prioritize fixes       | Focus on business-critical failures  |
-| Share with team        | Non-engineers can understand results |
-
-## Next Steps| Goal              | Resource                                                                    |
+| Share with team        | Non-engineers can understand results |## Next Steps| Goal              | Resource                                                                    |
 | :---------------- | :-------------------------------------------------------------------------- |
 | Get started       | [Quickstart: Running Tests](../getting-started/quickstart-running-tests.md) |
 | Upload PRD files  | [Uploading PRD Files](prd-upload.md)                                        |

@@ -174,9 +174,7 @@ while true; do
 done
 ```
 
-## Error Responses
-
-| Error                   | Cause                  | Solution               |
+## Error Responses| Error                   | Cause                  | Solution               |
 | :---------------------- | :--------------------- | :--------------------- |
 | `404 Project not found` | Invalid project ID     | Verify ID in dashboard |
 | `404 Run not found`     | Invalid run ID         | Check trigger response |

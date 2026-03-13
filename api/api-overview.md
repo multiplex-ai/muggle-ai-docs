@@ -80,9 +80,7 @@ All endpoints in this documentation are relative to this base URL.
 | Pro        |              60 |
 | Enterprise |             300 |
 
-Rate limit headers are included in responses:
-
-| Header                  | Description                 |
+Rate limit headers are included in responses:| Header                  | Description                 |
 | :---------------------- | :-------------------------- |
 | `X-RateLimit-Limit`     | Maximum requests allowed    |
 | `X-RateLimit-Remaining` | Requests remaining          |
