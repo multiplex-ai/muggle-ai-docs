@@ -115,6 +115,70 @@ This page lists frequent issues and quick checks to resolve them.
 
 **Tip:** If possible, disable CAPTCHAs on your staging environment for faster, more reliable test execution.
 
+## Local MCP Issues
+
+### Electron-app Not Found
+
+**Symptoms:**
+
+- Error: "Electron-app not found"
+- Test execution fails immediately
+
+**Diagnosis & Solutions:**
+
+| Check | Solution |
+| :---- | :------- |
+| Installation complete? | Run `muggle-test-local doctor` to check status |
+| Download failed? | Run `muggle-test-local setup` to retry |
+| Network blocked? | Check firewall/proxy settings |
+| Custom binary? | Set `ELECTRON_APP_PATH` environment variable |
+
+### Download Failed with 404
+
+**Symptoms:**
+
+- Setup fails with "Download failed with status 404"
+- Cannot install electron-app binary
+
+**Diagnosis & Solutions:**
+
+| Check | Solution |
+| :---- | :------- |
+| Release published? | Check [releases page](https://github.com/multiplex-ai/muggle-ai-mcp/releases) |
+| Version mismatch? | Ensure package version matches available releases |
+| Development version? | Build from source (see [setup docs](../local-testing/setup.md)) |
+
+### MCP Tools Not Appearing
+
+**Symptoms:**
+
+- AI assistant doesn't recognize `muggle_*` tools
+- "Tool not found" errors
+
+**Diagnosis & Solutions:**
+
+| Check | Solution |
+| :---- | :------- |
+| Config correct? | Verify path in `mcp.json` or `claude_desktop_config.json` |
+| Package built? | Run `npm run build` in `packages/local-mcp` |
+| Client restarted? | Restart Cursor/Claude Desktop after config changes |
+| Node version? | Ensure Node.js 22+ is installed |
+
+### Web Service Not Available
+
+**Symptoms:**
+
+- Error: "Web-service not available"
+- Test execution hangs
+
+**Diagnosis & Solutions:**
+
+| Check | Solution |
+| :---- | :------- |
+| Electron-app installed? | Run `muggle-test-local setup` |
+| Port conflict? | Check if another process is using the port |
+| Permissions? | Ensure electron-app has execute permissions |
+
 ## Getting More Help
 
 If these solutions don't resolve your issue:| Resource                  | When to Use                     |

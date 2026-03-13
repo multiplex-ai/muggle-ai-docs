@@ -18,10 +18,12 @@ Install the Muggle Test Local MCP package:
 npm install -g @muggle-ai/local-mcp
 ```
 
+During installation, the package automatically downloads the platform-specific browser engine from [GitHub Releases](https://github.com/multiplex-ai/muggle-ai-mcp/releases).
+
 Or clone and build from source:
 
 ```bash
-git clone https://github.com/muggle-ai/muggle-ai-teaching-service
+git clone https://github.com/multiplex-ai/muggle-ai-teaching-service
 cd muggle-ai-teaching-service
 npm install
 npm run build
@@ -32,7 +34,21 @@ The package includes:
 | Component | Purpose |
 | :-------- | :------ |
 | `local-mcp` | MCP server that your AI assistant communicates with |
-| `electron-app` | Bundled browser automation engine (per-platform) |
+| `electron-app` | Browser automation engine (downloaded per-platform) |
+
+### Verify Installation
+
+After installation, verify everything is set up correctly:
+
+```bash
+muggle-test-local doctor
+```
+
+This checks:
+- Node.js version
+- Electron app installation
+- Data directory status
+- Authentication status
 
 ## Step 2: Configure Your AI Assistant
 
@@ -125,7 +141,20 @@ You can customize behavior with environment variables in your MCP config:
 | Variable | Default | Description |
 | :------- | :------ | :---------- |
 | `LOG_LEVEL` | `info` | Logging verbosity (`debug`, `info`, `warn`, `error`) |
-| `ELECTRON_APP_PATH` | (bundled) | Custom path to Muggle AI browser engine |
+| `ELECTRON_APP_PATH` | (auto-downloaded) | Custom path to Muggle AI browser engine executable |
+| `MUGGLE_SKIP_DOWNLOAD` | `false` | Set to `1` to skip automatic download during npm install |
+| `PROMPT_SERVICE_URL` | (production) | Override the prompt service URL for cloud features |
+
+### CLI Commands
+
+The `muggle-test-local` command provides helpful utilities:
+
+| Command | Description |
+| :------ | :---------- |
+| `muggle-test-local` | Start the MCP server (default) |
+| `muggle-test-local setup` | Download/install the browser engine |
+| `muggle-test-local setup --force` | Force re-download even if already installed |
+| `muggle-test-local doctor` | Check installation status and diagnose issues |
 
 ### Authentication (Device Code Flow)
 
@@ -189,13 +218,49 @@ All test data is stored locally in `~/.muggle-ai/`:
 
 ### "Electron-app not found"
 
-The browser engine is bundled with the package. If you see this error:
+The browser engine is downloaded automatically during installation. If you see this error:
 
 | Check | Solution |
 | :---- | :------- |
-| Fresh install? | Re-run `npm install` to get bundled binaries |
-| Custom location? | Set `ELECTRON_APP_PATH` to your binary location |
-| Platform supported? | macOS, Windows, and Linux are supported |
+| Download failed? | Run `muggle-test-local setup` to retry download |
+| Network issues? | Check your internet connection and proxy settings |
+| Custom location? | Set `ELECTRON_APP_PATH` environment variable to your binary |
+| Platform supported? | macOS (arm64, x64), Windows (x64), and Linux (x64) are supported |
+
+### "Download failed with status 404"
+
+This means the release asset wasn't found. Common causes:
+
+| Cause | Solution |
+| :---- | :------- |
+| New version not published | Check [available releases](https://github.com/multiplex-ai/muggle-ai-mcp/releases) |
+| Development version | For local development, build the electron-app manually (see below) |
+
+**Building from source (for developers):**
+
+```bash
+cd muggle-ai-teaching-service/packages/web-service
+npm run build:windev  # Windows
+npm run build:macdev  # macOS
+
+# Copy the output to the expected location
+cp -r ../electron-app/dist/win-unpacked ~/.muggle-ai/electron-app/1.0.0/
+```
+
+Or set the `ELECTRON_APP_PATH` environment variable in your MCP config:
+
+```json
+{
+  "mcpServers": {
+    "muggle-test-local": {
+      "command": "muggle-test-local",
+      "env": {
+        "ELECTRON_APP_PATH": "/path/to/your/MuggleAI.exe"
+      }
+    }
+  }
+}
+```
 
 ### Authentication Errors
 
