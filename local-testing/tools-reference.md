@@ -1,6 +1,8 @@
 # Local Testing Tools Reference
 
-Complete reference for all Muggle Test Local MCP tools.
+Complete reference for local testing tools in the `@muggleai/mcp` package.
+
+> **Note:** All local testing tools use the `muggle_` prefix. Cloud QA tools use the `qa_` prefix. When running `muggle-mcp serve` (default), both sets of tools are available.
 
 ## Tool Categories
 

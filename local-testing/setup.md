@@ -1,6 +1,6 @@
 # Local Testing Setup
 
-Install and configure Muggle Test Local to test your localhost applications.
+Install and configure Muggle AI MCP to test your localhost applications.
 
 ## Prerequisites
 
@@ -12,43 +12,48 @@ Install and configure Muggle Test Local to test your localhost applications.
 
 ## Step 1: Install the Package
 
-Install the Muggle Test Local MCP package:
+Install the unified Muggle AI MCP package:
 
 ```bash
-npm install -g @muggle-ai/local-mcp
+npm install -g @muggleai/mcp
 ```
 
-During installation, the package automatically downloads the platform-specific browser engine from [GitHub Releases](https://github.com/multiplex-ai/muggle-ai-mcp/releases).
-
-Or clone and build from source:
-
-```bash
-git clone https://github.com/multiplex-ai/muggle-ai-teaching-service
-cd muggle-ai-teaching-service
-npm install
-npm run build
-```
+During installation, the package automatically downloads the platform-specific browser engine.
 
 The package includes:
 
 | Component | Purpose |
 | :-------- | :------ |
-| `local-mcp` | MCP server that your AI assistant communicates with |
-| `electron-app` | Browser automation engine (downloaded per-platform) |
+| `muggle-mcp` | Unified MCP server and CLI |
+| Browser Engine | Electron-based browser automation (downloaded per-platform) |
+| Local Tools | 60+ tools for local testing |
+| Cloud Tools | 60+ tools for cloud QA (optional) |
 
 ### Verify Installation
 
 After installation, verify everything is set up correctly:
 
 ```bash
-muggle-test-local doctor
+muggle-mcp doctor
 ```
 
 This checks:
 - Node.js version
-- Electron app installation
+- Browser engine installation
 - Data directory status
 - Authentication status
+
+**Expected output:**
+
+```
+Muggle MCP Doctor
+=================
+✓ Data Directory: Found at ~/.muggle-ai
+✓ Electron App: Installed (v1.0.0)
+✗ Authentication: Not authenticated
+  └─ Run 'muggle-mcp login' to authenticate
+✓ Prompt Service URL: https://promptservice.muggle-ai.com
+```
 
 ## Step 2: Configure Your AI Assistant
 
@@ -56,32 +61,31 @@ Add the MCP server to your assistant's configuration.
 
 ### Cursor IDE
 
-Create or edit `~/.cursor/mcp.json`:
+Edit `~/.cursor/mcp.json`:
 
 ```json
 {
   "mcpServers": {
-    "muggle-test-local": {
-      "command": "node",
-      "args": ["/path/to/muggle-ai-teaching-service/packages/local-mcp/dist/index.js"]
+    "muggle-test": {
+      "command": "muggle-mcp",
+      "args": ["serve"]
     }
   }
 }
 ```
 
-Or if installed globally:
+**For local testing only** (no cloud features):
 
 ```json
 {
   "mcpServers": {
     "muggle-test-local": {
-      "command": "muggle-test-local"
+      "command": "muggle-mcp",
+      "args": ["serve", "--local"]
     }
   }
 }
 ```
-
-> **Important**: Replace `/path/to/` with the actual absolute path where you cloned the repository.
 
 ### Claude Desktop
 
@@ -95,9 +99,9 @@ Edit your Claude Desktop configuration:
 ```json
 {
   "mcpServers": {
-    "muggle-test-local": {
-      "command": "node",
-      "args": ["/path/to/muggle-ai-teaching-service/packages/local-mcp/dist/index.js"]
+    "muggle-test": {
+      "command": "muggle-mcp",
+      "args": ["serve"]
     }
   }
 }
@@ -111,14 +115,19 @@ Restart Cursor or Claude Desktop to load the new MCP server configuration.
 
 Ask your AI assistant to check the connection:
 
-> "Check the authentication status"
+> "Check the Muggle Test status"
 
 You should see a response indicating the MCP is ready:
 
 ```
-Authentication Status:
-- Authenticated: No
-- To log in, use muggle_auth_login
+Muggle Test Local Status
+========================
+Data Directory: ~/.muggle-ai
+Sessions Directory: ~/.muggle-ai/sessions
+
+Authentication
+--------------
+Authenticated: No
 ```
 
 ## Running Your First Test
@@ -132,6 +141,22 @@ The assistant will:
 2. Return the project details
 3. Be ready for you to add use cases and test cases
 
+## CLI Commands
+
+The `muggle-mcp` command provides helpful utilities:
+
+| Command | Description |
+| :------ | :---------- |
+| `muggle-mcp serve` | Start the MCP server (default: all tools) |
+| `muggle-mcp serve --local` | Start with local tools only |
+| `muggle-mcp serve --qa` | Start with cloud QA tools only |
+| `muggle-mcp setup` | Download/install the browser engine |
+| `muggle-mcp setup --force` | Force re-download even if installed |
+| `muggle-mcp doctor` | Check installation and diagnose issues |
+| `muggle-mcp login` | Authenticate with Muggle AI |
+| `muggle-mcp logout` | Clear stored credentials |
+| `muggle-mcp status` | Show authentication status |
+
 ## Configuration Options
 
 ### Environment Variables
@@ -141,29 +166,40 @@ You can customize behavior with environment variables in your MCP config:
 | Variable | Default | Description |
 | :------- | :------ | :---------- |
 | `LOG_LEVEL` | `info` | Logging verbosity (`debug`, `info`, `warn`, `error`) |
-| `ELECTRON_APP_PATH` | (auto-downloaded) | Custom path to Muggle AI browser engine executable |
-| `MUGGLE_SKIP_DOWNLOAD` | `false` | Set to `1` to skip automatic download during npm install |
-| `PROMPT_SERVICE_URL` | (production) | Override the prompt service URL for cloud features |
+| `ELECTRON_APP_PATH` | (auto-downloaded) | Custom path to browser engine executable |
+| `MCP_API_KEY` | - | API key for cloud features |
+| `PROMPT_SERVICE_BASE_URL` | (production) | Override the prompt service URL |
 
-### CLI Commands
+**Example with custom settings:**
 
-The `muggle-test-local` command provides helpful utilities:
+```json
+{
+  "mcpServers": {
+    "muggle-test": {
+      "command": "muggle-mcp",
+      "args": ["serve"],
+      "env": {
+        "LOG_LEVEL": "debug",
+        "MCP_API_KEY": "mai_sk_your_key_here"
+      }
+    }
+  }
+}
+```
 
-| Command | Description |
-| :------ | :---------- |
-| `muggle-test-local` | Start the MCP server (default) |
-| `muggle-test-local setup` | Download/install the browser engine |
-| `muggle-test-local setup --force` | Force re-download even if already installed |
-| `muggle-test-local doctor` | Check installation status and diagnose issues |
+## Authentication (Optional)
 
-### Authentication (Device Code Flow)
+Authentication is **optional for local testing**. It's only needed if you want to:
+- Publish local projects to the cloud
+- Pull cloud projects to test locally
+- Use cloud QA features
 
-For cloud sync and publishing features, authenticate using the Device Code flow:
+### Device Code Flow
 
 1. Ask your assistant: "Log in to Muggle Test"
 2. You'll receive a URL and code to open in your browser
 3. Complete login in your browser
-4. Ask the assistant to poll for completion
+4. The assistant polls for completion automatically
 
 **Example flow:**
 
@@ -171,15 +207,13 @@ For cloud sync and publishing features, authenticate using the Device Code flow:
 >
 > **Assistant**: Please complete authentication:
 > - Open: `https://auth.muggle-ai.com/activate?user_code=ABCD-1234`
-> - After logging in, I'll poll to complete authentication.
+> - After logging in, I'll confirm your authentication.
 >
 > **You**: "Done, check if I'm logged in"
 >
 > **Assistant**: Authentication successful! Logged in as user@example.com
 
-Authentication tokens are stored locally at `~/.muggle-ai/auth.json` and are valid for ~24 hours.
-
-> **Note**: Authentication is optional for local testing. It's only needed if you want to publish to the cloud.
+Authentication tokens are stored locally at `~/.muggle-ai/auth.json`.
 
 ## Data Storage
 
@@ -188,6 +222,9 @@ All test data is stored locally in `~/.muggle-ai/`:
 ```
 ~/.muggle-ai/
 ├── auth.json                    # Authentication tokens
+├── credentials.json             # API credentials
+├── electron-app/                # Browser automation engine
+│   └── {version}/
 └── projects/
     └── {project_id}/
         ├── project.json         # Project definition
@@ -211,8 +248,8 @@ All test data is stored locally in `~/.muggle-ai/`:
 
 | Check | Solution |
 | :---- | :------- |
-| Path correct? | Verify the absolute path in your MCP config |
-| Package built? | Run `npm run build` in `packages/local-mcp` |
+| Package installed? | Run `npm list -g @muggleai/mcp` |
+| Config correct? | Verify JSON syntax in your MCP config file |
 | Client restarted? | Restart Cursor/Claude Desktop after config changes |
 | Node version? | Ensure Node.js 22+ is installed (`node --version`) |
 
@@ -222,9 +259,9 @@ The browser engine is downloaded automatically during installation. If you see t
 
 | Check | Solution |
 | :---- | :------- |
-| Download failed? | Run `muggle-test-local setup` to retry download |
+| Download failed? | Run `muggle-mcp setup` to retry download |
 | Network issues? | Check your internet connection and proxy settings |
-| Custom location? | Set `ELECTRON_APP_PATH` environment variable to your binary |
+| Custom location? | Set `ELECTRON_APP_PATH` environment variable |
 | Platform supported? | macOS (arm64, x64), Windows (x64), and Linux (x64) are supported |
 
 ### "Download failed with status 404"
@@ -234,46 +271,32 @@ This means the release asset wasn't found. Common causes:
 | Cause | Solution |
 | :---- | :------- |
 | New version not published | Check [available releases](https://github.com/multiplex-ai/muggle-ai-mcp/releases) |
-| Development version | For local development, build the electron-app manually (see below) |
+| Development version | For local development, build manually (see below) |
 
 **Building from source (for developers):**
 
 ```bash
-cd muggle-ai-teaching-service/packages/web-service
-npm run build:windev  # Windows
-npm run build:macdev  # macOS
-
-# Copy the output to the expected location
-cp -r ../electron-app/dist/win-unpacked ~/.muggle-ai/electron-app/1.0.0/
+git clone https://github.com/multiplex-ai/muggle-ai-mcp
+cd muggle-ai-mcp
+npm install
+npm run build
 ```
 
-Or set the `ELECTRON_APP_PATH` environment variable in your MCP config:
-
-```json
-{
-  "mcpServers": {
-    "muggle-test-local": {
-      "command": "muggle-test-local",
-      "env": {
-        "ELECTRON_APP_PATH": "/path/to/your/MuggleAI.exe"
-      }
-    }
-  }
-}
-```
+Or set the `ELECTRON_APP_PATH` environment variable in your MCP config.
 
 ### Authentication Errors
 
 | Error | Solution |
 | :---- | :------- |
 | "Device code expired" | Codes are valid for 15 minutes. Start login again. |
-| "Authorization pending" | Complete the browser login, then poll again. |
-| Token expired | Re-run `muggle_auth_login` to get a new token. |
+| "Authorization pending" | Complete the browser login, then check status. |
+| Token expired | Run `muggle-mcp login` to get a new token. |
 
 For more troubleshooting help, see [Common Issues](../troubleshooting/common-issues.md).
 
 ## Next Steps
 
-- **[Available Tools](local-testing/tools-reference.md)** — Learn what tools are available
-- **[Example Workflows](local-testing/examples.md)** — Common testing patterns
-- **[Local Testing Overview](local-testing/overview.md)** — Understanding the architecture
+- **[Local Testing Overview](overview.md)** — Understanding the architecture
+- **[Available Tools](tools-reference.md)** — Learn what tools are available
+- **[Example Workflows](examples.md)** — Common testing patterns
+- **[Agent Skills](skills.md)** — Pre-built testing workflows

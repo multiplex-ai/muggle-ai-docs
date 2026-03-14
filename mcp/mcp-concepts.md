@@ -1,92 +1,76 @@
 # MCP Concepts & Architecture
 
-Understanding how the MCP Gateway works with Muggle Test.
+Understanding how the `@muggleai/mcp` package works with Muggle Test.
 
 ## System Architecture
 
-The MCP QA Gateway supports two deployment modes: **Hosted** and **Local (Self-Hosted)**.
+The unified MCP package supports multiple modes: **Cloud QA**, **Local Testing**, or **both combined**.
 
-### Hosted Mode (HTTP Transport)
-
-```mermaid
-flowchart TB
-    subgraph env["Your Environment"]
-        client["AI Assistant<br/>(Claude, Cursor)"]
-    end
-
-    subgraph cloud["Muggle AI Cloud"]
-        subgraph gateway["Hosted MCP Gateway"]
-            direction TB
-            proto["Protocol Translation"]
-            auth["Auth Forwarding"]
-            rate["Rate Limiting"]
-        end
-
-        subgraph platform["Muggle Test Platform"]
-            direction TB
-            proj["Project Management"]
-            workflow["Workflow Engine"]
-            report["Report Generator"]
-        end
-
-        subgraph exec["Test Execution"]
-            direction TB
-            browser["Browser Automation"]
-            ai["AI Analysis"]
-            screenshot["Screenshot Capture"]
-        end
-    end
-
-    client -->|"HTTPS + API Key"| gateway
-    gateway --> platform
-    platform --> exec
-```
-
-Your AI assistant connects to the hosted gateway via HTTPS. The gateway translates MCP tool calls into Muggle Test API requests.
-
-### Local Mode (Stdio Transport)
+### Unified Package (Recommended)
 
 ```mermaid
 flowchart TB
     subgraph env["Your Computer"]
-        client2["AI Assistant<br/>(Claude, Cursor)"]
-        subgraph local["Local MCP Gateway<br/>(npm package)"]
+        client["AI Assistant<br/>(Claude, Cursor)"]
+        subgraph mcp["@muggleai/mcp"]
             direction TB
-            proto2["Protocol Translation"]
-            auth2["Auth from Env Vars"]
+            local["Local Tools<br/>(muggle_*)"]
+            cloud["Cloud Tools<br/>(qa_*)"]
+            browser["Browser Engine"]
         end
-        client2 -->|"stdin/stdout"| local
+        client -->|"stdin/stdout"| mcp
+        local --> browser
     end
 
-    subgraph cloud2["Muggle AI Cloud"]
-        subgraph platform2["Muggle Test Platform"]
-            direction TB
-            proj2["Project Management"]
-            workflow2["Workflow Engine"]
-        end
-
-        subgraph exec2["Test Execution"]
-            direction TB
-            browser2["Browser Automation"]
-            ai2["AI Analysis"]
-        end
+    subgraph app["Your App"]
+        localhost["localhost:3000"]
     end
 
-    local -->|"HTTPS + API Key"| platform2
-    platform2 --> exec2
+    subgraph cloudEnv["Muggle AI Cloud"]
+        platform["Muggle Test Platform"]
+        cloudBrowser["Cloud Browser Farm"]
+    end
+
+    browser -->|"HTTP"| localhost
+    cloud -->|"HTTPS + API Key"| platform
+    platform --> cloudBrowser
 ```
 
-Your AI assistant spawns the gateway as a subprocess. They communicate via stdin/stdout (no network hop to gateway). The gateway then calls Muggle Test APIs.
+The unified package provides both local and cloud testing:
+- **Local Tools** (`muggle_*`): Test localhost with the bundled browser engine
+- **Cloud Tools** (`qa_*`): Test remote URLs using Muggle AI's cloud infrastructure
 
-### Deployment Comparison
+### Hosted Gateway (Cloud-Only)
 
-| Aspect | Hosted (HTTP) | Local (Stdio) |
-| :----- | :------------ | :------------ |
-| **Setup** | None | Install npm package |
-| **Latency** | Network to gateway + backend | Network to backend only |
-| **Credentials** | Sent per-request in headers | Stored in environment variables |
-| **Updates** | Automatic | Manual (`npm update`) |
-| **Best for** | Quick start, teams | Privacy, lower latency |
+For quick setup without local installation, use the hosted gateway:
+
+```mermaid
+flowchart TB
+    subgraph env["Your Environment"]
+        client2["AI Assistant<br/>(Claude, Cursor)"]
+    end
+
+    subgraph cloud["Muggle AI Cloud"]
+        gateway["Hosted MCP Gateway"]
+        platform["Muggle Test Platform"]
+        exec["Test Execution"]
+    end
+
+    client2 -->|"HTTPS + API Key"| gateway
+    gateway --> platform
+    platform --> exec
+```
+
+### Mode Comparison
+
+| Aspect | Unified Package | Hosted Gateway |
+| :----- | :-------------- | :------------- |
+| **Local Testing** | Yes | No |
+| **Cloud Testing** | Yes | Yes |
+| **Setup** | `npm install -g @muggleai/mcp` | Configure URL only |
+| **Latency** | Lowest (no gateway hop) | Network to gateway |
+| **Credentials** | Environment variables | Per-request headers |
+| **Best for** | Full functionality | Quick start, cloud-only |
 
 See [MCP Installation](mcp-installation.md) for detailed setup instructions.
 
@@ -284,20 +268,36 @@ The gateway enforces rate limits to ensure fair usage:
 
 ## Available Tools
 
-The gateway provides 50+ tools organized into categories:
+The unified package provides **125+ tools** organized by mode:
 
-| Category        | Count | Purpose                          |
-| :-------------- | ----: | :------------------------------- |
-| Authentication  |     7 | Authenticate and manage API keys |
-| Project         |     5 | Create and manage projects       |
-| PRD Files       |     5 | Upload and process PRD files     |
-| Secrets         |     5 | Manage test credentials          |
-| Wallet          |     5 | Manage payment methods and topups|
-| Use Cases       |     7 | Discover, create, and update use cases |
-| Workflows       |    17 | Execute testing workflows        |
-| Artifacts       |    11 | Inspect test cases and scripts   |
-| Reports         |     4 | Generate and deliver reports     |
-| Recommendations |     2 | Get scheduling guidance          |
+### Local Testing Tools (prefix: `muggle_`)
+
+| Category | Count | Purpose |
+| :------- | ----: | :------ |
+| Authentication | 4 | Login, logout, status |
+| Projects | 5 | Local project management |
+| Use Cases | 5 | Define user flows |
+| Test Cases | 5 | Test specifications |
+| Test Scripts | 4 | Generated automation |
+| Execution | 3 | Run tests locally |
+| Results | 2 | View local results |
+| Publishing | 2 | Upload to cloud |
+| Cloud Sync | 20+ | Pull/push between local and cloud |
+
+### Cloud QA Tools (prefix: `qa_`)
+
+| Category | Count | Purpose |
+| :------- | ----: | :------ |
+| Authentication | 7 | Authenticate and manage API keys |
+| Project | 5 | Create and manage projects |
+| PRD Files | 5 | Upload and process PRD files |
+| Secrets | 5 | Manage test credentials |
+| Wallet | 5 | Manage payment methods and topups|
+| Use Cases | 7 | Discover, create, and update use cases |
+| Workflows | 17 | Execute testing workflows |
+| Artifacts | 11 | Inspect test cases and scripts |
+| Reports | 4 | Generate and deliver reports |
+| Recommendations | 2 | Get scheduling guidance |
 
 ## MCP Resources
 

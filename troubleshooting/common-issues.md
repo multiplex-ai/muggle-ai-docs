@@ -115,7 +115,7 @@ This page lists frequent issues and quick checks to resolve them.
 
 **Tip:** If possible, disable CAPTCHAs on your staging environment for faster, more reliable test execution.
 
-## Local MCP Issues
+## MCP & Local Testing Issues
 
 ### Electron-app Not Found
 
@@ -128,8 +128,8 @@ This page lists frequent issues and quick checks to resolve them.
 
 | Check | Solution |
 | :---- | :------- |
-| Installation complete? | Run `muggle-test-local doctor` to check status |
-| Download failed? | Run `muggle-test-local setup` to retry |
+| Installation complete? | Run `muggle-mcp doctor` to check status |
+| Download failed? | Run `muggle-mcp setup` to retry |
 | Network blocked? | Check firewall/proxy settings |
 | Custom binary? | Set `ELECTRON_APP_PATH` environment variable |
 
@@ -152,32 +152,49 @@ This page lists frequent issues and quick checks to resolve them.
 
 **Symptoms:**
 
-- AI assistant doesn't recognize `muggle_*` tools
+- AI assistant doesn't recognize `muggle_*` or `qa_*` tools
 - "Tool not found" errors
 
 **Diagnosis & Solutions:**
 
 | Check | Solution |
 | :---- | :------- |
+| Package installed? | Run `npm list -g @muggleai/mcp` |
 | Config correct? | Verify path in `mcp.json` or `claude_desktop_config.json` |
-| Package built? | Run `npm run build` in `packages/local-mcp` |
 | Client restarted? | Restart Cursor/Claude Desktop after config changes |
 | Node version? | Ensure Node.js 22+ is installed |
+| Run diagnostics | Execute `muggle-mcp doctor` to identify issues |
 
-### Web Service Not Available
+### Browser Engine Not Available
 
 **Symptoms:**
 
-- Error: "Web-service not available"
+- Error: "Browser engine not available"
 - Test execution hangs
 
 **Diagnosis & Solutions:**
 
 | Check | Solution |
 | :---- | :------- |
-| Electron-app installed? | Run `muggle-test-local setup` |
+| Browser engine installed? | Run `muggle-mcp setup` |
 | Port conflict? | Check if another process is using the port |
 | Permissions? | Ensure electron-app has execute permissions |
+
+### Authentication Issues
+
+**Symptoms:**
+
+- "Not authenticated" errors
+- Cloud features unavailable
+
+**Diagnosis & Solutions:**
+
+| Check | Solution |
+| :---- | :------- |
+| Auth status? | Run `muggle-mcp status` to check |
+| Credentials expired? | Run `muggle-mcp login` to re-authenticate |
+| API key configured? | Set `MCP_API_KEY` in your MCP config |
+| Network issues? | Check firewall/proxy settings |
 
 ## Getting More Help
 

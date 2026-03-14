@@ -1,31 +1,33 @@
-# Local Testing with MCP Overview
+# Local Testing Overview
 
-Test your localhost applications directly from your AI assistant using Muggle Test Local.
+Test your localhost applications directly from your AI assistant using Muggle AI MCP.
 
-## What is Local Testing with MCP?
+## What is Local Testing?
 
-Muggle Test Local is a local MCP server that enables AI assistants like Cursor and Claude Desktop to test web applications running on your development machine. Unlike the [Remote Testing MCP Gateway](mcp/overview.md) which tests publicly accessible URLs, Local Testing runs entirely on your computer and can access `localhost` URLs.
+Local Testing is a capability of the `@muggleai/mcp` package that enables AI assistants like Cursor and Claude Desktop to test web applications running on your development machine. Unlike cloud QA which tests publicly accessible URLs, local testing runs entirely on your computer and can access `localhost` URLs.
 
-## When to Use Local vs Remote Testing
+## When to Use Local vs Cloud Testing
 
 | Environment | Example | Which to Use |
 | :---------- | :------ | :----------- |
 | Local development | `localhost:3000` | **Local Testing** |
 | Docker containers | `localhost:8080` | **Local Testing** |
 | Local network | `192.168.1.x` | **Local Testing** |
-| Preview deployments | `pr-123.preview.example.com` | [Remote Testing](mcp/overview.md) |
-| Staging | `staging.example.com` | [Remote Testing](mcp/overview.md) |
-| Production | `www.example.com` | [Remote Testing](mcp/overview.md) |
+| Preview deployments | `pr-123.preview.example.com` | Cloud QA |
+| Staging | `staging.example.com` | Cloud QA |
+| Production | `www.example.com` | Cloud QA |
 
 ```mermaid
 flowchart LR
     subgraph dev["Your Computer"]
         A["AI Assistant<br/>(Cursor, Claude)"]
-        B["Muggle Test Local<br/>(MCP Server)"]
-        C["Your App<br/>(localhost:3000)"]
+        B["@muggleai/mcp"]
+        C["Browser Engine"]
+        D["Your App<br/>(localhost:3000)"]
         
         A -->|"MCP Protocol"| B
         B -->|"Browser Automation"| C
+        C -->|"HTTP"| D
     end
 ```
 
@@ -48,7 +50,7 @@ flowchart LR
 | **Test Script Generation** | AI generates repeatable test scripts from test cases |
 | **Browser Automation** | Real browser interactions (click, type, scroll) |
 | **Screenshot Capture** | Visual documentation of test results |
-| **Agent Skills** | Pre-built workflows like "test my changes" with smart change detection |
+| **Agent Skills** | Pre-built workflows like "test my changes" |
 | **Publish to Cloud** | Sync local projects to Muggle AI for team collaboration |
 
 ## How It Works
@@ -79,12 +81,12 @@ flowchart TD
 3. **A real browser** (Electron/Chromium) executes the actions on your localhost app
 4. **Results come back** with screenshots, logs, and status—all in your IDE
 
-## Comparison: Local vs Remote Testing
+## Comparison: Local vs Cloud Testing
 
-| Aspect | Local Testing | Remote Testing (MCP Gateway) |
-| :----- | :------------ | :--------------------------- |
+| Aspect | Local Testing | Cloud QA |
+| :----- | :------------ | :------- |
 | **Target URLs** | `localhost`, local network | Public URLs (preview, staging, prod) |
-| **Setup** | Install local packages | Just configure API key |
+| **Setup** | `muggle-mcp serve --local` | `muggle-mcp serve --qa` |
 | **Browser runs on** | Your machine | Muggle AI cloud |
 | **Test results** | Local files (`~/.muggle-ai/`) | Cloud dashboard |
 | **Best for** | Development, debugging | CI/CD, production testing |
@@ -97,10 +99,10 @@ flowchart TD
 | Testing during local development | **Local Testing** |
 | Debugging a specific bug locally | **Local Testing** |
 | Testing before committing code | **Local Testing** |
-| Testing preview/PR deployments | [Remote Testing](mcp/overview.md) |
-| Automated CI/CD testing | [Remote Testing](mcp/overview.md) |
-| Testing staging or production | [Remote Testing](mcp/overview.md) |
-| Team collaboration on test results | [Remote Testing](mcp/overview.md) |
+| Testing preview/PR deployments | Cloud QA |
+| Automated CI/CD testing | Cloud QA |
+| Testing staging or production | Cloud QA |
+| Team collaboration on test results | Cloud QA |
 
 ## Quick Example
 

@@ -1,127 +1,49 @@
-# MCP Gateway Installation
+# MCP Installation
 
-The MCP QA Gateway can be used in two ways: **Hosted** (no installation) or **Self-Hosted** (local installation).
+The Muggle AI MCP package provides a unified server for both **Cloud QA testing** and **Local testing** through a single installation.
+
+## Package Overview
+
+The `@muggleai/mcp` package combines:
+
+| Feature | Description |
+| :------ | :---------- |
+| **Cloud QA Tools** | Test preview, staging, and production environments |
+| **Local Testing Tools** | Test localhost applications with browser automation |
+| **Unified CLI** | Single command-line interface for all features |
+| **Shared Authentication** | One login for both local and cloud features |
+
+---
+
+## Quick Install
+
+```bash
+npm install -g @muggleai/mcp
+```
+
+This installs:
+- The MCP server (`muggle-mcp serve`)
+- Browser automation engine (downloaded automatically)
+- CLI tools for diagnostics and authentication
+
+---
 
 ## Deployment Options
 
 | Option | Best For | Setup |
 | :----- | :------- | :---- |
-| **Hosted** | Quick start, no maintenance | Just configure your MCP client |
-| **Self-Hosted** | Lower latency, privacy, offline use | Install npm package locally |
+| **Hosted Gateway** | Quick start, cloud-only testing | Just configure your MCP client |
+| **Local Installation** | Local testing, lower latency, privacy | Install npm package |
 
----
+### Option 1: Hosted Gateway (Cloud Testing Only)
 
-## Option 1: Hosted Gateway (Recommended)
-
-Use Muggle AI's hosted MCP gateway. No installation required.
-
-### Configuration
+Use Muggle AI's hosted MCP gateway for testing remote URLs. No installation required.
 
 **Endpoint:** `https://mcp.muggle-ai.com/mcp`
 
 **Transport:** Streamable HTTP
 
 **Authentication:** API Key via `x-api-key` header
-
-See [MCP Quickstart](../getting-started/mcp-quickstart.md) for client configuration.
-
----
-
-## Option 2: Self-Hosted (Local Installation)
-
-Run the MCP gateway locally on your machine. The gateway runs as a subprocess of your AI assistant, communicating via stdin/stdout.
-
-### Benefits
-
-| Benefit | Description |
-| :------ | :---------- |
-| **Lower Latency** | No network round-trip to hosted gateway |
-| **Privacy** | Credentials stay on your machine |
-| **Offline Development** | Works without internet (requires prompt-service access) |
-| **Customization** | Modify for custom needs |
-
-### Prerequisites
-
-| Requirement | Version |
-| :---------- | :------ |
-| Node.js | 22+ |
-| npm | 10+ |
-
-### Installation
-
-```bash
-npm install -g @muggleai/mcp-qa-gateway
-```
-
-Or run directly with npx (no installation):
-
-```bash
-npx @muggleai/mcp-qa-gateway --stdio
-```
-
-### How It Works
-
-When you configure your MCP client to use the local gateway:
-
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                        Your Computer                                │
-│                                                                     │
-│  ┌────────────────┐          ┌─────────────────────────────────┐   │
-│  │ Claude Desktop │  spawns  │ @muggleai/mcp-qa-gateway        │   │
-│  │ or Cursor      │─────────►│ (runs as child process)         │   │
-│  │                │          │                                 │   │
-│  │                │  stdin   │ Receives: {"method":"tools/call"}│   │
-│  │ "Run QA tests" │─────────►│                                 │   │
-│  │                │          │                                 │   │
-│  │                │  stdout  │ Returns: {"result": {...}}      │   │
-│  │ ◄──────────────│──────────│                                 │   │
-│  └────────────────┘          └─────────────────────────────────┘   │
-│                                          │                         │
-└──────────────────────────────────────────│─────────────────────────┘
-                                           │ HTTPS
-                                           ▼
-                              ┌─────────────────────────┐
-                              │ Muggle Test Platform    │
-                              │ (promptservice.muggle-ai.com)│
-                              └─────────────────────────┘
-```
-
-1. Your AI assistant starts the gateway as a subprocess
-2. Commands are sent via stdin (JSON-RPC format)
-3. The gateway calls Muggle Test APIs
-4. Results return via stdout
-5. Logs go to stderr (don't interfere with protocol)
-
----
-
-## Client Configuration
-
-### Claude Desktop (Local Gateway)
-
-Edit your Claude Desktop configuration file:
-
-| Platform | Path |
-| :------- | :--- |
-| macOS | `~/Library/Application Support/Claude/claude_desktop_config.json` |
-| Windows | `%APPDATA%\Claude\claude_desktop_config.json` |
-
-```json
-{
-  "mcpServers": {
-    "muggle-test": {
-      "command": "npx",
-      "args": ["@muggleai/mcp-qa-gateway", "--stdio"],
-      "env": {
-        "PROMPT_SERVICE_BASE_URL": "https://promptservice.muggle-ai.com",
-        "MCP_API_KEY": "mai_sk_your_api_key_here"
-      }
-    }
-  }
-}
-```
-
-### Claude Desktop (Hosted Gateway)
 
 ```json
 {
@@ -136,43 +58,142 @@ Edit your Claude Desktop configuration file:
 }
 ```
 
-### Cursor IDE (Local Gateway)
+### Option 2: Local Installation (Recommended)
 
-Add to Cursor MCP settings (Settings → MCP):
+Install locally to enable **both local testing and cloud QA** through a single MCP server.
+
+#### Benefits
+
+| Benefit | Description |
+| :------ | :---------- |
+| **Local Testing** | Test localhost and local network URLs |
+| **Lower Latency** | No network round-trip to hosted gateway |
+| **Privacy** | Credentials stay on your machine |
+| **Unified Experience** | One server for all testing needs |
+
+#### Prerequisites
+
+| Requirement | Version |
+| :---------- | :------ |
+| Node.js | 22+ |
+| npm | 10+ |
+
+#### Installation
+
+```bash
+npm install -g @muggleai/mcp
+```
+
+During installation, the browser automation engine is automatically downloaded for your platform.
+
+#### Verify Installation
+
+```bash
+muggle-mcp doctor
+```
+
+This checks:
+- Node.js version
+- Browser engine installation
+- Data directory status
+- Authentication status
+
+---
+
+## Client Configuration
+
+### Cursor IDE
+
+Edit `~/.cursor/mcp.json`:
 
 ```json
 {
-  "mcp": {
-    "servers": {
-      "muggle-test": {
-        "command": "npx",
-        "args": ["@muggleai/mcp-qa-gateway", "--stdio"],
-        "env": {
-          "PROMPT_SERVICE_BASE_URL": "https://promptservice.muggle-ai.com",
-          "MCP_API_KEY": "mai_sk_your_api_key_here"
-        }
+  "mcpServers": {
+    "muggle-test": {
+      "command": "muggle-mcp",
+      "args": ["serve"]
+    }
+  }
+}
+```
+
+**With API key (for cloud features):**
+
+```json
+{
+  "mcpServers": {
+    "muggle-test": {
+      "command": "muggle-mcp",
+      "args": ["serve"],
+      "env": {
+        "MCP_API_KEY": "mai_sk_your_api_key_here"
       }
     }
   }
 }
 ```
 
-### Cursor IDE (Hosted Gateway)
+### Claude Desktop
+
+Edit your Claude Desktop configuration:
+
+| Platform | Path |
+| :------- | :--- |
+| macOS | `~/Library/Application Support/Claude/claude_desktop_config.json` |
+| Windows | `%APPDATA%\Claude\claude_desktop_config.json` |
 
 ```json
 {
-  "mcp": {
-    "servers": {
-      "muggle-test": {
-        "url": "https://mcp.muggle-ai.com/mcp",
-        "headers": {
-          "x-api-key": "mai_sk_your_api_key_here"
-        }
+  "mcpServers": {
+    "muggle-test": {
+      "command": "muggle-mcp",
+      "args": ["serve"],
+      "env": {
+        "MCP_API_KEY": "mai_sk_your_api_key_here"
       }
     }
   }
 }
 ```
+
+---
+
+## Tool Selection
+
+By default, the server enables **all tools** (both local and cloud). Use flags to limit scope:
+
+| Command | Tools Enabled |
+| :------ | :------------ |
+| `muggle-mcp serve` | All tools (local + cloud) |
+| `muggle-mcp serve --local` | Local testing only |
+| `muggle-mcp serve --qa` | Cloud QA only |
+
+**Example: Local-only configuration:**
+
+```json
+{
+  "mcpServers": {
+    "muggle-test-local": {
+      "command": "muggle-mcp",
+      "args": ["serve", "--local"]
+    }
+  }
+}
+```
+
+---
+
+## CLI Commands
+
+| Command | Description |
+| :------ | :---------- |
+| `muggle-mcp serve` | Start the MCP server |
+| `muggle-mcp setup` | Download/reinstall browser engine |
+| `muggle-mcp doctor` | Check installation and diagnose issues |
+| `muggle-mcp login` | Authenticate with Muggle AI |
+| `muggle-mcp logout` | Clear stored credentials |
+| `muggle-mcp status` | Show authentication status |
+| `muggle-mcp --version` | Show package version |
 
 ---
 
@@ -180,61 +201,130 @@ Add to Cursor MCP settings (Settings → MCP):
 
 | Variable | Required | Description | Default |
 | :------- | :------: | :---------- | :------ |
-| `PROMPT_SERVICE_BASE_URL` | Yes | Muggle Test API endpoint | - |
-| `MCP_API_KEY` | Yes* | Your Muggle Test API key | - |
-| `MCP_BEARER_TOKEN` | Yes* | Alternative: JWT token | - |
-| `AUTH0_DOMAIN` | No** | Auth0 domain for device code flow | - |
-| `AUTH0_CLIENT_ID` | No** | Auth0 client ID | - |
-| `AUTH0_AUDIENCE` | No** | Auth0 audience | - |
+| `MCP_API_KEY` | No* | Your Muggle Test API key | - |
+| `PROMPT_SERVICE_BASE_URL` | No | Override API endpoint | Production URL |
+| `ELECTRON_APP_PATH` | No | Custom browser engine path | Auto-downloaded |
 | `LOG_LEVEL` | No | Logging verbosity | `info` |
-| `NODE_ENV` | No | Environment mode | `production` |
 
-*One of `MCP_API_KEY` or `MCP_BEARER_TOKEN` is required for most tools.
-
-**Auth0 variables are only needed for agentic authentication (when you don't have an API key yet).
+*API key is required for cloud features. Local testing works without authentication.
 
 ---
 
-## Agentic Authentication
+## Authentication
 
-If you don't have an API key, the gateway supports **device code flow authentication**:
+### Option A: Agentic Authentication (Recommended)
 
-1. Configure the gateway with Auth0 variables (no API key needed)
-2. Ask your AI assistant: "Help me authenticate with Muggle Test"
-3. Visit the provided URL and log in
-4. The assistant automatically creates an API key and updates your config
+Let your AI assistant help you authenticate:
 
-See [MCP API Reference - Authentication Tools](mcp-api-reference.md#authentication-tools) for details.
+1. Configure the MCP server (without API key)
+2. Ask: **"Help me log in to Muggle Test"**
+3. The assistant calls `muggle_auth_login`
+4. Visit the provided URL and complete login
+5. Your credentials are stored locally
+
+### Option B: Manual API Key
+
+1. Log in to [Muggle Test Dashboard](https://app.muggle-ai.com)
+2. Navigate to **Settings** → **API Keys**
+3. Create and copy your API key
+4. Add to your MCP configuration
 
 ---
 
 ## Verifying Installation
 
-After configuring your MCP client, verify the connection:
+After configuring your MCP client:
 
-1. **Restart your MCP client** (Claude Desktop, Cursor)
-2. **Ask the assistant:** "List the available Muggle Test tools"
-3. **Expected response:** A list of 50+ QA testing tools
+1. **Restart your MCP client** (Cursor, Claude Desktop)
+2. **Ask the assistant:** "Check the Muggle Test status"
+3. **Expected response:** Status showing available tools and auth state
 
-If you see errors, check [Troubleshooting](../troubleshooting/common-issues.md).
+If you see errors, run `muggle-mcp doctor` to diagnose.
 
 ---
 
-## Comparison: Local vs Hosted
+## Architecture
 
-| Aspect | Local (Stdio) | Hosted (HTTP) |
-| :----- | :------------ | :------------ |
-| **Latency** | Lowest (no network to gateway) | Network round-trip |
-| **Setup** | Install npm package | None |
-| **Credentials** | Stored in config file | Sent per-request |
-| **Updates** | Manual (`npm update`) | Automatic |
-| **Offline** | Works (if backend accessible) | Requires internet |
-| **Rate Limits** | Applied at backend | Applied at gateway + backend |
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                        Your Computer                                │
+│                                                                     │
+│  ┌────────────────┐          ┌─────────────────────────────────┐   │
+│  │ Cursor or      │  spawns  │ @muggleai/mcp                   │   │
+│  │ Claude Desktop │─────────►│ (runs as child process)         │   │
+│  │                │          │                                 │   │
+│  │                │  stdin   │ Local Tools → Browser Engine    │   │
+│  │ "Test my app"  │─────────►│ Cloud Tools → Muggle API        │   │
+│  │                │          │                                 │   │
+│  │                │  stdout  │ Returns results                 │   │
+│  │ ◄──────────────│──────────│                                 │   │
+│  └────────────────┘          └─────────────────────────────────┘   │
+│                                          │                         │
+└──────────────────────────────────────────│─────────────────────────┘
+                                           │ HTTPS (cloud tools only)
+                                           ▼
+                              ┌─────────────────────────┐
+                              │ Muggle Test Platform    │
+                              │ (promptservice.muggle-ai.com)│
+                              └─────────────────────────┘
+```
+
+---
+
+## Data Storage
+
+All local data is stored in `~/.muggle-ai/`:
+
+```
+~/.muggle-ai/
+├── credentials.json           # API credentials
+├── auth.json                  # Authentication tokens
+├── electron-app/              # Browser automation engine
+│   └── {version}/
+└── projects/                  # Local test projects
+    └── {project_id}/
+        ├── project.json
+        ├── use-cases/
+        ├── test-cases/
+        └── test-scripts/
+```
+
+---
+
+## Troubleshooting
+
+### Tools Not Appearing
+
+| Check | Solution |
+| :---- | :------- |
+| Package installed? | Run `npm list -g @muggleai/mcp` |
+| Client restarted? | Restart Cursor/Claude Desktop after config changes |
+| Node version? | Ensure Node.js 22+ (`node --version`) |
+| Config correct? | Verify JSON syntax in your MCP config |
+
+### "Electron-app not found"
+
+| Check | Solution |
+| :---- | :------- |
+| Download failed? | Run `muggle-mcp setup` to retry |
+| Network issues? | Check internet connection and proxy settings |
+| Custom location? | Set `ELECTRON_APP_PATH` environment variable |
+
+### Authentication Errors
+
+| Error | Solution |
+| :---- | :------- |
+| "Device code expired" | Codes are valid for 15 minutes. Start again. |
+| "Not authenticated" | Run `muggle-mcp login` or configure API key |
+| Token expired | Re-authenticate with `muggle-mcp login` |
+
+For more help, see [Troubleshooting](../troubleshooting/common-issues.md).
 
 ---
 
 ## Next Steps
 
 - **[MCP Quickstart](../getting-started/mcp-quickstart.md)** - Run your first test
+- **[Local Testing Setup](../local-testing/setup.md)** - Test localhost applications
 - **[MCP Concepts](mcp-concepts.md)** - Understand the architecture
 - **[MCP API Reference](mcp-api-reference.md)** - Complete tool documentation

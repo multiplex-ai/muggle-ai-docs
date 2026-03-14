@@ -1,10 +1,12 @@
 # MCP API Reference
 
-Complete reference for all MCP Gateway tools.
+Complete reference for Cloud QA tools in the `@muggleai/mcp` package.
+
+> **Note:** This page documents Cloud QA tools (prefix: `qa_`). For local testing tools (prefix: `muggle_`), see [Local Testing Tools Reference](../local-testing/tools-reference.md).
 
 ## Overview
 
-The MCP Gateway exposes tools organized into these categories:
+The Cloud QA tools are organized into these categories:
 
 | Category        | Count | Purpose                            | Link                          |
 | :-------------- | ----: | :--------------------------------- | :---------------------------- |

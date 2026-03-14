@@ -2,83 +2,91 @@
 
 Connect your AI assistant to Muggle Test in under 5 minutes.
 
-> **Note**: This guide uses the hosted MCP gateway. For local installation (lower latency, offline use), see [MCP Installation](../mcp/mcp-installation.md).
-
 ## Prerequisites
 
-| Requirement         | Description                                          |
-| :------------------ | :--------------------------------------------------- |
-| Muggle Test account | Active subscription required                         |
-| MCP client          | Claude Desktop, Cursor, or any MCP-compatible client |
+| Requirement | Description |
+| :---------- | :---------- |
+| Node.js | Version 22 or later |
+| MCP client | Cursor IDE, Claude Desktop, or any MCP-compatible client |
 
-## Step 1: Get Your API Key
+## Quick Start
 
-You have two options to get an API key:
+### Step 1: Install
 
-### Option A: Agentic Authentication (Recommended for Cursor)
+```bash
+npm install -g @muggleai/mcp
+```
 
-Let your AI assistant help you authenticate! This is the easiest way if you don't have an API key yet.
+### Step 2: Configure
 
-1. Configure Cursor with the gateway (without API key - see Step 2 below)
-2. Ask your assistant: **"Help me authenticate with Muggle Test"**
-3. The assistant will:
-   - Call `auth_device_code_start` to get a login URL
-   - Show you a URL and code to enter
-   - You visit the URL and log in with your Muggle AI account
-   - The assistant calls `auth_device_code_poll` to complete setup
-   - Your `mcp.json` is automatically updated with the new API key
-4. Restart Cursor to load the new configuration
-
-> **Security**: The API key is written directly to your config file and is never shown to the AI assistant.
-
-### Option B: Manual API Key Creation
-
-1. Log in to your [Muggle Test Dashboard](https://app.muggle-ai.com)
-2. Navigate to **Settings** → **API Keys**
-3. Click **Create API Key**
-4. Copy and securely store your key (format: `mai_sk_...`)
-
-> **Important**: Keep your API key secure. Never commit it to version control or share it publicly.
-
-## Step 2: Configure Your MCP Client
-
-### Cursor IDE (with Agentic Auth)
-
-If using **Option A** (agentic authentication), configure without an API key first:
-
-Edit `~/.cursor/mcp.json`:
+**Cursor IDE** - Edit `~/.cursor/mcp.json`:
 
 ```json
 {
   "mcpServers": {
     "muggle-test": {
-      "command": "npx",
-      "args": ["@muggleai/mcp-qa-gateway", "--stdio"],
-      "env": {
-        "PROMPT_SERVICE_BASE_URL": "https://promptservice.muggle-ai.com",
-        "AUTH0_DOMAIN": "login.muggle-ai.com",
-        "AUTH0_CLIENT_ID": "YOUR_AUTH0_CLIENT_ID",
-        "AUTH0_AUDIENCE": "https://muggleai.us.auth0.com/api/v2/"
-      }
+      "command": "muggle-mcp",
+      "args": ["serve"]
     }
   }
 }
 ```
 
-Then ask your assistant to help you authenticate. The API key will be added automatically.
+**Claude Desktop** - Edit your config file:
 
-### Cursor IDE (with API Key)
-
-If you already have an API key:
+| Platform | Path |
+| :------- | :--- |
+| macOS | `~/Library/Application Support/Claude/claude_desktop_config.json` |
+| Windows | `%APPDATA%\Claude\claude_desktop_config.json` |
 
 ```json
 {
   "mcpServers": {
     "muggle-test": {
-      "command": "npx",
-      "args": ["@muggleai/mcp-qa-gateway", "--stdio"],
+      "command": "muggle-mcp",
+      "args": ["serve"]
+    }
+  }
+}
+```
+
+### Step 3: Restart
+
+Restart your MCP client (Cursor or Claude Desktop).
+
+### Step 4: Verify
+
+Ask your assistant: **"Check the Muggle Test status"**
+
+---
+
+## Authentication (Optional for Local Testing)
+
+For **local testing only**, no authentication is needed. For **cloud features**, authenticate:
+
+### Option A: Agentic Authentication (Recommended)
+
+Ask your assistant: **"Help me log in to Muggle Test"**
+
+The assistant will:
+1. Generate a login URL and code
+2. Wait for you to complete browser login
+3. Store credentials locally
+
+### Option B: API Key
+
+1. Log in to [Muggle Test Dashboard](https://app.muggle-ai.com)
+2. Navigate to **Settings** → **API Keys**
+3. Create and copy your API key
+4. Update your config:
+
+```json
+{
+  "mcpServers": {
+    "muggle-test": {
+      "command": "muggle-mcp",
+      "args": ["serve"],
       "env": {
-        "PROMPT_SERVICE_BASE_URL": "https://promptservice.muggle-ai.com",
         "MCP_API_KEY": "mai_sk_your_api_key_here"
       }
     }
@@ -86,164 +94,145 @@ If you already have an API key:
 }
 ```
 
-### Claude Desktop
+---
 
-Add the following to your Claude Desktop configuration:
+## Run Your First Test
 
-```json
-{
-  "mcpServers": {
-    "muggle-test": {
-      "url": "https://mcp.muggle-ai.com/mcp",
-      "headers": {
-        "x-api-key": "YOUR_API_KEY_HERE"
-      }
-    }
-  }
-}
-```
-
-**Config file location:**
-
-| Platform | Path                                                              |
-| :------- | :---------------------------------------------------------------- |
-| macOS    | `~/Library/Application Support/Claude/claude_desktop_config.json` |
-| Windows  | `%APPDATA%\Claude\claude_desktop_config.json`                     |
-
-### Hosted Gateway (Alternative)
-
-For the hosted gateway (no local installation):
-
-```json
-{
-  "mcpServers": {
-    "muggle-test": {
-      "url": "https://mcp.muggle-ai.com/mcp",
-      "headers": {
-        "x-api-key": "YOUR_API_KEY_HERE"
-      }
-    }
-  }
-}
-```
-
-### Other MCP Clients
-
-| Setting            | Value                            |
-| :----------------- | :------------------------------- |
-| **Endpoint**       | `https://mcp.muggle-ai.com/mcp`  |
-| **Transport**      | Streamable HTTP                  |
-| **Authentication** | Header `x-api-key: YOUR_API_KEY` |
-
-## Step 3: Run Your First Test
-
-Once connected, interact with Muggle Test through natural language:
+### Local Testing (localhost)
 
 ```mermaid
 flowchart LR
-    A["Create Project"] --> B["Discover Use Cases"]
-    B --> C["Review & Approve"]
-    C --> D["Generate Tests"]
-    D --> E["Run Tests"]
-    E --> F["View Results"]
+    A["Create Project"] --> B["Add Test Case"]
+    B --> C["Generate Script"]
+    C --> D["Run Test"]
+    D --> E["View Results"]
 ```
 
-### Create a Project
+**1. Create a project:**
 
-> "Create a new QA project called 'My Website Tests' for testing https://example.com"
+> "Create a test project for my app at http://localhost:3000"
 
-### Discover Use Cases
+**2. Add a test case:**
 
-You can discover use cases in two ways:
+> "Create a test case to verify the login form shows an error for invalid email"
 
-**Option A: Website Scan**
+**3. Generate a test script:**
 
-> "Scan https://example.com and discover potential test use cases"
+> "Generate a test script for the login test case"
 
-This crawls your site and identifies testable user flows.
+**4. Run the test:**
 
-**Option B: Upload PRD**
+> "Run the login test"
 
-> "Upload my requirements document and extract use cases from it"
+### Cloud QA Testing (remote URLs)
 
-Upload a PDF, Word doc, or text file containing your product requirements.
+For testing staging, preview, or production URLs:
 
-### Review and Approve
+**1. Create a project:**
+
+> "Create a QA project called 'My Website Tests' for testing https://example.com"
+
+**2. Discover use cases:**
+
+> "Scan the website and discover potential test use cases"
+
+**3. Review and approve:**
 
 > "Show me the discovered use case candidates"
+> "Approve the login and checkout use cases"
 
-Review the candidates with their screenshots and descriptions, then:
+**4. Generate and run tests:**
 
-> "Approve the login flow and checkout flow use cases"
+> "Generate test cases for the approved use cases, then run all tests"
 
-### Generate and Run Tests
-
-> "Generate test cases and scripts for the approved use cases, then run all tests"
-
-### View Results
+**5. View results:**
 
 > "Show me the test results summary"
 
-Or generate a full report:
-
-> "Generate a test report and send it to team@example.com"
+---
 
 ## Example Conversation
 
-Here's a complete example:
+**You**: I want to test my app running at localhost:3000
 
----
-
-**You**: I want to set up automated testing for my e-commerce site at https://shop.example.com
-
-**Assistant**: I'll help you set up automated testing. Let me create a project first.
+**Assistant**: I'll help you set up testing. Let me create a project first.
 
 *[Creates project]*
 
-Done! I've created a project called "shop.example.com Tests". Now let me scan your website to discover testable user flows.
-
-*[Starts website scan]*
-
-The scan is running. This usually takes a few minutes depending on your site's size.
+Done! I've created a project called "localhost:3000 Tests". What would you like to test?
 
 ---
 
-**You**: What use cases did you find?
+**You**: Test that the signup form validates email format
 
-**Assistant**: I found 5 potential use cases:
+**Assistant**: I'll create a test case for email validation.
 
-|   #   | Use Case              | Description                 |
-| :---: | :-------------------- | :-------------------------- |
-|   1   | **User Registration** | New user signup flow        |
-|   2   | **User Login**        | Authentication flow         |
-|   3   | **Product Search**    | Search and filter products  |
-|   4   | **Add to Cart**       | Shopping cart functionality |
-|   5   | **Checkout**          | Complete purchase flow      |
+*[Creates test case]*
 
-Each has screenshots and notes. Would you like to approve any of these?
+Created! Now I'll generate a test script by automating the browser.
 
----
+*[Launches browser, performs test steps, captures screenshots]*
 
-**You**: Approve all of them and generate tests
+Test script generated successfully! The test navigated to the signup page, entered an invalid email, and verified the error message appeared.
 
-**Assistant**: Done! I've created 12 test cases across the 5 use cases, and generated executable test scripts for each. Would you like me to run them now?
+Would you like me to run the test now?
 
 ---
 
-**You**: Yes, run all tests
+**You**: Yes, run it
 
-**Assistant**: Tests are running...
+**Assistant**: Running the test...
 
-*[After completion]*
+*[Executes test script]*
 
-| Result   | Count |
-| :------- | ----: |
-| ✅ Passed |    10 |
-| ❌ Failed |     2 |
+**Result: PASSED** (2.3s)
 
-Failed tests: Checkout flow - payment validation
+The signup form correctly shows "Please enter a valid email" when an invalid email is submitted.
 
-Would you like to see the detailed report?
+---
+
+## Tool Overview
+
+| Category | Tools | Purpose |
+| :------- | :---- | :------ |
+| **Local Testing** | `muggle_project_*`, `muggle_use_case_*`, `muggle_test_case_*` | Manage local test projects |
+| **Execution** | `muggle_execute_*` | Generate and run test scripts |
+| **Cloud QA** | `qa_project_*`, `qa_workflow_*` | Cloud-based testing workflows |
+| **Publishing** | `muggle_publish_*`, `muggle_cloud_*` | Sync between local and cloud |
+
+**Total: 120+ tools** covering both local and cloud testing.
+
+---
+
+## Choosing Local vs Cloud
+
+| Scenario | Recommendation |
+| :------- | :------------- |
+| Testing during development | **Local** (`muggle-mcp serve --local`) |
+| Testing localhost URLs | **Local** |
+| Testing preview/staging deployments | **Cloud** (`muggle-mcp serve --qa`) |
+| CI/CD integration | **Cloud** |
+| Team collaboration | **Cloud** |
+| Both local and cloud | **Default** (`muggle-mcp serve`) |
+
+---
+
+## Hosted Gateway (Alternative)
+
+For cloud-only testing without local installation, use the hosted gateway:
+
+```json
+{
+  "mcpServers": {
+    "muggle-test": {
+      "url": "https://mcp.muggle-ai.com/mcp",
+      "headers": {
+        "x-api-key": "mai_sk_your_api_key_here"
+      }
+    }
+  }
+}
+```
 
 ---
 
@@ -251,65 +240,27 @@ Would you like to see the detailed report?
 
 ### Connection Issues
 
-If your MCP client can't connect:
-
-| Check                 | Solution                                |
-| :-------------------- | :-------------------------------------- |
-| API key correct?      | Verify key matches dashboard            |
-| Endpoint URL correct? | Must be `https://mcp.muggle-ai.com/mcp` |
-| Firewall blocking?    | Allow outbound HTTPS                    |
-| Config updated?       | Restart MCP client after changes        |
+| Check | Solution |
+| :---- | :------- |
+| Package installed? | `npm list -g @muggleai/mcp` |
+| Config correct? | Verify JSON syntax |
+| Client restarted? | Restart after config changes |
+| Run doctor? | `muggle-mcp doctor` |
 
 ### Authentication Errors
 
-If you see "UNAUTHORIZED" errors:
+| Check | Solution |
+| :---- | :------- |
+| API key correct? | Verify key in dashboard |
+| Key expired? | Regenerate in dashboard |
+| Key format? | Should start with `mai_sk_` |
 
-| Check                | Solution                    |
-| :------------------- | :-------------------------- |
-| Key expired?         | Regenerate in dashboard     |
-| Subscription active? | Check subscription status   |
-| Key format correct?  | Should start with `mai_sk_` |
-
-### Timeout Errors
-
-Long-running operations (website scans, test runs) may take several minutes:
-
-| Situation             | Solution                             |
-| :-------------------- | :----------------------------------- |
-| Operation in progress | Wait for completion                  |
-| Need status update    | Ask "What's the status of the scan?" |
-| Very large site       | Consider testing sections separately |
-
-## Alternative: Local Installation
-
-For lower latency or offline development, you can run the gateway locally:
-
-```bash
-npm install -g @muggleai/mcp-qa-gateway
-```
-
-Then configure your MCP client to spawn it as a subprocess:
-
-```json
-{
-  "mcpServers": {
-    "muggle-test": {
-      "command": "npx",
-      "args": ["@muggleai/mcp-qa-gateway", "--stdio"],
-      "env": {
-        "PROMPT_SERVICE_BASE_URL": "https://promptservice.muggle-ai.com",
-        "MCP_API_KEY": "YOUR_API_KEY_HERE"
-      }
-    }
-  }
-}
-```
-
-See [MCP Installation](../mcp/mcp-installation.md) for full details.
+---
 
 ## Next Steps
 
-- **[MCP Installation](../mcp/mcp-installation.md)** - Local vs hosted deployment
+- **[MCP Installation](../mcp/mcp-installation.md)** - Detailed setup options
+- **[Local Testing Setup](../local-testing/setup.md)** - In-depth local testing guide
 - **[MCP Concepts](../mcp/mcp-concepts.md)** - Understand the architecture
 - **[MCP API Reference](../mcp/mcp-api-reference.md)** - Complete tool documentation
 - **[CI/CD Integration](../mcp/mcp-cicd-integration.md)** - Automate in your pipeline

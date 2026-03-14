@@ -10,12 +10,12 @@ Agent Skills are structured instructions that teach AI assistants how to perform
 
 The [muggle-ai-skills repository](https://github.com/muggle-ai/muggle-ai-skills) organizes skills by testing mode:
 
-| Folder | MCP Server | Use For |
-| :----- | :--------- | :------ |
-| `local/` | Local MCP (`@muggle-ai/local-mcp`) | `localhost`, local network |
-| `remote/` | MCP Gateway (cloud) | Public URLs (staging, prod) |
+| Folder | MCP Package Mode | Use For |
+| :----- | :--------------- | :------ |
+| `local/` | `muggle-mcp serve --local` | `localhost`, local network |
+| `remote/` | `muggle-mcp serve --qa` | Public URLs (staging, prod) |
 
-**This page covers local skills.** For remote testing, see [Remote Testing with MCP Gateway](../mcp/overview.md).
+Both modes are available with the unified `@muggleai/mcp` package. **This page covers local skills.** For remote testing, see [Remote Testing with MCP](../mcp/overview.md).
 
 ## Available Local Skills
 
@@ -50,7 +50,7 @@ mkdir -p .cursor/skills
 cp -r muggle-ai-skills/local/* .cursor/skills/
 ```
 
-> **Important:** These skills only work with the Local MCP server for testing `localhost` URLs. Do not use them with the Remote MCP Gateway for public URLs.
+> **Important:** These skills work with local testing tools (`muggle_*` prefix) for `localhost` URLs. For public URLs, use remote skills with cloud QA tools (`qa_*` prefix).
 
 ## test-feature-local
 
