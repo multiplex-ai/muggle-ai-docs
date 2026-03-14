@@ -78,9 +78,7 @@ All endpoints in this documentation are relative to this base URL.
 | :--------- | --------------: |
 | Free       |              20 |
 | Pro        |              60 |
-| Enterprise |             300 |
-
-Rate limit headers are included in responses:| Header                  | Description                 |
+| Enterprise |             300 |Rate limit headers are included in responses:| Header                  | Description                 |
 | :---------------------- | :-------------------------- |
 | `X-RateLimit-Limit`     | Maximum requests allowed    |
 | `X-RateLimit-Remaining` | Requests remaining          |

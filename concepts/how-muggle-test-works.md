@@ -118,9 +118,7 @@ flowchart LR
 | **Screenshot**       | Visual state at failure time    |
 | **Error summary**    | Technical details for debugging |
 
-### How Reports Help
-
-| Use Case               | Benefit                              |
+### How Reports Help| Use Case               | Benefit                              |
 | :--------------------- | :----------------------------------- |
 | See health at a glance | Know which flows are working         |
 | Prioritize fixes       | Focus on business-critical failures  |
