@@ -14,7 +14,7 @@ Connect your AI assistant to Muggle Test in under 5 minutes.
 ### Step 1: Install
 
 ```bash
-npm install -g @muggleai/mcp
+npm install -g @muggleai/mcp@latest
 ```
 
 ### Step 2: Configure

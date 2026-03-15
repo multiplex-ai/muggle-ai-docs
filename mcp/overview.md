@@ -16,7 +16,7 @@ The `@muggleai/mcp` package is a **unified MCP server** that provides:
 ## Quick Install
 
 ```bash
-npm install -g @muggleai/mcp
+npm install -g @muggleai/mcp@latest
 ```
 
 ## When to Use Each Mode

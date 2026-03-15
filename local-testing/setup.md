@@ -15,7 +15,7 @@ Install and configure Muggle AI MCP to test your localhost applications.
 Install the unified Muggle AI MCP package:
 
 ```bash
-npm install -g @muggleai/mcp
+npm install -g @muggleai/mcp@latest
 ```
 
 During installation, the package automatically downloads the platform-specific browser engine.

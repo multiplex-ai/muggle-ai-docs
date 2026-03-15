@@ -18,7 +18,7 @@ The `@muggleai/mcp` package combines:
 ## Quick Install
 
 ```bash
-npm install -g @muggleai/mcp
+npm install -g @muggleai/mcp@latest
 ```
 
 This installs:
@@ -81,7 +81,7 @@ Install locally to enable **both local testing and cloud QA** through a single M
 #### Installation
 
 ```bash
-npm install -g @muggleai/mcp
+npm install -g @muggleai/mcp@latest
 ```
 
 During installation, the browser automation engine is automatically downloaded for your platform.
