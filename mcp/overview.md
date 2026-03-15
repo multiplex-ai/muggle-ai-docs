@@ -94,13 +94,15 @@ When you run `muggle-mcp serve` without flags, **both modes are active**:
 
 ### Single Installation
 
-No need to manage multiple packages:
+No need to manage multiple packages. The unified `@muggleai/mcp` package replaces all previous packages:
 
-| Before | After |
-| :----- | :---- |
+| Previous (Deprecated) | Current |
+| :-------------------- | :------ |
 | `@muggleai/mcp-qa-gateway` | `@muggleai/mcp` |
-| `@muggle-ai/local-mcp` | (unified) |
+| `@muggle-ai/local-mcp` | `@muggleai/mcp` |
 | Two configurations | One configuration |
+
+**Note:** The previous packages have been sunset and are no longer maintained. Use `@muggleai/mcp` for all new installations.
 
 ### Natural Language Testing
 
