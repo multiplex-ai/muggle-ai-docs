@@ -2,27 +2,36 @@
 
 Complete reference for local testing tools in the `@muggleai/mcp` package.
 
-> **Note:** All local testing tools use the `muggle_` prefix. Cloud QA tools use the `qa_` prefix. When running `muggle-mcp serve` (default), both sets of tools are available.
+> **Architecture Note:** Local testing uses a **cloud-first** approach:
+> - **`qa_*` tools**: Authentication and all entity management (projects, use cases, test cases, secrets)
+> - **`muggle_*` tools**: Local execution, results viewing, and publishing only
 
-## Tool Categories
+## Tool Namespaces
+
+| Namespace | Purpose | Examples |
+| :-------- | :------ | :------- |
+| `qa_auth_*` | Authentication | `qa_auth_login`, `qa_auth_status` |
+| `qa_*` | Cloud entity management | `qa_project_create`, `qa_test_case_get` |
+| `muggle_*` | Local execution & results | `muggle_execute_test_generation` |
+
+## Local Tool Categories
 
 | Category | Tools | Purpose |
 | :------- | :---- | :------ |
-| **Authentication** | `muggle_auth_*` | Login, logout, check auth status |
-| **Project Management** | `muggle_project_*` | Create and manage test projects |
-| **Use Cases** | `muggle_use_case_*` | Define user flows and scenarios |
-| **Test Cases** | `muggle_test_case_*` | Detailed test specifications |
-| **Test Scripts** | `muggle_test_script_*` | Generated automation scripts |
-| **Execution** | `muggle_execute_*` | Run test generation and replay |
-| **Results** | `muggle_run_result_*` | View execution results |
-| **Publishing** | `muggle_publish_*` | Upload to cloud |
-| **Cloud Pull** | `muggle_cloud_*` | List and pull from cloud |
+| **Status** | `muggle_check_status`, `muggle_list_sessions` | Check local service status |
+| **Execution** | `muggle_execute_test_generation`, `muggle_execute_replay` | Run test generation and replay |
+| **Results** | `muggle_run_result_list`, `muggle_run_result_get` | View execution results |
+| **Scripts** | `muggle_test_script_list`, `muggle_test_script_get` | View locally generated scripts |
+| **Publishing** | `muggle_publish_test_script` | Upload generated scripts to cloud |
+| **Control** | `muggle_cancel_execution` | Cancel running executions |
 
 ---
 
-## Authentication Tools
+## Authentication Tools (qa_auth_*)
 
-### muggle_auth_status
+Authentication tools are in the `qa_*` namespace because they interact with the cloud.
+
+### qa_auth_status
 
 Check current authentication status.
 
@@ -37,32 +46,32 @@ Check current authentication status.
 
 ---
 
-### muggle_auth_login
+### qa_auth_login
 
 Start Device Code authentication flow.
 
 | Parameter | Type | Required | Description |
 | :-------- | :--- | :------: | :---------- |
-| (none) | — | — | — |
+| `waitForCompletion` | boolean | No | Wait for browser login (default: true) |
+| `timeoutMs` | number | No | Timeout in milliseconds (default: 120000) |
 
 **Returns:**
 - `verificationUri` - URL to open in browser
 - `userCode` - Code to enter
-- `deviceCode` - Code for polling (use with `muggle_auth_poll`)
-- `expiresIn` - Seconds until code expires
+- `deviceCode` - Code for polling (use with `qa_auth_poll`)
 
 **Example prompt:**
 > "Log in to Muggle Test"
 
 ---
 
-### muggle_auth_poll
+### qa_auth_poll
 
 Poll for Device Code authentication completion.
 
 | Parameter | Type | Required | Description |
 | :-------- | :--- | :------: | :---------- |
-| `deviceCode` | string | Yes | Device code from `muggle_auth_login` |
+| `deviceCode` | string | No | Device code from `qa_auth_login` |
 
 **Returns:**
 - `status` - `complete`, `pending`, `expired`, or `error`
@@ -70,7 +79,7 @@ Poll for Device Code authentication completion.
 
 ---
 
-### muggle_auth_logout
+### qa_auth_logout
 
 Clear stored credentials.
 
@@ -80,247 +89,30 @@ Clear stored credentials.
 
 ---
 
-## Project Management Tools
+## Status Tools
 
-### muggle_project_create
+### muggle_check_status
 
-Create a new local test project.
-
-| Parameter | Type | Required | Description |
-| :-------- | :--- | :------: | :---------- |
-| `name` | string | Yes | Project name |
-| `url` | string | Yes | Base URL of the application |
-| `description` | string | No | Project description |
-
-**Example prompt:**
-> "Create a project for my app at localhost:3000"
-
-**Returns:**
-- `projectId` - Generated project ID
-- `path` - Local storage path
-
----
-
-### muggle_project_list
-
-List all local projects.
+Check the status of Muggle Test Local service.
 
 | Parameter | Type | Required | Description |
 | :-------- | :--- | :------: | :---------- |
 | (none) | — | — | — |
 
----
-
-### muggle_project_get
-
-Get details of a specific project.
-
-| Parameter | Type | Required | Description |
-| :-------- | :--- | :------: | :---------- |
-| `projectId` | string | Yes | Project ID |
+**Returns:**
+- `dataDirectory` - Local data storage path
+- `sessionsDirectory` - Sessions storage path
+- `authenticated` - Whether authenticated
 
 ---
 
-### muggle_project_update
+### muggle_list_sessions
 
-Update project details.
-
-| Parameter | Type | Required | Description |
-| :-------- | :--- | :------: | :---------- |
-| `projectId` | string | Yes | Project ID |
-| `name` | string | No | New name |
-| `url` | string | No | New URL |
-| `description` | string | No | New description |
-
----
-
-### muggle_project_delete
-
-Delete a project and all its contents.
+List all stored testing sessions.
 
 | Parameter | Type | Required | Description |
 | :-------- | :--- | :------: | :---------- |
-| `projectId` | string | Yes | Project ID |
-
----
-
-## Use Case Tools
-
-### muggle_use_case_save
-
-Create a new use case.
-
-| Parameter | Type | Required | Description |
-| :-------- | :--- | :------: | :---------- |
-| `projectId` | string | Yes | Parent project ID |
-| `useCase` | object | Yes | Use case definition |
-
-**Use case object:**
-- `title` - Use case title
-- `userPersona` - Who is performing the action
-- `goal` - What the user wants to achieve
-- `breakdownItems` - Step-by-step breakdown
-
-**Example prompt:**
-> "Create a use case for user login flow"
-
----
-
-### muggle_use_case_list
-
-List use cases in a project.
-
-| Parameter | Type | Required | Description |
-| :-------- | :--- | :------: | :---------- |
-| `projectId` | string | Yes | Project ID |
-
----
-
-### muggle_use_case_get
-
-Get use case details.
-
-| Parameter | Type | Required | Description |
-| :-------- | :--- | :------: | :---------- |
-| `projectId` | string | Yes | Project ID |
-| `useCaseId` | string | Yes | Use case ID |
-
----
-
-### muggle_use_case_update
-
-Update a use case.
-
-| Parameter | Type | Required | Description |
-| :-------- | :--- | :------: | :---------- |
-| `projectId` | string | Yes | Project ID |
-| `useCaseId` | string | Yes | Use case ID |
-| `useCase` | object | Yes | Updated use case |
-
----
-
-### muggle_use_case_delete
-
-Delete a use case.
-
-| Parameter | Type | Required | Description |
-| :-------- | :--- | :------: | :---------- |
-| `projectId` | string | Yes | Project ID |
-| `useCaseId` | string | Yes | Use case ID |
-
----
-
-## Test Case Tools
-
-### muggle_test_case_save
-
-Create a new test case.
-
-| Parameter | Type | Required | Description |
-| :-------- | :--- | :------: | :---------- |
-| `projectId` | string | Yes | Parent project ID |
-| `useCaseId` | string | No | Parent use case ID |
-| `testCase` | object | Yes | Test case definition |
-
-**Test case object:**
-- `title` - Test case title
-- `goal` - What the test verifies
-- `url` - Starting URL
-- `precondition` - Setup requirements
-- `steps` - Test steps
-- `expectedResult` - Expected outcome
-
----
-
-### muggle_test_case_list
-
-List test cases in a project or use case.
-
-| Parameter | Type | Required | Description |
-| :-------- | :--- | :------: | :---------- |
-| `projectId` | string | Yes | Project ID |
-| `useCaseId` | string | No | Filter by use case |
-
----
-
-### muggle_test_case_get
-
-Get test case details.
-
-| Parameter | Type | Required | Description |
-| :-------- | :--- | :------: | :---------- |
-| `projectId` | string | Yes | Project ID |
-| `testCaseId` | string | Yes | Test case ID |
-
----
-
-### muggle_test_case_update
-
-Update a test case.
-
-| Parameter | Type | Required | Description |
-| :-------- | :--- | :------: | :---------- |
-| `projectId` | string | Yes | Project ID |
-| `testCaseId` | string | Yes | Test case ID |
-| `testCase` | object | Yes | Updated test case |
-
----
-
-### muggle_test_case_delete
-
-Delete a test case.
-
-| Parameter | Type | Required | Description |
-| :-------- | :--- | :------: | :---------- |
-| `projectId` | string | Yes | Project ID |
-| `testCaseId` | string | Yes | Test case ID |
-
----
-
-## Test Script Tools
-
-### muggle_test_script_save
-
-Save a generated test script.
-
-| Parameter | Type | Required | Description |
-| :-------- | :--- | :------: | :---------- |
-| `projectId` | string | Yes | Project ID |
-| `testCaseId` | string | Yes | Parent test case ID |
-| `actionScript` | object | Yes | Script definition |
-
----
-
-### muggle_test_script_list
-
-List test scripts in a project.
-
-| Parameter | Type | Required | Description |
-| :-------- | :--- | :------: | :---------- |
-| `projectId` | string | Yes | Project ID |
-| `testCaseId` | string | No | Filter by test case |
-
----
-
-### muggle_test_script_get
-
-Get test script details.
-
-| Parameter | Type | Required | Description |
-| :-------- | :--- | :------: | :---------- |
-| `projectId` | string | Yes | Project ID |
-| `testScriptId` | string | Yes | Test script ID |
-
----
-
-### muggle_test_script_delete
-
-Delete a test script.
-
-| Parameter | Type | Required | Description |
-| :-------- | :--- | :------: | :---------- |
-| `projectId` | string | Yes | Project ID |
-| `testScriptId` | string | Yes | Test script ID |
+| `limit` | number | No | Maximum sessions to return (default: 10) |
 
 ---
 
@@ -328,37 +120,66 @@ Delete a test script.
 
 ### muggle_execute_test_generation
 
-Generate a test script by running the browser automation.
+Generate a test script by running browser automation locally.
+
+**Important:** First call `qa_test_case_get` to fetch test case details, then pass them here.
 
 | Parameter | Type | Required | Description |
 | :-------- | :--- | :------: | :---------- |
-| `projectId` | string | Yes | Project ID |
-| `testCaseId` | string | Yes | Test case to generate script for |
+| `testCase` | object | Yes | Test case details from `qa_test_case_get` |
+| `localUrl` | string | Yes | Local URL to test against (e.g., `http://localhost:3000`) |
+| `approveElectronAppLaunch` | boolean | Yes | Must be `true` to proceed |
+| `timeoutMs` | number | No | Timeout in milliseconds (default: 300000) |
+
+**testCase object:**
+- `id` - Cloud test case ID
+- `title` - Test case title
+- `goal` - What the test should verify
+- `expectedResult` - Expected outcome
+- `precondition` - Setup requirements (optional)
+- `instructions` - Step-by-step instructions (optional)
 
 **What happens:**
 1. Browser engine launches
-2. Navigates to the test case URL
-3. AI explores and records actions
-4. Script is saved to the project
+2. Navigates to the `localUrl`
+3. AI explores and records actions based on test case
+4. Script is saved locally
 
-**Example prompt:**
-> "Generate a test script for the login test case"
+**Example workflow:**
+```
+1. qa_test_case_get(testCaseId) → returns test case object
+2. muggle_execute_test_generation({ testCase: {...}, localUrl: "http://localhost:3000", approveElectronAppLaunch: true })
+```
 
 ---
 
 ### muggle_execute_replay
 
-Replay a test script.
+Replay a test script locally.
+
+**Important:** First call `qa_test_script_get` to fetch script details, then pass them here.
 
 | Parameter | Type | Required | Description |
 | :-------- | :--- | :------: | :---------- |
-| `projectId` | string | Yes | Project ID |
-| `testScriptId` | string | Yes | Script to replay |
+| `testScript` | object | Yes | Test script details from `qa_test_script_get` |
+| `localUrl` | string | Yes | Local URL to test against |
+| `approveElectronAppLaunch` | boolean | Yes | Must be `true` to proceed |
+| `timeoutMs` | number | No | Timeout in milliseconds (default: 180000) |
 
-**Returns:**
-- `status` - Pass/fail result
-- `executionTime` - Duration
-- `screenshots` - Captured screenshots
+**testScript object:**
+- `id` - Cloud test script ID
+- `name` - Script name
+- `testCaseId` - Parent test case ID
+- `actionScript` - Array of executable steps
+
+**URL Rewriting:**
+- Original cloud URLs in the action script are automatically replaced with `localUrl`
+
+**Example workflow:**
+```
+1. qa_test_script_get(testScriptId) → returns test script object
+2. muggle_execute_replay({ testScript: {...}, localUrl: "http://localhost:3000", approveElectronAppLaunch: true })
+```
 
 ---
 
@@ -368,7 +189,7 @@ Cancel a running execution.
 
 | Parameter | Type | Required | Description |
 | :-------- | :--- | :------: | :---------- |
-| `executionId` | string | Yes | Execution to cancel |
+| `runId` | string | Yes | Run ID to cancel |
 
 ---
 
@@ -380,168 +201,145 @@ List execution results.
 
 | Parameter | Type | Required | Description |
 | :-------- | :--- | :------: | :---------- |
-| `projectId` | string | Yes | Project ID |
-| `testScriptId` | string | No | Filter by script |
+| `cloudTestCaseId` | string | No | Filter by cloud test case ID |
+| `limit` | number | No | Maximum results (default: 20) |
 
 ---
 
 ### muggle_run_result_get
 
-Get execution result details.
+Get execution result details including screenshots.
 
 | Parameter | Type | Required | Description |
 | :-------- | :--- | :------: | :---------- |
-| `projectId` | string | Yes | Project ID |
-| `runId` | string | Yes | Run ID |
+| `runId` | string | Yes | Run result ID |
+
+**Returns:**
+- `id` - Run ID
+- `runType` - `generation` or `replay`
+- `status` - Pass/fail result
+- `executionTimeMs` - Duration
+- `testScriptId` - Associated script (if generated)
+- `errorMessage` - Error details (if failed)
+
+---
+
+## Test Script Tools
+
+### muggle_test_script_list
+
+List locally generated test scripts.
+
+| Parameter | Type | Required | Description |
+| :-------- | :--- | :------: | :---------- |
+| `cloudTestCaseId` | string | No | Filter by cloud test case ID |
+
+---
+
+### muggle_test_script_get
+
+Get test script details including action script steps.
+
+| Parameter | Type | Required | Description |
+| :-------- | :--- | :------: | :---------- |
+| `testScriptId` | string | Yes | Local test script ID |
 
 ---
 
 ## Publishing Tools
 
-### muggle_publish_project
-
-Upload a project to the Muggle AI cloud.
-
-| Parameter | Type | Required | Description |
-| :-------- | :--- | :------: | :---------- |
-| `projectId` | string | Yes | Project to publish |
-| `targetUrl` | string | No | Override URL for cloud execution |
-
-**Requires:** Authentication
-
----
-
 ### muggle_publish_test_script
 
-Upload a single test script to the cloud.
+Upload a locally generated test script to the cloud.
 
 | Parameter | Type | Required | Description |
 | :-------- | :--- | :------: | :---------- |
-| `projectId` | string | Yes | Project ID |
-| `testScriptId` | string | Yes | Script to publish |
+| `runId` | string | Yes | Run result ID from test generation |
+| `cloudTestCaseId` | string | Yes | Cloud test case ID to publish under |
 
-**Requires:** Authentication
+**Requires:** Authentication via `qa_auth_login`
 
 ---
 
-## Cloud Pull Tools
+## Workflow: Local Testing with Cloud Entities
 
-### muggle_cloud_project_list
+The recommended workflow uses cloud tools (`qa_*`) to manage entities and local tools (`muggle_*`) to execute:
 
-List all cloud projects for the authenticated user.
+```
+┌─────────────────────────────────────────────────────────────┐
+│                     Entity Management                        │
+│                      (qa_* tools)                            │
+├─────────────────────────────────────────────────────────────┤
+│  qa_auth_login          → Authenticate                       │
+│  qa_project_list        → Find/create project                │
+│  qa_use_case_list       → Find/create use case               │
+│  qa_test_case_list      → Find/create test case              │
+│  qa_test_case_get       → Fetch test case details            │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                     Local Execution                          │
+│                    (muggle_* tools)                          │
+├─────────────────────────────────────────────────────────────┤
+│  muggle_execute_test_generation → Generate script locally    │
+│  muggle_run_result_get          → View results               │
+│  muggle_publish_test_script     → Publish back to cloud      │
+└─────────────────────────────────────────────────────────────┘
+```
 
-| Parameter | Type | Required | Description |
-| :-------- | :--- | :------: | :---------- |
-| (none) | — | — | — |
+### Example: Test Login Feature on localhost:3000
 
-**Requires:** Authentication
-
-**Returns:**
-- `projects` - Array of cloud projects with IDs, names, URLs
-
----
-
-### muggle_cloud_pull_project
-
-Pull an entire cloud project to local storage with URL rewriting.
-
-| Parameter | Type | Required | Description |
-| :-------- | :--- | :------: | :---------- |
-| `cloudProjectId` | string | Yes | Cloud project ID to pull |
-| `localUrl` | string | Yes | Local URL for testing (e.g., `http://localhost:3000`) |
-
-**What happens:**
-1. Downloads project metadata from cloud
-2. Creates local project with `localUrl`
-3. Stores original cloud URL in `originalUrl` field
-4. Downloads and creates all use cases
-5. Downloads and creates all test cases with URL rewriting
-6. Maps cloud IDs to local IDs for future sync
-
-**URL Rewriting:**
-- Path is preserved: `https://app.example.com/login` → `http://localhost:3000/login`
-- Original URL stored in `originalUrl` for publishing back
-
-**Requires:** Authentication
-
----
-
-### muggle_cloud_pull_use_case
-
-Pull a single cloud use case and its test cases to local storage.
-
-| Parameter | Type | Required | Description |
-| :-------- | :--- | :------: | :---------- |
-| `cloudProjectId` | string | Yes | Cloud project ID |
-| `cloudUseCaseId` | string | Yes | Cloud use case ID to pull |
-| `localProjectId` | string | Yes | Local project to save under |
-| `localUrl` | string | Yes | Local URL for testing |
-
-**Requires:** Authentication
-
----
-
-### muggle_cloud_pull_test_case
-
-Pull a single cloud test case to local storage.
-
-| Parameter | Type | Required | Description |
-| :-------- | :--- | :------: | :---------- |
-| `cloudProjectId` | string | Yes | Cloud project ID |
-| `cloudUseCaseId` | string | Yes | Cloud use case ID |
-| `cloudTestCaseId` | string | Yes | Cloud test case ID to pull |
-| `localProjectId` | string | Yes | Local project to save under |
-| `localUseCaseId` | string | Yes | Local use case to save under |
-| `localUrl` | string | Yes | Local URL for testing |
-
-**Requires:** Authentication
+```
+1. qa_auth_status                         # Check auth
+2. qa_auth_login                          # Login if needed
+3. qa_project_list                        # Find project
+4. qa_use_case_list(projectId)            # Find login use case
+5. qa_test_case_list_by_use_case(ucId)    # Find login test case
+6. qa_test_case_get(testCaseId)           # Get full details
+7. [Ask user for approval]
+8. muggle_execute_test_generation({
+     testCase: { ...from step 6... },
+     localUrl: "http://localhost:3000",
+     approveElectronAppLaunch: true
+   })
+9. muggle_run_result_get(runId)           # View results
+10. muggle_publish_test_script(runId, testCaseId)  # Publish
+```
 
 ---
 
 ## Tool Selection Guide
 
-### Project Setup
-
-| You want to... | Use this tool |
-| :------------- | :------------ |
-| Start a new test project | `muggle_project_create` |
-| See all my local projects | `muggle_project_list` |
-| See all my cloud projects | `muggle_cloud_project_list` |
-| Pull a project from cloud | `muggle_cloud_pull_project` |
-| Define a user flow | `muggle_use_case_save` |
-| Create a test scenario | `muggle_test_case_save` |
-
 ### Test Execution
 
-| You want to... | Use this tool |
+| You want to... | Use this flow |
 | :------------- | :------------ |
-| Generate a test script from a test case | `muggle_execute_test_generation` |
-| Replay an existing test script | `muggle_execute_replay` |
-| Run a quick ad-hoc test | `muggle_run_test` |
+| Generate a test script | `qa_test_case_get` → `muggle_execute_test_generation` |
+| Replay an existing script | `qa_test_script_get` → `muggle_execute_replay` |
 | Stop a running test | `muggle_cancel_execution` |
-
-### Cloud Sync
-
-| You want to... | Use this tool |
-| :------------- | :------------ |
-| List cloud projects | `muggle_cloud_project_list` |
-| Pull project from cloud to local | `muggle_cloud_pull_project` |
-| Pull a single use case | `muggle_cloud_pull_use_case` |
-| Pull a single test case | `muggle_cloud_pull_test_case` |
-| Publish local to cloud | `muggle_publish_project` |
-
-### Common Workflow
-
-| You want to... | Use this tool |
-| :------------- | :------------ |
-| Start a new testing project | `muggle_project_create` |
-| Define a user flow | `muggle_use_case_save` |
-| Create a specific test | `muggle_test_case_save` |
-| Generate automation script | `muggle_execute_test_generation` |
-| Run a test | `muggle_execute_replay` |
 | View test results | `muggle_run_result_get` |
-| Upload to cloud | `muggle_publish_project` |
-| Log in | `muggle_auth_login` |
+
+### Entity Management (use qa_* tools)
+
+| You want to... | Use this tool |
+| :------------- | :------------ |
+| Create/list projects | `qa_project_create`, `qa_project_list` |
+| Create/list use cases | `qa_use_case_create_from_prompts`, `qa_use_case_list` |
+| Create/list test cases | `qa_test_case_create`, `qa_test_case_list` |
+| Get test case details | `qa_test_case_get` |
+| Get test script details | `qa_test_script_get` |
+
+### Authentication
+
+| You want to... | Use this tool |
+| :------------- | :------------ |
+| Check auth status | `qa_auth_status` |
+| Log in | `qa_auth_login` |
+| Poll for login completion | `qa_auth_poll` |
+| Log out | `qa_auth_logout` |
+
+---
 
 ## Next Steps
 
@@ -549,3 +347,4 @@ Pull a single cloud test case to local storage.
 - **[Example Workflows](examples.md)** — See these tools in action
 - **[Local Testing Setup](setup.md)** — Installation and configuration
 - **[Local Testing Overview](overview.md)** — Understanding the architecture
+- **[Cloud QA Tools](../mcp/mcp-api-reference.md)** — Full reference for qa_* tools

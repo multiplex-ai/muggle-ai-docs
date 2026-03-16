@@ -29,6 +29,21 @@ These tools enable **agentic authentication** - AI agents can help users authent
 
 > **Security Note:** API keys obtained through the device code flow are written directly to the user's local config file. They are **never** returned through the MCP protocol to prevent leakage to AI agents or conversation history.
 
+### MCP Local Auth Tools (qa_auth_*)
+
+These tools are available when running `muggle-mcp serve` and are used for local testing authentication:
+
+| Tool | Description |
+| :--- | :---------- |
+| `qa_auth_status` | Check current authentication status |
+| `qa_auth_login` | Start device code authentication flow |
+| `qa_auth_poll` | Poll for login completion |
+| `qa_auth_logout` | Clear stored credentials |
+
+See [Local Testing Tools Reference](../local-testing/tools-reference.md#authentication-tools-qa_auth_) for full documentation.
+
+### Gateway Auth Tools
+
 ### Device Code Flow
 
 The device code flow allows users to authenticate through their browser:

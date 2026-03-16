@@ -46,12 +46,12 @@ flowchart LR
 | :------ | :---------- |
 | **Localhost Access** | Test `localhost`, `127.0.0.1`, or any local dev server |
 | **AI-Driven Testing** | Describe tests in natural language |
-| **Project Organization** | Manage projects, use cases, and test cases locally |
+| **Cloud-First Architecture** | Manage entities in cloud (`qa_*`), execute locally (`muggle_*`) |
 | **Test Script Generation** | AI generates repeatable test scripts from test cases |
 | **Browser Automation** | Real browser interactions (click, type, scroll) |
 | **Screenshot Capture** | Visual documentation of test results |
 | **Agent Skills** | Pre-built workflows like "test my changes" |
-| **Publish to Cloud** | Sync local projects to Muggle AI for team collaboration |
+| **Publish to Cloud** | Upload locally generated scripts to Muggle AI for team collaboration |
 
 ## How It Works
 
@@ -126,38 +126,42 @@ Screenshot saved to `~/.muggle-ai/sessions/session-xxx/screenshots/step-003.png`
 
 ---
 
-## Local-to-Production Workflow
+## Cloud-First Local Testing Workflow
 
-Local Testing supports a workflow that takes you from development to production:
+Local Testing uses a **cloud-first architecture**:
+
+- **`qa_*` tools**: All entity management (projects, use cases, test cases) happens in the cloud
+- **`muggle_*` tools**: Local execution, results viewing, and publishing only
 
 ```mermaid
 flowchart LR
-    subgraph local["Local Development"]
-        A["Create Project<br/>(localhost URL)"]
-        B["Define Use Cases<br/>& Test Cases"]
-        C["Generate Test Scripts"]
-        D["Iterate & Debug"]
+    subgraph cloud["Cloud (qa_* tools)"]
+        A["Create Project"]
+        B["Define Use Cases"]
+        C["Create Test Cases"]
     end
     
-    subgraph publish["Publish"]
-        E["Publish to Cloud<br/>(production URL)"]
+    subgraph local["Local (muggle_* tools)"]
+        D["Execute Tests<br/>(against localhost)"]
+        E["View Results"]
+        F["Publish Scripts"]
     end
     
-    subgraph cloud["Cloud"]
-        F["Team Collaboration"]
-        G["Scheduled Runs"]
-        H["CI/CD Integration"]
+    subgraph production["Production"]
+        G["Team Collaboration"]
+        H["Scheduled Runs"]
+        I["CI/CD Integration"]
     end
     
-    A --> B --> C --> D
-    D --> E --> F & G & H
+    A --> B --> C --> D --> E --> F --> G & H & I
 ```
 
-1. **Develop locally** — Create projects with localhost URLs, define test cases
-2. **Generate scripts** — AI creates test scripts by interacting with your app
-3. **Iterate** — Refine test cases as your app evolves
-4. **Publish** — When ready, publish to cloud with production URLs
-5. **Scale** — Cloud enables team collaboration and automated testing
+1. **Create in cloud** — Use `qa_*` tools to create projects, use cases, and test cases
+2. **Fetch details** — Call `qa_test_case_get` to retrieve test case information
+3. **Execute locally** — Use `muggle_execute_test_generation` with localhost URL
+4. **View results** — Use `muggle_run_result_get` to see screenshots and status
+5. **Publish** — Use `muggle_publish_test_script` to upload generated scripts
+6. **Scale** — Cloud enables team collaboration and CI/CD integration
 
 ## Getting Started
 
