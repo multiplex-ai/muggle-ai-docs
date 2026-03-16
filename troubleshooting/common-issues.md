@@ -152,7 +152,7 @@ This page lists frequent issues and quick checks to resolve them.
 
 **Symptoms:**
 
-- AI assistant doesn't recognize `muggle_*` or `qa_*` tools
+- AI assistant doesn't recognize `muggle-local-*` or `muggle-remote-*` tools
 - "Tool not found" errors
 
 **Diagnosis & Solutions:**

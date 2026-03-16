@@ -218,7 +218,7 @@ Let your AI assistant help you authenticate:
 
 1. Configure the MCP server (without API key)
 2. Ask: **"Help me log in to Muggle Test"**
-3. The assistant calls `muggle_auth_login`
+3. The assistant calls `muggle-remote-auth-login`
 4. Visit the provided URL and complete login
 5. Your credentials are stored locally
 

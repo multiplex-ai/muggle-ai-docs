@@ -14,8 +14,8 @@ flowchart TB
         client["AI Assistant<br/>(Claude, Cursor)"]
         subgraph mcp["@muggleai/mcp"]
             direction TB
-            local["Local Tools<br/>(muggle_*)"]
-            cloud["Cloud Tools<br/>(qa_*)"]
+            local["Local Tools<br/>(muggle-local-*)"]
+            cloud["Cloud Tools<br/>(muggle-remote-*)"]
             browser["Browser Engine"]
         end
         client -->|"stdin/stdout"| mcp
@@ -37,8 +37,8 @@ flowchart TB
 ```
 
 The unified package provides both local and cloud testing:
-- **Local Tools** (`muggle_*`): Test localhost with the bundled browser engine
-- **Cloud Tools** (`qa_*`): Test remote URLs using Muggle AI's cloud infrastructure
+- **Local Tools** (`muggle-local-*`): Test localhost with the bundled browser engine
+- **Cloud Tools** (`muggle-remote-*`): Test remote URLs using Muggle AI's cloud infrastructure
 
 ### Hosted Gateway (Cloud-Only)
 
@@ -270,7 +270,7 @@ The gateway enforces rate limits to ensure fair usage:
 
 The unified package provides **125+ tools** organized by mode:
 
-### Local Testing Tools (prefix: `muggle_`)
+### Local Testing Tools (prefix: `muggle-local-`)
 
 | Category | Count | Purpose |
 | :------- | ----: | :------ |
@@ -284,7 +284,7 @@ The unified package provides **125+ tools** organized by mode:
 | Publishing | 2 | Upload to cloud |
 | Cloud Sync | 20+ | Pull/push between local and cloud |
 
-### Cloud QA Tools (prefix: `qa_`)
+### Cloud QA Tools (prefix: `muggle-remote-`)
 
 | Category | Count | Purpose |
 | :------- | ----: | :------ |

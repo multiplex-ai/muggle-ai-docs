@@ -86,8 +86,8 @@ Cloud QA uses Muggle AI's infrastructure:
 ### Unified Mode (Default)
 
 When you run `muggle-mcp serve` without flags, **both modes are active**:
-- Use `muggle_*` tools for local testing
-- Use `qa_*` tools for cloud QA
+- Use `muggle-local-*` tools for local testing
+- Use `muggle-remote-*` tools for cloud QA
 - Seamlessly publish local projects to cloud
 
 ## Key Benefits
@@ -125,29 +125,29 @@ Instead of navigating dashboards or writing scripts:
 | **Cloud QA** | ~60 | Workflows, test generation, reporting |
 | **Total** | ~125 | All testing needs covered |
 
-### Local Tools (prefix: `muggle_`)
+### Local Tools (prefix: `muggle-local-`)
 
 | Category | Tools | Purpose |
 | :------- | :---- | :------ |
-| Authentication | `muggle_auth_*` | Login, logout, status |
-| Projects | `muggle_project_*` | Create and manage projects |
-| Use Cases | `muggle_use_case_*` | Define user flows |
-| Test Cases | `muggle_test_case_*` | Test specifications |
-| Test Scripts | `muggle_test_script_*` | Automation scripts |
-| Execution | `muggle_execute_*` | Run tests |
-| Results | `muggle_run_result_*` | View results |
-| Cloud Sync | `muggle_cloud_*`, `muggle_publish_*` | Sync with cloud |
+| Authentication | `muggle-local-auth-*` | Login, logout, status |
+| Projects | `muggle-local-project-*` | Create and manage projects |
+| Use Cases | `muggle-local-use-case-*` | Define user flows |
+| Test Cases | `muggle-local-test-case-*` | Test specifications |
+| Test Scripts | `muggle-local-test-script-*` | Automation scripts |
+| Execution | `muggle-local-execute-*` | Run tests |
+| Results | `muggle-local-run-result-*` | View results |
+| Cloud Sync | `muggle-local-cloud-*`, `muggle-local-publish-*` | Sync with cloud |
 
-### Cloud QA Tools (prefix: `qa_`)
+### Cloud QA Tools (prefix: `muggle-remote-`)
 
 | Category | Tools | Purpose |
 | :------- | :---- | :------ |
-| Projects | `qa_project_*` | Cloud project management |
-| Use Cases | `qa_use_case_*` | Use case discovery |
-| Test Cases | `qa_test_case_*` | Test case generation |
-| Workflows | `qa_workflow_*` | Automated workflows |
-| Reports | `qa_report_*` | Test reporting |
-| Secrets | `qa_secret_*` | Credential management |
+| Projects | `muggle-remote-project-*` | Cloud project management |
+| Use Cases | `muggle-remote-use-case-*` | Use case discovery |
+| Test Cases | `muggle-remote-test-case-*` | Test case generation |
+| Workflows | `muggle-remote-workflow-*` | Automated workflows |
+| Reports | `muggle-remote-report-*` | Test reporting |
+| Secrets | `muggle-remote-secret-*` | Credential management |
 
 ## Getting Started
 

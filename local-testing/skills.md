@@ -50,7 +50,7 @@ mkdir -p .cursor/skills
 cp -r muggle-ai-skills/local/* .cursor/skills/
 ```
 
-> **Important:** These skills work with local testing tools (`muggle_*` prefix) for `localhost` URLs. For public URLs, use remote skills with cloud QA tools (`qa_*` prefix).
+> **Important:** These skills work with local testing tools (`muggle-local-*` prefix) for `localhost` URLs. For public URLs, use remote skills with cloud QA tools (`muggle-remote-*` prefix).
 
 ## test-feature-local
 

@@ -46,7 +46,7 @@ flowchart LR
 | :------ | :---------- |
 | **Localhost Access** | Test `localhost`, `127.0.0.1`, or any local dev server |
 | **AI-Driven Testing** | Describe tests in natural language |
-| **Cloud-First Architecture** | Manage entities in cloud (`qa_*`), execute locally (`muggle_*`) |
+| **Cloud-First Architecture** | Manage entities in cloud (`muggle-remote-*`), execute locally (`muggle-local-*`) |
 | **Test Script Generation** | AI generates repeatable test scripts from test cases |
 | **Browser Automation** | Real browser interactions (click, type, scroll) |
 | **Screenshot Capture** | Visual documentation of test results |
@@ -130,18 +130,18 @@ Screenshot saved to `~/.muggle-ai/sessions/session-xxx/screenshots/step-003.png`
 
 Local Testing uses a **cloud-first architecture**:
 
-- **`qa_*` tools**: All entity management (projects, use cases, test cases) happens in the cloud
-- **`muggle_*` tools**: Local execution, results viewing, and publishing only
+- **`muggle-remote-*` tools**: All entity management (projects, use cases, test cases) happens in the cloud
+- **`muggle-local-*` tools**: Local execution, results viewing, and publishing only
 
 ```mermaid
 flowchart LR
-    subgraph cloud["Cloud (qa_* tools)"]
+    subgraph cloud["Cloud (muggle-remote-* tools)"]
         A["Create Project"]
         B["Define Use Cases"]
         C["Create Test Cases"]
     end
     
-    subgraph local["Local (muggle_* tools)"]
+    subgraph local["Local (muggle-local-* tools)"]
         D["Execute Tests<br/>(against localhost)"]
         E["View Results"]
         F["Publish Scripts"]
@@ -156,11 +156,11 @@ flowchart LR
     A --> B --> C --> D --> E --> F --> G & H & I
 ```
 
-1. **Create in cloud** — Use `qa_*` tools to create projects, use cases, and test cases
-2. **Fetch details** — Call `qa_test_case_get` to retrieve test case information
-3. **Execute locally** — Use `muggle_execute_test_generation` with localhost URL
-4. **View results** — Use `muggle_run_result_get` to see screenshots and status
-5. **Publish** — Use `muggle_publish_test_script` to upload generated scripts
+1. **Create in cloud** — Use `muggle-remote-*` tools to create projects, use cases, and test cases
+2. **Fetch details** — Call `muggle-remote-test-case-get` to retrieve test case information
+3. **Execute locally** — Use `muggle-local-execute-test-generation` with localhost URL
+4. **View results** — Use `muggle-local-run-result-get` to see screenshots and status
+5. **Publish** — Use `muggle-local-publish-test-script` to upload generated scripts
 6. **Scale** — Cloud enables team collaboration and CI/CD integration
 
 ## Getting Started

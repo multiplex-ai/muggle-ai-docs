@@ -195,10 +195,10 @@ The signup form correctly shows "Please enter a valid email" when an invalid ema
 
 | Category | Tools | Purpose |
 | :------- | :---- | :------ |
-| **Local Testing** | `muggle_project_*`, `muggle_use_case_*`, `muggle_test_case_*` | Manage local test projects |
-| **Execution** | `muggle_execute_*` | Generate and run test scripts |
-| **Cloud QA** | `qa_project_*`, `qa_workflow_*` | Cloud-based testing workflows |
-| **Publishing** | `muggle_publish_*`, `muggle_cloud_*` | Sync between local and cloud |
+| **Local Testing** | `muggle-local-project-*`, `muggle-local-use-case-*`, `muggle-local-test-case-*` | Manage local test projects |
+| **Execution** | `muggle-local-execute-*` | Generate and run test scripts |
+| **Cloud QA** | `muggle-remote-project-*`, `muggle-remote-workflow-*` | Cloud-based testing workflows |
+| **Publishing** | `muggle-local-publish-*`, `muggle-local-cloud-*` | Sync between local and cloud |
 
 **Total: 120+ tools** covering both local and cloud testing.
 

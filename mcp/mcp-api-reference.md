@@ -2,7 +2,7 @@
 
 Complete reference for Cloud QA tools in the `@muggleai/mcp` package.
 
-> **Note:** This page documents Cloud QA tools (prefix: `qa_`). For local testing tools (prefix: `muggle_`), see [Local Testing Tools Reference](../local-testing/tools-reference.md).
+> **Note:** This page documents Cloud QA tools (prefix: `muggle-remote-`). For local testing tools (prefix: `muggle-local-`), see [Local Testing Tools Reference](../local-testing/tools-reference.md).
 
 ## Overview
 
@@ -29,18 +29,18 @@ These tools enable **agentic authentication** - AI agents can help users authent
 
 > **Security Note:** API keys obtained through the device code flow are written directly to the user's local config file. They are **never** returned through the MCP protocol to prevent leakage to AI agents or conversation history.
 
-### MCP Local Auth Tools (qa_auth_*)
+### MCP Local Auth Tools (muggle-remote-auth-*)
 
 These tools are available when running `muggle-mcp serve` and are used for local testing authentication:
 
 | Tool | Description |
 | :--- | :---------- |
-| `qa_auth_status` | Check current authentication status |
-| `qa_auth_login` | Start device code authentication flow |
-| `qa_auth_poll` | Poll for login completion |
-| `qa_auth_logout` | Clear stored credentials |
+| `muggle-remote-auth-status` | Check current authentication status |
+| `muggle-remote-auth-login` | Start device code authentication flow |
+| `muggle-remote-auth-poll` | Poll for login completion |
+| `muggle-remote-auth-logout` | Clear stored credentials |
 
-See [Local Testing Tools Reference](../local-testing/tools-reference.md#authentication-tools-qa_auth_) for full documentation.
+See [Local Testing Tools Reference](../local-testing/tools-reference.md#authentication-tools-muggle-remote-auth-) for full documentation.
 
 ### Gateway Auth Tools
 
@@ -237,7 +237,7 @@ Revoke an API key. The key will immediately stop working.
 
 ## Project Tools
 
-### qa_project_create
+### muggle-remote-project-create
 
 Create a new QA testing project.
 
@@ -267,7 +267,7 @@ Create a new QA testing project.
 }
 ```
 
-### qa_project_get
+### muggle-remote-project-get
 
 Get details of a specific project by ID.
 
@@ -275,7 +275,7 @@ Get details of a specific project by ID.
 | :---------- | :----- | :------: | :--------------------- |
 | `projectId` | string |    ✓     | Project ID to retrieve |
 
-### qa_project_update
+### muggle-remote-project-update
 
 Update an existing project's details.
 
@@ -286,7 +286,7 @@ Update an existing project's details.
 | `description` | string |          | Updated description  |
 | `url`         | string |          | Updated target URL   |
 
-### qa_project_list
+### muggle-remote-project-list
 
 List all projects accessible to you with pagination.
 
@@ -295,7 +295,7 @@ List all projects accessible to you with pagination.
 | `page`     | number |          | 1       | Page number              |
 | `pageSize` | number |          | 20      | Items per page (max 100) |
 
-### qa_project_delete
+### muggle-remote-project-delete
 
 Delete a project and all associated entities (use cases, test cases, test scripts). This is a soft delete - the project can be restored.
 
@@ -317,7 +317,7 @@ Delete a project and all associated entities (use cases, test cases, test script
 
 ## PRD File Tools
 
-### qa_prd_file_upload
+### muggle-remote-prd-file-upload
 
 Upload a Product Requirements Document to help AI generate accurate use cases.
 
@@ -357,7 +357,7 @@ Upload a Product Requirements Document to help AI generate accurate use cases.
 }
 ```
 
-### qa_workflow_start_prd_file_process
+### muggle-remote-workflow-start-prd-file-process
 
 Start processing an uploaded PRD file to extract use cases. This is an async workflow.
 
@@ -398,7 +398,7 @@ Start processing an uploaded PRD file to extract use cases. This is an async wor
 }
 ```
 
-### qa_workflow_get_prd_file_process_latest_run
+### muggle-remote-workflow-get-prd-file-process-latest-run
 
 Check the status of a PRD file processing workflow.
 
@@ -416,11 +416,11 @@ Check the status of a PRD file processing workflow.
 }
 ```
 
-### qa_prd_file_list_by_project
+### muggle-remote-prd-file-list-by-project
 
 List all PRD files for a project.
 
-### qa_prd_file_delete
+### muggle-remote-prd-file-delete
 
 Delete a PRD file.
 
@@ -430,7 +430,7 @@ Delete a PRD file.
 
 Secrets store credentials needed for testing. Values are encrypted and **never returned** in responses.
 
-### qa_secret_create
+### muggle-remote-secret-create
 
 Create a new secret.
 
@@ -452,21 +452,21 @@ Create a new secret.
 | `value`       | string |    ✓     | Secret value (encrypted at rest) |
 | `description` | string |          | Description of the secret        |
 
-### qa_secret_list
+### muggle-remote-secret-list
 
 List all secrets for a project.
 
 > **Note:** Secret values are never returned in list responses.
 
-### qa_secret_get
+### muggle-remote-secret-get
 
 Get secret metadata (value is not returned).
 
-### qa_secret_update
+### muggle-remote-secret-update
 
 Update a secret's name, value, or description.
 
-### qa_secret_delete
+### muggle-remote-secret-delete
 
 Delete a secret.
 
@@ -476,7 +476,7 @@ Delete a secret.
 
 Wallet tools help set up billing methods and top up credits.
 
-### qa_wallet_payment_method_create_setup_session
+### muggle-remote-wallet-payment-method-create-setup-session
 
 Create a Stripe setup session to add a new saved payment method.
 
@@ -489,7 +489,7 @@ Create a Stripe setup session to add a new saved payment method.
 }
 ```
 
-### qa_wallet_payment_method_list
+### muggle-remote-wallet-payment-method-list
 
 List saved payment methods for the authenticated user.
 
@@ -499,7 +499,7 @@ List saved payment methods for the authenticated user.
 {}
 ```
 
-### qa_wallet_auto_topup_set_payment_method
+### muggle-remote-wallet-auto-topup-set-payment-method
 
 Set the saved payment method used for auto top-up.
 
@@ -511,7 +511,7 @@ Set the saved payment method used for auto top-up.
 }
 ```
 
-### qa_wallet_auto_topup_update
+### muggle-remote-wallet-auto-topup-update
 
 Update auto-topup settings for threshold/package/enablement.
 
@@ -525,7 +525,7 @@ Update auto-topup settings for threshold/package/enablement.
 }
 ```
 
-### qa_wallet_topup
+### muggle-remote-wallet-topup
 
 Create a one-time checkout session to purchase a token package.
 
@@ -543,7 +543,7 @@ Create a one-time checkout session to purchase a token package.
 
 ## Use Case Tools
 
-### qa_use_case_discovery_memory_get
+### muggle-remote-use-case-discovery-memory-get
 
 Get discovered use case candidates with evidence (screenshots, notes).
 
@@ -581,7 +581,7 @@ Get discovered use case candidates with evidence (screenshots, notes).
 | `graduated` | Approved and promoted to use case    |
 | `dropped`   | Rejected and archived                |
 
-### qa_use_case_candidates_approve
+### muggle-remote-use-case-candidates-approve
 
 Approve (graduate) selected candidates into active use cases.
 
@@ -599,11 +599,11 @@ Approve (graduate) selected candidates into active use cases.
 | `projectId`            | string   |    ✓     | Project ID                   |
 | `approvedCandidateIds` | string[] |    ✓     | IDs of candidates to approve |
 
-### qa_use_case_list
+### muggle-remote-use-case-list
 
 List graduated use cases for a project.
 
-### qa_use_case_get
+### muggle-remote-use-case-get
 
 Get details of a specific use case.
 
@@ -624,7 +624,7 @@ flowchart LR
 
 ### Website Scan
 
-#### qa_workflow_start_website_scan
+#### muggle-remote-workflow-start-website-scan
 
 Start scanning a website to discover use cases.
 
@@ -654,7 +654,7 @@ Start scanning a website to discover use cases.
 }
 ```
 
-#### qa_workflow_get_website_scan_latest_run
+#### muggle-remote-workflow-get-website-scan-latest-run
 
 Check scan status.
 
@@ -678,13 +678,13 @@ Check scan status.
 | `failed`    | Completed with errors  |
 | `cancelled` | Stopped by user        |
 
-#### qa_workflow_list_website_scan_runtimes
+#### muggle-remote-workflow-list-website-scan-runtimes
 
 List all website scan runtimes.
 
 ### Test Case Detection
 
-#### qa_workflow_start_test_case_detection
+#### muggle-remote-workflow-start-test-case-detection
 
 Generate test cases from approved use cases.
 
@@ -693,17 +693,17 @@ Generate test cases from approved use cases.
 | `projectId` | string |    ✓     | Target project                   |
 | `useCaseId` | string |          | Specific use case (omit for all) |
 
-#### qa_workflow_get_test_case_detection_latest_run
+#### muggle-remote-workflow-get-test-case-detection-latest-run
 
 Check test case detection status.
 
-#### qa_workflow_list_test_case_detection_runtimes
+#### muggle-remote-workflow-list-test-case-detection-runtimes
 
 List test case detection runtimes.
 
 ### Test Script Generation
 
-#### qa_workflow_start_test_script_generation
+#### muggle-remote-workflow-start-test-script-generation
 
 Generate executable test scripts from test cases.
 
@@ -713,17 +713,17 @@ Generate executable test scripts from test cases.
 | `testCaseId` | string |          | Specific test case |
 | `useCaseId`  | string |          | Specific use case  |
 
-#### qa_workflow_get_test_script_generation_latest_run
+#### muggle-remote-workflow-get-test-script-generation-latest-run
 
 Check script generation status.
 
-#### qa_workflow_get_latest_test_script_generation_runtime_by_test_case
+#### muggle-remote-workflow-get-latest-test-script-generation-runtime-by-test-case
 
 Get the latest generation runtime for a specific test case.
 
 ### Test Script Replay
 
-#### qa_workflow_start_test_script_replay
+#### muggle-remote-workflow-start-test-script-replay
 
 Execute a single test script.
 
@@ -732,7 +732,7 @@ Execute a single test script.
 | `projectId`    | string |    ✓     | Target project    |
 | `testScriptId` | string |    ✓     | Script to execute |
 
-#### qa_workflow_start_test_script_replay_bulk
+#### muggle-remote-workflow-start-test-script-replay-bulk
 
 Execute multiple test scripts in parallel.
 
@@ -752,11 +752,11 @@ Execute multiple test scripts in parallel.
 | `testScriptIds` | string[] |          | Specific scripts (omit for all) |
 | `name`          | string   |          | Name for this run batch         |
 
-#### qa_workflow_get_test_script_replay_bulk_latest_run
+#### muggle-remote-workflow-get-test-script-replay-bulk-latest-run
 
 Check bulk replay status.
 
-#### qa_workflow_get_replay_bulk_run_batch_summary
+#### muggle-remote-workflow-get-replay-bulk-run-batch-summary
 
 Get detailed summary of a bulk run batch.
 
@@ -773,11 +773,11 @@ Get detailed summary of a bulk run batch.
 
 ### Workflow Management
 
-#### qa_workflow_cancel_run
+#### muggle-remote-workflow-cancel-run
 
 Cancel a specific workflow run.
 
-#### qa_workflow_cancel_runtime
+#### muggle-remote-workflow-cancel-runtime
 
 Cancel a workflow runtime and all its runs.
 
@@ -787,35 +787,35 @@ Cancel a workflow runtime and all its runs.
 
 ### Test Cases
 
-#### qa_test_case_list
+#### muggle-remote-test-case-list
 
 List test cases for a project.
 
-#### qa_test_case_get
+#### muggle-remote-test-case-get
 
 Get test case details including steps and expected outcomes.
 
-#### qa_test_case_list_by_use_case
+#### muggle-remote-test-case-list-by-use-case
 
 List test cases for a specific use case.
 
 ### Test Scripts
 
-#### qa_test_script_list
+#### muggle-remote-test-script-list
 
 List test scripts for a project.
 
-#### qa_test_script_get
+#### muggle-remote-test-script-get
 
 Get test script details including executable steps.
 
-#### qa_test_script_list_paginated
+#### muggle-remote-test-script-list-paginated
 
 List test scripts with full pagination.
 
 ### Summaries
 
-#### qa_project_test_results_summary_get
+#### muggle-remote-project-test-results-summary-get
 
 Get aggregated test results summary.
 
@@ -831,11 +831,11 @@ Get aggregated test results summary.
 }
 ```
 
-#### qa_project_test_scripts_summary_get
+#### muggle-remote-project-test-scripts-summary-get
 
 Get test scripts summary.
 
-#### qa_project_test_runs_summary_get
+#### muggle-remote-project-test-runs-summary-get
 
 Get recent test runs summary.
 
@@ -843,11 +843,11 @@ Get recent test runs summary.
 
 ## Report Tools
 
-### qa_report_stats_summary_get
+### muggle-remote-report-stats-summary-get
 
 Get report statistics and health score.
 
-### qa_report_cost_query
+### muggle-remote-report-cost-query
 
 Query usage and cost data.
 
@@ -857,7 +857,7 @@ Query usage and cost data.
 | `startDateKey` | string |          | Start date (YYYYMMDD) |
 | `endDateKey`   | string |          | End date (YYYYMMDD)   |
 
-### qa_report_preferences_upsert
+### muggle-remote-report-preferences-upsert
 
 Configure report delivery preferences.
 
@@ -888,7 +888,7 @@ Configure report delivery preferences.
 | `sms`     | Send summary notifications      |
 | `webhook` | POST JSON payload to endpoint   |
 
-### qa_report_final_generate
+### muggle-remote-report-final-generate
 
 Generate a final test report (async operation).
 
@@ -898,7 +898,7 @@ Generate a final test report (async operation).
 
 These tools provide guidance without making changes.
 
-### qa_recommend_schedule
+### muggle-remote-recommend-schedule
 
 Get test scheduling recommendations.
 
@@ -917,7 +917,7 @@ Get test scheduling recommendations.
 }
 ```
 
-### qa_recommend_cicd_setup
+### muggle-remote-recommend-cicd-setup
 
 Get CI/CD integration templates for GitHub Actions, Azure DevOps, GitLab CI, etc.
 
