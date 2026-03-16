@@ -398,7 +398,7 @@ Start processing an uploaded PRD file to extract use cases. This is an async wor
 }
 ```
 
-### muggle-remote-workflow-get-prd-file-process-latest-run
+### muggle-remote-wf-get-prd-process-latest-run
 
 Check the status of a PRD file processing workflow.
 
@@ -476,7 +476,7 @@ Delete a secret.
 
 Wallet tools help set up billing methods and top up credits.
 
-### muggle-remote-wallet-payment-method-create-setup-session
+### muggle-remote-wallet-pm-create-setup-session
 
 Create a Stripe setup session to add a new saved payment method.
 
@@ -693,11 +693,11 @@ Generate test cases from approved use cases.
 | `projectId` | string |    ✓     | Target project                   |
 | `useCaseId` | string |          | Specific use case (omit for all) |
 
-#### muggle-remote-workflow-get-test-case-detection-latest-run
+#### muggle-remote-wf-get-tc-detect-latest-run
 
 Check test case detection status.
 
-#### muggle-remote-workflow-list-test-case-detection-runtimes
+#### muggle-remote-wf-list-tc-detect-runtimes
 
 List test case detection runtimes.
 
@@ -713,11 +713,11 @@ Generate executable test scripts from test cases.
 | `testCaseId` | string |          | Specific test case |
 | `useCaseId`  | string |          | Specific use case  |
 
-#### muggle-remote-workflow-get-test-script-generation-latest-run
+#### muggle-remote-wf-get-ts-gen-latest-run
 
 Check script generation status.
 
-#### muggle-remote-workflow-get-latest-test-script-generation-runtime-by-test-case
+#### muggle-remote-wf-get-latest-ts-gen-by-tc
 
 Get the latest generation runtime for a specific test case.
 
@@ -752,11 +752,11 @@ Execute multiple test scripts in parallel.
 | `testScriptIds` | string[] |          | Specific scripts (omit for all) |
 | `name`          | string   |          | Name for this run batch         |
 
-#### muggle-remote-workflow-get-test-script-replay-bulk-latest-run
+#### muggle-remote-wf-get-ts-replay-bulk-latest-run
 
 Check bulk replay status.
 
-#### muggle-remote-workflow-get-replay-bulk-run-batch-summary
+#### muggle-remote-wf-get-replay-bulk-batch-summary
 
 Get detailed summary of a bulk run batch.
 
