@@ -21,8 +21,8 @@ Both modes are available with the unified `@muggleai/mcp` package. **This page c
 
 | Skill | Description | Triggers |
 | :---- | :---------- | :------- |
-| **test-feature-local** | Test features locally with change detection | "test my changes", "run tests" |
-| **publish-to-cloud** | Publish projects to Muggle AI cloud | "publish", "sync to cloud" |
+| **test-feature-local** | Test features locally with cloud-first entity management | "test my changes", "run tests on localhost" |
+| **publish-test-to-cloud** | Publish locally generated test scripts to cloud | "publish my test", "upload script to cloud" |
 
 ## Installation
 
@@ -106,54 +106,57 @@ Agent:
 | **Smart Matching** | Finds existing projects/use cases/test cases |
 | **Auto-Create** | Creates missing entities as needed |
 
-## publish-to-cloud
+## publish-test-to-cloud
 
-Publishes local test artifacts to Muggle AI cloud for team collaboration and production testing.
+Publishes locally generated test scripts (action scripts) to Muggle AI cloud for replay, scheduling, and team collaboration.
 
 ### What It Does
 
 ```
 Check Authentication → Login if Needed
         ↓
-Select Project → Update Production URL
+Find Local Run → Verify Cloud Test Case ID
         ↓
-Sync to Cloud → Report Cloud URLs
+Upload Action Script → Link to Test Case
+        ↓
+Return Cloud URL
 ```
 
 ### Example Usage
 
-**First-time publish:**
+**Publish after local test generation:**
 
 ```
-You: "Publish my tests to the cloud"
+You: "Publish my test run to the cloud"
 
 Agent:
 1. Checks auth → starts login flow if needed
-2. Lists local projects → user selects one
-3. Asks for production URL (localhost → production)
-4. Syncs project, use cases, test cases
-5. Reports: "Published! View at https://app.muggle-ai.com/projects/..."
+2. Lists local run results → recommends most recent generation
+3. User confirms the run to publish
+4. Uploads action script to cloud
+5. Reports: "Published! View at https://staging.muggle-ai.com/muggleTestV0/dashboard/projects/..."
 ```
 
-**Sync updates:**
+**Publish specific run:**
 
 ```
-You: "Sync my project to the cloud"
+You: "Publish run_1773735163358_roeot4 to cloud"
 
 Agent:
-1. Finds project with existing cloud mapping
-2. Syncs new/updated entities
-3. Reports what changed
+1. Verifies run has valid cloudTestCaseId
+2. Uploads action script
+3. Links script to test case
+4. Returns cloud URL
 ```
 
 ### Key Features
 
 | Feature | Description |
 | :------ | :---------- |
-| **Device Code Auth** | Secure login flow |
-| **URL Migration** | Prompts to update localhost → production URL |
-| **Selective Publish** | Publish all, specific use case, or only new content |
-| **Idempotent** | Re-publishing updates, doesn't duplicate |
+| **Device Code Auth** | Secure login flow via `muggle-remote-auth-*` |
+| **Run Selection** | List and select from recent test generation runs |
+| **Action Script Upload** | Uploads complete action script with screenshots |
+| **Cloud URL** | Returns direct link to view published script |
 
 ## Skills vs Manual Tool Calls
 

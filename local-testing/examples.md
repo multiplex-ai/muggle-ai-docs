@@ -364,13 +364,13 @@ The agent will:
 2. Find matching test cases in your local projects
 3. Run affected tests and report results
 
-### "Publish to cloud"
+### "Publish test to cloud"
 
-With the `publish-to-cloud` skill installed:
+With the `publish-test-to-cloud` skill installed:
 
-> "Publish my project to the cloud"
+> "Publish my test run to the cloud"
 
-The agent handles authentication, URL updates, and syncing automatically.
+The agent handles authentication, action script upload, and linking to the test case automatically.
 
 See **[Agent Skills](skills.md)** for installation instructions.
 
