@@ -51,7 +51,7 @@ flowchart LR
 | **Browser Automation** | Real browser interactions (click, type, scroll) |
 | **Screenshot Capture** | Visual documentation of test results |
 | **Agent Skills** | Pre-built workflows like "test my changes" |
-| **Publish to Cloud** | Upload locally generated scripts to Muggle AI for team collaboration |
+| **Publish Test to Cloud** | Upload locally generated test scripts to Muggle AI for replay and collaboration |
 
 ## How It Works
 
@@ -168,7 +168,7 @@ flowchart LR
 Ready to test your localhost applications?
 
 1. **[Local Testing Setup](setup.md)** — Install and configure in 10 minutes
-2. **[Agent Skills](skills.md)** — Pre-built workflows for "test my changes" and "publish to cloud"
+2. **[Agent Skills](skills.md)** — Pre-built workflows for "test my changes" and "publish test to cloud"
 3. **[Available Tools](tools-reference.md)** — Complete tool documentation
 4. **[Example Workflows](examples.md)** — Common testing scenarios
 
