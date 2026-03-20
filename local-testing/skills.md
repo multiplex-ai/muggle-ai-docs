@@ -8,12 +8,12 @@ Agent Skills are structured instructions that teach AI assistants how to perform
 
 ## Local vs Remote Skills
 
-The [muggle-ai-skills repository](https://github.com/muggle-ai/muggle-ai-skills) organizes skills by testing mode:
+The [muggle-ai-mcp repository](https://github.com/muggle-ai/muggle-ai-mcp) organizes skills by testing mode:
 
 | Folder | MCP Package Mode | Use For |
 | :----- | :--------------- | :------ |
-| `local/` | `muggle-mcp serve --local` | `localhost`, local network |
-| `remote/` | `muggle-mcp serve --qa` | Public URLs (staging, prod) |
+| `skills/local/` | `muggle-mcp serve --local` | `localhost`, local network |
+| `skills/remote/` | `muggle-mcp serve --qa` | Public URLs (staging, prod) |
 
 Both modes are available with the unified `@muggleai/mcp` package. **This page covers local skills.** For remote testing, see [Remote Testing with MCP](../mcp/overview.md).
 
@@ -28,10 +28,10 @@ Both modes are available with the unified `@muggleai/mcp` package. **This page c
 
 ### Get the Skills
 
-Skills are available in the [muggle-ai-skills repository](https://github.com/muggle-ai/muggle-ai-skills).
+Skills are available in the [muggle-ai-mcp repository](https://github.com/muggle-ai/muggle-ai-mcp).
 
 ```bash
-git clone https://github.com/muggle-ai/muggle-ai-skills.git
+git clone https://github.com/muggle-ai/muggle-ai-mcp.git
 ```
 
 ### For Cursor IDE
@@ -40,14 +40,14 @@ git clone https://github.com/muggle-ai/muggle-ai-skills.git
 
 ```bash
 # Install local testing skills
-cp -r muggle-ai-skills/local/* ~/.cursor/skills/
+cp -r muggle-ai-mcp/skills/local/* ~/.cursor/skills/
 ```
 
 **Project Installation** (shared with team):
 
 ```bash
 mkdir -p .cursor/skills
-cp -r muggle-ai-skills/local/* .cursor/skills/
+cp -r muggle-ai-mcp/skills/local/* .cursor/skills/
 ```
 
 > **Important:** These skills work with local testing tools (`muggle-local-*` prefix) for `localhost` URLs. For public URLs, use remote skills with cloud QA tools (`muggle-remote-*` prefix).
@@ -175,7 +175,7 @@ Want to create your own testing skills? Skills are markdown files with:
 2. **Workflow steps** — what tools to call and when
 3. **Decision logic** — how to handle different scenarios
 
-See the [muggle-ai-skills repository](https://github.com/muggle-ai/muggle-ai-skills) for examples.
+See the [muggle-ai-mcp repository](https://github.com/muggle-ai/muggle-ai-mcp) for examples.
 
 ## Next Steps
 
