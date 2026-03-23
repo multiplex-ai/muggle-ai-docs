@@ -1,10 +1,10 @@
 # Local Testing Overview
 
-Test your localhost applications directly from your AI assistant using Muggle AI MCP.
+Test your localhost applications directly from your AI assistant using Muggle Test.
 
 ## What is Local Testing?
 
-Local Testing is a capability of the `@muggleai/mcp` package that enables AI assistants like Cursor and Claude Desktop to test web applications running on your development machine. Unlike cloud QA which tests publicly accessible URLs, local testing runs entirely on your computer and can access `localhost` URLs.
+Local Testing is a capability of the `@muggleai/works` package that enables AI assistants like Cursor and Claude Desktop to test web applications running on your development machine. Unlike cloud QA which tests publicly accessible URLs, local testing runs entirely on your computer and can access `localhost` URLs.
 
 ## When to Use Local vs Cloud Testing
 
@@ -21,7 +21,7 @@ Local Testing is a capability of the `@muggleai/mcp` package that enables AI ass
 flowchart LR
     subgraph dev["Your Computer"]
         A["AI Assistant<br/>(Cursor, Claude)"]
-        B["@muggleai/mcp"]
+        B["@muggleai/works"]
         C["Browser Engine"]
         D["Your App<br/>(localhost:3000)"]
         
@@ -51,7 +51,7 @@ flowchart LR
 | **Browser Automation** | Real browser interactions (click, type, scroll) |
 | **Screenshot Capture** | Visual documentation of test results |
 | **Agent Skills** | Pre-built workflows like "test my changes" |
-| **Publish Test to Cloud** | Upload locally generated test scripts to Muggle AI for replay and collaboration |
+| **Publish Test to Cloud** | Upload locally generated test scripts to Muggle Test for replay and collaboration |
 
 ## How It Works
 
@@ -86,7 +86,7 @@ flowchart TD
 | Aspect | Local Testing | Cloud QA |
 | :----- | :------------ | :------- |
 | **Target URLs** | `localhost`, local network | Public URLs (preview, staging, prod) |
-| **Setup** | `muggle-mcp serve --local` | `muggle-mcp serve --qa` |
+| **Setup** | `muggle serve --local` | `muggle serve --qa` |
 | **Browser runs on** | Your machine | Muggle AI cloud |
 | **Test results** | Local files (`~/.muggle-ai/`) | Cloud dashboard |
 | **Best for** | Development, debugging | CI/CD, production testing |

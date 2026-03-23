@@ -1,6 +1,6 @@
 # Agent Skills for Local Testing
 
-Pre-built AI agent skills that automate common testing workflows with Muggle AI.
+Pre-built AI agent skills that automate common testing workflows with Muggle Test.
 
 ## What are Agent Skills?
 
@@ -12,10 +12,10 @@ The [muggle-ai-mcp repository](https://github.com/muggle-ai/muggle-ai-mcp) organ
 
 | Folder | MCP Package Mode | Use For |
 | :----- | :--------------- | :------ |
-| `skills/local/` | `muggle-mcp serve --local` | `localhost`, local network |
-| `skills/remote/` | `muggle-mcp serve --qa` | Public URLs (staging, prod) |
+| `skills/local/` | `muggle serve --local` | `localhost`, local network |
+| `skills/remote/` | `muggle serve --qa` | Public URLs (staging, prod) |
 
-Both modes are available with the unified `@muggleai/mcp` package. **This page covers local skills.** For remote testing, see [Remote Testing with MCP](../mcp/overview.md).
+Both modes are available with the unified `@muggleai/works` package. **This page covers local skills.** For remote testing, see [Remote Testing with MCP](../mcp/overview.md).
 
 ## Available Local Skills
 

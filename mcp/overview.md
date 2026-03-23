@@ -1,22 +1,22 @@
 # MCP Overview
 
-The Muggle AI MCP package lets you automate testing through AI assistants using the [Model Context Protocol (MCP)](https://modelcontextprotocol.io/).
+Ship quality products, not just code. The Muggle Test MCP package provides AI-powered QA that validates your app's user experience through AI assistants using the [Model Context Protocol (MCP)](https://modelcontextprotocol.io/).
 
 ## What is the MCP Package?
 
-The `@muggleai/mcp` package is a **unified MCP server** that provides:
+The `@muggleai/works` package is a **unified MCP server** that provides:
 
 | Feature | Description |
 | :------ | :---------- |
 | **Local Testing** | Test localhost and local network applications |
-| **Cloud QA** | Test preview, staging, and production environments |
-| **AI-Driven Automation** | Use natural language to control testing workflows |
-| **Single Installation** | One package for all testing needs |
+| **Cloud QA** | Validate preview, staging, and production environments |
+| **AI-Driven Automation** | Use natural language to control QA workflows |
+| **Single Installation** | One package for all QA needs |
 
 ## Quick Install
 
 ```bash
-npm install -g @muggleai/mcp@latest
+npm install -g @muggleai/works
 ```
 
 ## When to Use Each Mode
@@ -39,7 +39,7 @@ npm install -g @muggleai/mcp@latest
 flowchart LR
     subgraph dev["Your Computer"]
         A["AI Assistant<br/>(Cursor, Claude)"]
-        B["@muggleai/mcp"]
+        B["@muggleai/works"]
         C["Browser Engine"]
         D["Your App<br/>(localhost:3000)"]
         
@@ -60,7 +60,7 @@ Local testing runs entirely on your machine:
 flowchart LR
     subgraph env["Your Computer"]
         A["AI Assistant"]
-        B["@muggleai/mcp"]
+        B["@muggleai/works"]
     end
     
     subgraph cloud["Muggle AI Cloud"]
@@ -85,7 +85,7 @@ Cloud QA uses Muggle AI's infrastructure:
 
 ### Unified Mode (Default)
 
-When you run `muggle-mcp serve` without flags, **both modes are active**:
+When you run `muggle serve` without flags, **both modes are active**:
 - Use `muggle-local-*` tools for local testing
 - Use `muggle-remote-*` tools for cloud QA
 - Seamlessly publish local projects to cloud
@@ -94,15 +94,16 @@ When you run `muggle-mcp serve` without flags, **both modes are active**:
 
 ### Single Installation
 
-No need to manage multiple packages. The unified `@muggleai/mcp` package replaces all previous packages:
+No need to manage multiple packages. The unified `@muggleai/works` package replaces all previous packages:
 
 | Previous (Deprecated) | Current |
 | :-------------------- | :------ |
-| `@muggleai/mcp-qa-gateway` | `@muggleai/mcp` |
-| `@muggle-ai/local-mcp` | `@muggleai/mcp` |
+| `@muggleai/mcp` | `@muggleai/works` |
+| `@muggleai/mcp-qa-gateway` | `@muggleai/works` |
+| `@muggle-ai/local-mcp` | `@muggleai/works` |
 | Two configurations | One configuration |
 
-**Note:** The previous packages have been sunset and are no longer maintained. Use `@muggleai/mcp` for all new installations.
+**Note:** The previous packages have been sunset and are no longer maintained. Use `@muggleai/works` for all new installations.
 
 ### Natural Language Testing
 
@@ -123,7 +124,7 @@ Instead of navigating dashboards or writing scripts:
 | :------- | ----: | :---------- |
 | **Local Testing** | ~65 | Project management, execution, results |
 | **Cloud QA** | ~60 | Workflows, test generation, reporting |
-| **Total** | ~125 | All testing needs covered |
+| **Total** | ~125 | All QA needs covered |
 
 ### Local Tools (prefix: `muggle-local-`)
 

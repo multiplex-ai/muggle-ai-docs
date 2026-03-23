@@ -1,6 +1,6 @@
 # MCP Concepts & Architecture
 
-Understanding how the `@muggleai/mcp` package works with Muggle Test.
+Understanding how the `@muggleai/works` package works with Muggle Test.
 
 ## System Architecture
 
@@ -12,7 +12,7 @@ The unified MCP package supports multiple modes: **Cloud QA**, **Local Testing**
 flowchart TB
     subgraph env["Your Computer"]
         client["AI Assistant<br/>(Claude, Cursor)"]
-        subgraph mcp["@muggleai/mcp"]
+        subgraph mcp["@muggleai/works"]
             direction TB
             local["Local Tools<br/>(muggle-local-*)"]
             cloud["Cloud Tools<br/>(muggle-remote-*)"]
@@ -67,7 +67,7 @@ flowchart TB
 | :----- | :-------------- | :------------- |
 | **Local Testing** | Yes | No |
 | **Cloud Testing** | Yes | Yes |
-| **Setup** | `npm install -g @muggleai/mcp@latest` | Configure URL only |
+| **Setup** | `npm install -g @muggleai/works` | Configure URL only |
 | **Latency** | Lowest (no gateway hop) | Network to gateway |
 | **Credentials** | Environment variables | Per-request headers |
 | **Best for** | Full functionality | Quick start, cloud-only |

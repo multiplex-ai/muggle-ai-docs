@@ -14,7 +14,7 @@ Connect your AI assistant to Muggle Test in under 5 minutes.
 ### Step 1: Install
 
 ```bash
-npm install -g @muggleai/mcp@latest
+npm install -g @muggleai/works
 ```
 
 ### Step 2: Configure
@@ -24,8 +24,8 @@ npm install -g @muggleai/mcp@latest
 ```json
 {
   "mcpServers": {
-    "muggle-test": {
-      "command": "muggle-mcp",
+    "muggle": {
+      "command": "muggle",
       "args": ["serve"]
     }
   }
@@ -42,8 +42,8 @@ npm install -g @muggleai/mcp@latest
 ```json
 {
   "mcpServers": {
-    "muggle-test": {
-      "command": "muggle-mcp",
+    "muggle": {
+      "command": "muggle",
       "args": ["serve"]
     }
   }
@@ -83,8 +83,8 @@ The assistant will:
 ```json
 {
   "mcpServers": {
-    "muggle-test": {
-      "command": "muggle-mcp",
+    "muggle": {
+      "command": "muggle",
       "args": ["serve"],
       "env": {
         "MCP_API_KEY": "mai_sk_your_api_key_here"
@@ -208,12 +208,12 @@ The signup form correctly shows "Please enter a valid email" when an invalid ema
 
 | Scenario | Recommendation |
 | :------- | :------------- |
-| Testing during development | **Local** (`muggle-mcp serve --local`) |
+| Testing during development | **Local** (`muggle serve --local`) |
 | Testing localhost URLs | **Local** |
-| Testing preview/staging deployments | **Cloud** (`muggle-mcp serve --qa`) |
+| Testing preview/staging deployments | **Cloud** (`muggle serve --qa`) |
 | CI/CD integration | **Cloud** |
 | Team collaboration | **Cloud** |
-| Both local and cloud | **Default** (`muggle-mcp serve`) |
+| Both local and cloud | **Default** (`muggle serve`) |
 
 ---
 
@@ -224,7 +224,7 @@ For cloud-only testing without local installation, use the hosted gateway:
 ```json
 {
   "mcpServers": {
-    "muggle-test": {
+    "muggle": {
       "url": "https://mcp.muggle-ai.com/mcp",
       "headers": {
         "x-api-key": "mai_sk_your_api_key_here"
@@ -242,10 +242,10 @@ For cloud-only testing without local installation, use the hosted gateway:
 
 | Check | Solution |
 | :---- | :------- |
-| Package installed? | `npm list -g @muggleai/mcp` |
+| Package installed? | `npm list -g @muggleai/works` |
 | Config correct? | Verify JSON syntax |
 | Client restarted? | Restart after config changes |
-| Run doctor? | `muggle-mcp doctor` |
+| Run doctor? | `muggle doctor` |
 
 ### Authentication Errors
 
