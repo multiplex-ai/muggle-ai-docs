@@ -4,7 +4,7 @@ The Muggle AI MCP package provides a unified server for both **Cloud QA testing*
 
 ## Package Overview
 
-The `@muggleai/mcp` package combines:
+The `@muggleai/works` package combines:
 
 | Feature | Description |
 | :------ | :---------- |
@@ -17,12 +17,23 @@ The `@muggleai/mcp` package combines:
 
 ## Quick Install
 
+**Claude Code (recommended):**
+
+```
+/plugin marketplace add https://github.com/multiplex-ai/muggle-ai-works
+/plugin install muggleai@muggle-works
+```
+
+This delivers skills, MCP server, and hooks through the plugin lifecycle. No manual file copying.
+
+**npm (for Cursor or CLI-only use):**
+
 ```bash
-npm install -g @muggleai/mcp@latest
+npm install -g @muggleai/works@latest
 ```
 
 This installs:
-- The MCP server (`muggle-mcp serve`)
+- The MCP server (`muggle serve`)
 - Browser automation engine (downloaded automatically)
 - CLI tools for diagnostics and authentication
 
@@ -81,7 +92,7 @@ Install locally to enable **both local testing and cloud QA** through a single M
 #### Installation
 
 ```bash
-npm install -g @muggleai/mcp@latest
+npm install -g @muggleai/works@latest
 ```
 
 During installation, the browser automation engine is automatically downloaded for your platform.
@@ -89,7 +100,7 @@ During installation, the browser automation engine is automatically downloaded f
 #### Verify Installation
 
 ```bash
-muggle-mcp doctor
+muggle doctor
 ```
 
 This checks:
@@ -110,7 +121,7 @@ Edit `~/.cursor/mcp.json`:
 {
   "mcpServers": {
     "muggle-test": {
-      "command": "muggle-mcp",
+      "command": "muggle",
       "args": ["serve"]
     }
   }
@@ -123,7 +134,7 @@ Edit `~/.cursor/mcp.json`:
 {
   "mcpServers": {
     "muggle-test": {
-      "command": "muggle-mcp",
+      "command": "muggle",
       "args": ["serve"],
       "env": {
         "MCP_API_KEY": "mai_sk_your_api_key_here"
@@ -146,7 +157,7 @@ Edit your Claude Desktop configuration:
 {
   "mcpServers": {
     "muggle-test": {
-      "command": "muggle-mcp",
+      "command": "muggle",
       "args": ["serve"],
       "env": {
         "MCP_API_KEY": "mai_sk_your_api_key_here"
@@ -164,9 +175,9 @@ By default, the server enables **all tools** (both local and cloud). Use flags t
 
 | Command | Tools Enabled |
 | :------ | :------------ |
-| `muggle-mcp serve` | All tools (local + cloud) |
-| `muggle-mcp serve --local` | Local testing only |
-| `muggle-mcp serve --qa` | Cloud QA only |
+| `muggle serve` | All tools (local + cloud) |
+| `muggle serve --local` | Local testing only |
+| `muggle serve --qa` | Cloud QA only |
 
 **Example: Local-only configuration:**
 
@@ -174,7 +185,7 @@ By default, the server enables **all tools** (both local and cloud). Use flags t
 {
   "mcpServers": {
     "muggle-test-local": {
-      "command": "muggle-mcp",
+      "command": "muggle",
       "args": ["serve", "--local"]
     }
   }
@@ -187,13 +198,13 @@ By default, the server enables **all tools** (both local and cloud). Use flags t
 
 | Command | Description |
 | :------ | :---------- |
-| `muggle-mcp serve` | Start the MCP server |
-| `muggle-mcp setup` | Download/reinstall browser engine |
-| `muggle-mcp doctor` | Check installation and diagnose issues |
-| `muggle-mcp login` | Authenticate with Muggle AI |
-| `muggle-mcp logout` | Clear stored credentials |
-| `muggle-mcp status` | Show authentication status |
-| `muggle-mcp --version` | Show package version |
+| `muggle serve` | Start the MCP server |
+| `muggle setup` | Download/reinstall browser engine |
+| `muggle doctor` | Check installation and diagnose issues |
+| `muggle login` | Authenticate with Muggle AI |
+| `muggle logout` | Clear stored credentials |
+| `muggle status` | Show authentication status |
+| `muggle --version` | Show package version |
 
 ---
 
@@ -239,7 +250,7 @@ After configuring your MCP client:
 2. **Ask the assistant:** "Check the Muggle Test status"
 3. **Expected response:** Status showing available tools and auth state
 
-If you see errors, run `muggle-mcp doctor` to diagnose.
+If you see errors, run `muggle doctor` to diagnose.
 
 ---
 
@@ -250,7 +261,7 @@ If you see errors, run `muggle-mcp doctor` to diagnose.
 │                        Your Computer                                │
 │                                                                     │
 │  ┌────────────────┐          ┌─────────────────────────────────┐   │
-│  │ Cursor or      │  spawns  │ @muggleai/mcp                   │   │
+│  │ Cursor or      │  spawns  │ @muggleai/works                   │   │
 │  │ Claude Desktop │─────────►│ (runs as child process)         │   │
 │  │                │          │                                 │   │
 │  │                │  stdin   │ Local Tools → Browser Engine    │   │
@@ -297,7 +308,7 @@ All local data is stored in `~/.muggle-ai/`:
 
 | Check | Solution |
 | :---- | :------- |
-| Package installed? | Run `npm list -g @muggleai/mcp` |
+| Package installed? | Run `npm list -g @muggleai/works` |
 | Client restarted? | Restart Cursor/Claude Desktop after config changes |
 | Node version? | Ensure Node.js 22+ (`node --version`) |
 | Config correct? | Verify JSON syntax in your MCP config |
@@ -306,7 +317,7 @@ All local data is stored in `~/.muggle-ai/`:
 
 | Check | Solution |
 | :---- | :------- |
-| Download failed? | Run `muggle-mcp setup` to retry |
+| Download failed? | Run `muggle setup` to retry |
 | Network issues? | Check internet connection and proxy settings |
 | Custom location? | Set `ELECTRON_APP_PATH` environment variable |
 
@@ -315,8 +326,8 @@ All local data is stored in `~/.muggle-ai/`:
 | Error | Solution |
 | :---- | :------- |
 | "Device code expired" | Codes are valid for 15 minutes. Start again. |
-| "Not authenticated" | Run `muggle-mcp login` or configure API key |
-| Token expired | Re-authenticate with `muggle-mcp login` |
+| "Not authenticated" | Run `muggle login` or configure API key |
+| Token expired | Re-authenticate with `muggle login` |
 
 For more help, see [Troubleshooting](../troubleshooting/common-issues.md).
 

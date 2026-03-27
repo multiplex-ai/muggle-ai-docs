@@ -1,6 +1,6 @@
 # Local Testing Tools Reference
 
-Complete reference for local testing tools in the `@muggleai/mcp` package.
+Complete reference for local testing tools in the `@muggleai/works` package.
 
 > **Architecture Note:** Local testing uses a **cloud-first** approach:
 > - **`muggle-remote-*` tools**: Authentication and all entity management (projects, use cases, test cases, secrets)
