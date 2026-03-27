@@ -128,8 +128,8 @@ This page lists frequent issues and quick checks to resolve them.
 
 | Check | Solution |
 | :---- | :------- |
-| Installation complete? | Run `muggle-mcp doctor` to check status |
-| Download failed? | Run `muggle-mcp setup` to retry |
+| Installation complete? | Run `muggle doctor` to check status |
+| Download failed? | Run `muggle setup` to retry |
 | Network blocked? | Check firewall/proxy settings |
 | Custom binary? | Set `ELECTRON_APP_PATH` environment variable |
 
@@ -144,7 +144,7 @@ This page lists frequent issues and quick checks to resolve them.
 
 | Check | Solution |
 | :---- | :------- |
-| Release published? | Check [releases page](https://github.com/multiplex-ai/muggle-ai-mcp/releases) |
+| Release published? | Check [releases page](https://github.com/multiplex-ai/muggle-ai-works/releases) |
 | Version mismatch? | Ensure package version matches available releases |
 | Development version? | Build from source (see [setup docs](../local-testing/setup.md)) |
 
@@ -159,11 +159,11 @@ This page lists frequent issues and quick checks to resolve them.
 
 | Check | Solution |
 | :---- | :------- |
-| Package installed? | Run `npm list -g @muggleai/mcp` |
+| Package installed? | Run `npm list -g @muggleai/works` |
 | Config correct? | Verify path in `mcp.json` or `claude_desktop_config.json` |
 | Client restarted? | Restart Cursor/Claude Desktop after config changes |
 | Node version? | Ensure Node.js 22+ is installed |
-| Run diagnostics | Execute `muggle-mcp doctor` to identify issues |
+| Run diagnostics | Execute `muggle doctor` to identify issues |
 
 ### Browser Engine Not Available
 
@@ -176,7 +176,7 @@ This page lists frequent issues and quick checks to resolve them.
 
 | Check | Solution |
 | :---- | :------- |
-| Browser engine installed? | Run `muggle-mcp setup` |
+| Browser engine installed? | Run `muggle setup` |
 | Port conflict? | Check if another process is using the port |
 | Permissions? | Ensure electron-app has execute permissions |
 
@@ -191,8 +191,8 @@ This page lists frequent issues and quick checks to resolve them.
 
 | Check | Solution |
 | :---- | :------- |
-| Auth status? | Run `muggle-mcp status` to check |
-| Credentials expired? | Run `muggle-mcp login` to re-authenticate |
+| Auth status? | Run `muggle status` to check |
+| Credentials expired? | Run `muggle login` to re-authenticate |
 | API key configured? | Set `MCP_API_KEY` in your MCP config |
 | Network issues? | Check firewall/proxy settings |
 

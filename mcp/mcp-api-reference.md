@@ -1,6 +1,6 @@
 # MCP API Reference
 
-Complete reference for Cloud QA tools in the `@muggleai/mcp` package.
+Complete reference for Cloud QA tools in the `@muggleai/works` package.
 
 > **Note:** This page documents Cloud QA tools (prefix: `muggle-remote-`). For local testing tools (prefix: `muggle-local-`), see [Local Testing Tools Reference](../local-testing/tools-reference.md).
 
@@ -31,7 +31,7 @@ These tools enable **agentic authentication** - AI agents can help users authent
 
 ### MCP Local Auth Tools (muggle-remote-auth-*)
 
-These tools are available when running `muggle-mcp serve` and are used for local testing authentication:
+These tools are available when running `muggle serve` and are used for local testing authentication:
 
 | Tool | Description |
 | :--- | :---------- |

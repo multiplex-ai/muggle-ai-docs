@@ -13,50 +13,37 @@ Connect your AI assistant to Muggle Test in under 5 minutes.
 
 ### Step 1: Install
 
+**Claude Code (recommended):**
+
+```
+/plugin marketplace add https://github.com/multiplex-ai/muggle-ai-works
+/plugin install muggleai@muggle-works
+```
+
+**Cursor or other MCP clients:**
+
 ```bash
-npm install -g @muggleai/mcp@latest
+npm install -g @muggleai/works@latest
 ```
 
-### Step 2: Configure
-
-**Cursor IDE** - Edit `~/.cursor/mcp.json`:
+Then configure your MCP client (e.g., `~/.cursor/mcp.json`):
 
 ```json
 {
   "mcpServers": {
-    "muggle-test": {
-      "command": "muggle-mcp",
+    "muggle": {
+      "command": "muggle",
       "args": ["serve"]
     }
   }
 }
 ```
 
-**Claude Desktop** - Edit your config file:
+### Step 2: Verify
 
-| Platform | Path |
-| :------- | :--- |
-| macOS | `~/Library/Application Support/Claude/claude_desktop_config.json` |
-| Windows | `%APPDATA%\Claude\claude_desktop_config.json` |
+**Claude Code:** Run `/muggle:status`
 
-```json
-{
-  "mcpServers": {
-    "muggle-test": {
-      "command": "muggle-mcp",
-      "args": ["serve"]
-    }
-  }
-}
-```
-
-### Step 3: Restart
-
-Restart your MCP client (Cursor or Claude Desktop).
-
-### Step 4: Verify
-
-Ask your assistant: **"Check the Muggle Test status"**
+**Cursor / other clients:** Ask your assistant: **"Check the Muggle Test status"**
 
 ---
 
@@ -84,7 +71,7 @@ The assistant will:
 {
   "mcpServers": {
     "muggle-test": {
-      "command": "muggle-mcp",
+      "command": "muggle",
       "args": ["serve"],
       "env": {
         "MCP_API_KEY": "mai_sk_your_api_key_here"
@@ -208,12 +195,12 @@ The signup form correctly shows "Please enter a valid email" when an invalid ema
 
 | Scenario | Recommendation |
 | :------- | :------------- |
-| Testing during development | **Local** (`muggle-mcp serve --local`) |
+| Testing during development | **Local** (`muggle serve --local`) |
 | Testing localhost URLs | **Local** |
-| Testing preview/staging deployments | **Cloud** (`muggle-mcp serve --qa`) |
+| Testing preview/staging deployments | **Cloud** (`muggle serve --qa`) |
 | CI/CD integration | **Cloud** |
 | Team collaboration | **Cloud** |
-| Both local and cloud | **Default** (`muggle-mcp serve`) |
+| Both local and cloud | **Default** (`muggle serve`) |
 
 ---
 
@@ -242,10 +229,10 @@ For cloud-only testing without local installation, use the hosted gateway:
 
 | Check | Solution |
 | :---- | :------- |
-| Package installed? | `npm list -g @muggleai/mcp` |
+| Package installed? | `npm list -g @muggleai/works` |
 | Config correct? | Verify JSON syntax |
 | Client restarted? | Restart after config changes |
-| Run doctor? | `muggle-mcp doctor` |
+| Run doctor? | `muggle doctor` |
 
 ### Authentication Errors
 
