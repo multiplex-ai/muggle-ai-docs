@@ -225,6 +225,14 @@
                     "relativePath": "billing/quotas-and-limits.md",
                     "order": 2,
                     "tags": ["billing", "quotas", "limits", "usage"]
+                },
+                {
+                    "articleId": "enterprise-organizations",
+                    "title": "Enterprise Organizations",
+                    "summary": "Centralized billing, seat management, shared token wallet, and role-based access for companies.",
+                    "relativePath": "billing/enterprise-organizations.md",
+                    "order": 3,
+                    "tags": ["billing", "enterprise", "organization", "seats", "teams"]
                 }
             ]
         },

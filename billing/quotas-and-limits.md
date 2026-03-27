@@ -72,13 +72,29 @@ For test case detection workflows:
 
 The workflow doesn't fail—it achieves **partial success** and reports what was created.
 
+## Enterprise Organization Quotas
+
+Enterprise organizations have elevated quotas that apply org-wide:
+
+| Resource | Enterprise Limit |
+| :------- | :--------------- |
+| **Projects** | Unlimited |
+| **Use cases / project** | Unlimited |
+| **Test cases / project** | Unlimited |
+| **Concurrent workflows** | 20+ (configurable) |
+| **Tokens** | Pay per use (no monthly cap) |
+
+Enterprise members see "Unlimited" in quota displays. Token usage is billed to the organization's shared wallet at $5 per 1,000,000 tokens.
+
+For more details, see [Enterprise Organizations](enterprise-organizations.md).
+
 ## Quota Exemptions
 
 Some accounts and projects may be exempt from quota enforcement:
 
 | Exemption Type | When Applied |
 | :------------- | :----------- |
-| **User-level** | Enterprise accounts with unlimited plans |
+| **Organization-level** | Enterprise organization members have unlimited quotas |
 | **Project-level** | Projects migrated from before quota enforcement |
 | **Admin override** | Special cases granted by support |
 

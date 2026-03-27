@@ -4,13 +4,17 @@ Muggle Test offers different subscription tiers to match your testing needs. Eac
 
 ## Plan Comparison
 
-| Feature | Free | Professional | Enterprise |
-| :------ | :--- | :----------- | :--------- |
-| **Journeys Scanned** | 20 | 50 | 50+ |
-| **Use Cases** | 3 | 20 | 100+ |
-| **Test Cases** | 10 | 60 | 300+ |
-| **Concurrent Workflows** | 3 | 10 | 50+ |
-| **Monthly Tokens** | ~5,000 | ~50,000 | Custom |
+| Feature | Free | Starter | Professional | Enterprise |
+| :------ | :--- | :------ | :----------- | :--------- |
+| **Journeys Scanned** | 10 | 30 | 100 | Unlimited |
+| **Use Cases / Project** | 3 | 10 | 50 | Unlimited |
+| **Test Cases / Project** | 5 | 30 | 300 | Unlimited |
+| **Concurrent Workflows** | 1 | 3 | 10 | 20+ |
+| **Monthly Tokens** | 500K | 3M | 20M | Pay per use |
+| **Projects** | 1 | 3 | Unlimited | Unlimited |
+| **Seats** | 1 | 1 | 1 | 5+ (per-seat) |
+| **Organization Account** | — | — | — | ✅ |
+| **Shared Token Wallet** | — | — | — | ✅ |
 
 ## Understanding Quotas
 
@@ -129,18 +133,31 @@ To increase your limits:
 
 Changes take effect immediately, and new limits apply to all existing projects.
 
-## Enterprise & Custom Plans
+## Enterprise Plan
 
-For teams with larger needs:
+Enterprise is designed for companies that need centralized billing, team management, and shared resources.
 
-| Need | Solution |
-| :--- | :------- |
-| More than 10 use cases | Enterprise plan |
-| Higher concurrency | Custom limits available |
-| Volume discounts | Contact sales |
-| Dedicated support | Enterprise plan |
+| Feature | Details |
+| :------ | :------ |
+| **Pricing** | $99/seat/month (minimum 5 seats) |
+| **Token billing** | Pay per use — $5 per 1,000,000 tokens |
+| **Organization account** | Centralized company account with admin controls |
+| **Seats** | Purchase and assign seats to employees via email invitation |
+| **Shared token wallet** | All members consume from one company wallet |
+| **Roles** | Owner, Admin, Member — control access and permissions |
+| **Projects** | Unlimited, belong to the organization |
+| **Concurrent workflows** | 20+ (configurable) |
 
-Contact us at [sales@muggletest.com](mailto:sales@muggletest.com) for custom pricing.
+### Key Enterprise Features
+
+- **Seat management** — purchase seats and invite employees by email
+- **Shared billing** — one subscription, one invoice, one payment method for the whole team
+- **Usage analytics** — see token consumption by member and by project
+- **Role-based access** — Owners manage billing, Admins manage members, Members use resources
+
+For full details, see [Enterprise Organizations](enterprise-organizations.md).
+
+For custom pricing on deployments with 20+ seats, contact [sales@muggle-ai.com](mailto:sales@muggle-ai.com).
 
 ## Next Steps
 
