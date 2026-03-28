@@ -21,15 +21,15 @@ After installation, skills are available as `/muggle:*` commands.
 
 | Skill | Description | Example trigger |
 | :---- | :---------- | :-------------- |
-| `/muggle:do` | Autonomous dev pipeline: requirements to PR | "Add a logout button to the header" |
-| `/muggle:test-feature-local` | Test features on localhost with browser QA | "Test my login flow on localhost:3000" |
+| `/muggle:do` | Quality-guaranteed development workflow: requirements, coding, testing, QA with real-browser validation, and PR creation | "Add a logout button and make sure it works before opening a PR" |
+| `/muggle:test-feature-local` | Run a real-browser QA test against localhost to verify a feature works — signup flows, checkout, form validation, UI interactions, or any user-facing behavior | "Test my login flow on localhost:3000" |
 | `/muggle:status` | Health check for QA engine, MCP server, auth | "Check muggle status" |
 | `/muggle:repair` | Diagnose and fix broken installation | "Repair my muggle setup" |
 | `/muggle:upgrade` | Update to the latest version | "Upgrade muggle" |
 
 ## /muggle:do
 
-Full autonomous development cycle: the AI codes the feature, runs unit tests, QA tests the app in a real browser across desktop and mobile viewports, triages failures, and opens a PR with evidence.
+Quality-guaranteed development workflow that takes a task through requirements, coding, testing, QA with real-browser validation, and PR creation. The AI codes the feature, runs unit tests, QA tests the app in a real browser across desktop and mobile viewports, triages failures, and opens a PR with evidence.
 
 ### Example
 
@@ -53,7 +53,7 @@ Features:
 
 ## /muggle:test-feature-local
 
-Test a feature running on localhost with AI-driven browser automation.
+Run a real-browser QA test against localhost to verify a feature works correctly — signup flows, checkout, form validation, UI interactions, or any user-facing behavior. Launches a browser that executes test steps and captures screenshots.
 
 ### Example
 
