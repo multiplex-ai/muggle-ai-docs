@@ -4,14 +4,14 @@ The Muggle AI MCP package lets you automate testing through AI assistants using 
 
 ## What is the MCP Package?
 
-The `@muggleai/works` package is a **unified MCP server** that provides:
+The `@muggleai/works` package is a **unified MCP server** that lets AI coding agents run real-browser QA tests on your web app — generate test scripts from plain English, replay them on localhost, capture screenshots, and validate user flows like signup, checkout, and dashboards.
 
 | Feature | Description |
 | :------ | :---------- |
-| **Local Testing** | Test localhost and local network applications |
+| **Local Testing** | Test localhost and local network applications with a real Electron browser |
 | **Cloud QA** | Test preview, staging, and production environments |
-| **AI-Driven Automation** | Use natural language to control testing workflows |
-| **Single Installation** | One package for all testing needs |
+| **AI-Driven Automation** | Describe what to test in plain English — the AI handles the rest |
+| **Single Installation** | One package for all testing needs, works across Claude Code, Cursor, Codex, and Windsurf |
 
 ## Quick Install
 
@@ -164,5 +164,5 @@ Ready to connect your AI assistant to Muggle Test?
 | Requirement | Version |
 | :---------- | :------ |
 | Node.js | 22+ |
-| MCP Client | Cursor, Claude Desktop, or compatible |
+| MCP Client | Claude Code, Cursor, Codex, Windsurf, or any MCP-compatible client |
 | Operating System | macOS, Windows, or Linux |
