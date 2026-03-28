@@ -1,6 +1,6 @@
 # MCP Overview
 
-Ship quality products, not just code. The Muggle Test MCP package provides AI-powered QA that validates your app's user experience through AI assistants using the [Model Context Protocol (MCP)](https://modelcontextprotocol.io/).
+The Muggle Test MCP package lets AI coding agents run real-browser QA tests on your web app using the [Model Context Protocol (MCP)](https://modelcontextprotocol.io/). Generate test scripts from plain English, replay them on localhost or staging, capture screenshots, and validate that user flows work correctly after code changes.
 
 ## What is the MCP Package?
 
@@ -121,9 +121,9 @@ Instead of navigating dashboards or writing scripts:
 
 | Category | Count | Description |
 | :------- | ----: | :---------- |
-| **Local Testing** | ~65 | Project management, execution, results |
-| **Cloud QA** | ~60 | Workflows, test generation, reporting |
-| **Total** | ~125 | All QA needs covered |
+| **Local Testing** | 13 | Status, execution, results, publishing |
+| **Cloud QA** | 85 | Projects, use cases, test cases, workflows, reports |
+| **Total** | 98 | All QA needs covered |
 
 ### Local Tools (prefix: `muggle-local-`)
 
