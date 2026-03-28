@@ -1,6 +1,6 @@
 # Local Testing Overview
 
-Test your localhost applications directly from your AI assistant using Muggle AI MCP.
+Test your localhost applications directly from your AI assistant using Muggle Test.
 
 ## What is Local Testing?
 
@@ -51,7 +51,7 @@ flowchart LR
 | **Browser Automation** | Real browser interactions (click, type, scroll) |
 | **Screenshot Capture** | Visual documentation of test results |
 | **Agent Skills** | Pre-built workflows like "test my changes" |
-| **Publish Test to Cloud** | Upload locally generated test scripts to Muggle AI for replay and collaboration |
+| **Publish Test to Cloud** | Upload locally generated test scripts to Muggle Test for replay and collaboration |
 
 ## How It Works
 

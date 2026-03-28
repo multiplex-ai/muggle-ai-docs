@@ -1,6 +1,6 @@
 # Local Testing Setup
 
-Install and configure Muggle AI MCP to test your localhost applications.
+Install and configure Muggle Test to test your localhost applications.
 
 ## Prerequisites
 
@@ -53,8 +53,8 @@ This checks:
 **Expected output:**
 
 ```
-Muggle MCP Doctor
-=================
+Muggle Doctor
+=============
 ✓ Data Directory: Found at ~/.muggle-ai
 ✓ Electron App: Installed (v1.0.0)
 ✗ Authentication: Not authenticated
@@ -73,7 +73,7 @@ Edit `~/.cursor/mcp.json`:
 ```json
 {
   "mcpServers": {
-    "muggle-test": {
+    "muggle": {
       "command": "muggle",
       "args": ["serve"]
     }
@@ -86,7 +86,7 @@ Edit `~/.cursor/mcp.json`:
 ```json
 {
   "mcpServers": {
-    "muggle-test-local": {
+    "muggle": {
       "command": "muggle",
       "args": ["serve", "--local"]
     }
@@ -106,7 +106,7 @@ Edit your Claude Desktop configuration:
 ```json
 {
   "mcpServers": {
-    "muggle-test": {
+    "muggle": {
       "command": "muggle",
       "args": ["serve"]
     }
@@ -128,7 +128,7 @@ You should see a response indicating the MCP is ready:
 
 ```
 Muggle Test Local Status
-========================
+======================
 Data Directory: ~/.muggle-ai
 Sessions Directory: ~/.muggle-ai/sessions
 
@@ -182,7 +182,7 @@ You can customize behavior with environment variables in your MCP config:
 ```json
 {
   "mcpServers": {
-    "muggle-test": {
+    "muggle": {
       "command": "muggle",
       "args": ["serve"],
       "env": {

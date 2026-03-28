@@ -1,6 +1,6 @@
 # Local Testing Examples
 
-Common testing scenarios and example prompts for Muggle Test Local.
+Common testing scenarios and example prompts for Muggle Test local testing.
 
 ## Project-Based Testing Workflow
 
@@ -25,7 +25,7 @@ The recommended approach for comprehensive testing is to organize your tests int
 
 > "Generate a test script for the 'Add item to cart' test case"
 
-The assistant will launch Muggle AI Studio to record the interaction automatically.
+The assistant will launch Muggle Test Studio to record the interaction automatically.
 
 ### Step 5: Review Results
 

@@ -13,7 +13,6 @@ Connect your AI assistant to Muggle Test in under 5 minutes.
 
 ### Step 1: Install
 
-**Claude Code (recommended):**
 
 ```
 /plugin marketplace add https://github.com/multiplex-ai/muggle-ai-works
@@ -70,7 +69,7 @@ The assistant will:
 ```json
 {
   "mcpServers": {
-    "muggle-test": {
+    "muggle": {
       "command": "muggle",
       "args": ["serve"],
       "env": {
@@ -211,7 +210,7 @@ For cloud-only testing without local installation, use the hosted gateway:
 ```json
 {
   "mcpServers": {
-    "muggle-test": {
+    "muggle": {
       "url": "https://mcp.muggle-ai.com/mcp",
       "headers": {
         "x-api-key": "mai_sk_your_api_key_here"

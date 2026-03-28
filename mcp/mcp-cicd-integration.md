@@ -49,10 +49,10 @@ flowchart LR
 
 ### Basic Integration
 
-Create `.github/workflows/muggle-test.yml`:
+Create `.github/workflows/muggle-qa.yml`:
 
 ```yaml
-name: Muggle Test
+name: Muggle Test QA
 
 on:
   pull_request:
@@ -63,7 +63,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger Muggle Tests
+      - name: Trigger Muggle Test QA
         id: trigger
         run: |
           RESPONSE=$(curl -s -X POST \
@@ -165,7 +165,7 @@ Create `.gitlab-ci.yml`:
 stages:
   - test
 
-muggle-tests:
+muggle-qa:
   stage: test
   image: curlimages/curl:latest
   rules:

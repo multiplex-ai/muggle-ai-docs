@@ -93,7 +93,7 @@ Clear stored credentials.
 
 ### muggle-local-check-status
 
-Check the status of Muggle Test Local service.
+Check the status of Muggle Test local service.
 
 | Parameter | Type | Required | Description |
 | :-------- | :--- | :------: | :---------- |

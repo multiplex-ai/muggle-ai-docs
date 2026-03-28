@@ -1,6 +1,6 @@
 # MCP Installation
 
-The Muggle AI MCP package provides a unified server for both **Cloud QA testing** and **Local testing** through a single installation.
+The Muggle Test MCP package provides a unified server for both **Cloud QA testing** and **Local testing** through a single installation.
 
 ## Package Overview
 
@@ -59,7 +59,7 @@ Use Muggle AI's hosted MCP gateway for testing remote URLs. No installation requ
 ```json
 {
   "mcpServers": {
-    "muggle-test": {
+    "muggle": {
       "url": "https://mcp.muggle-ai.com/mcp",
       "headers": {
         "x-api-key": "mai_sk_your_api_key_here"
