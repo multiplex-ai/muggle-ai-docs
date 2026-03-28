@@ -4,7 +4,7 @@ Test your localhost applications directly from your AI assistant using Muggle Te
 
 ## What is Local Testing?
 
-Local Testing is a capability of the `@muggleai/works` package that enables AI assistants like Cursor and Claude Desktop to test web applications running on your development machine. Unlike cloud QA which tests publicly accessible URLs, local testing runs entirely on your computer and can access `localhost` URLs.
+Local Testing is a capability of the `@muggleai/works` package that enables AI coding agents (Claude Code, Cursor, Codex, Windsurf) to run real-browser QA tests against web applications on your development machine. A real Electron browser clicks buttons, fills forms, navigates pages, and captures screenshots to verify user flows work correctly. Unlike cloud QA which tests publicly accessible URLs, local testing runs entirely on your computer and can access `localhost` URLs.
 
 ## When to Use Local vs Cloud Testing
 
@@ -177,5 +177,5 @@ Ready to test your localhost applications?
 | Requirement | Version |
 | :---------- | :------ |
 | Node.js | 22 or later |
-| MCP Client | Cursor, Claude Desktop, or compatible |
+| MCP Client | Claude Code, Cursor, Codex, Windsurf, or any MCP-compatible client |
 | Operating System | macOS, Windows, or Linux |

@@ -10,12 +10,19 @@ Install and configure Muggle Test to test your localhost applications.
 | **MCP Client** | Cursor IDE, Claude Desktop, or any MCP-compatible assistant |
 | **Disk Space** | ~500MB for packages (includes bundled browser engine) |
 
-## Step 1: Install the Package
+## Step 1: Install
 
-Install the Muggle Test package:
+**Claude Code (recommended):**
+
+```
+/plugin marketplace add https://github.com/multiplex-ai/muggle-ai-works
+/plugin install muggleai@muggle-works
+```
+
+**npm (for Cursor or CLI-only use):**
 
 ```bash
-npm install -g @muggleai/works
+npm install -g @muggleai/works@latest
 ```
 
 During installation, the package automatically downloads the platform-specific browser engine.
@@ -24,7 +31,7 @@ The package includes:
 
 | Component | Purpose |
 | :-------- | :------ |
-| `muggle` | MCP server and CLI |
+| `muggle` | Unified MCP server and CLI |
 | Browser Engine | Electron-based browser automation (downloaded per-platform) |
 | Local Tools | 60+ tools for local testing |
 | Cloud Tools | 60+ tools for cloud QA (optional) |
@@ -153,7 +160,7 @@ The `muggle` command provides helpful utilities:
 | `muggle setup` | Download/install the browser engine |
 | `muggle setup --force` | Force re-download even if installed |
 | `muggle doctor` | Check installation and diagnose issues |
-| `muggle login` | Authenticate with Muggle Test |
+| `muggle login` | Authenticate with Muggle AI |
 | `muggle logout` | Clear stored credentials |
 | `muggle status` | Show authentication status |
 
@@ -270,14 +277,14 @@ This means the release asset wasn't found. Common causes:
 
 | Cause | Solution |
 | :---- | :------- |
-| New version not published | Check [available releases](https://github.com/multiplex-ai/muggle-ai-mcp/releases) |
+| New version not published | Check [available releases](https://github.com/multiplex-ai/muggle-ai-works/releases) |
 | Development version | For local development, build manually (see below) |
 
 **Building from source (for developers):**
 
 ```bash
-git clone https://github.com/multiplex-ai/muggle-ai-mcp
-cd muggle-ai-mcp
+git clone https://github.com/multiplex-ai/muggle-ai-works
+cd muggle-ai-works
 npm install
 npm run build
 ```

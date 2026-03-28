@@ -67,7 +67,7 @@ flowchart TB
 | :----- | :-------------- | :------------- |
 | **Local Testing** | Yes | No |
 | **Cloud Testing** | Yes | Yes |
-| **Setup** | `npm install -g @muggleai/works` | Configure URL only |
+| **Setup** | `npm install -g @muggleai/works@latest` | Configure URL only |
 | **Latency** | Lowest (no gateway hop) | Network to gateway |
 | **Credentials** | Environment variables | Per-request headers |
 | **Best for** | Full functionality | Quick start, cloud-only |

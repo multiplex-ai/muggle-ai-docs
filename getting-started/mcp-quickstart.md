@@ -13,13 +13,19 @@ Connect your AI assistant to Muggle Test in under 5 minutes.
 
 ### Step 1: Install
 
+
+```
+/plugin marketplace add https://github.com/multiplex-ai/muggle-ai-works
+/plugin install muggleai@muggle-works
+```
+
+**Cursor or other MCP clients:**
+
 ```bash
-npm install -g @muggleai/works
+npm install -g @muggleai/works@latest
 ```
 
-### Step 2: Configure
-
-**Cursor IDE** - Edit `~/.cursor/mcp.json`:
+Then configure your MCP client (e.g., `~/.cursor/mcp.json`):
 
 ```json
 {
@@ -32,31 +38,11 @@ npm install -g @muggleai/works
 }
 ```
 
-**Claude Desktop** - Edit your config file:
+### Step 2: Verify
 
-| Platform | Path |
-| :------- | :--- |
-| macOS | `~/Library/Application Support/Claude/claude_desktop_config.json` |
-| Windows | `%APPDATA%\Claude\claude_desktop_config.json` |
+**Claude Code:** Run `/muggle:status`
 
-```json
-{
-  "mcpServers": {
-    "muggle": {
-      "command": "muggle",
-      "args": ["serve"]
-    }
-  }
-}
-```
-
-### Step 3: Restart
-
-Restart your MCP client (Cursor or Claude Desktop).
-
-### Step 4: Verify
-
-Ask your assistant: **"Check the Muggle Test status"**
+**Cursor / other clients:** Ask your assistant: **"Check the Muggle Test status"**
 
 ---
 

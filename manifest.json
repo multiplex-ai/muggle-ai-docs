@@ -171,6 +171,14 @@
                     "relativePath": "local-testing/examples.md",
                     "order": 4,
                     "tags": ["local", "examples", "tutorials", "testing"]
+                },
+                {
+                    "articleId": "skills",
+                    "title": "Plugin Skills",
+                    "summary": "Pre-built AI agent skills for testing and development workflows — /muggle:do, /muggle:test-feature-local, and more.",
+                    "relativePath": "local-testing/skills.md",
+                    "order": 5,
+                    "tags": ["local", "skills", "plugin", "agent", "workflows"]
                 }
             ]
         },

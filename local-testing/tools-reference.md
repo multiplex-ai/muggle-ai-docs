@@ -120,7 +120,7 @@ List all stored testing sessions.
 
 ### muggle-local-execute-test-generation
 
-Generate a test script by running browser automation locally.
+Generate a QA test script by launching a real browser against your web app. The browser navigates your app, executes the test case steps (like signing up, filling forms, clicking through flows), and produces a replayable test script with screenshots. Use this to create new browser tests for any user flow.
 
 **Important:** First call `muggle-remote-test-case-get` to fetch test case details, then pass them here.
 
@@ -155,7 +155,7 @@ Generate a test script by running browser automation locally.
 
 ### muggle-local-execute-replay
 
-Replay a test script locally.
+Replay an existing QA test script in a real browser to verify your app still works correctly — use this for regression testing after code changes. The browser executes each saved step and captures screenshots so you can see what happened.
 
 **Important:** First call `muggle-remote-test-script-get` to fetch script details, then pass them here.
 

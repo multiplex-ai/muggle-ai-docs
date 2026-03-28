@@ -144,7 +144,7 @@ This page lists frequent issues and quick checks to resolve them.
 
 | Check | Solution |
 | :---- | :------- |
-| Release published? | Check [releases page](https://github.com/multiplex-ai/muggle-ai-mcp/releases) |
+| Release published? | Check [releases page](https://github.com/multiplex-ai/muggle-ai-works/releases) |
 | Version mismatch? | Ensure package version matches available releases |
 | Development version? | Build from source (see [setup docs](../local-testing/setup.md)) |
 

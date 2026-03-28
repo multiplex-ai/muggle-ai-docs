@@ -4,19 +4,19 @@ Ship quality products, not just code. The Muggle Test MCP package provides AI-po
 
 ## What is the MCP Package?
 
-The `@muggleai/works` package is a **unified MCP server** that provides:
+The `@muggleai/works` package is a **unified MCP server** that lets AI coding agents run real-browser QA tests on your web app — generate test scripts from plain English, replay them on localhost, capture screenshots, and validate user flows like signup, checkout, and dashboards.
 
 | Feature | Description |
 | :------ | :---------- |
-| **Local Testing** | Test localhost and local network applications |
-| **Cloud QA** | Validate preview, staging, and production environments |
-| **AI-Driven Automation** | Use natural language to control QA workflows |
-| **Single Installation** | One package for all QA needs |
+| **Local Testing** | Test localhost and local network applications with a real Electron browser |
+| **Cloud QA** | Test preview, staging, and production environments |
+| **AI-Driven Automation** | Describe what to test in plain English — the AI handles the rest |
+| **Single Installation** | One package for all testing needs, works across Claude Code, Cursor, Codex, and Windsurf |
 
 ## Quick Install
 
 ```bash
-npm install -g @muggleai/works
+npm install -g @muggleai/works@latest
 ```
 
 ## When to Use Each Mode
@@ -98,8 +98,7 @@ No need to manage multiple packages. The unified `@muggleai/works` package repla
 
 | Previous (Deprecated) | Current |
 | :-------------------- | :------ |
-| `@muggleai/mcp` | `@muggleai/works` |
-| `@muggleai/mcp-qa-gateway` | `@muggleai/works` |
+| `@muggleai/works-qa-gateway` | `@muggleai/works` |
 | `@muggle-ai/local-mcp` | `@muggleai/works` |
 | Two configurations | One configuration |
 
@@ -165,5 +164,5 @@ Ready to connect your AI assistant to Muggle Test?
 | Requirement | Version |
 | :---------- | :------ |
 | Node.js | 22+ |
-| MCP Client | Cursor, Claude Desktop, or compatible |
+| MCP Client | Claude Code, Cursor, Codex, Windsurf, or any MCP-compatible client |
 | Operating System | macOS, Windows, or Linux |

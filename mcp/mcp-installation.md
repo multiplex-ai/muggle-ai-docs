@@ -17,8 +17,19 @@ The `@muggleai/works` package combines:
 
 ## Quick Install
 
+**Claude Code (recommended):**
+
+```
+/plugin marketplace add https://github.com/multiplex-ai/muggle-ai-works
+/plugin install muggleai@muggle-works
+```
+
+This delivers skills, MCP server, and hooks through the plugin lifecycle. No manual file copying.
+
+**npm (for Cursor or CLI-only use):**
+
 ```bash
-npm install -g @muggleai/works
+npm install -g @muggleai/works@latest
 ```
 
 This installs:
@@ -81,7 +92,7 @@ Install locally to enable **both local testing and cloud QA** through a single M
 #### Installation
 
 ```bash
-npm install -g @muggleai/works
+npm install -g @muggleai/works@latest
 ```
 
 During installation, the browser automation engine is automatically downloaded for your platform.
@@ -109,7 +120,7 @@ Edit `~/.cursor/mcp.json`:
 ```json
 {
   "mcpServers": {
-    "muggle": {
+    "muggle-test": {
       "command": "muggle",
       "args": ["serve"]
     }
@@ -122,7 +133,7 @@ Edit `~/.cursor/mcp.json`:
 ```json
 {
   "mcpServers": {
-    "muggle": {
+    "muggle-test": {
       "command": "muggle",
       "args": ["serve"],
       "env": {
@@ -145,7 +156,7 @@ Edit your Claude Desktop configuration:
 ```json
 {
   "mcpServers": {
-    "muggle": {
+    "muggle-test": {
       "command": "muggle",
       "args": ["serve"],
       "env": {
@@ -173,7 +184,7 @@ By default, the server enables **all tools** (both local and cloud). Use flags t
 ```json
 {
   "mcpServers": {
-    "muggle": {
+    "muggle-test-local": {
       "command": "muggle",
       "args": ["serve", "--local"]
     }
@@ -190,7 +201,7 @@ By default, the server enables **all tools** (both local and cloud). Use flags t
 | `muggle serve` | Start the MCP server |
 | `muggle setup` | Download/reinstall browser engine |
 | `muggle doctor` | Check installation and diagnose issues |
-| `muggle login` | Authenticate with Muggle Test |
+| `muggle login` | Authenticate with Muggle AI |
 | `muggle logout` | Clear stored credentials |
 | `muggle status` | Show authentication status |
 | `muggle --version` | Show package version |
