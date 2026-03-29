@@ -2,15 +2,21 @@
 
 Muggle Test offers different subscription tiers to match your testing needs. Each plan includes specific quotas for use cases, test cases, and concurrent workflow execution.
 
+For current pricing, see the [pricing page](https://muggle-ai.com/#pricing) or the product catalog API.
+
 ## Plan Comparison
 
-| Feature | Free | Professional | Enterprise |
-| :------ | :--- | :----------- | :--------- |
-| **Journeys Scanned** | 20 | 50 | 50+ |
-| **Use Cases** | 3 | 20 | 100+ |
-| **Test Cases** | 10 | 60 | 300+ |
-| **Concurrent Workflows** | 3 | 10 | 50+ |
-| **Monthly Tokens** | ~5,000 | ~50,000 | Custom |
+| Feature | Free | Starter | Professional | Enterprise |
+| :------ | :--- | :------ | :----------- | :--------- |
+| **Projects** | 1 | 3 | Unlimited | Unlimited |
+| **Use Cases per Project** | 5 | 15 | 50 | Unlimited |
+| **Auto-detected Use Cases** | 10 | 30 | 100 | Unlimited |
+| **Test Cases per Project** | 15 | 50 | 300 | Unlimited |
+| **Concurrent Workflows** | 1 | 3 | 10 | 20+ |
+| **Monthly Tokens** | 1M | 3M | 20M | Pay per use ($5/M) |
+| **Price** | $0 | $29/month | $199/month | $60/seat/month (min 4) |
+| **CI/CD Integration** | — | — | Yes | Yes |
+| **Token Purchases** | — | Yes ($5/M) | Yes ($5/M) | Included |
 
 ## Understanding Quotas
 
@@ -20,9 +26,10 @@ When you run a website scan, Muggle Test's AI agent discovers potential use case
 
 | Plan | Journeys Limit |
 | :--- | :------------- |
-| Free | 20 per scan |
-| Professional | 50 per scan |
-| Enterprise | 50+ (customizable) |
+| Free | 10 per scan |
+| Starter | 30 per scan |
+| Professional | 100 per scan |
+| Enterprise | 100+ (customizable) |
 
 ### Use Cases
 
@@ -30,9 +37,10 @@ Use cases represent the high-level user journeys you want to test (e.g., "User L
 
 | Plan | Use Case Limit |
 | :--- | :------------- |
-| Free | 3 per project |
-| Professional | 20 per project |
-| Enterprise | 100+ |
+| Free | 5 per project |
+| Starter | 15 per project |
+| Professional | 50 per project |
+| Enterprise | Unlimited |
 
 ### Test Cases
 
@@ -40,9 +48,10 @@ Test cases are the specific test scenarios generated from use cases. Each use ca
 
 | Plan | Test Case Limit |
 | :--- | :-------------- |
-| Free | 10 per project |
-| Professional | 60 per project |
-| Enterprise | 300+ |
+| Free | 15 per project |
+| Starter | 50 per project |
+| Professional | 300 per project |
+| Enterprise | Unlimited |
 
 ### Concurrent Workflows
 
@@ -50,9 +59,10 @@ This controls how many workflows (scans, test generations, replays) can run simu
 
 | Plan | Concurrent Limit |
 | :--- | :--------------- |
-| Free | 3 |
+| Free | 1 |
+| Starter | 3 |
 | Professional | 10 |
-| Enterprise | 50+ (customizable) |
+| Enterprise | 20+ |
 
 ## What Happens When You Hit a Limit
 

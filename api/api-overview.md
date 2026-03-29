@@ -77,12 +77,21 @@ All endpoints in this documentation are relative to this base URL.
 | Tier       | Requests/minute |
 | :--------- | --------------: |
 | Free       |              20 |
+| Starter    |              40 |
 | Pro        |              60 |
-| Enterprise |             300 |Rate limit headers are included in responses:| Header                  | Description                 |
+| Enterprise |             300 |
+
+Rate limit headers are included in responses:
+
+| Header                  | Description                 |
 | :---------------------- | :-------------------------- |
 | `X-RateLimit-Limit`     | Maximum requests allowed    |
 | `X-RateLimit-Remaining` | Requests remaining          |
-| `X-RateLimit-Reset`     | Reset time (Unix timestamp) |## Next Steps| Goal              | Resource                                              |
+| `X-RateLimit-Reset`     | Reset time (Unix timestamp) |
+
+## Next Steps
+
+| Goal              | Resource                                              |
 | :---------------- | :---------------------------------------------------- |
 | Trigger test runs | [Running Tests via API](api/running-tests-via-api.md) |
 | Use AI assistants | [MCP Gateway](mcp/mcp-overview)                       |
