@@ -11,7 +11,7 @@ Complete reference for local testing tools in the `@muggleai/works` package.
 | Namespace | Purpose | Examples |
 | :-------- | :------ | :------- |
 | `muggle-remote-auth-*` | Authentication | `muggle-remote-auth-login`, `muggle-remote-auth-status` |
-| `muggle-remote-*` | Cloud entity management | `muggle-remote-project-create`, `muggle-remote-test-case-get` |
+| `muggle-remote-*` | Cloud entity management | `muggle-remote-project-create`, `muggle-remote-test-case-get`, `muggle-remote-action-script-get` |
 | `muggle-local-*` | Local execution & results | `muggle-local-execute-test-generation` |
 
 ## Local Tool Categories
@@ -89,6 +89,24 @@ Clear stored credentials.
 
 ---
 
+## Remote Data Tools (muggle-remote-*)
+
+Remote tools for fetching cloud entities. These are commonly used before local execution.
+
+### muggle-remote-action-script-get
+
+Fetch the full action script content by ID. Required for replay — use the `actionScriptId` from a test script to get the complete executable steps with element labels.
+
+| Parameter | Type | Required | Description |
+| :-------- | :--- | :------: | :---------- |
+| `actionScriptId` | string | Yes | Action script ID from `testScript.actionScriptId` |
+
+**Returns:** Array of action steps with element labels needed for replay.
+
+**Usage:** Call this after `muggle-remote-test-script-get` to get the script content before running `muggle-local-execute-replay`.
+
+---
+
 ## Status Tools
 
 ### muggle-local-check-status
@@ -157,28 +175,33 @@ Generate a QA test script by launching a real browser against your web app. The 
 
 Replay an existing QA test script in a real browser to verify your app still works correctly — use this for regression testing after code changes. The browser executes each saved step and captures screenshots so you can see what happened.
 
-**Important:** First call `muggle-remote-test-script-get` to fetch script details, then pass them here.
+**Important:** Requires two separate fetch calls before replay:
+1. `muggle-remote-test-script-get` to get script metadata (includes `actionScriptId`)
+2. `muggle-remote-action-script-get` to fetch the full action script content
 
 | Parameter | Type | Required | Description |
 | :-------- | :--- | :------: | :---------- |
-| `testScript` | object | Yes | Test script details from `muggle-remote-test-script-get` |
+| `testScript` | object | Yes | Test script metadata from `muggle-remote-test-script-get` |
+| `actionScript` | array | Yes | Action script steps from `muggle-remote-action-script-get` |
 | `localUrl` | string | Yes | Local URL to test against |
 | `approveElectronAppLaunch` | boolean | Yes | Must be `true` to proceed |
 | `timeoutMs` | number | No | Timeout in milliseconds (default: 180000) |
+| `showUi` | boolean | No | Show browser UI during execution (default: false, runs headless) |
 
 **testScript object:**
 - `id` - Cloud test script ID
 - `name` - Script name
 - `testCaseId` - Parent test case ID
-- `actionScript` - Array of executable steps
+- `actionScriptId` - ID to fetch action script content
 
 **URL Rewriting:**
 - Original cloud URLs in the action script are automatically replaced with `localUrl`
 
 **Example workflow:**
 ```
-1. muggle-remote-test-script-get(testScriptId) → returns test script object
-2. muggle-local-execute-replay({ testScript: {...}, localUrl: "http://localhost:3000", approveElectronAppLaunch: true })
+1. muggle-remote-test-script-get(testScriptId) → returns testScript with actionScriptId
+2. muggle-remote-action-script-get(testScript.actionScriptId) → returns actionScript array
+3. muggle-local-execute-replay({ testScript, actionScript, localUrl: "http://localhost:3000", approveElectronAppLaunch: true })
 ```
 
 ---
@@ -256,6 +279,8 @@ Upload a locally generated test script to the cloud.
 | :-------- | :--- | :------: | :---------- |
 | `runId` | string | Yes | Run result ID from test generation |
 | `cloudTestCaseId` | string | Yes | Cloud test case ID to publish under |
+
+**Returns:** A `viewUrl` that opens the published test script on the MuggleTest dashboard. Use `open "<viewUrl>"` (macOS) or equivalent to view the script details in your browser.
 
 **Requires:** Authentication via `muggle-remote-auth-login`
 

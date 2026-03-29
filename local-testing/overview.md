@@ -160,7 +160,7 @@ flowchart LR
 2. **Fetch details** — Call `muggle-remote-test-case-get` to retrieve test case information
 3. **Execute locally** — Use `muggle-local-execute-test-generation` with localhost URL
 4. **View results** — Use `muggle-local-run-result-get` to see screenshots and status
-5. **Publish** — Use `muggle-local-publish-test-script` to upload generated scripts
+5. **Publish** — Use `muggle-local-publish-test-script` to upload generated scripts (returns a `viewUrl` to open the dashboard)
 6. **Scale** — Cloud enables team collaboration and CI/CD integration
 
 ## Getting Started
