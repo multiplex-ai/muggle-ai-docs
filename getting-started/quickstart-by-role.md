@@ -2,6 +2,18 @@
 
 Choose your role to see the fastest path to value with Muggle Test.
 
+## Quick Navigation
+
+| Role | Best For | Jump To |
+| :--- | :------- | :------ |
+| **Developers** | Build locally, test in CI/CD, ship with confidence | [Developer Guide](#developers) |
+| **Vibe Coders** | Prompt-driven development with preview URL testing | [Vibe Coder Guide](#vibe-coders) |
+| **Product Team** | PRD-based test generation and triage workflows | [Product Team Guide](#product-team) |
+
+**Common Resources:** [Investigating Failures](#investigating-failures) | [Managing Discovered Flows](#managing-discovered-flows) | [Reviewing Results](#reviewing-results) | [Next Steps](#next-steps)
+
+---
+
 ## Developers
 
 **Your workflow:** Build features → Test locally → Fix issues → Release with confidence
