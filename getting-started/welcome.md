@@ -4,17 +4,25 @@ Muggle Test is an AI-powered web testing platform that discovers realistic user 
 
 This page helps you find the right documentation based on what you're trying to do.
 
+## Start Here: Choose Your Role
+
+| Your Role | Best Starting Point |
+| :-------- | :------------------ |
+| **Developer** | [Quickstart for Developers](quickstart-by-role.md#developers) — Local testing, CI/CD integration |
+| **Vibe Coder** | [Quickstart for Vibe Coders](quickstart-by-role.md#vibe-coders) — AI assistant integration, fast validation |
+| **Product Team** | [Quickstart for Product Team](quickstart-by-role.md#product-team) — PRD upload, report review |
+
 ## Quick Navigation
 
-| If you want to...            | Start here                                                               |
-| :--------------------------- | :----------------------------------------------------------------------- |
-| Learn what Muggle Test is    | [Muggle Test Overview](getting-started/overview.md)                      |
-| Get your first tests running | [Quickstart: Running Tests](getting-started/quickstart-running-tests.md) |
-| Test localhost apps          | [Local Testing Setup](local-testing/setup.md)                            |
-| Understand the architecture  | [How Muggle Test Works](concepts/how-muggle-test-works.md)               |
-| Integrate via API            | [API Overview](api/api-overview.md)                                      |
-| Use AI assistants (MCP)      | [MCP Quickstart](getting-started/mcp-quickstart.md)                      |
-| Fix a problem                | [Common Issues](troubleshooting/common-issues.md)                        |
+| If you want to... | Start here |
+| :---------------- | :--------- |
+| Learn what Muggle Test is | [Muggle Test Overview](overview.md) |
+| Get your first tests running | [Quickstart: Running Tests](quickstart-running-tests.md) |
+| Test localhost apps | [Local Testing Setup](../local-testing/setup.md) |
+| Understand the architecture | [How Muggle Test Works](../concepts/how-muggle-test-works.md) |
+| Integrate via API | [API Overview](../api/api-overview.md) |
+| Use AI assistants (MCP) | [MCP Quickstart](mcp-quickstart.md) |
+| Fix a problem | [Common Issues](../troubleshooting/common-issues.md) |
 
 ## Recommended Reading Path
 

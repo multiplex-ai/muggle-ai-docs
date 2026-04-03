@@ -16,11 +16,19 @@
                     "tags": ["intro", "welcome"]
                 },
                 {
+                    "articleId": "quickstart-by-role",
+                    "title": "Quickstart by Role",
+                    "summary": "Role-specific guides for Developers, Vibe Coders, and Product Teams.",
+                    "relativePath": "getting-started/quickstart-by-role.md",
+                    "order": 1,
+                    "tags": ["quickstart", "roles", "developers", "vibe-coders", "product"]
+                },
+                {
                     "articleId": "overview",
                     "title": "Muggle Test Overview",
                     "summary": "High-level introduction to Muggle Test and when to use it.",
                     "relativePath": "getting-started/overview.md",
-                    "order": 1,
+                    "order": 2,
                     "tags": ["intro", "overview"]
                 },
                 {
@@ -28,7 +36,7 @@
                     "title": "Quickstart: Running Your First Tests",
                     "summary": "Step-by-step guide to create a project and run your first test suite.",
                     "relativePath": "getting-started/quickstart-running-tests.md",
-                    "order": 2,
+                    "order": 3,
                     "tags": ["quickstart"]
                 },
                 {
@@ -36,7 +44,7 @@
                     "title": "MCP Quickstart: AI Assistant Integration",
                     "summary": "Connect Claude, Cursor, or any MCP client to Muggle Test in 5 minutes.",
                     "relativePath": "getting-started/mcp-quickstart.md",
-                    "order": 3,
+                    "order": 4,
                     "tags": ["quickstart", "mcp", "ai"]
                 }
             ]
