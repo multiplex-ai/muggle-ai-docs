@@ -255,7 +255,7 @@ The gateway enforces rate limits to ensure fair usage:
 | Tier       | Requests/min | Concurrent Workflows |
 | :--------- | -----------: | -------------------: |
 | Free       |           20 |                    1 |
-| Pro        |           60 |                    5 |
+| Pro        |           60 |                   20 |
 | Enterprise |          300 |                   20 |
 
 **Rate limit headers:**

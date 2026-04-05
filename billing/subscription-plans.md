@@ -12,7 +12,7 @@ For current pricing, see the [pricing page](https://muggle-ai.com/#pricing) or t
 | **Use Cases per Project** | 5 | 15 | 50 | Unlimited |
 | **Auto-detected Use Cases** | 10 | 30 | 100 | Unlimited |
 | **Test Cases per Project** | 15 | 50 | 300 | Unlimited |
-| **Concurrent Workflows** | 1 | 3 | 10 | 20+ |
+| **Concurrent Workflows** | 1 | 5 | 20 | 20+ |
 | **Monthly Tokens** | 1M | 3M | 20M | Pay per use ($5/M) |
 | **Price** | $0 | $29/month | $199/month | $60/seat/month (min 4) |
 | **CI/CD Integration** | — | — | Yes | Yes |
@@ -60,8 +60,8 @@ This controls how many workflows (scans, test generations, replays) can run simu
 | Plan | Concurrent Limit |
 | :--- | :--------------- |
 | Free | 1 |
-| Starter | 3 |
-| Professional | 10 |
+| Starter | 5 |
+| Professional | 20 |
 | Enterprise | 20+ |
 
 ## What Happens When You Hit a Limit
