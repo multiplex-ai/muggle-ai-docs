@@ -22,6 +22,7 @@ After installation, skills are available as `/muggle:*` commands.
 | Skill | Description | Example trigger |
 | :---- | :---------- | :-------------- |
 | `/muggle:do` | Quality-guaranteed development workflow: requirements, coding, testing, QA with real-browser validation, and PR creation | "Add a logout button and make sure it works before opening a PR" |
+| `/muggle:test` | Change-driven QA router — detects code changes, maps them to use cases, runs test generation locally or remotely, publishes results to the dashboard, opens them in a browser, and posts a QA summary to the PR | "Test my changes and post results to the PR" |
 | `/muggle:test-feature-local` | Run a real-browser QA test against localhost to verify a feature works — signup flows, checkout, form validation, UI interactions, or any user-facing behavior | "Test my login flow on localhost:3000" |
 | `/muggle:status` | Health check for QA engine, MCP server, auth | "Check muggle status" |
 | `/muggle:repair` | Diagnose and fix broken installation | "Repair my muggle setup" |
@@ -50,6 +51,55 @@ Features:
 - Auto-triage: analyzes failures and loops back to fix (max 3 iterations)
 - Multi-repo support via `muggle-repos.json`
 - PRs include QA results and screenshots
+
+
+## /muggle:test
+
+Change-driven QA router that detects code changes, resolves impacted use cases, and executes test generation either locally (Electron browser on localhost) or remotely (Muggle cloud on a preview/staging URL). After execution, it publishes results to the Muggle AI dashboard, opens them in your browser, and posts a QA summary with test case links to your PR.
+
+### Two modes
+
+| Mode | When to use | Execution tool |
+| :--- | :---------- | :------------- |
+| **Local** | Testing against `localhost` during development | `muggle-local-execute-test-generation` |
+| **Remote** | Testing against a preview or staging URL | `muggle-remote-workflow-start-test-script-generation` |
+
+The skill asks which mode you want before proceeding. If your prompt mentions "localhost" or "local", it selects local mode. If it mentions "staging", "preview", or a non-localhost URL, it selects remote mode.
+
+### Example
+
+```
+/muggle:test
+
+"Test my changes and post the results to the PR"
+
+1. Intent: local or remote? -> "local, localhost:3000"
+2. Changes detected: signup form refactor, profile page update
+3. Auth: authenticated
+4. Project: "My App" (matched)
+5. Use cases: 2 existing, 1 new -> confirm mapping
+6. Test cases: 4 total -> confirm scope
+7. Launching QA engine x4... (approve? y)
+8. Results: 3/4 PASS, 1 FAIL
+9. Published to Muggle dashboard (opened in browser)
+10. QA results posted to PR #42
+```
+
+### What it does after tests run
+
+- **Publishes** each run to the Muggle AI cloud via `muggle-local-publish-test-script`
+- **Opens** the Muggle AI dashboard in your browser so you can inspect step-by-step screenshots
+- **Posts** a QA results comment to the PR with a pass/fail table where each test case links to its dashboard detail page
+
+### When to use /muggle:test vs /muggle:test-feature-local
+
+| Scenario | Recommended skill |
+| :------- | :---------------- |
+| Test all use cases impacted by your changes | `/muggle:test` |
+| Test on a staging/preview URL | `/muggle:test` |
+| Post QA results to a PR | `/muggle:test` |
+| Quick single-feature test on localhost | `/muggle:test-feature-local` |
+
 
 ## /muggle:test-feature-local
 

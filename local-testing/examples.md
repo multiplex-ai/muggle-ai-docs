@@ -355,14 +355,32 @@ Instead of manually following these workflows, you can install **Agent Skills** 
 
 ### "Test my changes"
 
-With the `test-feature-local` skill installed, simply say:
+With the `muggle-test` skill installed, simply say:
 
 > "Test my changes"
 
 The agent will:
-1. Analyze your `git diff` to identify impacted features
-2. Find matching test cases in your local projects
-3. Run affected tests and report results
+1. Confirm whether you want to test locally or remotely
+2. Analyze your `git diff` to identify impacted features
+3. Authenticate and find your Muggle project
+4. Map changes to use cases (creating new ones if needed)
+5. Resolve test cases and run all test generations
+6. Publish results and open the Muggle AI dashboard
+7. Post a QA summary with test case links to your PR
+
+### "Test on staging"
+
+> "We deployed to staging at https://staging.myapp.com — test the checkout flow"
+
+The agent uses Muggle's cloud execution to generate test scripts against the staging URL, monitors workflow progress, and posts results to the PR.
+
+### "Quick single-feature test"
+
+With the `test-feature-local` skill installed:
+
+> "Test the login flow on localhost:3000"
+
+This is a simpler, more interactive workflow for testing one feature at a time.
 
 ### "Publish test to cloud"
 
