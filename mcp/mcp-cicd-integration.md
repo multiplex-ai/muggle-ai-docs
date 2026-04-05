@@ -49,7 +49,7 @@ flowchart LR
 
 ### Basic Integration
 
-Create `.github/workflows/muggle-qa.yml`:
+Create `.github/workflows/muggle-e2e.yml`:
 
 ```yaml
 name: Muggle Test E2E acceptance
@@ -165,7 +165,7 @@ Create `.gitlab-ci.yml`:
 stages:
   - test
 
-muggle-qa:
+muggle-e2e:
   stage: test
   image: curlimages/curl:latest
   rules:

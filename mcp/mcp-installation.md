@@ -177,7 +177,7 @@ By default, the server enables **all tools** (both local and cloud). Use flags t
 | :------ | :------------ |
 | `muggle serve` | All tools (local + cloud) |
 | `muggle serve --local` | Local testing only |
-| `muggle serve --qa` | Cloud E2E acceptance tools only |
+| `muggle serve --e2e` | Cloud E2E acceptance tools only |
 
 **Example: Local-only configuration:**
 

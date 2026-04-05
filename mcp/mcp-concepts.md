@@ -305,9 +305,9 @@ The gateway also exposes **MCP Resources** - documentation that AI agents can re
 
 | Resource URI                       | Description                    |
 | :--------------------------------- | :----------------------------- |
-| `muggle-qa://docs/usage-guide`     | Complete workflow guide        |
-| `muggle-qa://docs/quick-reference` | Quick reference for tool calls |
-| `muggle-qa://docs/wallet-quickstart` | Wallet setup and topup quickstart |
+| `muggle-e2e://docs/usage-guide`     | Complete workflow guide        |
+| `muggle-e2e://docs/quick-reference` | Quick reference for tool calls |
+| `muggle-e2e://docs/wallet-quickstart` | Wallet setup and topup quickstart |
 
 AI assistants can call `resources/list` to discover available documentation, then `resources/read` to fetch the content. This helps agents understand how to use the tools effectively without you having to explain.
 

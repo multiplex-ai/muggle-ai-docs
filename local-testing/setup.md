@@ -156,7 +156,7 @@ The `muggle` command provides helpful utilities:
 | :------ | :---------- |
 | `muggle serve` | Start the MCP server (default: all tools) |
 | `muggle serve --local` | Start with local tools only |
-| `muggle serve --qa` | Start with cloud E2E acceptance tools only |
+| `muggle serve --e2e` | Start with cloud E2E acceptance tools only |
 | `muggle setup` | Download/install the browser engine |
 | `muggle setup --force` | Force re-download even if installed |
 | `muggle doctor` | Check installation and diagnose issues |

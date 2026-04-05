@@ -196,7 +196,7 @@ The signup form correctly shows "Please enter a valid email" when an invalid ema
 | :------- | :------------- |
 | Testing during development | **Local** (`muggle serve --local`) |
 | Testing localhost URLs | **Local** |
-| Testing preview/staging deployments | **Cloud** (`muggle serve --qa`) |
+| Testing preview/staging deployments | **Cloud** (`muggle serve --e2e`) |
 | CI/CD integration | **Cloud** |
 | Team collaboration | **Cloud** |
 | Both local and cloud | **Default** (`muggle serve`) |

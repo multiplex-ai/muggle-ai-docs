@@ -26,9 +26,9 @@ npm install -g @muggleai/works@latest
 | Local Dev | `localhost:3000` | Local (`--local`) |
 | Docker | `localhost:8080` | Local (`--local`) |
 | Local Network | `192.168.1.x` | Local (`--local`) |
-| Preview | `pr-123.preview.example.com` | Cloud (`--qa`) |
-| Staging | `staging.example.com` | Cloud (`--qa`) |
-| Production | `www.example.com` | Cloud (`--qa`) |
+| Preview | `pr-123.preview.example.com` | Cloud (`--e2e`) |
+| Staging | `staging.example.com` | Cloud (`--e2e`) |
+| Production | `www.example.com` | Cloud (`--e2e`) |
 | Both | Any combination | Default (no flags) |
 
 ## Architecture
@@ -98,7 +98,7 @@ No need to manage multiple packages. The unified `@muggleai/works` package repla
 
 | Previous (Deprecated) | Current |
 | :-------------------- | :------ |
-| `@muggleai/works-qa-gateway` | `@muggleai/works` |
+| Legacy cloud E2E MCP package (pre-unified) | `@muggleai/works` |
 | `@muggle-ai/local-mcp` | `@muggleai/works` |
 | Two configurations | One configuration |
 

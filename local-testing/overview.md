@@ -86,7 +86,7 @@ flowchart TD
 | Aspect | Local Testing | Cloud E2E |
 | :----- | :------------ | :------- |
 | **Target URLs** | `localhost`, local network | Public URLs (preview, staging, prod) |
-| **Setup** | `muggle serve --local` | `muggle serve --qa` |
+| **Setup** | `muggle serve --local` | `muggle serve --e2e` |
 | **Browser runs on** | Your machine | Muggle AI cloud |
 | **Test results** | Local files (`~/.muggle-ai/`) | Cloud dashboard |
 | **Best for** | Development, debugging | CI/CD, production testing |
