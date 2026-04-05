@@ -1,12 +1,12 @@
 # MCP API Reference
 
-Complete reference for Cloud QA tools in the `@muggleai/works` package.
+Complete reference for cloud E2E acceptance tools in the `@muggleai/works` package.
 
-> **Note:** This page documents Cloud QA tools (prefix: `muggle-remote-`). For local testing tools (prefix: `muggle-local-`), see [Local Testing Tools Reference](../local-testing/tools-reference.md).
+> **Note:** This page documents cloud E2E acceptance tools (prefix: `muggle-remote-`). For local testing tools (prefix: `muggle-local-`), see [Local Testing Tools Reference](../local-testing/tools-reference.md).
 
 ## Overview
 
-The Cloud QA tools are organized into these categories:
+The cloud E2E acceptance tools are organized into these categories:
 
 | Category        | Count | Purpose                            | Link                          |
 | :-------------- | ----: | :--------------------------------- | :---------------------------- |
@@ -239,7 +239,7 @@ Revoke an API key. The key will immediately stop working.
 
 ### muggle-remote-project-create
 
-Create a new QA testing project.
+Create a new E2E acceptance testing project.
 
 **Input:**
 

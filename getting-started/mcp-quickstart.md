@@ -110,13 +110,13 @@ flowchart LR
 
 > "Run the login test"
 
-### Cloud QA Testing (remote URLs)
+### Cloud E2E acceptance testing (remote URLs)
 
 For testing staging, preview, or production URLs:
 
 **1. Create a project:**
 
-> "Create a QA project called 'My Website Tests' for testing https://example.com"
+> "Create a project for E2E acceptance tests called 'My Website Tests' for testing https://example.com"
 
 **2. Discover use cases:**
 
@@ -183,7 +183,7 @@ The signup form correctly shows "Please enter a valid email" when an invalid ema
 | :------- | :---- | :------ |
 | **Local Testing** | `muggle-local-project-*`, `muggle-local-use-case-*`, `muggle-local-test-case-*` | Manage local test projects |
 | **Execution** | `muggle-local-execute-*` | Generate and run test scripts |
-| **Cloud QA** | `muggle-remote-project-*`, `muggle-remote-workflow-*` | Cloud-based testing workflows |
+| **Cloud E2E acceptance** | `muggle-remote-project-*`, `muggle-remote-workflow-*` | Cloud-based testing workflows |
 | **Publishing** | `muggle-local-publish-*`, `muggle-local-cloud-*` | Sync between local and cloud |
 
 **Total: 120+ tools** covering both local and cloud testing.

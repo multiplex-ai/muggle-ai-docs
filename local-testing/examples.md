@@ -366,7 +366,7 @@ The agent will:
 4. Map changes to use cases (creating new ones if needed)
 5. Resolve test cases and run all test generations
 6. Publish results and open the Muggle AI dashboard
-7. Post a QA summary with test case links to your PR
+7. Post an E2E acceptance summary with test case links to your PR
 
 ### "Test on staging"
 

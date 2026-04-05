@@ -1,15 +1,15 @@
 # MCP Overview
 
-Ship quality products, not just code. The Muggle Test MCP package provides AI-powered QA that validates your app's user experience through AI assistants using the [Model Context Protocol (MCP)](https://modelcontextprotocol.io/).
+Ship quality products, not just code. The Muggle Test MCP package provides AI-powered end-to-end (E2E) acceptance testing that validates your web app like a real user, through AI assistants using the [Model Context Protocol (MCP)](https://modelcontextprotocol.io/).
 
 ## What is the MCP Package?
 
-The `@muggleai/works` package is a **unified MCP server** that lets AI coding agents run real-browser QA tests on your web app — generate test scripts from plain English, replay them on localhost, capture screenshots, and validate user flows like signup, checkout, and dashboards.
+The `@muggleai/works` package is a **unified MCP server** that lets AI coding agents run real-browser E2E acceptance tests on your web app — generate test scripts from plain English, replay them on localhost, capture screenshots, and validate user flows like signup, checkout, and dashboards.
 
 | Feature | Description |
 | :------ | :---------- |
 | **Local Testing** | Test localhost and local network applications with a real Electron browser |
-| **Cloud QA** | Test preview, staging, and production environments |
+| **Cloud E2E** | Test preview, staging, and production environments |
 | **AI-Driven Automation** | Describe what to test in plain English — the AI handles the rest |
 | **Single Installation** | One package for all testing needs, works across Claude Code, Cursor, Codex, and Windsurf |
 
@@ -54,7 +54,7 @@ Local testing runs entirely on your machine:
 - Results stored locally in `~/.muggle-ai/`
 - No cloud connection required
 
-### Cloud QA Mode
+### Cloud E2E mode
 
 ```mermaid
 flowchart LR
@@ -78,7 +78,7 @@ flowchart LR
     D -->|"HTTP"| E
 ```
 
-Cloud QA uses Muggle AI's infrastructure:
+Cloud E2E testing uses Muggle AI's infrastructure:
 - Tests run on cloud browser farm
 - Results stored in cloud dashboard
 - Supports CI/CD integration
@@ -87,7 +87,7 @@ Cloud QA uses Muggle AI's infrastructure:
 
 When you run `muggle serve` without flags, **both modes are active**:
 - Use `muggle-local-*` tools for local testing
-- Use `muggle-remote-*` tools for cloud QA
+- Use `muggle-remote-*` tools for cloud E2E testing
 - Seamlessly publish local projects to cloud
 
 ## Key Benefits
@@ -122,8 +122,8 @@ Instead of navigating dashboards or writing scripts:
 | Category | Count | Description |
 | :------- | ----: | :---------- |
 | **Local Testing** | ~65 | Project management, execution, results |
-| **Cloud QA** | ~60 | Workflows, test generation, reporting |
-| **Total** | ~125 | All QA needs covered |
+| **Cloud E2E** | ~60 | Workflows, test generation, reporting |
+| **Total** | ~125 | All browser E2E testing needs covered |
 
 ### Local Tools (prefix: `muggle-local-`)
 
@@ -138,7 +138,7 @@ Instead of navigating dashboards or writing scripts:
 | Results | `muggle-local-run-result-*` | View results |
 | Cloud Sync | `muggle-local-cloud-*`, `muggle-local-publish-*` | Sync with cloud |
 
-### Cloud QA Tools (prefix: `muggle-remote-`)
+### Cloud E2E tools (prefix: `muggle-remote-`)
 
 | Category | Tools | Purpose |
 | :------- | :---- | :------ |

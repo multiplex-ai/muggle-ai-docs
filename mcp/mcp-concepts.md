@@ -4,7 +4,7 @@ Understanding how the `@muggleai/works` package works with Muggle Test.
 
 ## System Architecture
 
-The unified MCP package supports multiple modes: **Cloud QA**, **Local Testing**, or **both combined**.
+The unified MCP package supports multiple modes: **cloud end-to-end (E2E) testing** (remote URLs), **local E2E testing** (localhost), or **both combined**.
 
 ### Unified Package (Recommended)
 
@@ -284,7 +284,7 @@ The unified package provides **125+ tools** organized by mode:
 | Publishing | 2 | Upload to cloud |
 | Cloud Sync | 20+ | Pull/push between local and cloud |
 
-### Cloud QA Tools (prefix: `muggle-remote-`)
+### Cloud E2E tools (prefix: `muggle-remote-`)
 
 | Category | Count | Purpose |
 | :------- | ----: | :------ |

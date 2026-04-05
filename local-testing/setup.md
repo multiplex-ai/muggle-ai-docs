@@ -34,7 +34,7 @@ The package includes:
 | `muggle` | Unified MCP server and CLI |
 | Browser Engine | Electron-based browser automation (downloaded per-platform) |
 | Local Tools | 60+ tools for local testing |
-| Cloud Tools | 60+ tools for cloud QA (optional) |
+| Cloud Tools | 60+ tools for cloud E2E acceptance testing (optional) |
 
 ### Verify Installation
 
@@ -156,7 +156,7 @@ The `muggle` command provides helpful utilities:
 | :------ | :---------- |
 | `muggle serve` | Start the MCP server (default: all tools) |
 | `muggle serve --local` | Start with local tools only |
-| `muggle serve --qa` | Start with cloud QA tools only |
+| `muggle serve --qa` | Start with cloud E2E acceptance tools only |
 | `muggle setup` | Download/install the browser engine |
 | `muggle setup --force` | Force re-download even if installed |
 | `muggle doctor` | Check installation and diagnose issues |
@@ -199,7 +199,7 @@ You can customize behavior with environment variables in your MCP config:
 Authentication is **optional for local testing**. It's only needed if you want to:
 - Publish local projects to the cloud
 - Pull cloud projects to test locally
-- Use cloud QA features
+- Use cloud E2E acceptance features
 
 ### Device Code Flow
 

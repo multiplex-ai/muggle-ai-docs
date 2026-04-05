@@ -52,7 +52,7 @@ flowchart LR
 Create `.github/workflows/muggle-qa.yml`:
 
 ```yaml
-name: Muggle Test QA
+name: Muggle Test E2E acceptance
 
 on:
   pull_request:
@@ -63,7 +63,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger Muggle Test QA
+      - name: Trigger Muggle Test E2E acceptance
         id: trigger
         run: |
           RESPONSE=$(curl -s -X POST \

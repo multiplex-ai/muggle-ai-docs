@@ -138,7 +138,7 @@ List all stored testing sessions.
 
 ### muggle-local-execute-test-generation
 
-Generate a QA test script by launching a real browser against your web app. The browser navigates your app, executes the test case steps (like signing up, filling forms, clicking through flows), and produces a replayable test script with screenshots. Use this to create new browser tests for any user flow.
+Generate an E2E acceptance test script by launching a real browser against your web app. The browser navigates your app, executes the test case steps (like signing up, filling forms, clicking through flows), and produces a replayable test script with screenshots. Use this to create new browser tests for any user flow.
 
 **Important:** First call `muggle-remote-test-case-get` to fetch test case details, then pass them here.
 
@@ -173,7 +173,7 @@ Generate a QA test script by launching a real browser against your web app. The 
 
 ### muggle-local-execute-replay
 
-Replay an existing QA test script in a real browser to verify your app still works correctly — use this for regression testing after code changes. The browser executes each saved step and captures screenshots so you can see what happened.
+Replay an existing E2E acceptance test script in a real browser to verify your app still works correctly — use this for regression testing after code changes. The browser executes each saved step and captures screenshots so you can see what happened.
 
 **Important:** Requires two separate fetch calls before replay:
 1. `muggle-remote-test-script-get` to get script metadata (includes `actionScriptId`)
@@ -372,4 +372,4 @@ The recommended workflow uses cloud tools (`muggle-remote-*`) to manage entities
 - **[Example Workflows](examples.md)** — See these tools in action
 - **[Local Testing Setup](setup.md)** — Installation and configuration
 - **[Local Testing Overview](overview.md)** — Understanding the architecture
-- **[Cloud QA Tools](../mcp/mcp-api-reference.md)** — Full reference for muggle-remote-* tools
+- **[Cloud E2E acceptance tools](../mcp/mcp-api-reference.md)** — Full reference for muggle-remote-* tools

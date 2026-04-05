@@ -1,6 +1,6 @@
 # MCP Installation
 
-The Muggle Test MCP package provides a unified server for both **Cloud QA testing** and **Local testing** through a single installation.
+The Muggle Test MCP package provides a unified server for both **cloud E2E acceptance testing** and **local E2E acceptance testing** through a single installation.
 
 ## Package Overview
 
@@ -8,7 +8,7 @@ The `@muggleai/works` package combines:
 
 | Feature | Description |
 | :------ | :---------- |
-| **Cloud QA Tools** | Test preview, staging, and production environments |
+| **Cloud E2E acceptance tools** | Test preview, staging, and production environments |
 | **Local Testing Tools** | Test localhost applications with browser automation |
 | **Unified CLI** | Single command-line interface for all features |
 | **Shared Authentication** | One login for both local and cloud features |
@@ -71,7 +71,7 @@ Use Muggle AI's hosted MCP gateway for testing remote URLs. No installation requ
 
 ### Option 2: Local Installation (Recommended)
 
-Install locally to enable **both local testing and cloud QA** through a single MCP server.
+Install locally to enable **both local and cloud E2E acceptance testing** through a single MCP server.
 
 #### Benefits
 
@@ -177,7 +177,7 @@ By default, the server enables **all tools** (both local and cloud). Use flags t
 | :------ | :------------ |
 | `muggle serve` | All tools (local + cloud) |
 | `muggle serve --local` | Local testing only |
-| `muggle serve --qa` | Cloud QA only |
+| `muggle serve --qa` | Cloud E2E acceptance tools only |
 
 **Example: Local-only configuration:**
 

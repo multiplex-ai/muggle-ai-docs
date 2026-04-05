@@ -4,7 +4,7 @@ Test your localhost applications directly from your AI assistant using Muggle Te
 
 ## What is Local Testing?
 
-Local Testing is a capability of the `@muggleai/works` package that enables AI coding agents (Claude Code, Cursor, Codex, Windsurf) to run real-browser QA tests against web applications on your development machine. A real Electron browser clicks buttons, fills forms, navigates pages, and captures screenshots to verify user flows work correctly. Unlike cloud QA which tests publicly accessible URLs, local testing runs entirely on your computer and can access `localhost` URLs.
+Local Testing is a capability of the `@muggleai/works` package that enables AI coding agents (Claude Code, Cursor, Codex, Windsurf) to run real-browser end-to-end (E2E) acceptance tests against web applications on your development machine. A real Electron browser clicks buttons, fills forms, navigates pages, and captures screenshots to verify user flows work correctly. Unlike cloud E2E testing which tests publicly accessible URLs, local testing runs entirely on your computer and can access `localhost` URLs.
 
 ## When to Use Local vs Cloud Testing
 
@@ -13,9 +13,9 @@ Local Testing is a capability of the `@muggleai/works` package that enables AI c
 | Local development | `localhost:3000` | **Local Testing** |
 | Docker containers | `localhost:8080` | **Local Testing** |
 | Local network | `192.168.1.x` | **Local Testing** |
-| Preview deployments | `pr-123.preview.example.com` | Cloud QA |
-| Staging | `staging.example.com` | Cloud QA |
-| Production | `www.example.com` | Cloud QA |
+| Preview deployments | `pr-123.preview.example.com` | Cloud E2E |
+| Staging | `staging.example.com` | Cloud E2E |
+| Production | `www.example.com` | Cloud E2E |
 
 ```mermaid
 flowchart LR
@@ -83,7 +83,7 @@ flowchart TD
 
 ## Comparison: Local vs Cloud Testing
 
-| Aspect | Local Testing | Cloud QA |
+| Aspect | Local Testing | Cloud E2E |
 | :----- | :------------ | :------- |
 | **Target URLs** | `localhost`, local network | Public URLs (preview, staging, prod) |
 | **Setup** | `muggle serve --local` | `muggle serve --qa` |
@@ -99,10 +99,10 @@ flowchart TD
 | Testing during local development | **Local Testing** |
 | Debugging a specific bug locally | **Local Testing** |
 | Testing before committing code | **Local Testing** |
-| Testing preview/PR deployments | Cloud QA |
-| Automated CI/CD testing | Cloud QA |
-| Testing staging or production | Cloud QA |
-| Team collaboration on test results | Cloud QA |
+| Testing preview/PR deployments | Cloud E2E |
+| Automated CI/CD testing | Cloud E2E |
+| Testing staging or production | Cloud E2E |
+| Team collaboration on test results | Cloud E2E |
 
 ## Quick Example
 
