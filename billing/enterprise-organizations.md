@@ -141,6 +141,12 @@ The two accounts are independent. If Sara cancels her personal Pro plan, only he
 
 The cost-attribution view in the org billing page shows token usage broken down by member and by project, so OWNERs and ADMINs can see who and what is driving the bill.
 
+### How org wallet debits work
+
+Personal user wallets in Muggle Test split their token balance into two buckets: a **grant balance** (refilled monthly on subscription renewal for Starter/Pro users) and a **purchased balance** (top-up tokens that never expire). Debits drain the grant balance first, then fall through to purchased tokens.
+
+**Organization wallets share the same schema, but the grant bucket is structurally always 0** because Enterprise has no monthly token grant — it's purely pay-per-use at $5 per 1M tokens. In practice, every token your org consumes drains directly from the metered/purchased balance and is reconciled on the next Stripe invoice.
+
 ## Quotas and Usage
 
 Enterprise organizations get unlimited use cases, test cases, and projects, with reasonable starting caps that can be raised on request. Concurrency is configurable per org. See [Quotas and Limits](quotas-and-limits.md#enterprise-organizations) for the full table.

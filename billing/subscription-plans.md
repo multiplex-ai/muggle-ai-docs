@@ -13,7 +13,7 @@ For current pricing, see the [pricing page](https://muggle-ai.com/#pricing) or t
 | **Auto-detected Use Cases** | 10 | 30 | 100 | Unlimited |
 | **Test Cases per Project** | 15 | 50 | 300 | Unlimited |
 | **Concurrent Workflows** | 1 | 5 | 20 | 20+ |
-| **Monthly Tokens** | 1M | 3M | 20M | Pay per use ($5/M) |
+| **Included Tokens** | 1M (one-time grant) | 3M / month | 20M / month | Pay per use ($5/M) |
 | **Price** | $0 | $29/month | $199/month | $60/seat/month (min 4 seats) |
 | **Seats** | 1 | 1 | 1 | As purchased (minimum 4) |
 | **Shared team workspace** | — | — | — | Yes |
@@ -130,6 +130,20 @@ Response includes:
 }
 ```
 
+## How Monthly Token Grants Work
+
+The token allocation in your plan is credited to your wallet's **grant balance**. Here's how it behaves across each tier:
+
+- **Free tier:** Free users receive a **one-time** 1M token grant at signup. This grant is **never refreshed** — when it's exhausted, the only way to keep using the product is to upgrade to a paid plan. There is no monthly reset for Free users.
+- **Starter and Professional:** On every successful Stripe subscription invoice payment, your wallet's grant balance is **topped up to your plan amount**. If you have leftover grant from the previous cycle, it is **not** added to the new month's grant — instead, the grant balance is brought up to the plan amount (never reduced). Tokens you've purchased as top-ups are tracked separately and never expire.
+- **Enterprise:** Enterprise organization wallets do **not** have a monthly grant bucket. Token usage is metered through Stripe at $5 per 1M tokens and reconciled on each invoice. The grant balance on an Enterprise org wallet is structurally always 0.
+- **Plan upgrades:** When you upgrade mid-cycle (e.g., Starter → Professional), your wallet is credited the **difference** between the new and old plan amounts immediately on Stripe's proration invoice (e.g., upgrading from Starter to Pro mid-cycle credits 17M = 20M − 3M). Downgrades **never take tokens away**.
+- **Token spending order:** When you use tokens, your **grant balance is drained first**, then any tokens you've purchased as top-up packages. This is fair to users who buy top-ups, since grant tokens may be reset on renewal anyway.
+
+### Purchased token packages
+
+If you need more tokens than your plan grants, you can buy a one-off token package on the billing page. **Tokens you buy this way never expire** and are tracked in a separate balance from your plan grant. They survive plan changes, renewals, and downgrades.
+
 ## Upgrading Your Plan
 
 To increase your limits:
@@ -148,7 +162,7 @@ The Enterprise tier is built for teams. Instead of every engineer paying for the
 **Pricing**
 
 - **$60 per seat per month**, with a minimum of **4 seats** ($240/month floor).
-- **Tokens are pay-as-you-go at $5 per 1,000,000 tokens**, totaled at the end of each billing period and added to the same invoice.
+- **Tokens are pay-as-you-go at $5 per 1,000,000 tokens**, totaled at the end of each billing period and added to the same invoice. Enterprise organization wallets do not have a monthly grant bucket — all token consumption is purely pay-per-use, metered through Stripe.
 - Seat count is adjustable. Adding seats is prorated and takes effect immediately. Seat count cannot be reduced below the number of currently active members.
 
 **What's included**
