@@ -84,6 +84,38 @@ Some accounts and projects may be exempt from quota enforcement:
 
 Exempt accounts see "unlimited" in quota displays.
 
+## Enterprise Organizations
+
+Quotas work a little differently when an organization is involved. Org-owned projects consume the **organization's** quotas, not the individual member's personal plan quotas. Personal projects continue to consume the creator's personal plan quotas, even if that user is also a member of an org. The two are tracked separately.
+
+### Enterprise quotas
+
+| Resource | Enterprise limit |
+| :------- | :--------------- |
+| Projects | Unlimited (starting at 20) |
+| Auto-detected use cases per project | Unlimited (starting at 100) |
+| Use cases per project | Unlimited (starting at 50) |
+| Test cases per project | Unlimited (starting at 300) |
+| Concurrent workflows | 20+ (configurable per organization) |
+| Monthly tokens | Pay-per-use ($5 per 1,000,000 tokens) |
+| Seats | As purchased (minimum 4) |
+
+The starting caps shown above are soft limits that can be raised on request — they exist to prevent runaway usage in newly created organizations, not to throttle real-world team workloads. Contact support if you need higher limits.
+
+### How quota enforcement applies
+
+| Scope | What it counts against |
+| :--- | :--- |
+| Use cases and test cases in an org project | The organization's enterprise quotas |
+| Use cases and test cases in a personal project | The creator's personal plan quotas |
+| Workflow runs against an org project | The organization's concurrency limit and org wallet |
+| Workflow runs against a personal project | The creator's personal concurrency limit and personal wallet |
+| Project count | Tracked separately for personal projects and for each organization |
+
+A user who belongs to multiple organizations sees a separate quota and concurrency budget for each one. Switching org context in the dashboard switches which set of quotas is shown.
+
+For the full picture of seats, roles, billing, and the personal-vs-org model, see the [Enterprise Organizations guide](enterprise-organizations.md).
+
 ## Managing Your Quota
 
 ### Freeing Up Space
@@ -196,5 +228,6 @@ No. Limits are enforced immediately. Plan upgrades also take effect immediately.
 | Goal | Resource |
 | :--- | :------- |
 | Compare plans | [Subscription Plans](subscription-plans.md) |
+| Set up a team account | [Enterprise Organizations](enterprise-organizations.md) |
 | Upgrade your plan | [Billing Dashboard](/muggleTestV0/dashboard/billing) |
 | Learn about use cases | [How Muggle Test Works](../concepts/how-muggle-test-works.md) |

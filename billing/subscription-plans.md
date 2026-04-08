@@ -14,9 +14,11 @@ For current pricing, see the [pricing page](https://muggle-ai.com/#pricing) or t
 | **Test Cases per Project** | 15 | 50 | 300 | Unlimited |
 | **Concurrent Workflows** | 1 | 5 | 20 | 20+ |
 | **Monthly Tokens** | 1M | 3M | 20M | Pay per use ($5/M) |
-| **Price** | $0 | $29/month | $199/month | $60/seat/month (min 4) |
+| **Price** | $0 | $29/month | $199/month | $60/seat/month (min 4 seats) |
+| **Seats** | 1 | 1 | 1 | As purchased (minimum 4) |
+| **Shared team workspace** | — | — | — | Yes |
 | **CI/CD Integration** | — | — | Yes | Yes |
-| **Token Purchases** | — | Yes ($5/M) | Yes ($5/M) | Included |
+| **Token Purchases** | — | Yes ($5/M) | Yes ($5/M) | Included (metered) |
 
 ## Understanding Quotas
 
@@ -139,23 +141,34 @@ To increase your limits:
 
 Changes take effect immediately, and new limits apply to all existing projects.
 
-## Enterprise & Custom Plans
+## Enterprise Tier
 
-For teams with larger needs:
+The Enterprise tier is built for teams. Instead of every engineer paying for their own subscription, you create an **organization**, buy a pool of seats, invite teammates, and share a single token balance and a single set of projects.
 
-| Need | Solution |
-| :--- | :------- |
-| More than 10 use cases | Enterprise plan |
-| Higher concurrency | Custom limits available |
-| Volume discounts | Contact sales |
-| Dedicated support | Enterprise plan |
+**Pricing**
 
-Contact us at [sales@muggletest.com](mailto:sales@muggletest.com) for custom pricing.
+- **$60 per seat per month**, with a minimum of **4 seats** ($240/month floor).
+- **Tokens are pay-as-you-go at $5 per 1,000,000 tokens**, totaled at the end of each billing period and added to the same invoice.
+- Seat count is adjustable. Adding seats is prorated and takes effect immediately. Seat count cannot be reduced below the number of currently active members.
+
+**What's included**
+
+- Unlimited projects, use cases, and test cases (with generous starting caps)
+- 20+ concurrent workflows, configurable per organization
+- Shared org wallet and pooled token usage
+- Member roles (OWNER, ADMIN, MEMBER) for access control
+- Cost attribution by member and by project
+- CI/CD integration
+
+**Personal accounts are unaffected.** Joining an organization does not change your personal subscription, your personal projects, or your personal wallet. The two are billed completely independently. See the [Enterprise Organizations guide](enterprise-organizations.md) for the full story, including how project ownership determines billing and how a single user can belong to more than one organization.
+
+For volume discounts or a sales-assisted setup, contact us at [sales@muggletest.com](mailto:sales@muggletest.com).
 
 ## Next Steps
 
 | Goal | Resource |
 | :--- | :------- |
 | View your current plan | [Billing Dashboard](/muggleTestV0/dashboard/billing) |
+| Set up a team account | [Enterprise Organizations](enterprise-organizations.md) |
 | Understand use cases | [How Muggle Test Works](../concepts/how-muggle-test-works.md) |
 | Run your first test | [Quickstart](../getting-started/quickstart-running-tests.md) |
