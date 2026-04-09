@@ -27,6 +27,8 @@ Organizations live alongside personal accounts. Joining an org does not change a
 
 Seat count is adjustable after purchase. Adding seats takes effect immediately and is prorated for the rest of the billing cycle. You cannot reduce seats below the number of currently active members; remove members first if you need to shrink.
 
+The seat count on your organization always stays in sync with the quantity on the Stripe subscription, in both directions — changes you make inside Muggle Test are pushed to Stripe, and changes made on the Stripe side (for example, a sales rep adjusting a quantity) are reflected back on the organization the next time Stripe notifies Muggle Test. The practical effect is that the "seats remaining" count you see when inviting members is always authoritative. If every seat is occupied, new invitations are rejected until seats are added. See [Billing Suspension and Recovery → Seat Count and Billing Stay in Sync](billing/billing-suspension-and-recovery.md) for the full rules.
+
 Token usage is pay-as-you-go. The org wallet does not need to be pre-funded with a fixed monthly bucket: actual token consumption across all org projects is totaled at the end of each billing period and added to your invoice alongside the seat subscription.
 
 ## Roles
@@ -46,6 +48,8 @@ An organization has three roles.
 
 The user who creates the organization is its first OWNER.
 
+Organization roles also determine a baseline project role on every project the organization owns — for example, an Org OWNER is automatically a Project Owner on every org project, and an Org MEMBER is automatically a Project Viewer. Direct project grants stack on top of the baseline and only ever raise a user's access, never lower it. The full cascade is explained in [Organization Roles and Project Access](concepts/organization-roles-and-access.md), along with how to look up a member's effective role on any given project.
+
 ### Project admin (project-level role)
 
 When someone creates an org project, they automatically become **project admin** for that project. Project admin is a *project-level* role: it grants full control over that one project's settings, test cases, and collaborators, but it does **not** confer any org-level privileges.
@@ -62,6 +66,19 @@ Any Muggle Test user can create an organization. The flow is:
 4. Complete checkout for the seat subscription.
 
 You become the OWNER of the new org as soon as checkout finishes. You can immediately start inviting members and creating org projects.
+
+## Creating a Project Inside an Organization
+
+When you create a project, you can associate it with an organization so that the project is owned by the org rather than by you personally. That association is the trigger for everything else on this page: billing goes to the org wallet, the project counts against enterprise quotas, and every active member of the org gets a baseline project role via the [cascade](concepts/organization-roles-and-access.md).
+
+The rules for creating a project under an organization are:
+
+- **You must be an active member of that organization.** Pending invitees and deactivated members cannot create projects on the org's behalf.
+- **MEMBER is the minimum org role required.** Any active Owner, Admin, or Member can create an org project, unless the Owner has turned off member project creation in Organization Settings.
+- **Project ownership is permanent.** You cannot later "move" a project between personal and org ownership, and you cannot move it from one organization to another. This is deliberate — it keeps billing and audit trails unambiguous over the project's whole lifetime. If you really need to move a project, recreate it under the new owner.
+- **The cascade takes effect immediately.** Every current member of the org gets their cascade role on the project the moment it is created. New members will get the cascade role the moment they accept their invitation.
+
+For the full cascade table (which org role maps to which project role) and for how direct project grants stack on top of the cascade, see [Organization Roles and Project Access](concepts/organization-roles-and-access.md).
 
 ## Inviting and Managing Members
 
@@ -149,9 +166,19 @@ Personal user wallets in Muggle Test split their token balance into two buckets:
 
 ## Quotas and Usage
 
-Enterprise organizations get unlimited use cases, test cases, and projects, with reasonable starting caps that can be raised on request. Concurrency is configurable per org. See [Quotas and Limits](quotas-and-limits.md#enterprise-organizations) for the full table.
+Enterprise organizations get unlimited use cases, test cases, and projects, with reasonable starting caps that can be raised on request. Concurrency is configurable per org. See [Quotas and Limits](billing/quotas-and-limits.md) for the full table.
 
 Quota enforcement follows project ownership: org-owned projects consume org quotas, and personal projects continue to consume the creator's personal plan quotas. Project counts and concurrency budgets are tracked separately for personal and org work.
+
+## When a Payment Fails
+
+If a scheduled payment on your organization fails — for example, because the card on file has expired — the organization is suspended immediately. There is no grace period. Every active OWNER receives a dunning email with a direct link to the billing page, and organization-scoped actions (running workflows, editing projects, inviting members) are refused with an "Organization is suspended" error until the bill is paid.
+
+You can still open the suspended organization in the UI and reach its billing page, which is how an OWNER fixes the payment and retries. Personal projects and other organizations are not affected.
+
+Recovery is automatic. As soon as a subsequent Stripe retry succeeds, the organization flips back to active and every blocked action starts working again — no support ticket, no manual reactivation.
+
+The full rules, including what exactly is blocked, how dunning email works, and why there is no grace period, live on [Billing Suspension and Recovery](billing/billing-suspension-and-recovery.md).
 
 ## Cancelling
 
@@ -175,6 +202,8 @@ To set expectations honestly, these capabilities are not yet part of the enterpr
 
 | Goal | Resource |
 | :--- | :--- |
-| Compare enterprise to other plans | [Subscription Plans](subscription-plans.md) |
-| See enterprise quota details | [Quotas and Limits](quotas-and-limits.md#enterprise-organizations) |
+| Understand how org roles cascade to project access | [Organization Roles and Project Access](concepts/organization-roles-and-access.md) |
+| Learn what happens when a payment fails | [Billing Suspension and Recovery](billing/billing-suspension-and-recovery.md) |
+| Compare enterprise to other plans | [Subscription Plans](billing/subscription-plans.md) |
+| See enterprise quota details | [Quotas and Limits](billing/quotas-and-limits.md) |
 | Talk to sales about a custom setup | [sales@muggletest.com](mailto:sales@muggletest.com) |
