@@ -1,6 +1,6 @@
 {
-    "version": "v0.2.5",
-    "lastUpdatedAtUtc": "2026-03-06T00:00:00Z",
+    "version": "v0.2.6",
+    "lastUpdatedAtUtc": "2026-04-08T00:00:00Z",
     "sections": [
         {
             "sectionId": "getting-started",
@@ -93,6 +93,14 @@
                     "relativePath": "concepts/automated-captcha-handling.md",
                     "order": 5,
                     "tags": ["captcha", "recaptcha", "hcaptcha", "automation"]
+                },
+                {
+                    "articleId": "organization-roles-and-access",
+                    "title": "Organization Roles and Project Access",
+                    "summary": "How organization roles cascade into project access, how direct and team grants stack with the cascade, and how to look up a member's effective role on a project.",
+                    "relativePath": "concepts/organization-roles-and-access.md",
+                    "order": 6,
+                    "tags": ["organization", "roles", "access", "permissions", "cascade", "effective-role", "enterprise"]
                 }
             ]
         },
@@ -241,6 +249,14 @@
                     "relativePath": "billing/enterprise-organizations.md",
                     "order": 3,
                     "tags": ["billing", "enterprise", "organization", "seats", "teams"]
+                },
+                {
+                    "articleId": "billing-suspension-and-recovery",
+                    "title": "Billing Suspension and Recovery",
+                    "summary": "What happens when an enterprise organization's payment fails: immediate suspension, dunning email to owners, which routes stay reachable, and automatic recovery when a later payment succeeds.",
+                    "relativePath": "billing/billing-suspension-and-recovery.md",
+                    "order": 4,
+                    "tags": ["billing", "enterprise", "organization", "suspension", "dunning", "recovery", "payment", "stripe"]
                 }
             ]
         },
