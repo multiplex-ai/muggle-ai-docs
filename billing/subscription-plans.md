@@ -9,10 +9,10 @@ For current pricing, see the [pricing page](https://muggle-ai.com/#pricing) or t
 | Feature | Free | Starter | Professional | Enterprise |
 | :------ | :--- | :------ | :----------- | :--------- |
 | **Projects** | 1 | 3 | Unlimited | Unlimited |
-| **Use Cases per Project** | 5 | 15 | 50 | Unlimited |
+| **Use Cases per Project** | 3 | 15 | 50 | Unlimited |
 | **Auto-detected Use Cases** | 10 | 30 | 100 | Unlimited |
 | **Test Cases per Project** | 15 | 50 | 300 | Unlimited |
-| **Concurrent Workflows** | 1 | 5 | 20 | 20+ |
+| **Concurrent Workflows** | 3 | 10 | 20 | 20+ |
 | **Included Tokens** | 1M (one-time grant) | 3M / month | 20M / month | Pay per use ($5/M) |
 | **Price** | $0 | $29/month | $199/month | $60/seat/month (min 4 seats) |
 | **Seats** | 1 | 1 | 1 | As purchased (minimum 4) |
@@ -39,7 +39,7 @@ Use cases represent the high-level user journeys you want to test (e.g., "User L
 
 | Plan | Use Case Limit |
 | :--- | :------------- |
-| Free | 5 per project |
+| Free | 3 per project |
 | Starter | 15 per project |
 | Professional | 50 per project |
 | Enterprise | Unlimited |
@@ -61,8 +61,8 @@ This controls how many workflows (scans, test generations, replays) can run simu
 
 | Plan | Concurrent Limit |
 | :--- | :--------------- |
-| Free | 1 |
-| Starter | 5 |
+| Free | 3 |
+| Starter | 10 |
 | Professional | 20 |
 | Enterprise | 20+ |
 
