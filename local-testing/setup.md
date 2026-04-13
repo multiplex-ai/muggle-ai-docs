@@ -2,12 +2,29 @@
 
 Install and configure Muggle Test to test your localhost applications.
 
+## On This Page
+
+| Section | Description |
+| :------ | :---------- |
+| [Prerequisites](#prerequisites) | What you need before starting |
+| [Step 1: Install](#step-1-install) | Install the package |
+| [Step 2: Configure Your AI Assistant](#step-2-configure-your-ai-assistant) | Per-platform MCP config (Claude Code, Cursor, Antigravity) |
+| [Step 3: Restart Your AI Assistant](#step-3-restart-your-ai-assistant) | Load the new config |
+| [Step 4: Verify the Connection](#step-4-verify-the-connection) | Confirm it works |
+| [Running Your First Test](#running-your-first-test) | Create a project and test |
+| [CLI Commands](#cli-commands) | Available command-line utilities |
+| [Configuration Options](#configuration-options) | Environment variables and custom settings |
+| [Authentication](#authentication-optional) | Optional cloud authentication |
+| [Data Storage](#data-storage) | Where local data lives |
+| [Troubleshooting](#troubleshooting) | Common issues and fixes |
+| [Next Steps](#next-steps) | Further reading |
+
 ## Prerequisites
 
 | Requirement | Details |
 | :---------- | :------ |
 | **Node.js** | Version 22 or later |
-| **MCP Client** | Cursor IDE, Claude Desktop, or any MCP-compatible assistant |
+| **MCP Client** | Claude Code, Cursor, Antigravity, or any MCP-compatible assistant |
 | **Disk Space** | ~500MB for packages (includes bundled browser engine) |
 
 ## Step 1: Install
@@ -84,6 +101,34 @@ To customize (e.g., local-only mode), edit `~/.cursor/mcp.json`:
 }
 ```
 
+### Antigravity
+
+Edit `~/.gemini/antigravity/mcp_config.json` (or open the Agent panel → **MCP Servers** → **Manage MCP Servers** → **View raw config**):
+
+```json
+{
+  "mcpServers": {
+    "muggle": {
+      "command": "muggle",
+      "args": ["serve"]
+    }
+  }
+}
+```
+
+**For local testing only** (no cloud features):
+
+```json
+{
+  "mcpServers": {
+    "muggle": {
+      "command": "muggle",
+      "args": ["serve", "--local"]
+    }
+  }
+}
+```
+
 ### Claude Desktop
 
 Edit your Claude Desktop configuration:
@@ -106,13 +151,16 @@ Edit your Claude Desktop configuration:
 
 ## Step 3: Restart Your AI Assistant
 
-Restart Cursor or Claude Desktop to load the new MCP server configuration.
+Restart your MCP client (Cursor, Antigravity, or Claude Desktop) to load the new MCP server configuration. Claude Code users can skip this step.
 
 ## Step 4: Verify the Connection
 
-Ask your AI assistant to check the connection:
-
-> "Check the Muggle Test status"
+| Platform | How to verify |
+| :------- | :------------ |
+| **Claude Code** | Run `/muggle:status` |
+| **Cursor** | Ask your assistant: **"Check the Muggle Test status"** |
+| **Antigravity** | Ask your agent: **"Check the Muggle Test status"** |
+| **Claude Desktop** | Ask your assistant: **"Check the Muggle Test status"** |
 
 You should see a response indicating the MCP is ready:
 
@@ -246,9 +294,19 @@ All test data is stored locally in `~/.muggle-ai/`:
 | Check | Solution |
 | :---- | :------- |
 | Package installed? | Run `npm list -g @muggleai/works` |
-| Config correct? | Verify JSON syntax in your MCP config file |
-| Client restarted? | Restart Cursor/Claude Desktop after config changes |
+| Config correct? | Verify JSON syntax in your platform's config file |
+| Client restarted? | Restart your MCP client after config changes |
 | Node version? | Ensure Node.js 22+ is installed (`node --version`) |
+
+**Platform config paths:**
+
+| Platform | Config file |
+| :------- | :---------- |
+| Claude Code | Managed via plugin system |
+| Cursor | `~/.cursor/mcp.json` |
+| Antigravity | `~/.gemini/antigravity/mcp_config.json` |
+| Claude Desktop (macOS) | `~/Library/Application Support/Claude/claude_desktop_config.json` |
+| Claude Desktop (Windows) | `%APPDATA%\Claude\claude_desktop_config.json` |
 
 ### "Electron-app not found"
 

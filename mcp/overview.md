@@ -2,6 +2,19 @@
 
 Ship quality products, not just code. The Muggle Test MCP package provides AI-powered end-to-end (E2E) acceptance testing that validates your web app like a real user, through AI assistants using the [Model Context Protocol (MCP)](https://modelcontextprotocol.io/).
 
+## On This Page
+
+| Section | Description |
+| :------ | :---------- |
+| [What is the MCP Package?](#what-is-the-mcp-package) | Package features and supported platforms |
+| [Quick Install](#quick-install) | One-line install for each platform |
+| [When to Use Each Mode](#when-to-use-each-mode) | Local vs cloud vs unified |
+| [Architecture](#architecture) | How local, cloud, and unified modes work |
+| [Key Benefits](#key-benefits) | Single installation, natural language testing, local-to-cloud workflow |
+| [Tool Categories](#tool-categories) | Local and cloud tool breakdown |
+| [Getting Started](#getting-started) | Links to quickstarts and guides |
+| [Requirements](#requirements) | Node.js, MCP client, and OS |
+
 ## What is the MCP Package?
 
 The `@muggleai/works` package is a **unified MCP server** that lets AI coding agents run real-browser E2E acceptance tests on your web app — generate test scripts from plain English, replay them on localhost, capture screenshots, and validate user flows like signup, checkout, and dashboards.
@@ -11,9 +24,18 @@ The `@muggleai/works` package is a **unified MCP server** that lets AI coding ag
 | **Local Testing** | Test localhost and local network applications with a real Electron browser |
 | **Cloud E2E** | Test preview, staging, and production environments |
 | **AI-Driven Automation** | Describe what to test in plain English — the AI handles the rest |
-| **Single Installation** | One package for all testing needs, works across Claude Code, Cursor, Codex, and Windsurf |
+| **Single Installation** | One package for all testing needs, works across Claude Code, Cursor, Antigravity, and other MCP-compatible clients |
 
 ## Quick Install
+
+**Claude Code:**
+
+```
+/plugin marketplace add https://github.com/multiplex-ai/muggle-ai-works
+/plugin install muggleai@muggle-works
+```
+
+**Cursor, Antigravity, or other MCP clients:**
 
 ```bash
 npm install -g @muggleai/works@latest
@@ -166,5 +188,5 @@ Ready to connect your AI assistant to Muggle Test?
 | Requirement | Version |
 | :---------- | :------ |
 | Node.js | 22+ |
-| MCP Client | Claude Code, Cursor, Codex, Windsurf, or any MCP-compatible client |
+| MCP Client | Claude Code, Cursor, Antigravity, or any MCP-compatible client |
 | Operating System | macOS, Windows, or Linux |

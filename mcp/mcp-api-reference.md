@@ -4,6 +4,24 @@ Complete reference for cloud E2E acceptance tools in the `@muggleai/works` packa
 
 > **Note:** This page documents cloud E2E acceptance tools (prefix: `muggle-remote-`). For local testing tools (prefix: `muggle-local-`), see [Local Testing Tools Reference](../local-testing/tools-reference.md).
 
+## On This Page
+
+| Section | Description |
+| :------ | :---------- |
+| [Overview](#overview) | Tool categories at a glance |
+| [Authentication Tools](#authentication-tools) | Device code flow, API key management |
+| [Project Tools](#project-tools) | Create, update, list, delete projects |
+| [PRD File Tools](#prd-file-tools) | Upload and process PRD documents |
+| [Secret Tools](#secret-tools) | Manage encrypted test credentials |
+| [Wallet Tools](#wallet-tools) | Payment methods and credits |
+| [Use Case Tools](#use-case-tools) | Discover, review, and approve use cases |
+| [Workflow Tools](#workflow-tools) | Website scan, test generation, replay |
+| [Artifact Tools](#artifact-tools) | Inspect test cases, scripts, and summaries |
+| [Report Tools](#report-tools) | Generate and deliver reports |
+| [Recommendation Tools](#recommendation-tools) | Scheduling and CI/CD guidance |
+| [Error Responses](#error-responses) | Error codes and handling |
+| [Next Steps](#next-steps) | Further reading |
+
 ## Overview
 
 The cloud E2E acceptance tools are organized into these categories:

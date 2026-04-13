@@ -2,6 +2,24 @@
 
 The Muggle Test MCP package provides a unified server for both **cloud E2E acceptance testing** and **local E2E acceptance testing** through a single installation.
 
+## On This Page
+
+| Section | Description |
+| :------ | :---------- |
+| [Package Overview](#package-overview) | What the package includes |
+| [Quick Install](#quick-install) | Install for Claude Code, Cursor, or Antigravity |
+| [Deployment Options](#deployment-options) | Hosted gateway vs local installation |
+| [Client Configuration](#client-configuration) | Per-platform MCP config setup |
+| [Tool Selection](#tool-selection) | Limiting tool scope with flags |
+| [CLI Commands](#cli-commands) | Available command-line utilities |
+| [Environment Variables](#environment-variables) | Customizing behavior |
+| [Authentication](#authentication) | Device code flow and API keys |
+| [Verifying Installation](#verifying-installation) | Confirm everything works |
+| [Architecture](#architecture) | How the pieces fit together |
+| [Data Storage](#data-storage) | Where local data lives |
+| [Troubleshooting](#troubleshooting) | Common issues and fixes |
+| [Next Steps](#next-steps) | Further reading |
+
 ## Package Overview
 
 The `@muggleai/works` package combines:
@@ -114,7 +132,16 @@ This checks:
 
 ## Client Configuration
 
-### Cursor IDE
+### Claude Code
+
+No manual config needed — install via the plugin system:
+
+```
+/plugin marketplace add https://github.com/multiplex-ai/muggle-ai-works
+/plugin install muggleai@muggle-works
+```
+
+### Cursor
 
 `npm install -g @muggleai/works` automatically adds the muggle server to `~/.cursor/mcp.json`. **No manual configuration needed** — just restart Cursor after install.
 
@@ -128,6 +155,37 @@ Edit `~/.cursor/mcp.json` to add environment variables:
 {
   "mcpServers": {
     "muggle": {
+      "command": "muggle",
+      "args": ["serve"],
+      "env": {
+        "MCP_API_KEY": "mai_sk_your_api_key_here"
+      }
+    }
+  }
+}
+```
+
+### Antigravity
+
+Edit `~/.gemini/antigravity/mcp_config.json` (or open the Agent panel → **MCP Servers** → **Manage MCP Servers** → **View raw config**):
+
+```json
+{
+  "mcpServers": {
+    "muggle-test": {
+      "command": "muggle",
+      "args": ["serve"]
+    }
+  }
+}
+```
+
+**With API key (for cloud features):**
+
+```json
+{
+  "mcpServers": {
+    "muggle-test": {
       "command": "muggle",
       "args": ["serve"],
       "env": {
@@ -240,9 +298,12 @@ Let your AI assistant help you authenticate:
 
 After configuring your MCP client:
 
-1. **Restart your MCP client** (Cursor, Claude Desktop)
-2. **Ask the assistant:** "Check the Muggle Test status"
-3. **Expected response:** Status showing available tools and auth state
+| Platform | How to verify |
+| :------- | :------------ |
+| **Claude Code** | Run `/muggle:status` |
+| **Cursor** | Restart Cursor, then ask: **"Check the Muggle Test status"** |
+| **Antigravity** | Restart Antigravity, then ask: **"Check the Muggle Test status"** |
+| **Claude Desktop** | Restart the app, then ask: **"Check the Muggle Test status"** |
 
 If you see errors, run `muggle doctor` to diagnose.
 
@@ -303,9 +364,19 @@ All local data is stored in `~/.muggle-ai/`:
 | Check | Solution |
 | :---- | :------- |
 | Package installed? | Run `npm list -g @muggleai/works` |
-| Client restarted? | Restart Cursor/Claude Desktop after config changes |
+| Client restarted? | Restart your MCP client after config changes |
 | Node version? | Ensure Node.js 22+ (`node --version`) |
 | Config correct? | Verify JSON syntax in your MCP config |
+
+### Platform Config Paths
+
+| Platform | Config file location |
+| :------- | :------------------- |
+| Claude Code | Managed via plugin system — no manual config |
+| Cursor | `~/.cursor/mcp.json` |
+| Antigravity | `~/.gemini/antigravity/mcp_config.json` |
+| Claude Desktop (macOS) | `~/Library/Application Support/Claude/claude_desktop_config.json` |
+| Claude Desktop (Windows) | `%APPDATA%\Claude\claude_desktop_config.json` |
 
 ### "Electron-app not found"
 
