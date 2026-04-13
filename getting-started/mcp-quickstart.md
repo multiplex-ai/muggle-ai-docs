@@ -25,7 +25,9 @@ Connect your AI assistant to Muggle Test in under 5 minutes.
 npm install -g @muggleai/works@latest
 ```
 
-Then configure your MCP client (e.g., `~/.cursor/mcp.json`):
+For Cursor, that's it — the install automatically configures `~/.cursor/mcp.json`. Just restart Cursor.
+
+For other MCP clients, add this to your client's config:
 
 ```json
 {

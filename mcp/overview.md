@@ -19,6 +19,8 @@ The `@muggleai/works` package is a **unified MCP server** that lets AI coding ag
 npm install -g @muggleai/works@latest
 ```
 
+One command installs the MCP server, downloads the browser engine, and configures Cursor automatically (`~/.cursor/mcp.json`). Just restart Cursor after install.
+
 ## When to Use Each Mode
 
 | Environment | Example URLs | Mode |

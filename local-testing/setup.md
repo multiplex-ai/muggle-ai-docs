@@ -25,7 +25,10 @@ Install and configure Muggle Test to test your localhost applications.
 npm install -g @muggleai/works@latest
 ```
 
-During installation, the package automatically downloads the platform-specific browser engine.
+During installation, the package automatically:
+- Downloads the platform-specific browser engine
+- Configures Cursor MCP (`~/.cursor/mcp.json`)
+- Syncs skills to `~/.cursor/skills/`
 
 The package includes:
 
@@ -64,24 +67,11 @@ Muggle Doctor
 
 ## Step 2: Configure Your AI Assistant
 
-Add the MCP server to your assistant's configuration.
-
 ### Cursor IDE
 
-Edit `~/.cursor/mcp.json`:
+**No manual configuration needed.** The npm install automatically adds the muggle server to `~/.cursor/mcp.json`. Just restart Cursor after install.
 
-```json
-{
-  "mcpServers": {
-    "muggle": {
-      "command": "muggle",
-      "args": ["serve"]
-    }
-  }
-}
-```
-
-**For local testing only** (no cloud features):
+To customize (e.g., local-only mode), edit `~/.cursor/mcp.json`:
 
 ```json
 {
