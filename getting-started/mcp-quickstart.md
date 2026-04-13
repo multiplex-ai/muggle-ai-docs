@@ -47,7 +47,9 @@ This delivers skills, MCP server, and hooks through the plugin lifecycle.
 npm install -g @muggleai/works@latest
 ```
 
-**2. Configure MCP** in `~/.cursor/mcp.json`:
+For Cursor, that's it — the install automatically configures `~/.cursor/mcp.json`. Just restart Cursor.
+
+For other MCP clients, add this to your client's config:
 
 ```json
 {

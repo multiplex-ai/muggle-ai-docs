@@ -50,10 +50,11 @@ This delivers skills, MCP server, and hooks through the plugin lifecycle. No man
 npm install -g @muggleai/works@latest
 ```
 
-This installs:
+This installs and configures everything automatically:
 - The MCP server (`muggle serve`)
 - Browser automation engine (downloaded automatically)
 - CLI tools for diagnostics and authentication
+- **Cursor MCP config** (`~/.cursor/mcp.json` — written automatically)
 
 ---
 
@@ -142,25 +143,18 @@ No manual config needed — install via the plugin system:
 
 ### Cursor
 
-Edit `~/.cursor/mcp.json`:
+`npm install -g @muggleai/works` automatically adds the muggle server to `~/.cursor/mcp.json`. **No manual configuration needed** — just restart Cursor after install.
+
+To verify: run `muggle doctor` and check that "Cursor MCP Config" shows as passing.
+
+**Optional: Add an API key for cloud features**
+
+Edit `~/.cursor/mcp.json` to add environment variables:
 
 ```json
 {
   "mcpServers": {
-    "muggle-test": {
-      "command": "muggle",
-      "args": ["serve"]
-    }
-  }
-}
-```
-
-**With API key (for cloud features):**
-
-```json
-{
-  "mcpServers": {
-    "muggle-test": {
+    "muggle": {
       "command": "muggle",
       "args": ["serve"],
       "env": {
