@@ -2,6 +2,20 @@
 
 This page lists frequent issues and quick checks to resolve them.
 
+## On This Page
+
+| Section | Description |
+| :------ | :---------- |
+| [Login Keeps Failing](#login-keeps-failing) | Test account and credential issues |
+| [Pages Not Discovered by Deep Scan](#pages-not-discovered-by-deep-scan) | Missing flows in scan results |
+| [Tests Are Flaky](#tests-are-flaky) | Intermittent pass/fail |
+| [API Authentication Errors](#api-authentication-errors) | 401/403 responses |
+| [Timeouts During Test Runs](#timeouts-during-test-runs) | Stuck or hanging tests |
+| [Reports Not Generating](#reports-not-generating) | Empty or missing reports |
+| [CAPTCHA Blocking Tests](#captcha-blocking-tests) | CAPTCHA challenges during tests |
+| [MCP &amp; Local Testing Issues](#mcp--local-testing-issues) | Electron, downloads, tools, browser, auth |
+| [Getting More Help](#getting-more-help) | Support channels |
+
 ## Login Keeps Failing
 
 **Symptoms:**
@@ -160,8 +174,8 @@ This page lists frequent issues and quick checks to resolve them.
 | Check | Solution |
 | :---- | :------- |
 | Package installed? | Run `npm list -g @muggleai/works` |
-| Config correct? | Verify path in `mcp.json` or `claude_desktop_config.json` |
-| Client restarted? | Restart Cursor/Claude Desktop after config changes |
+| Config correct? | Verify JSON syntax in your platform's config file |
+| Client restarted? | Restart your MCP client after config changes |
 | Node version? | Ensure Node.js 22+ is installed |
 | Run diagnostics | Execute `muggle doctor` to identify issues |
 

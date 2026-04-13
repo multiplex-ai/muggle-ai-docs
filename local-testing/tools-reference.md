@@ -6,6 +6,23 @@ Complete reference for local testing tools in the `@muggleai/works` package.
 > - **`muggle-remote-*` tools**: Authentication and all entity management (projects, use cases, test cases, secrets)
 > - **`muggle-local-*` tools**: Local execution, results viewing, and publishing only
 
+## On This Page
+
+| Section | Description |
+| :------ | :---------- |
+| [Tool Namespaces](#tool-namespaces) | Remote vs local tool prefixes |
+| [Local Tool Categories](#local-tool-categories) | Status, execution, results, scripts, publishing |
+| [Authentication Tools](#authentication-tools-muggle-remote-auth-) | Login, logout, status, polling |
+| [Remote Data Tools](#remote-data-tools-muggle-remote-) | Fetching cloud entities |
+| [Status Tools](#status-tools) | Check service status and sessions |
+| [Execution Tools](#execution-tools) | Generate and replay test scripts |
+| [Run Result Tools](#run-result-tools) | View execution results |
+| [Test Script Tools](#test-script-tools) | View locally generated scripts |
+| [Publishing Tools](#publishing-tools) | Upload scripts to cloud |
+| [Workflow: Local Testing with Cloud Entities](#workflow-local-testing-with-cloud-entities) | Recommended end-to-end workflow |
+| [Tool Selection Guide](#tool-selection-guide) | Quick lookup for common tasks |
+| [Next Steps](#next-steps) | Further reading |
+
 ## Tool Namespaces
 
 | Namespace | Purpose | Examples |

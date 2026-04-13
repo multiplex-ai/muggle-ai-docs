@@ -2,9 +2,23 @@
 
 Test your localhost applications directly from your AI assistant using Muggle Test.
 
+## On This Page
+
+| Section | Description |
+| :------ | :---------- |
+| [What is Local Testing?](#what-is-local-testing) | Overview and supported environments |
+| [Why Local Testing?](#why-local-testing) | Challenges it solves |
+| [Key Features](#key-features) | Localhost access, AI-driven testing, screenshots, and more |
+| [How It Works](#how-it-works) | Four-step flow from description to results |
+| [Comparison: Local vs Cloud Testing](#comparison-local-vs-cloud-testing) | Feature comparison table |
+| [Quick Example](#quick-example) | Sample conversation |
+| [Cloud-First Local Testing Workflow](#cloud-first-local-testing-workflow) | Architecture and workflow steps |
+| [Getting Started](#getting-started) | Links to setup and guides |
+| [Requirements](#requirements) | Node.js, MCP client, and OS |
+
 ## What is Local Testing?
 
-Local Testing is a capability of the `@muggleai/works` package that enables AI coding agents (Claude Code, Cursor, Codex, Windsurf) to run real-browser end-to-end (E2E) acceptance tests against web applications on your development machine. A real Electron browser clicks buttons, fills forms, navigates pages, and captures screenshots to verify user flows work correctly. Unlike cloud E2E testing which tests publicly accessible URLs, local testing runs entirely on your computer and can access `localhost` URLs.
+Local Testing is a capability of the `@muggleai/works` package that enables AI coding agents (Claude Code, Cursor, Antigravity) to run real-browser end-to-end (E2E) acceptance tests against web applications on your development machine. A real Electron browser clicks buttons, fills forms, navigates pages, and captures screenshots to verify user flows work correctly. Unlike cloud E2E testing which tests publicly accessible URLs, local testing runs entirely on your computer and can access `localhost` URLs.
 
 ## When to Use Local vs Cloud Testing
 
@@ -177,5 +191,5 @@ Ready to test your localhost applications?
 | Requirement | Version |
 | :---------- | :------ |
 | Node.js | 22 or later |
-| MCP Client | Claude Code, Cursor, Codex, Windsurf, or any MCP-compatible client |
+| MCP Client | Claude Code, Cursor, Antigravity, or any MCP-compatible client |
 | Operating System | macOS, Windows, or Linux |

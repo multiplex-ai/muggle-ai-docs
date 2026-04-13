@@ -2,6 +2,14 @@
 
 Muggle Test is an AI-powered web testing platform that runs real-browser E2E acceptance tests against your web app. It discovers user flows, generates replayable test scripts from plain English, and validates that features like signup, checkout, and dashboards work correctly — with screenshots as evidence.
 
+## On This Page
+
+| Section | Description |
+| :------ | :---------- |
+| [When to Use Muggle Test](#when-to-use-muggle-test) | Scenarios where Muggle Test helps |
+| [What You Get](#what-you-get) | Auto-discovered flows, test scripts, reports |
+| [How It Fits Into Your Workflow](#how-it-fits-into-your-workflow) | Development, staging, and production |
+
 ## When to Use Muggle Test
 
 | Scenario                                     | Muggle Test Helps By                                |

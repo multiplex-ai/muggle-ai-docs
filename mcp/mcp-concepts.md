@@ -2,6 +2,20 @@
 
 Understanding how the `@muggleai/works` package works with Muggle Test.
 
+## On This Page
+
+| Section | Description |
+| :------ | :---------- |
+| [System Architecture](#system-architecture) | Unified package, hosted gateway, and mode comparison |
+| [What is MCP?](#what-is-mcp) | Model Context Protocol overview |
+| [Core Concepts](#core-concepts) | Projects, use cases, test cases, test scripts, and workflows |
+| [Testing Flow](#testing-flow) | End-to-end testing pipeline |
+| [Authentication](#authentication) | Device code flow and API keys |
+| [Rate Limits](#rate-limits) | Request and concurrency limits by tier |
+| [Available Tools](#available-tools) | Local and cloud tool categories |
+| [MCP Resources](#mcp-resources) | Dynamic documentation for AI agents |
+| [Next Steps](#next-steps) | Further reading |
+
 ## System Architecture
 
 The unified MCP package supports multiple modes: **cloud end-to-end (E2E) testing** (remote URLs), **local E2E testing** (localhost), or **both combined**.
