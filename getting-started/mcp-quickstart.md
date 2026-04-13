@@ -2,30 +2,52 @@
 
 Connect your AI assistant to Muggle Test in under 5 minutes.
 
+## On This Page
+
+| Section | Description |
+| :------ | :---------- |
+| [Choose Your Platform](#choose-your-platform) | Install and configure for Claude Code, Cursor, or Antigravity |
+| [Verify Installation](#verify-installation) | Confirm everything is working |
+| [Authentication](#authentication-optional-for-local-testing) | Set up cloud access (optional for local testing) |
+| [Run Your First Test](#run-your-first-test) | Local and cloud testing walkthroughs |
+| [Example Conversation](#example-conversation) | End-to-end session example |
+| [Tool Overview](#tool-overview) | Available tool categories |
+| [Choosing Local vs Cloud](#choosing-local-vs-cloud) | When to use each mode |
+| [Hosted Gateway](#hosted-gateway-alternative) | Cloud-only setup without local install |
+| [Troubleshooting](#troubleshooting) | Common issues and fixes |
+| [Next Steps](#next-steps) | Further reading |
+
 ## Prerequisites
 
 | Requirement | Description |
 | :---------- | :---------- |
 | Node.js | Version 22 or later |
-| MCP client | Cursor IDE, Claude Desktop, or any MCP-compatible client |
+| MCP client | Claude Code, Cursor, or Antigravity |
 
-## Quick Start
+---
 
-### Step 1: Install
+## Choose Your Platform
 
+### Claude Code
+
+Install via the plugin system — no manual config files needed:
 
 ```
 /plugin marketplace add https://github.com/multiplex-ai/muggle-ai-works
 /plugin install muggleai@muggle-works
 ```
 
-**Cursor or other MCP clients:**
+This delivers skills, MCP server, and hooks through the plugin lifecycle.
+
+### Cursor
+
+**1. Install the package globally:**
 
 ```bash
 npm install -g @muggleai/works@latest
 ```
 
-Then configure your MCP client (e.g., `~/.cursor/mcp.json`):
+**2. Configure MCP** in `~/.cursor/mcp.json`:
 
 ```json
 {
@@ -38,11 +60,42 @@ Then configure your MCP client (e.g., `~/.cursor/mcp.json`):
 }
 ```
 
-### Step 2: Verify
+**3. Restart Cursor** to pick up the new configuration.
 
-**Claude Code:** Run `/muggle:status`
+### Antigravity
 
-**Cursor / other clients:** Ask your assistant: **"Check the Muggle Test status"**
+**1. Install the package globally:**
+
+```bash
+npm install -g @muggleai/works@latest
+```
+
+**2. Configure MCP** in `~/.gemini/antigravity/mcp_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "muggle": {
+      "command": "muggle",
+      "args": ["serve"]
+    }
+  }
+}
+```
+
+You can also add it via the Antigravity UI: open the **Agent panel** → **MCP Servers** → **Manage MCP Servers** → **View raw config**.
+
+**3. Restart Antigravity** to pick up the new configuration.
+
+---
+
+## Verify Installation
+
+| Platform | How to verify |
+| :------- | :------------ |
+| **Claude Code** | Run `/muggle:status` |
+| **Cursor** | Ask your assistant: **"Check the Muggle Test status"** |
+| **Antigravity** | Ask your agent: **"Check the Muggle Test status"** |
 
 ---
 
@@ -64,7 +117,27 @@ The assistant will:
 1. Log in to [Muggle Test Dashboard](https://app.muggle-ai.com)
 2. Navigate to **Settings** → **API Keys**
 3. Create and copy your API key
-4. Update your config:
+4. Add the key to your MCP configuration:
+
+**Claude Code:** API key is stored via the agentic auth flow — no config change needed.
+
+**Cursor** (`~/.cursor/mcp.json`):
+
+```json
+{
+  "mcpServers": {
+    "muggle": {
+      "command": "muggle",
+      "args": ["serve"],
+      "env": {
+        "MCP_API_KEY": "mai_sk_your_api_key_here"
+      }
+    }
+  }
+}
+```
+
+**Antigravity** (`~/.gemini/antigravity/mcp_config.json`):
 
 ```json
 {
@@ -205,7 +278,24 @@ The signup form correctly shows "Please enter a valid email" when an invalid ema
 
 ## Hosted Gateway (Alternative)
 
-For cloud-only testing without local installation, use the hosted gateway:
+For cloud-only testing without local installation, use the hosted gateway. This works with any MCP-compatible client:
+
+**Cursor** (`~/.cursor/mcp.json`):
+
+```json
+{
+  "mcpServers": {
+    "muggle": {
+      "url": "https://mcp.muggle-ai.com/mcp",
+      "headers": {
+        "x-api-key": "mai_sk_your_api_key_here"
+      }
+    }
+  }
+}
+```
+
+**Antigravity** (`~/.gemini/antigravity/mcp_config.json`):
 
 ```json
 {
@@ -229,7 +319,7 @@ For cloud-only testing without local installation, use the hosted gateway:
 | Check | Solution |
 | :---- | :------- |
 | Package installed? | `npm list -g @muggleai/works` |
-| Config correct? | Verify JSON syntax |
+| Config correct? | Verify JSON syntax in your platform's config file |
 | Client restarted? | Restart after config changes |
 | Run doctor? | `muggle doctor` |
 
@@ -240,6 +330,14 @@ For cloud-only testing without local installation, use the hosted gateway:
 | API key correct? | Verify key in dashboard |
 | Key expired? | Regenerate in dashboard |
 | Key format? | Should start with `mai_sk_` |
+
+### Platform-Specific Config Paths
+
+| Platform | Config file location |
+| :------- | :------------------- |
+| Claude Code | Managed via plugin system — no manual config |
+| Cursor | `~/.cursor/mcp.json` |
+| Antigravity | `~/.gemini/antigravity/mcp_config.json` |
 
 ---
 

@@ -2,6 +2,25 @@
 
 Common testing scenarios and example prompts for Muggle Test local testing.
 
+## On This Page
+
+| Section | Description |
+| :------ | :---------- |
+| [Project-Based Testing Workflow](#project-based-testing-workflow) | Full project setup from create to publish |
+| [Quick Start Examples](#quick-start-examples) | Explore, test, and screenshot |
+| [Form Testing](#form-testing) | Validation, required fields, input limits |
+| [Authentication Flows](#authentication-flows) | Login, password reset, sessions |
+| [Navigation Testing](#navigation-testing) | Menus, breadcrumbs, back button |
+| [E-commerce Scenarios](#e-commerce-scenarios) | Search, cart, checkout |
+| [Error Handling](#error-handling) | 404s, form errors, network issues |
+| [Accessibility Checks](#accessibility-checks) | Keyboard nav, labels, alt text |
+| [Step-by-Step Control](#step-by-step-control) | Sequential and conditional actions |
+| [Session Management](#session-management) | Review, find, and clean up sessions |
+| [Tips for Effective Testing](#tips-for-effective-testing) | Best practices |
+| [Example Conversation](#example-conversation) | Complete testing session walkthrough |
+| [Using Agent Skills](#using-agent-skills) | Automated multi-step workflows |
+| [Next Steps](#next-steps) | Further reading |
+
 ## Project-Based Testing Workflow
 
 The recommended approach for comprehensive testing is to organize your tests into projects, use cases, and test cases.

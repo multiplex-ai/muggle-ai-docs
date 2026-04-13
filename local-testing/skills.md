@@ -2,6 +2,21 @@
 
 Pre-built AI agent skills that automate testing and development workflows with Muggle AI.
 
+## On This Page
+
+| Section | Description |
+| :------ | :---------- |
+| [What are Plugin Skills?](#what-are-plugin-skills) | Overview and installation |
+| [Available Skills](#available-skills) | All skills at a glance |
+| [/muggle:do](#muggledo) | Quality-guaranteed development workflow |
+| [/muggle:test](#muggletest) | Change-driven E2E router |
+| [/muggle:test-feature-local](#muggletest-feature-local) | Quick single-feature local test |
+| [/muggle:status](#mugglestatus) | Health check |
+| [/muggle:repair](#mugglerepair) | Diagnose and fix installation |
+| [/muggle:upgrade](#muggleupgrade) | Update to latest version |
+| [Skills vs Direct MCP Tool Calls](#skills-vs-direct-mcp-tool-calls) | When to use each approach |
+| [Next Steps](#next-steps) | Further reading |
+
 ## What are Plugin Skills?
 
 Plugin skills are structured workflows that teach AI assistants how to perform complex, multi-step tasks. Instead of manually calling individual tools, you invoke a skill and the agent follows the workflow automatically.
