@@ -49,6 +49,12 @@ flowchart LR
 
 ### Basic Integration
 
+The flow has three phases:
+
+1. **Trigger**: POST to the bulk replay endpoint to create a workflow runtime. The response returns the runtime `id`.
+2. **Wait for run batch**: poll `.../bulk/{id}/run/latest` until the run exposes a `runBatchId` in its `result` payload.
+3. **Wait for summary**: poll `.../bulk/run-batch/{runBatchId}/summary` until no items are running or pending, then compute pass rate against executed runs (success + failed + canceled; skipped are excluded).
+
 Create `.github/workflows/muggle-e2e.yml`:
 
 ```yaml
@@ -59,46 +65,108 @@ on:
     branches: [main, master]
   workflow_dispatch:
 
+env:
+  MUGGLE_AI_API_BASE_URL: "https://api.muggle-ai.com"
+  PASS_RATE_THRESHOLD: "100"
+  POLL_INTERVAL_SECONDS: "20"
+  TIMEOUT_MINUTES: "45"
+
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger Muggle Test E2E acceptance
+      - name: Trigger Muggle Test bulk replay
         id: trigger
+        env:
+          MUGGLE_AI_API_KEY: ${{ secrets.MUGGLE_AI_API_KEY }}
+          PROJECT_ID: ${{ vars.MUGGLE_PROJECT_ID }}
         run: |
-          RESPONSE=$(curl -s -X POST \
-            "https://api.muggle-ai.com/v1/protected/muggle-test/workflow/test-script/test-script-replay/bulk/workflowRuntimes" \
-            -H "x-api-key: ${{ secrets.MUGGLE_AI_API_KEY }}" \
+          set -euo pipefail
+          RESPONSE=$(curl -sS -X POST \
+            "${MUGGLE_AI_API_BASE_URL}/v1/protected/muggle-test/workflow/test-script/test-script-replay/bulk/workflowRuntimes" \
             -H "Content-Type: application/json" \
-            -d '{"projectId": "${{ vars.MUGGLE_PROJECT_ID }}"}')
-          
-          RUNTIME_ID=$(echo $RESPONSE | jq -r '.workflowRuntimeId')
-          echo "runtime_id=$RUNTIME_ID" >> $GITHUB_OUTPUT
+            -H "x-api-key: ${MUGGLE_AI_API_KEY}" \
+            -d "{\"projectId\": \"${PROJECT_ID}\", \"namePrefix\": \"ci\"}")
 
-      - name: Wait for Tests
+          RUNTIME_ID=$(echo "${RESPONSE}" | jq -r '.id // empty')
+          if [[ -z "${RUNTIME_ID}" ]]; then
+            echo "::error::Missing workflow runtime id in response: ${RESPONSE}"
+            exit 1
+          fi
+          echo "runtime_id=${RUNTIME_ID}" >> "$GITHUB_OUTPUT"
+
+      - name: Wait for run batch and summary
+        env:
+          MUGGLE_AI_API_KEY: ${{ secrets.MUGGLE_AI_API_KEY }}
+          WORKFLOW_RUNTIME_ID: ${{ steps.trigger.outputs.runtime_id }}
         run: |
-          RUNTIME_ID="${{ steps.trigger.outputs.runtime_id }}"
-          
-          for i in {1..60}; do
-            STATUS=$(curl -s \
-              "https://api.muggle-ai.com/v1/protected/muggle-test/workflow/test-script/test-script-replay/bulk/$RUNTIME_ID/run/latest" \
-              -H "x-api-key: ${{ secrets.MUGGLE_AI_API_KEY }}" | jq -r '.status')
-            
-            echo "Status: $STATUS"
-            
-            if [ "$STATUS" = "succeeded" ]; then
-              echo "Tests passed!"
-              exit 0
-            elif [ "$STATUS" = "failed" ]; then
-              echo "Tests failed!"
+          set -euo pipefail
+          MAX_WAIT_SECONDS=$((TIMEOUT_MINUTES * 60))
+          START_TIME="$(date +%s)"
+          RUN_BATCH_ID=""
+
+          while true; do
+            NOW="$(date +%s)"
+            if (( NOW - START_TIME >= MAX_WAIT_SECONDS )); then
+              echo "::error::Timed out after ${TIMEOUT_MINUTES} minutes"
               exit 1
             fi
-            
-            sleep 30
+
+            RUN_FILE="$(mktemp)"
+            curl -sS -o "${RUN_FILE}" \
+              "${MUGGLE_AI_API_BASE_URL}/v1/protected/muggle-test/workflow/test-script/test-script-replay/bulk/${WORKFLOW_RUNTIME_ID}/run/latest" \
+              -H "x-api-key: ${MUGGLE_AI_API_KEY}"
+
+            RUN_STATUS="$(jq -r '.status // empty' "${RUN_FILE}")"
+            RUN_BATCH_ID="$(jq -r '
+              if (.result|type) == "string"
+                then ((.result|fromjson? // {}) | .runBatchId // empty)
+                else (.result.runBatchId // empty)
+              end' "${RUN_FILE}")"
+
+            if [[ -z "${RUN_BATCH_ID}" ]]; then
+              sleep "${POLL_INTERVAL_SECONDS}"
+              continue
+            fi
+
+            SUMMARY_FILE="$(mktemp)"
+            SUMMARY_HTTP=$(curl -sS -o "${SUMMARY_FILE}" -w "%{http_code}" \
+              "${MUGGLE_AI_API_BASE_URL}/v1/protected/muggle-test/workflow/test-script/test-script-replay/bulk/run-batch/${RUN_BATCH_ID}/summary" \
+              -H "x-api-key: ${MUGGLE_AI_API_KEY}")
+            if [[ "${SUMMARY_HTTP}" == "404" ]]; then
+              sleep "${POLL_INTERVAL_SECONDS}"
+              continue
+            fi
+            if [[ "${SUMMARY_HTTP}" != "200" ]]; then
+              echo "::error::Summary fetch failed (HTTP ${SUMMARY_HTTP})"
+              cat "${SUMMARY_FILE}"
+              exit 1
+            fi
+
+            SUCCESS=$(jq -r '.successCount'  "${SUMMARY_FILE}")
+            FAILED=$(jq  -r '.failedCount'   "${SUMMARY_FILE}")
+            CANCELED=$(jq -r '.canceledCount' "${SUMMARY_FILE}")
+            RUNNING=$(jq  -r '.runningCount'  "${SUMMARY_FILE}")
+            PENDING=$(jq  -r '.pendingCount'  "${SUMMARY_FILE}")
+
+            # Consider finished when nothing is running AND (nothing pending OR run COMPLETED)
+            if [[ "${RUNNING}" -eq 0 ]] && { [[ "${PENDING}" -eq 0 ]] || [[ "${RUN_STATUS}" == "COMPLETED" ]]; }; then
+              ACTUAL=$((SUCCESS + FAILED + CANCELED))
+              if [[ "${ACTUAL}" -eq 0 ]]; then
+                PASS_RATE="100.00"
+              else
+                PASS_RATE=$(awk "BEGIN { printf \"%.2f\", (${SUCCESS} * 100) / ${ACTUAL} }")
+              fi
+              echo "Pass rate: ${PASS_RATE}% (success=${SUCCESS} failed=${FAILED} canceled=${CANCELED})"
+              if awk "BEGIN { exit !(${PASS_RATE} >= ${PASS_RATE_THRESHOLD}) }"; then
+                exit 0
+              fi
+              echo "::error::Pass rate ${PASS_RATE}% below threshold ${PASS_RATE_THRESHOLD}%"
+              exit 1
+            fi
+
+            sleep "${POLL_INTERVAL_SECONDS}"
           done
-          
-          echo "Timeout waiting for tests"
-          exit 1
 ```
 
 ### Setup Steps
@@ -109,90 +177,36 @@ jobs:
 | 2    | Add `MUGGLE_PROJECT_ID` to repository **Variables** |
 | 3    | Commit the workflow file                            |
 
-## Azure DevOps
+### Optional: Trigger a Report After Replay
 
-Create `azure-pipelines.yml`:
-
-```yaml
-trigger:
-  - main
-
-schedules:
-  - cron: '0 2 * * *'
-    displayName: Nightly Tests
-    branches:
-      include:
-        - main
-
-pool:
-  vmImage: 'ubuntu-latest'
-
-variables:
-  - group: MuggleAI
-
-steps:
-  - script: |
-      RESPONSE=$(curl -s -X POST \
-        "https://api.muggle-ai.com/v1/protected/muggle-test/workflow/test-script/test-script-replay/bulk/workflowRuntimes" \
-        -H "x-api-key: $(MUGGLE_AI_API_KEY)" \
-        -H "Content-Type: application/json" \
-        -d '{"projectId": "$(MUGGLE_PROJECT_ID)"}')
-      
-      RUNTIME_ID=$(echo $RESPONSE | jq -r '.workflowRuntimeId')
-      echo "##vso[task.setvariable variable=RUNTIME_ID]$RUNTIME_ID"
-    displayName: 'Trigger Tests'
-
-  - script: |
-      for i in {1..60}; do
-        STATUS=$(curl -s \
-          "https://api.muggle-ai.com/v1/protected/muggle-test/workflow/test-script/test-script-replay/bulk/$(RUNTIME_ID)/run/latest" \
-          -H "x-api-key: $(MUGGLE_AI_API_KEY)" | jq -r '.status')
-        
-        if [ "$STATUS" = "succeeded" ]; then exit 0; fi
-        if [ "$STATUS" = "failed" ]; then exit 1; fi
-        
-        sleep 30
-      done
-      exit 1
-    displayName: 'Wait for Results'
-```
-
-## GitLab CI
-
-Create `.gitlab-ci.yml`:
+After the summary reports success, you can generate and deliver a project report (delivery channels come from the project's report preferences):
 
 ```yaml
-stages:
-  - test
-
-muggle-e2e:
-  stage: test
-  image: curlimages/curl:latest
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-  script:
-    - |
-      RESPONSE=$(curl -s -X POST \
-        "https://api.muggle-ai.com/v1/protected/muggle-test/workflow/test-script/test-script-replay/bulk/workflowRuntimes" \
-        -H "x-api-key: $MUGGLE_AI_API_KEY" \
-        -H "Content-Type: application/json" \
-        -d "{\"projectId\": \"$MUGGLE_PROJECT_ID\"}")
-      
-      RUNTIME_ID=$(echo $RESPONSE | jq -r '.workflowRuntimeId')
-      
-      for i in $(seq 1 60); do
-        STATUS=$(curl -s \
-          "https://api.muggle-ai.com/v1/protected/muggle-test/workflow/test-script/test-script-replay/bulk/$RUNTIME_ID/run/latest" \
-          -H "x-api-key: $MUGGLE_AI_API_KEY" | jq -r '.status')
-        
-        if [ "$STATUS" = "succeeded" ]; then exit 0; fi
-        if [ "$STATUS" = "failed" ]; then exit 1; fi
-        
-        sleep 30
-      done
-      exit 1
+      - name: Generate project report
+        if: success()
+        env:
+          MUGGLE_AI_API_KEY: ${{ secrets.MUGGLE_AI_API_KEY }}
+          PROJECT_ID: ${{ vars.MUGGLE_PROJECT_ID }}
+        run: |
+          curl -sS -X POST \
+            "${MUGGLE_AI_API_BASE_URL}/v1/protected/muggle-test/report/final/generate" \
+            -H "Content-Type: application/json" \
+            -H "x-api-key: ${MUGGLE_AI_API_KEY}" \
+            -d "{\"projectId\": \"${PROJECT_ID}\", \"exportFormat\": \"html\", \"channels\": []}"
 ```
+
+## Azure DevOps and GitLab CI
+
+Both platforms follow the same three-phase pattern shown above: **trigger → wait for `runBatchId` → poll `/run-batch/{id}/summary` → compute pass rate**.
+
+Differences are limited to how the platform exposes secrets and variables:
+
+| Platform     | Secret syntax        | Variable syntax      |
+| :----------- | :------------------- | :------------------- |
+| Azure DevOps | `$(MUGGLE_AI_API_KEY)` | `$(MUGGLE_PROJECT_ID)` |
+| GitLab CI    | `$MUGGLE_AI_API_KEY`   | `$MUGGLE_PROJECT_ID`   |
+
+Copy the bash logic from the GitHub Actions example above and substitute the platform-specific variable syntax. Do **not** rely on `.status == "succeeded"` — that field never takes those values; always go through the `run-batch/{id}/summary` endpoint and compute pass rate from `successCount / (successCount + failedCount + canceledCount)`.
 
 ## Webhook Notifications
 
