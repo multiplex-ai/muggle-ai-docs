@@ -166,5 +166,5 @@ Once your PRD is processed:
 | Goal | Resource |
 | :--- | :------- |
 | Generate test scripts | [How Muggle Test Works](how-muggle-test-works.md) |
-| Run your tests | [Quickstart: Running Tests](../getting-started/quickstart-running-tests.md) |
-| Use API for uploads | [API Overview](../api/api-overview.md) |
+| Run your tests | [Quickstart: Running Tests](getting-started/quickstart-running-tests.md) |
+| Use API for uploads | [API Overview](api/api-overview.md) |

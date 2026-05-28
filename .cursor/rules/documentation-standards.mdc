@@ -11,7 +11,7 @@ This is a **customer-facing documentation repository**. Follow these standards w
 ## Security
 
 - **NEVER** expose internal implementation details, internal URLs, or sensitive information
-- Use placeholder URLs like `https://app.muggle-ai.com` for public endpoints
+- Use placeholder URLs like `https://www.muggle-ai.com` for public endpoints
 - Do not reference internal service names, database schemas, or infrastructure details
 
 ## Diagrams

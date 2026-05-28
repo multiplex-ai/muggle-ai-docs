@@ -62,7 +62,7 @@ For other MCP clients, add this to your client's config:
 }
 ```
 
-**3. Restart Cursor** to pick up the new configuration.
+**2. Restart Cursor** to pick up the new configuration.
 
 ### Antigravity
 
@@ -116,7 +116,7 @@ The assistant will:
 
 ### Option B: API Key
 
-1. Log in to [Muggle Test Dashboard](https://app.muggle-ai.com)
+1. Log in to [Muggle Test Dashboard](https://www.muggle-ai.com)
 2. Navigate to **Settings** → **API Keys**
 3. Create and copy your API key
 4. Add the key to your MCP configuration:
@@ -256,12 +256,12 @@ The signup form correctly shows "Please enter a valid email" when an invalid ema
 
 | Category | Tools | Purpose |
 | :------- | :---- | :------ |
-| **Local Testing** | `muggle-local-project-*`, `muggle-local-use-case-*`, `muggle-local-test-case-*` | Manage local test projects |
-| **Execution** | `muggle-local-execute-*` | Generate and run test scripts |
-| **Cloud E2E acceptance** | `muggle-remote-project-*`, `muggle-remote-workflow-*` | Cloud-based testing workflows |
-| **Publishing** | `muggle-local-publish-*`, `muggle-local-cloud-*` | Sync between local and cloud |
+| **Cloud entities** | `muggle-remote-project-*`, `muggle-remote-use-case-*`, `muggle-remote-test-case-*` | Create and manage projects, use cases, and test cases (used by both local and cloud testing) |
+| **Cloud workflows** | `muggle-remote-workflow-*`, `muggle-remote-report-*` | Cloud test generation, replay, and reporting |
+| **Local execution** | `muggle-local-execute-*`, `muggle-local-run-result-*` | Generate and replay scripts locally, view results |
+| **Publishing** | `muggle-local-publish-test-script` | Publish a locally generated script to the cloud |
 
-**Total: 120+ tools** covering both local and cloud testing.
+**Total: 100+ tools** covering both local and cloud testing.
 
 ---
 
@@ -345,8 +345,8 @@ For cloud-only testing without local installation, use the hosted gateway. This 
 
 ## Next Steps
 
-- **[MCP Installation](../mcp/mcp-installation.md)** - Detailed setup options
-- **[Local Testing Setup](../local-testing/setup.md)** - In-depth local testing guide
-- **[MCP Concepts](../mcp/mcp-concepts.md)** - Understand the architecture
-- **[MCP API Reference](../mcp/mcp-api-reference.md)** - Complete tool documentation
-- **[CI/CD Integration](../mcp/mcp-cicd-integration.md)** - Automate in your pipeline
+- **[MCP Installation](mcp/mcp-installation.md)** - Detailed setup options
+- **[Local Testing Setup](local-testing/setup.md)** - In-depth local testing guide
+- **[MCP Concepts](mcp/mcp-concepts.md)** - Understand the architecture
+- **[MCP API Reference](mcp/mcp-api-reference.md)** - Complete tool documentation
+- **[CI/CD Integration](mcp/mcp-cicd-integration.md)** - Automate in your pipeline

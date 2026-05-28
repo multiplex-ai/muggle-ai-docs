@@ -2,7 +2,7 @@
 
 Complete reference for cloud E2E acceptance tools in the `@muggleai/works` package.
 
-> **Note:** This page documents cloud E2E acceptance tools (prefix: `muggle-remote-`). For local testing tools (prefix: `muggle-local-`), see [Local Testing Tools Reference](../local-testing/tools-reference.md).
+> **Note:** This page documents cloud E2E acceptance tools (prefix: `muggle-remote-`). For local testing tools (prefix: `muggle-local-`), see [Local Testing Tools Reference](local-testing/tools-reference.md).
 
 ## On This Page
 
@@ -14,11 +14,14 @@ Complete reference for cloud E2E acceptance tools in the `@muggleai/works` packa
 | [PRD File Tools](#prd-file-tools) | Upload and process PRD documents |
 | [Secret Tools](#secret-tools) | Manage encrypted test credentials |
 | [Wallet Tools](#wallet-tools) | Payment methods and credits |
-| [Use Case Tools](#use-case-tools) | Discover, review, and approve use cases |
+| [Use Case Tools](#use-case-tools) | Discover, generate, create, and approve use cases |
+| [Test Case Tools](#test-case-tools) | Generate, create, and update test cases |
 | [Workflow Tools](#workflow-tools) | Website scan, test generation, replay |
+| [Bulk Preview Tools](#bulk-preview-tools) | Bulk use/test case preview jobs |
 | [Artifact Tools](#artifact-tools) | Inspect test cases, scripts, and summaries |
 | [Report Tools](#report-tools) | Generate and deliver reports |
 | [Recommendation Tools](#recommendation-tools) | Scheduling and CI/CD guidance |
+| [Feedback Tools](#feedback-tools) | Submit and manage script feedback |
 | [Error Responses](#error-responses) | Error codes and handling |
 | [Next Steps](#next-steps) | Further reading |
 
@@ -28,16 +31,19 @@ The cloud E2E acceptance tools are organized into these categories:
 
 | Category        | Count | Purpose                            | Link                          |
 | :-------------- | ----: | :--------------------------------- | :---------------------------- |
-| Authentication  |     7 | Authenticate and manage API keys   | [Jump](#authentication-tools) |
+| Authentication  |     8 | Authenticate and manage API keys   | [Jump](#authentication-tools) |
 | Project         |     5 | Create and manage testing projects | [Jump](#project-tools)        |
 | PRD Files       |     5 | Upload and process PRD documents   | [Jump](#prd-file-tools)       |
 | Secrets         |     5 | Manage test credentials            | [Jump](#secret-tools)         |
 | Wallet          |     5 | Manage payment methods and topups  | [Jump](#wallet-tools)         |
-| Use Cases       |     7 | Discover, create, and update use cases | [Jump](#use-case-tools)   |
-| Workflows       |    17 | Execute testing workflows          | [Jump](#workflow-tools)       |
-| Artifacts       |    11 | Inspect test cases and scripts     | [Jump](#artifact-tools)       |
+| Use Cases       |    10 | Discover, generate, create, and update use cases | [Jump](#use-case-tools) |
+| Test Cases      |     7 | Generate, create, and update test cases | [Jump](#test-case-tools) |
+| Workflows       |    20 | Scans, generation, replay, status  | [Jump](#workflow-tools)       |
+| Bulk Preview    |     5 | Bulk use/test case preview jobs    | [Jump](#bulk-preview-tools)   |
+| Artifacts       |     6 | Inspect test cases, scripts, summaries | [Jump](#artifact-tools)   |
 | Reports         |     4 | Generate and deliver reports       | [Jump](#report-tools)         |
 | Recommendations |     2 | Get scheduling guidance            | [Jump](#recommendation-tools) |
+| Feedback        |     3 | Submit and manage script feedback  | [Jump](#feedback-tools)       |
 
 ---
 
@@ -58,9 +64,7 @@ These tools are available when running `muggle serve` and are used for local tes
 | `muggle-remote-auth-poll` | Poll for login completion |
 | `muggle-remote-auth-logout` | Clear stored credentials |
 
-See [Local Testing Tools Reference](../local-testing/tools-reference.md#authentication-tools-muggle-remote-auth-) for full documentation.
-
-### Gateway Auth Tools
+See [Local Testing Tools Reference](local-testing/tools-reference.md#authentication-tools-muggle-remote-auth-) for full documentation.
 
 ### Device Code Flow
 
@@ -73,14 +77,14 @@ sequenceDiagram
     participant User as User (Browser)
     participant Auth0 as Auth0
     
-    Agent->>Gateway: auth_device_code_start()
+    Agent->>Gateway: muggle-remote-auth-login()
     Gateway->>Auth0: Request device code
     Auth0-->>Gateway: {userCode, verificationUri}
     Gateway-->>Agent: "Visit URL, enter code"
     Agent->>User: Display URL and code
     User->>Auth0: Visit URL, enter code, login
     Auth0-->>Auth0: User authorizes
-    Agent->>Gateway: auth_device_code_poll(deviceCode)
+    Agent->>Gateway: muggle-remote-auth-poll(deviceCode)
     Gateway->>Auth0: Check authorization
     Auth0-->>Gateway: Access token
     Gateway->>Gateway: Create API key
@@ -88,7 +92,7 @@ sequenceDiagram
     Gateway-->>Agent: "Success! Restart Cursor"
 ```
 
-### auth_status
+### muggle-remote-auth-status
 
 Check current authentication status.
 
@@ -112,7 +116,7 @@ Check current authentication status.
 | `apiKeyHint`   | string  | Masked API key (if using API key)    |
 | `message`      | string  | Human-readable status message        |
 
-### auth_device_code_start
+### muggle-remote-auth-login
 
 Start the device code authentication flow. Returns a URL for the user to visit.
 
@@ -131,12 +135,12 @@ Start the device code authentication flow. Returns a URL for the user to visit.
     "1. Open this URL in your browser: https://login.muggle-ai.com/activate",
     "2. Enter this code: ABCD-EFGH",
     "3. Log in with your Muggle Test account",
-    "4. Once authorized, call auth_device_code_poll to complete setup"
+    "4. Once authorized, call muggle-remote-auth-poll to complete setup"
   ]
 }
 ```
 
-### auth_device_code_poll
+### muggle-remote-auth-poll
 
 Poll for device code authorization completion. Call this after the user has visited the verification URL.
 
@@ -177,7 +181,13 @@ Poll for device code authorization completion. Call this after the user has visi
 }
 ```
 
-### auth_api_key_create
+### muggle-remote-auth-logout
+
+Clear stored credentials and log out.
+
+**Input:** None required
+
+### muggle-remote-auth-api-key-create
 
 Create a new API key for the authenticated user.
 
@@ -205,7 +215,7 @@ Create a new API key for the authenticated user.
 }
 ```
 
-### auth_api_key_list
+### muggle-remote-auth-api-key-list
 
 List all API keys for the authenticated user.
 
@@ -226,7 +236,7 @@ List all API keys for the authenticated user.
 }
 ```
 
-### auth_api_key_get
+### muggle-remote-auth-api-key-get
 
 Get details of a specific API key by ID.
 
@@ -234,7 +244,7 @@ Get details of a specific API key by ID.
 | :--------- | :----- | :------: | :------------- |
 | `apiKeyId` | string |    ✓     | API key ID     |
 
-### auth_api_key_revoke
+### muggle-remote-auth-api-key-revoke
 
 Revoke an API key. The key will immediately stop working.
 
@@ -625,6 +635,87 @@ List graduated use cases for a project.
 
 Get details of a specific use case.
 
+### muggle-remote-use-case-create
+
+Create a use case manually.
+
+| Field         | Type   | Required | Description               |
+| :------------ | :----- | :------: | :------------------------ |
+| `projectId`   | string |    ✓     | Target project            |
+| `title`       | string |    ✓     | Use case title            |
+| `description` | string |          | What the flow covers      |
+| `url`         | string |          | Starting URL for the flow |
+
+### muggle-remote-use-case-create-from-prompts
+
+Generate one or more use cases from natural-language prompts.
+
+| Field       | Type     | Required | Description                         |
+| :---------- | :------- | :------: | :---------------------------------- |
+| `projectId` | string   |    ✓     | Target project                      |
+| `prompts`   | string[] |    ✓     | Plain-English descriptions of flows |
+
+### muggle-remote-use-case-prompt-preview
+
+Preview the use case a prompt would generate, without saving it.
+
+| Field       | Type   | Required | Description               |
+| :---------- | :----- | :------: | :------------------------ |
+| `projectId` | string |    ✓     | Target project            |
+| `prompt`    | string |    ✓     | Plain-English description |
+
+### muggle-remote-use-case-update
+
+Update a use case's fields.
+
+| Field       | Type   | Required | Description        |
+| :---------- | :----- | :------: | :----------------- |
+| `useCaseId` | string |    ✓     | Use case to update |
+
+### muggle-remote-use-case-update-from-prompt
+
+Revise an existing use case from a natural-language instruction.
+
+| Field       | Type   | Required | Description                    |
+| :---------- | :----- | :------: | :----------------------------- |
+| `useCaseId` | string |    ✓     | Use case to revise             |
+| `prompt`    | string |    ✓     | Instruction describing changes |
+
+---
+
+## Test Case Tools
+
+### muggle-remote-test-case-create
+
+Create a test case under a use case.
+
+| Field       | Type   | Required | Description            |
+| :---------- | :----- | :------: | :--------------------- |
+| `projectId` | string |    ✓     | Target project         |
+| `useCaseId` | string |    ✓     | Parent use case        |
+| `title`     | string |    ✓     | Test case title        |
+| `goal`      | string |          | What the test verifies |
+
+### muggle-remote-test-case-generate-from-prompt
+
+Generate one or more test cases for a use case from a natural-language prompt.
+
+| Field       | Type   | Required | Description                         |
+| :---------- | :----- | :------: | :---------------------------------- |
+| `projectId` | string |    ✓     | Target project                      |
+| `useCaseId` | string |    ✓     | Use case to generate test cases for |
+| `prompt`    | string |    ✓     | What scenarios to cover             |
+
+### muggle-remote-test-case-update
+
+Update a test case's fields.
+
+| Field        | Type   | Required | Description         |
+| :----------- | :----- | :------: | :------------------ |
+| `testCaseId` | string |    ✓     | Test case to update |
+
+> Read-only test case tools (`muggle-remote-test-case-list`, `-get`, `-list-by-use-case`) are documented under [Artifact Tools](#artifact-tools).
+
 ---
 
 ## Workflow Tools
@@ -735,6 +826,14 @@ Generate executable test scripts from test cases.
 
 Check script generation status.
 
+#### muggle-remote-workflow-start-test-script-generation-bulk
+
+Generate scripts in bulk for the test cases in a project that do not yet have an active script.
+
+| Field       | Type   | Required | Description    |
+| :---------- | :----- | :------: | :------------- |
+| `projectId` | string |    ✓     | Target project |
+
 #### muggle-remote-wf-get-latest-ts-gen-by-tc
 
 Get the latest generation runtime for a specific test case.
@@ -770,6 +869,10 @@ Execute multiple test scripts in parallel.
 | `testScriptIds` | string[] |          | Specific scripts (omit for all) |
 | `name`          | string   |          | Name for this run batch         |
 
+#### muggle-remote-wf-get-ts-replay-latest-run
+
+Check the status of a single test script replay.
+
 #### muggle-remote-wf-get-ts-replay-bulk-latest-run
 
 Check bulk replay status.
@@ -799,6 +902,14 @@ Cancel a specific workflow run.
 
 Cancel a workflow runtime and all its runs.
 
+#### muggle-remote-local-run-upload
+
+Upload a locally executed run (and its screenshots) to the cloud so it appears on the dashboard alongside cloud runs.
+
+| Field       | Type   | Required | Description    |
+| :---------- | :----- | :------: | :------------- |
+| `projectId` | string |    ✓     | Target project |
+
 ---
 
 ## Artifact Tools
@@ -826,10 +937,6 @@ List test scripts for a project.
 #### muggle-remote-test-script-get
 
 Get test script details including executable steps.
-
-#### muggle-remote-test-script-list-paginated
-
-List test scripts with full pagination.
 
 ### Summaries
 
@@ -943,6 +1050,60 @@ Get CI/CD integration templates for GitHub Actions, Azure DevOps, GitLab CI, etc
 | :------------------- | :----- | :----------------------------------------- |
 | `repositoryProvider` | string | `github`, `azureDevOps`, `gitlab`, `other` |
 | `cadence`            | string | `onPullRequest`, `nightly`, `onDemand`     |
+
+---
+
+## Bulk Preview Tools
+
+Bulk preview jobs generate many use case or test case candidates in one asynchronous job, so you can review the results before saving them.
+
+### muggle-remote-use-case-bulk-preview-submit
+
+Submit a bulk job that previews use cases for a project.
+
+### muggle-remote-test-case-bulk-preview-submit
+
+Submit a bulk job that previews test cases for selected use cases.
+
+### muggle-remote-bulk-preview-job-get
+
+Get the status and results of a bulk preview job.
+
+| Field   | Type   | Required | Description         |
+| :------ | :----- | :------: | :------------------ |
+| `jobId` | string |    ✓     | Bulk preview job ID |
+
+### muggle-remote-bulk-preview-job-list
+
+List bulk preview jobs for a project.
+
+### muggle-remote-bulk-preview-job-cancel
+
+Cancel a running bulk preview job.
+
+---
+
+## Feedback Tools
+
+Feedback tools let you flag that a generated script — or a specific step — did the wrong thing, so Muggle can analyze and regenerate the affected scripts.
+
+### muggle-remote-user-feedback-create
+
+Submit feedback on a script or a specific step.
+
+| Field          | Type   | Required | Description                  |
+| :------------- | :----- | :------: | :--------------------------- |
+| `projectId`    | string |    ✓     | Target project               |
+| `testScriptId` | string |          | Script the feedback is about |
+| `message`      | string |    ✓     | What went wrong              |
+
+### muggle-remote-user-feedback-list
+
+List feedback you have submitted.
+
+### muggle-remote-user-feedback-delete
+
+Delete a previously submitted feedback item.
 
 ---
 

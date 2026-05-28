@@ -14,6 +14,7 @@ Pre-built AI agent skills that automate testing and development workflows with M
 | [/muggle:status](#mugglestatus) | Health check |
 | [/muggle:repair](#mugglerepair) | Diagnose and fix installation |
 | [/muggle:upgrade](#muggleupgrade) | Update to latest version |
+| [More Skills](#more-skills) | Router, prepare, import, regenerate, PR, feedback, preferences |
 | [Skills vs Direct MCP Tool Calls](#skills-vs-direct-mcp-tool-calls) | When to use each approach |
 | [Next Steps](#next-steps) | Further reading |
 
@@ -42,6 +43,13 @@ After installation, skills are available as `/muggle:*` commands.
 | `/muggle:status` | Health check for browser test runner (Electron), MCP server, auth | "Check muggle status" |
 | `/muggle:repair` | Diagnose and fix broken installation | "Repair my muggle setup" |
 | `/muggle:upgrade` | Update to the latest version | "Upgrade muggle" |
+| `/muggle` | Command router and menu of all Muggle commands | "muggle" |
+| `/muggle:test-prepare` | Verify dev servers and sibling services are up before testing | "Are my services up?" |
+| `/muggle:import` | Import existing tests, PRDs, or specs into Muggle Test | "Import my Playwright tests" |
+| `/muggle:regenerate-missing` | Bulk-regenerate scripts for test cases without one | "Regenerate missing test scripts" |
+| `/muggle:pr` | Post a visual E2E walkthrough with screenshots to a PR | "Add the walkthrough to my PR" |
+| `/muggle:feedback` | Flag a wrong script or step so Muggle can regenerate it | "This run was wrong" |
+| `/muggle:preferences` | View, set, or reset Muggle testing preferences | "Show my muggle settings" |
 
 ## /muggle:do
 
@@ -159,6 +167,18 @@ Automatically diagnoses and fixes broken components:
 
 Updates all Muggle AI components to the latest version and reports before/after versions.
 
+## More Skills
+
+| Skill | What it does |
+| :---- | :----------- |
+| `/muggle` | Router and menu — lists every Muggle command and dispatches to it. |
+| `/muggle:test-prepare` | Checks that the dev servers and sibling services your tests need are running, and offers to start any that are missing. |
+| `/muggle:import` | Brings existing tests into Muggle Test — Playwright, Cypress, Gherkin `.feature` files, PRDs, or test-plan docs. |
+| `/muggle:regenerate-missing` | Scans a project for test cases with no active script and bulk-generates the missing ones via the cloud. |
+| `/muggle:pr` | Renders a per-test-case visual walkthrough (dashboard links and step screenshots) and posts it to a PR. |
+| `/muggle:feedback` | Flags that a generated script — or one specific step — did the wrong thing, so Muggle can regenerate it. Also lists and deletes feedback. |
+| `/muggle:preferences` | Views, sets, or resets the preferences that control testing behavior, such as auto-login. |
+
 ## Skills vs Direct MCP Tool Calls
 
 | Approach | When to use |
@@ -166,7 +186,7 @@ Updates all Muggle AI components to the latest version and reports before/after 
 | **Skills** | Common workflows, multi-step tasks, "just build it" or "just test it" |
 | **Direct tools** | Fine-grained control, specific operations, custom workflows |
 
-Skills call the same 70+ MCP tools under the hood -- they automate the orchestration.
+Skills call the same 100+ MCP tools under the hood -- they automate the orchestration.
 
 ## Next Steps
 

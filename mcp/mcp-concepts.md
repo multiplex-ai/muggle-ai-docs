@@ -220,11 +220,11 @@ sequenceDiagram
     participant User as User
     participant Auth0 as Auth0
     
-    Agent->>Gateway: auth_device_code_start()
+    Agent->>Gateway: muggle-remote-auth-login()
     Gateway-->>Agent: URL + code
     Agent->>User: "Visit URL, enter code"
     User->>Auth0: Authorizes
-    Agent->>Gateway: auth_device_code_poll()
+    Agent->>Gateway: muggle-remote-auth-poll()
     Gateway-->>Gateway: Create API key
     Gateway-->>Gateway: Update mcp.json
     Gateway-->>Agent: "Success! Restart client"
@@ -259,7 +259,7 @@ All API calls are scoped to your account:
 | Scope          | Description                                                 |
 | :------------- | :---------------------------------------------------------- |
 | **Projects**   | Access only projects you own or have been granted access to |
-| **Team Roles** | Members can be granted viewer, editor, or admin roles       |
+| **Team Roles** | Members can hold viewer, editor, maintainer, or owner roles per project |
 | **API Keys**   | Inherit permissions of the creating user                    |
 
 ## Rate Limits
@@ -268,9 +268,10 @@ The gateway enforces rate limits to ensure fair usage:
 
 | Tier       | Requests/min | Concurrent Workflows |
 | :--------- | -----------: | -------------------: |
-| Free       |           20 |                    1 |
+| Free       |           20 |                    3 |
+| Starter    |           40 |                   10 |
 | Pro        |           60 |                   20 |
-| Enterprise |          300 |                   20 |
+| Enterprise |          300 |                  20+ |
 
 **Rate limit headers:**
 
@@ -282,36 +283,37 @@ The gateway enforces rate limits to ensure fair usage:
 
 ## Available Tools
 
-The unified package provides **125+ tools** organized by mode:
+The unified package provides **100+ tools** organized by mode:
 
 ### Local Testing Tools (prefix: `muggle-local-`)
 
 | Category | Count | Purpose |
 | :------- | ----: | :------ |
-| Authentication | 4 | Login, logout, status |
-| Projects | 5 | Local project management |
-| Use Cases | 5 | Define user flows |
-| Test Cases | 5 | Test specifications |
-| Test Scripts | 4 | Generated automation |
-| Execution | 3 | Run tests locally |
-| Results | 2 | View local results |
-| Publishing | 2 | Upload to cloud |
-| Cloud Sync | 20+ | Pull/push between local and cloud |
+| Status | 2 | Check the local service and list sessions |
+| Execution | 3 | Generate, replay, and cancel runs locally |
+| Results | 2 | View local execution results |
+| Scripts | 2 | Inspect locally generated scripts |
+| Publishing | 1 | Publish a local script to the cloud |
+
+> Local testing is cloud-first: projects, use cases, test cases, and authentication are managed with `muggle-remote-*` tools. The `muggle-local-*` tools cover only local execution, results, and publishing.
 
 ### Cloud E2E tools (prefix: `muggle-remote-`)
 
 | Category | Count | Purpose |
 | :------- | ----: | :------ |
-| Authentication | 7 | Authenticate and manage API keys |
+| Authentication | 8 | Authenticate and manage API keys |
 | Project | 5 | Create and manage projects |
 | PRD Files | 5 | Upload and process PRD files |
 | Secrets | 5 | Manage test credentials |
 | Wallet | 5 | Manage payment methods and topups|
-| Use Cases | 7 | Discover, create, and update use cases |
-| Workflows | 17 | Execute testing workflows |
-| Artifacts | 11 | Inspect test cases and scripts |
+| Use Cases | 10 | Discover, generate, create, and update use cases |
+| Test Cases | 7 | Generate, create, and update test cases |
+| Workflows | 20 | Scans, generation, replay (single and bulk), status |
+| Bulk Preview | 5 | Submit and track bulk use/test case previews |
+| Artifacts | 6 | Inspect test cases, scripts, and summaries |
 | Reports | 4 | Generate and deliver reports |
-| Recommendations | 2 | Get scheduling guidance |
+| Recommendations | 2 | Get scheduling and CI/CD guidance |
+| Feedback | 3 | Submit and manage script feedback |
 
 ## MCP Resources
 

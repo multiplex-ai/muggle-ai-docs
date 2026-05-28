@@ -13,8 +13,10 @@ This repo is consumed at runtime by the `muggle-prompt-ui` frontend, which:
 | :----------------- | :----------------------------------------------------- |
 | `getting-started/` | Onboarding and first-run guides                        |
 | `concepts/`        | Deeper explanations of how Muggle Test works           |
+| `mcp/`             | Remote testing via MCP for AI assistant integration    |
+| `local-testing/`   | Testing localhost apps via MCP from your AI assistant  |
 | `api/`             | API usage, authentication, and examples                |
-| `mcp/`             | MCP Gateway documentation for AI assistant integration |
+| `billing/`         | Plans, quotas, and enterprise organizations            |
 | `troubleshooting/` | Common issues and resolutions                          |
 
 ## Editing and Adding Documentation

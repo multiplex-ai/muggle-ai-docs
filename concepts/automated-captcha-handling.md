@@ -69,6 +69,6 @@ If a CAPTCHA cannot be solved automatically (e.g., unsupported type or service u
 
 | Goal                        | Resource                                                                    |
 | :-------------------------- | :-------------------------------------------------------------------------- |
-| Run your first test         | [Quickstart: Running Tests](../getting-started/quickstart-running-tests.md) |
+| Run your first test         | [Quickstart: Running Tests](getting-started/quickstart-running-tests.md) |
 | Understand test execution   | [How Muggle Test Works](how-muggle-test-works.md)                           |
-| Troubleshoot CAPTCHA issues | [Common Issues](../troubleshooting/common-issues.md)                        |
+| Troubleshoot CAPTCHA issues | [Common Issues](troubleshooting/common-issues.md)                        |

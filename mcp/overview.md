@@ -145,41 +145,45 @@ Instead of navigating dashboards or writing scripts:
 
 | Category | Count | Description |
 | :------- | ----: | :---------- |
-| **Local Testing** | ~65 | Project management, execution, results |
-| **Cloud E2E** | ~60 | Workflows, test generation, reporting |
-| **Total** | ~125 | All browser E2E testing needs covered |
+| **Local Testing** | ~20 | Local execution, results, publishing |
+| **Cloud E2E** | ~80 | Projects, use cases, workflows, reporting |
+| **Total** | 100+ | All browser E2E testing needs covered |
 
 ### Local Tools (prefix: `muggle-local-`)
 
 | Category | Tools | Purpose |
 | :------- | :---- | :------ |
-| Authentication | `muggle-local-auth-*` | Login, logout, status |
-| Projects | `muggle-local-project-*` | Create and manage projects |
-| Use Cases | `muggle-local-use-case-*` | Define user flows |
-| Test Cases | `muggle-local-test-case-*` | Test specifications |
-| Test Scripts | `muggle-local-test-script-*` | Automation scripts |
-| Execution | `muggle-local-execute-*` | Run tests |
-| Results | `muggle-local-run-result-*` | View results |
-| Cloud Sync | `muggle-local-cloud-*`, `muggle-local-publish-*` | Sync with cloud |
+| Status | `muggle-local-check-status`, `muggle-local-list-sessions` | Check the local service and list sessions |
+| Execution | `muggle-local-execute-test-generation`, `muggle-local-execute-replay` | Generate and replay scripts against localhost |
+| Results | `muggle-local-run-result-list`, `muggle-local-run-result-get` | View local execution results |
+| Scripts | `muggle-local-test-script-list`, `muggle-local-test-script-get` | Inspect locally generated scripts |
+| Publishing | `muggle-local-publish-test-script` | Publish a local script to the cloud |
+| Control | `muggle-local-cancel-execution` | Cancel a running execution |
+
+> Local testing is cloud-first: projects, use cases, test cases, and authentication are managed with `muggle-remote-*` tools even when you execute on localhost. See [Local Testing Tools Reference](local-testing/tools-reference.md).
 
 ### Cloud E2E tools (prefix: `muggle-remote-`)
 
 | Category | Tools | Purpose |
 | :------- | :---- | :------ |
+| Authentication | `muggle-remote-auth-*` | Login, logout, and API key management |
 | Projects | `muggle-remote-project-*` | Cloud project management |
-| Use Cases | `muggle-remote-use-case-*` | Use case discovery |
-| Test Cases | `muggle-remote-test-case-*` | Test case generation |
-| Workflows | `muggle-remote-workflow-*` | Automated workflows |
-| Reports | `muggle-remote-report-*` | Test reporting |
+| Use Cases | `muggle-remote-use-case-*` | Use case discovery, generation, and approval |
+| Test Cases | `muggle-remote-test-case-*` | Test case generation and management |
+| Workflows | `muggle-remote-workflow-*`, `muggle-remote-wf-*` | Scans, generation, replay (single and bulk) |
+| PRD Files | `muggle-remote-prd-file-*` | Upload and process PRD documents |
+| Reports | `muggle-remote-report-*` | Test reporting and delivery |
 | Secrets | `muggle-remote-secret-*` | Credential management |
+| Wallet | `muggle-remote-wallet-*` | Payment methods and token top-ups |
+| Feedback | `muggle-remote-user-feedback-*` | Submit and manage script feedback |
 
 ## Getting Started
 
 Ready to connect your AI assistant to Muggle Test?
 
-1. **[MCP Quickstart](../getting-started/mcp-quickstart.md)** - Get started in 5 minutes
+1. **[MCP Quickstart](getting-started/mcp-quickstart.md)** - Get started in 5 minutes
 2. **[MCP Installation](mcp-installation.md)** - Detailed setup options
-3. **[Local Testing Setup](../local-testing/setup.md)** - Focus on localhost testing
+3. **[Local Testing Setup](local-testing/setup.md)** - Focus on localhost testing
 4. **[MCP Concepts](mcp-concepts.md)** - Understand the architecture
 5. **[MCP API Reference](mcp-api-reference.md)** - Complete tool documentation
 

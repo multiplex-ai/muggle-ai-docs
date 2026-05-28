@@ -53,8 +53,8 @@ The package includes:
 | :-------- | :------ |
 | `muggle` | Unified MCP server and CLI |
 | Browser Engine | Electron-based browser automation (downloaded per-platform) |
-| Local Tools | 60+ tools for local testing |
-| Cloud Tools | 60+ tools for cloud E2E acceptance testing (optional) |
+| Local Tools | ~20 tools for local execution, results, and publishing |
+| Cloud Tools | ~80 tools for cloud E2E acceptance testing and entity management |
 
 ### Verify Installation
 
@@ -79,7 +79,7 @@ Muggle Doctor
 ✓ Electron App: Installed (v1.0.0)
 ✗ Authentication: Not authenticated
   └─ Run 'muggle login' to authenticate
-✓ Prompt Service URL: https://promptservice.muggle-ai.com
+✓ API URL: https://api.muggle-ai.com
 ```
 
 ## Step 2: Configure Your AI Assistant
@@ -251,7 +251,7 @@ Authentication is **optional for local testing**. It's only needed if you want t
 > **You**: "Log in to Muggle Test"
 >
 > **Assistant**: Please complete authentication:
-> - Open: `https://auth.muggle-ai.com/activate?user_code=ABCD-1234`
+> - Open: `https://login.muggle-ai.com/activate?user_code=ABCD-1234`
 > - After logging in, I'll confirm your authentication.
 >
 > **You**: "Done, check if I'm logged in"
@@ -347,7 +347,7 @@ Or set the `ELECTRON_APP_PATH` environment variable in your MCP config.
 | "Authorization pending" | Complete the browser login, then check status. |
 | Token expired | Run `muggle login` to get a new token. |
 
-For more troubleshooting help, see [Common Issues](../troubleshooting/common-issues.md).
+For more troubleshooting help, see [Common Issues](troubleshooting/common-issues.md).
 
 ## Next Steps
 

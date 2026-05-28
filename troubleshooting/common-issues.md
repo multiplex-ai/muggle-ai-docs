@@ -7,7 +7,7 @@ This page lists frequent issues and quick checks to resolve them.
 | Section | Description |
 | :------ | :---------- |
 | [Login Keeps Failing](#login-keeps-failing) | Test account and credential issues |
-| [Pages Not Discovered by Deep Scan](#pages-not-discovered-by-deep-scan) | Missing flows in scan results |
+| [Pages Not Discovered by Website Scan](#pages-not-discovered-by-website-scan) | Missing flows in scan results |
 | [Tests Are Flaky](#tests-are-flaky) | Intermittent pass/fail |
 | [API Authentication Errors](#api-authentication-errors) | 401/403 responses |
 | [Timeouts During Test Runs](#timeouts-during-test-runs) | Stuck or hanging tests |
@@ -32,7 +32,7 @@ This page lists frequent issues and quick checks to resolve them.
 | SSO/2FA enabled?     | Point to staging environment without these             |
 | Account locked?      | Reset test account or create new one                   |
 
-## Pages Not Discovered by Deep Scan
+## Pages Not Discovered by Website Scan
 
 **Symptoms:**
 
@@ -160,7 +160,7 @@ This page lists frequent issues and quick checks to resolve them.
 | :---- | :------- |
 | Release published? | Check [releases page](https://github.com/multiplex-ai/muggle-ai-works/releases) |
 | Version mismatch? | Ensure package version matches available releases |
-| Development version? | Build from source (see [setup docs](../local-testing/setup.md)) |
+| Development version? | Build from source (see [setup docs](local-testing/setup.md)) |
 
 ### MCP Tools Not Appearing
 
@@ -212,11 +212,17 @@ This page lists frequent issues and quick checks to resolve them.
 
 ## Getting More Help
 
-If these solutions don't resolve your issue:| Resource                  | When to Use                     |
+If these solutions don't resolve your issue:
+
+| Resource                  | When to Use                     |
 | :------------------------ | :------------------------------ |
 | **In-app chat**           | Quick questions, account issues |
 | **support@muggle-ai.com** | Detailed technical issues       |
-| **Include run link**      | Helps us investigate faster     |When contacting support, include:- Project ID
+| **Include run link**      | Helps us investigate faster     |
+
+When contacting support, include:
+
+- Project ID
 - Run ID (if applicable)
 - Steps to reproduce
 - Screenshots or error messages

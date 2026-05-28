@@ -158,7 +158,7 @@ The two accounts are independent. If Sara cancels her personal Pro plan, only he
 
 The cost-attribution view in the org billing page shows token usage broken down by member and by project, so OWNERs and ADMINs can see who and what is driving the bill.
 
-### How org wallet debits work
+### Org Wallet Debits
 
 Personal user wallets in Muggle Test split their token balance into two buckets: a **grant balance** (refilled monthly on subscription renewal for Starter/Pro users) and a **purchased balance** (top-up tokens that never expire). Debits drain the grant balance first, then fall through to purchased tokens.
 
@@ -206,4 +206,4 @@ To set expectations honestly, these capabilities are not yet part of the enterpr
 | Learn what happens when a payment fails | [Billing Suspension and Recovery](billing/billing-suspension-and-recovery.md) |
 | Compare enterprise to other plans | [Subscription Plans](billing/subscription-plans.md) |
 | See enterprise quota details | [Quotas and Limits](billing/quotas-and-limits.md) |
-| Talk to sales about a custom setup | [sales@muggletest.com](mailto:sales@muggletest.com) |
+| Talk to sales about a custom setup | [sales@muggle-ai.com](mailto:sales@muggle-ai.com) |
