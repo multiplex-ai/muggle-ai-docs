@@ -130,7 +130,7 @@ Response includes:
 }
 ```
 
-## How Monthly Token Grants Work
+## Monthly Token Grants
 
 The token allocation in your plan is credited to your wallet's **grant balance**. Here's how it behaves across each tier:
 
@@ -176,13 +176,13 @@ The Enterprise tier is built for teams. Instead of every engineer paying for the
 
 **Personal accounts are unaffected.** Joining an organization does not change your personal subscription, your personal projects, or your personal wallet. The two are billed completely independently. See the [Enterprise Organizations guide](enterprise-organizations.md) for the full story, including how project ownership determines billing and how a single user can belong to more than one organization.
 
-For volume discounts or a sales-assisted setup, contact us at [sales@muggletest.com](mailto:sales@muggletest.com).
+For volume discounts or a sales-assisted setup, contact us at [sales@muggle-ai.com](mailto:sales@muggle-ai.com).
 
 ## Next Steps
 
 | Goal | Resource |
 | :--- | :------- |
-| View your current plan | [Billing Dashboard](/muggleTestV0/dashboard/billing) |
+| View your current plan | [Billing Dashboard](https://www.muggle-ai.com) |
 | Set up a team account | [Enterprise Organizations](enterprise-organizations.md) |
-| Understand use cases | [How Muggle Test Works](../concepts/how-muggle-test-works.md) |
-| Run your first test | [Quickstart](../getting-started/quickstart-running-tests.md) |
+| Understand use cases | [How Muggle Test Works](concepts/how-muggle-test-works.md) |
+| Run your first test | [Quickstart](getting-started/quickstart-running-tests.md) |

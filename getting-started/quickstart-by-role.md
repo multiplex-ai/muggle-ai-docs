@@ -22,11 +22,11 @@ Choose your role to see the fastest path to value with Muggle Test.
 
 | Step | Action | Guide |
 | :--- | :----- | :---- |
-| 1 | Install Muggle Test Local for your AI assistant | [Local Testing Setup](../local-testing/setup.md) |
-| 2 | Test your localhost app while coding | [Local Testing Examples](../local-testing/examples.md) |
+| 1 | Install Muggle Test Local for your AI assistant | [Local Testing Setup](local-testing/setup.md) |
+| 2 | Test your localhost app while coding | [Local Testing Examples](local-testing/examples.md) |
 | 3 | Fix issues from the test report | [Investigating Failures](#investigating-failures) |
 | 4 | Create a project for your staging environment | [Running Your First Tests](quickstart-running-tests.md) |
-| 5 | Integrate into CI/CD for automated regression | [CI/CD Integration](../mcp/mcp-cicd-integration.md) |
+| 5 | Integrate into CI/CD for automated regression | [CI/CD Integration](mcp/mcp-cicd-integration.md) |
 
 ### Key Tools
 
@@ -45,7 +45,7 @@ Choose your role to see the fastest path to value with Muggle Test.
 | Step | Action | Guide |
 | :--- | :----- | :---- |
 | 1 | Connect Muggle Test to your AI assistant | [MCP Quickstart](mcp-quickstart.md) |
-| 2 | Ask your AI to test your preview URL | [Local Testing Examples](../local-testing/examples.md) |
+| 2 | Ask your AI to test your preview URL | [Local Testing Examples](local-testing/examples.md) |
 | 3 | Review the report and fix issues | [Investigating Failures](#investigating-failures) |
 | 4 | Re-test until checks pass | Repeat step 2 |
 
@@ -76,7 +76,7 @@ Choose your role to see the fastest path to value with Muggle Test.
 | Step | Action | Guide |
 | :--- | :----- | :---- |
 | 1 | Create a project for your staging environment | [Running Your First Tests](quickstart-running-tests.md) |
-| 2 | Upload your PRD or requirements document | [Uploading PRD Files](../concepts/prd-upload.md) |
+| 2 | Upload your PRD or requirements document | [Uploading PRD Files](concepts/prd-upload.md) |
 | 3 | Review and approve generated use cases | [Managing Discovered Flows](#managing-discovered-flows) |
 | 4 | Run tests and review the report | [Review Results](#reviewing-results) |
 | 5 | Triage issues by severity and assign to developers | [Investigating Failures](#investigating-failures) |
@@ -134,7 +134,7 @@ Use filters to focus on what matters:
 
 | Goal | Resource |
 | :--- | :------- |
-| Understand how Muggle Test works | [How Muggle Test Works](../concepts/how-muggle-test-works.md) |
-| Set up automated testing | [CI/CD Integration](../mcp/mcp-cicd-integration.md) |
-| Learn about quotas and pricing | [Subscription Plans](../billing/subscription-plans.md) |
-| Fix a problem | [Common Issues](../troubleshooting/common-issues.md) |
+| Understand how Muggle Test works | [How Muggle Test Works](concepts/how-muggle-test-works.md) |
+| Set up automated testing | [CI/CD Integration](mcp/mcp-cicd-integration.md) |
+| Learn about quotas and pricing | [Subscription Plans](billing/subscription-plans.md) |
+| Fix a problem | [Common Issues](troubleshooting/common-issues.md) |

@@ -6,7 +6,7 @@ This guide walks you from zero to your first successful test run in a few minute
 
 ```mermaid
 flowchart LR
-    A["1. Create Project"] --> B["2. Deep Scan"]
+    A["1. Create Project"] --> B["2. Website Scan"]
     B --> C["3. Generate Tests"]
     C --> D["4. Run Tests"]
     D --> E["5. Review Results"]
@@ -30,9 +30,9 @@ flowchart LR
 
 You have two options to populate your project with test scenarios:
 
-### Option A: Deep Scan (Automatic Discovery)
+### Option A: Website Scan (Automatic Discovery)
 
-Start a **Deep Scan** to let the AI agent explore your site and discover key user flows.
+Start a **Website Scan** to let the AI agent explore your site and discover key user flows.
 
 | Flow Type        | Examples                           |
 | :--------------- | :--------------------------------- |
@@ -46,7 +46,7 @@ Start a **Deep Scan** to let the AI agent explore your site and discover key use
 If you have existing requirements documents, upload them to extract test scenarios automatically.
 
 1. Click **Add Use Cases from PRD**
-2. Upload your PRD file (TXT, PDF, DOC, or DOCX)
+2. Upload your PRD file (PDF, DOCX, TXT, or Markdown)
 3. Wait for AI to extract scenarios
 4. Review and approve the generated use cases
 
@@ -56,7 +56,7 @@ If you have existing requirements documents, upload them to extract test scenari
 | Testing specific features           | Focused test coverage           |
 | Onboarding a new project            | Leverage existing documentation |
 
-See [Uploading PRD Files](../concepts/prd-upload.md) for detailed guidance.
+See [Uploading PRD Files](concepts/prd-upload.md) for detailed guidance.
 
 ### Option C: Generate from Instruction
 
@@ -68,7 +68,7 @@ Describe what you want to test in plain language and let AI generate use cases.
 4. Review and edit the generated use case
 5. Click **Add to test plan**
 
-See [Generating from Instructions](../concepts/generating-from-instructions.md) for detailed guidance.
+See [Generating from Instructions](concepts/generating-from-instructions.md) for detailed guidance.
 
 ### Managing Discovered Flows
 
@@ -120,9 +120,9 @@ For each failing step, you can see:
 
 | Goal                        | Resource                                                                    |
 | :-------------------------- | :-------------------------------------------------------------------------- |
-| Understand the architecture | [How Muggle Test Works](../concepts/how-muggle-test-works.md)               |
-| Generate from instructions  | [Generating from Instructions](../concepts/generating-from-instructions.md) |
-| Upload requirements docs    | [Uploading PRD Files](../concepts/prd-upload.md)                            |
-| Test file upload features   | [Workflow Files](../concepts/workflow-files.md)                             |
-| Automate via API            | [Running Tests via API](../api/running-tests-via-api.md)                    |
+| Understand the architecture | [How Muggle Test Works](concepts/how-muggle-test-works.md)               |
+| Generate from instructions  | [Generating from Instructions](concepts/generating-from-instructions.md) |
+| Upload requirements docs    | [Uploading PRD Files](concepts/prd-upload.md)                            |
+| Test file upload features   | [Workflow Files](concepts/workflow-files.md)                             |
+| Automate via API            | [Running Tests via API](api/running-tests-via-api.md)                    |
 | Use AI assistants           | [MCP Quickstart](mcp-quickstart.md)                                         |

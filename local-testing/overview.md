@@ -9,7 +9,7 @@ Test your localhost applications directly from your AI assistant using Muggle Te
 | [What is Local Testing?](#what-is-local-testing) | Overview and supported environments |
 | [Why Local Testing?](#why-local-testing) | Challenges it solves |
 | [Key Features](#key-features) | Localhost access, AI-driven testing, screenshots, and more |
-| [How It Works](#how-it-works) | Four-step flow from description to results |
+| [The Four-Step Flow](#the-four-step-flow) | From description to results |
 | [Comparison: Local vs Cloud Testing](#comparison-local-vs-cloud-testing) | Feature comparison table |
 | [Quick Example](#quick-example) | Sample conversation |
 | [Cloud-First Local Testing Workflow](#cloud-first-local-testing-workflow) | Architecture and workflow steps |
@@ -67,7 +67,7 @@ flowchart LR
 | **Agent Skills** | Pre-built workflows like "test my changes" |
 | **Publish Test to Cloud** | Upload locally generated test scripts to Muggle Test for replay and collaboration |
 
-## How It Works
+## The Four-Step Flow
 
 ```mermaid
 flowchart TD
@@ -182,7 +182,7 @@ flowchart LR
 Ready to test your localhost applications?
 
 1. **[Local Testing Setup](setup.md)** — Install and configure in 10 minutes
-2. **[Agent Skills](skills.md)** — Pre-built workflows for "test my changes" and "publish test to cloud"
+2. **[Agent Skills](skills.md)** — Pre-built workflows for "test my changes" and quick single-feature tests
 3. **[Available Tools](tools-reference.md)** — Complete tool documentation
 4. **[Example Workflows](examples.md)** — Common testing scenarios
 

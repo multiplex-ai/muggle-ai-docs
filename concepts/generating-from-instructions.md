@@ -232,5 +232,5 @@ The AI uses available context to generate better results:
 | Goal | Resource |
 | :--- | :------- |
 | Upload PRD files instead | [Uploading PRD Files](prd-upload.md) |
-| Run your generated tests | [Quickstart: Running Tests](../getting-started/quickstart-running-tests.md) |
+| Run your generated tests | [Quickstart: Running Tests](getting-started/quickstart-running-tests.md) |
 | Understand test execution | [How Muggle Test Works](how-muggle-test-works.md) |

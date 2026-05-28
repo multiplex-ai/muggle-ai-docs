@@ -96,7 +96,7 @@ If you are an Owner and your organization has just been suspended, the fastest p
 3. **Retry the failed invoice.** The billing page shows the failed invoice and exposes a retry action. You can trigger a retry manually, or wait for Stripe's next automatic retry — either will work.
 4. **Confirm the organization is active again.** Once any retry succeeds, the organization flips back to active on its own. You will see it in the subscription history, and blocked routes will start working again immediately. No further action is required.
 
-If none of that works — for example, the card keeps failing and you need to change providers — contact [sales@muggletest.com](mailto:sales@muggletest.com) and an operator can help you sort it out.
+If none of that works — for example, the card keeps failing and you need to change providers — contact [sales@muggle-ai.com](mailto:sales@muggle-ai.com) and an operator can help you sort it out.
 
 ## Seat Count and Billing Stay in Sync
 

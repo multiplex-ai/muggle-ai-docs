@@ -2,7 +2,7 @@
 
 This page explains how quota enforcement works in Muggle Test and how to manage your resource usage effectively.
 
-## How Quotas Work
+## Quota Model
 
 Quotas are enforced **per project**. Each project has its own usage count, and limits are based on your subscription plan.
 
@@ -229,5 +229,5 @@ No. Limits are enforced immediately. Plan upgrades also take effect immediately.
 | :--- | :------- |
 | Compare plans | [Subscription Plans](subscription-plans.md) |
 | Set up a team account | [Enterprise Organizations](enterprise-organizations.md) |
-| Upgrade your plan | [Billing Dashboard](/muggleTestV0/dashboard/billing) |
-| Learn about use cases | [How Muggle Test Works](../concepts/how-muggle-test-works.md) |
+| Upgrade your plan | [Billing Dashboard](https://www.muggle-ai.com) |
+| Learn about use cases | [How Muggle Test Works](concepts/how-muggle-test-works.md) |

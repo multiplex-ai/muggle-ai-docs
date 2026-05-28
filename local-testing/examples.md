@@ -27,7 +27,7 @@ The recommended approach for comprehensive testing is to organize your tests int
 
 ### Step 1: Create a Project
 
-> "Create a local project called 'E-commerce App' for localhost:3000 with description 'Testing our shopping cart features'"
+> "Create a project called 'E-commerce App' for localhost:3000 with description 'Testing our shopping cart features'"
 
 ### Step 2: Define Use Cases
 
@@ -44,7 +44,7 @@ The recommended approach for comprehensive testing is to organize your tests int
 
 > "Generate a test script for the 'Add item to cart' test case"
 
-The assistant will launch Muggle Test Studio to record the interaction automatically.
+The assistant will launch the Electron browser test runner to record the interaction automatically.
 
 ### Step 5: Review Results
 
@@ -56,7 +56,7 @@ The assistant will launch Muggle Test Studio to record the interaction automatic
 
 ### Step 7: Publish to Cloud (Optional)
 
-> "Publish the E-commerce App project to the cloud with production URL https://shop.example.com"
+> "Publish the 'Add item to cart' test script to the cloud"
 
 ---
 
@@ -401,13 +401,13 @@ With the `test-feature-local` skill installed:
 
 This is a simpler, more interactive workflow for testing one feature at a time.
 
-### "Publish test to cloud"
+### "Publish a test run to the cloud"
 
-With the `publish-test-to-cloud` skill installed:
+After a local run, ask:
 
-> "Publish my test run to the cloud"
+> "Publish my last test run to the cloud"
 
-The agent handles authentication, action script upload, and linking to the test case automatically.
+The agent calls `muggle-local-publish-test-script` to upload the generated script, links it to the test case, and returns a dashboard `viewUrl`. Publishing is also built into the `/muggle:test` and `/muggle:test-feature-local` skills.
 
 See **[Agent Skills](skills.md)** for installation instructions.
 
@@ -418,4 +418,4 @@ See **[Agent Skills](skills.md)** for installation instructions.
 - **[Agent Skills](skills.md)** — Install pre-built testing workflows
 - **[Tools Reference](tools-reference.md)** — Detailed tool documentation
 - **[Local Testing Setup](setup.md)** — Installation guide
-- **[Common Issues](../troubleshooting/common-issues.md)** — Troubleshooting help
+- **[Common Issues](troubleshooting/common-issues.md)** — Troubleshooting help

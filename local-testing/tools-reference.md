@@ -389,4 +389,4 @@ The recommended workflow uses cloud tools (`muggle-remote-*`) to manage entities
 - **[Example Workflows](examples.md)** — See these tools in action
 - **[Local Testing Setup](setup.md)** — Installation and configuration
 - **[Local Testing Overview](overview.md)** — Understanding the architecture
-- **[Cloud E2E acceptance tools](../mcp/mcp-api-reference.md)** — Full reference for muggle-remote-* tools
+- **[Cloud E2E acceptance tools](mcp/mcp-api-reference.md)** — Full reference for muggle-remote-* tools

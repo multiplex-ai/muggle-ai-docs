@@ -1,4 +1,4 @@
-# How Muggle Test Works
+# Muggle Test Architecture
 
 At a high level, Muggle Test does three things:
 
@@ -41,7 +41,7 @@ flowchart TB
 
 Muggle Test offers two ways to discover test scenarios:
 
-### Option 1: Automatic Scanning
+### Option 1: Website Scan
 
 An AI agent explores your application in a real browser.
 
@@ -57,7 +57,7 @@ Upload your requirements documents and let AI extract scenarios.
 
 | Phase        | Description                                                |
 | :----------- | :--------------------------------------------------------- |
-| **Upload**   | Provide a PRD file (TXT, PDF, DOC, DOCX)                   |
+| **Upload**   | Provide a PRD file (PDF, DOCX, TXT, Markdown)              |
 | **Extract**  | AI identifies user stories and acceptance criteria         |
 | **Generate** | Scenarios become use cases ready for test scripts          |
 
@@ -118,13 +118,19 @@ flowchart LR
 | **Screenshot**       | Visual state at failure time    |
 | **Error summary**    | Technical details for debugging |
 
-### How Reports Help| Use Case               | Benefit                              |
+### How Reports Help
+
+| Use Case               | Benefit                              |
 | :--------------------- | :----------------------------------- |
 | See health at a glance | Know which flows are working         |
 | Prioritize fixes       | Focus on business-critical failures  |
-| Share with team        | Non-engineers can understand results |## Next Steps| Goal              | Resource                                                                    |
+| Share with team        | Non-engineers can understand results |
+
+## Next Steps
+
+| Goal              | Resource                                                                    |
 | :---------------- | :-------------------------------------------------------------------------- |
-| Get started       | [Quickstart: Running Tests](../getting-started/quickstart-running-tests.md) |
+| Get started       | [Quickstart: Running Tests](getting-started/quickstart-running-tests.md) |
 | Upload PRD files  | [Uploading PRD Files](prd-upload.md)                                        |
-| Integrate via API | [API Overview](../api/api-overview.md)                                      |
-| Use AI assistants | [MCP Gateway Overview](../mcp/overview.md)                                  |
+| Integrate via API | [API Overview](api/api-overview.md)                                      |
+| Use AI assistants | [Remote Testing Overview](mcp/overview.md)                                  |

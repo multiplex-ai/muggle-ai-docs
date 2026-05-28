@@ -18,11 +18,11 @@ This page helps you find the right documentation based on what you're trying to 
 | :---------------- | :--------- |
 | Learn what Muggle Test is | [Muggle Test Overview](overview.md) |
 | Get your first tests running | [Quickstart: Running Tests](quickstart-running-tests.md) |
-| Test localhost apps | [Local Testing Setup](../local-testing/setup.md) |
-| Understand the architecture | [How Muggle Test Works](../concepts/how-muggle-test-works.md) |
-| Integrate via API | [API Overview](../api/api-overview.md) |
+| Test localhost apps | [Local Testing Setup](local-testing/setup.md) |
+| Understand the architecture | [How Muggle Test Works](concepts/how-muggle-test-works.md) |
+| Integrate via API | [API Overview](api/api-overview.md) |
 | Use AI assistants (MCP) | [MCP Quickstart](mcp-quickstart.md) |
-| Fix a problem | [Common Issues](../troubleshooting/common-issues.md) |
+| Fix a problem | [Common Issues](troubleshooting/common-issues.md) |
 
 ## Recommended Reading Path
 

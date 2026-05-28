@@ -2,6 +2,8 @@
 
 This guide shows how to trigger test runs and retrieve results using the Muggle Test API.
 
+> The production-verified programmatic flow is the bulk-replay sequence in [CI/CD Integration](mcp/mcp-cicd-integration.md) (under `/v1/protected/muggle-test/...`). The `/api/...` examples below are illustrative.
+
 ## Workflow Overview
 
 ```mermaid
@@ -174,13 +176,19 @@ while true; do
 done
 ```
 
-## Error Responses| Error                   | Cause                  | Solution               |
+## Error Responses
+
+| Error                   | Cause                  | Solution               |
 | :---------------------- | :--------------------- | :--------------------- |
 | `404 Project not found` | Invalid project ID     | Verify ID in dashboard |
 | `404 Run not found`     | Invalid run ID         | Check trigger response |
 | `400 No scripts`        | Project has no scripts | Generate scripts first |
-| `429 Rate limited`      | Too many requests      | Back off and retry     |## Next Steps| Goal                | Resource                                          |
+| `429 Rate limited`      | Too many requests      | Back off and retry     |
+
+## Next Steps
+
+| Goal                | Resource                                          |
 | :------------------ | :------------------------------------------------ |
 | Full CI/CD examples | [CI/CD Integration](mcp/mcp-cicd-integration.md)  |
-| Use AI assistants   | [MCP Gateway](mcp/mcp-overview)                   |
+| Use AI assistants   | [Remote Testing Overview](mcp/overview.md)        |
 | Troubleshooting     | [Common Issues](troubleshooting/common-issues.md) |

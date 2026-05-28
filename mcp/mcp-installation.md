@@ -172,7 +172,7 @@ Edit `~/.gemini/antigravity/mcp_config.json` (or open the Agent panel → **MCP 
 ```json
 {
   "mcpServers": {
-    "muggle-test": {
+    "muggle": {
       "command": "muggle",
       "args": ["serve"]
     }
@@ -185,7 +185,7 @@ Edit `~/.gemini/antigravity/mcp_config.json` (or open the Agent panel → **MCP 
 ```json
 {
   "mcpServers": {
-    "muggle-test": {
+    "muggle": {
       "command": "muggle",
       "args": ["serve"],
       "env": {
@@ -208,7 +208,7 @@ Edit your Claude Desktop configuration:
 ```json
 {
   "mcpServers": {
-    "muggle-test": {
+    "muggle": {
       "command": "muggle",
       "args": ["serve"],
       "env": {
@@ -287,7 +287,7 @@ Let your AI assistant help you authenticate:
 
 ### Option B: Manual API Key
 
-1. Log in to [Muggle Test Dashboard](https://app.muggle-ai.com)
+1. Log in to [Muggle Test Dashboard](https://www.muggle-ai.com)
 2. Navigate to **Settings** → **API Keys**
 3. Create and copy your API key
 4. Add to your MCP configuration
@@ -331,7 +331,7 @@ If you see errors, run `muggle doctor` to diagnose.
                                            ▼
                               ┌─────────────────────────┐
                               │ Muggle Test Platform    │
-                              │ (promptservice.muggle-ai.com)│
+                              │ (api.muggle-ai.com)     │
                               └─────────────────────────┘
 ```
 
@@ -394,13 +394,13 @@ All local data is stored in `~/.muggle-ai/`:
 | "Not authenticated" | Run `muggle login` or configure API key |
 | Token expired | Re-authenticate with `muggle login` |
 
-For more help, see [Troubleshooting](../troubleshooting/common-issues.md).
+For more help, see [Troubleshooting](troubleshooting/common-issues.md).
 
 ---
 
 ## Next Steps
 
-- **[MCP Quickstart](../getting-started/mcp-quickstart.md)** - Run your first test
-- **[Local Testing Setup](../local-testing/setup.md)** - Test localhost applications
+- **[MCP Quickstart](getting-started/mcp-quickstart.md)** - Run your first test
+- **[Local Testing Setup](local-testing/setup.md)** - Test localhost applications
 - **[MCP Concepts](mcp-concepts.md)** - Understand the architecture
 - **[MCP API Reference](mcp-api-reference.md)** - Complete tool documentation
