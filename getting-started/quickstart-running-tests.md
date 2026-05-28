@@ -46,7 +46,7 @@ Start a **Website Scan** to let the AI agent explore your site and discover key 
 If you have existing requirements documents, upload them to extract test scenarios automatically.
 
 1. Click **Add Use Cases from PRD**
-2. Upload your PRD file (PDF, DOCX, TXT, or Markdown)
+2. Upload your PRD file (PDF, DOC, DOCX, or TXT)
 3. Wait for AI to extract scenarios
 4. Review and approve the generated use cases
 

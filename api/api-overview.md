@@ -2,7 +2,7 @@
 
 You can trigger runs and fetch results programmatically using the Muggle Test API.
 
-> The production-verified programmatic flow for triggering and gating on test runs is the bulk-replay sequence documented in [CI/CD Integration](mcp/mcp-cicd-integration.md) (under `/v1/protected/muggle-test/...`). The simplified `/api/...` examples on these API pages are illustrative.
+> The programmatic flow for triggering and reading test runs is the bulk-replay sequence under `/v1/protected/muggle-test/...`. See [Running Tests via API](api/running-tests-via-api.md) for the endpoints and [CI/CD Integration](mcp/mcp-cicd-integration.md) for full pipeline examples.
 
 ## Use Cases
 

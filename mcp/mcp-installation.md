@@ -331,7 +331,7 @@ If you see errors, run `muggle doctor` to diagnose.
                                            ▼
                               ┌─────────────────────────┐
                               │ Muggle Test Platform    │
-                              │ (api.muggle-ai.com)     │
+                              │ (promptservice.muggle-ai.com)│
                               └─────────────────────────┘
 ```
 

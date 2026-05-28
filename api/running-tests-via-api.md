@@ -1,194 +1,125 @@
 # Running Tests via API
 
-This guide shows how to trigger test runs and retrieve results using the Muggle Test API.
+Trigger test runs and read results programmatically over the Muggle Test REST API. The flow is a **bulk replay**: start a workflow runtime, wait for it to produce a run batch, then poll the batch summary for pass/fail counts.
 
-> The production-verified programmatic flow is the bulk-replay sequence in [CI/CD Integration](mcp/mcp-cicd-integration.md) (under `/v1/protected/muggle-test/...`). The `/api/...` examples below are illustrative.
+> The same flow wrapped in a complete GitHub Actions, Azure DevOps, or GitLab pipeline is in [CI/CD Integration](mcp/mcp-cicd-integration.md).
+
+## Base URL and Authentication
+
+All endpoints are under `https://api.muggle-ai.com` and require an API key header:
+
+```http
+x-api-key: mai_sk_your_api_key_here
+```
 
 ## Workflow Overview
 
 ```mermaid
 flowchart LR
-    A["1. Trigger Run"] --> B["2. Poll Status"]
-    B --> C{"Complete?"}
-    C -->|No| B
-    C -->|Yes| D["3. Fetch Report"]
+    A["1. Start bulk replay"] --> B["2. Wait for runBatchId"]
+    B --> C["3. Poll batch summary"]
+    C --> D["4. Compute pass rate"]
 ```
 
-## Step 1: Trigger a Run
+## Step 1: Start a Bulk Replay
 
-Send a `POST` request to start executing test scripts.
-
-### Request
+Create a workflow runtime that replays the project's test scripts.
 
 ```http
-POST /api/muggle-test/projects/{projectId}/runs
-Authorization: Bearer YOUR_API_KEY
+POST /v1/protected/muggle-test/workflow/test-script/test-script-replay/bulk/workflowRuntimes
+x-api-key: mai_sk_your_api_key_here
 Content-Type: application/json
 
 {
-  "scriptIds": ["script-123", "script-456"],
-  "runName": "Nightly regression"
+  "projectId": "proj_abc123",
+  "namePrefix": "ci"
 }
 ```
 
-### Request Body Fields
+| Field        | Type   | Required | Description                       |
+| :----------- | :----- | :------: | :-------------------------------- |
+| `projectId`  | string |    ✓     | Project whose scripts to replay   |
+| `namePrefix` | string |          | Label prefix for the run batch    |
 
-| Field       | Type     | Required | Description                   |
-| :---------- | :------- | :------: | :---------------------------- |
-| `scriptIds` | string[] |          | Scripts to run (omit for all) |
-| `runName`   | string   |          | Label for this run            |
-
-### Response
+The response returns the workflow runtime `id`.
 
 ```json
 {
-  "runId": "run_abc123",
-  "status": "queued",
-  "createdAt": "2024-01-15T10:30:00Z"
+  "id": "wfrt_replay_123"
 }
 ```
 
-| Field       | Type   | Description                   |
-| :---------- | :----- | :---------------------------- |
-| `runId`     | string | Unique identifier for polling |
-| `status`    | string | Initial status (`queued`)     |
-| `createdAt` | string | ISO 8601 timestamp            |
+## Step 2: Wait for the Run Batch
 
-## Step 2: Poll Run Status
-
-Check the status of a running test batch.
-
-### Request
+Poll the latest run until it exposes a `runBatchId` in its `result` payload.
 
 ```http
-GET /api/muggle-test/projects/{projectId}/runs/{runId}
-Authorization: Bearer YOUR_API_KEY
+GET /v1/protected/muggle-test/workflow/test-script/test-script-replay/bulk/{workflowRuntimeId}/run/latest
+x-api-key: mai_sk_your_api_key_here
 ```
 
-### Response
+`result` may be a JSON string or object; once the batch exists it contains `runBatchId`. Keep polling (for example every 20 seconds) until it appears.
 
-```json
-{
-  "runId": "run_abc123",
-  "status": "running",
-  "progress": {
-    "total": 10,
-    "completed": 6,
-    "passed": 5,
-    "failed": 1
-  },
-  "updatedAt": "2024-01-15T10:32:00Z"
-}
-```
+## Step 3: Poll the Batch Summary
 
-### Status Values
-
-| Status      | Description            | Terminal? |
-| :---------- | :--------------------- | :-------: |
-| `queued`    | Waiting to start       |           |
-| `running`   | In progress            |           |
-| `completed` | Finished successfully  |     ✓     |
-| `failed`    | Finished with failures |     ✓     |
-| `cancelled` | Stopped by user        |     ✓     |
-
-### Polling Best Practices
-
-| Practice      | Recommendation                      |
-| :------------ | :---------------------------------- |
-| Initial delay | Wait 5 seconds before first poll    |
-| Poll interval | 10-30 seconds between checks        |
-| Timeout       | Set maximum wait (e.g., 30 minutes) |
-| Backoff       | Increase interval if no progress    |
-
-## Step 3: Fetch Reports
-
-Once a run is complete, retrieve the detailed report.
-
-### Request
+Fetch the batch summary until nothing is running or pending.
 
 ```http
-GET /api/muggle-test/projects/{projectId}/runs/{runId}/report
-Authorization: Bearer YOUR_API_KEY
+GET /v1/protected/muggle-test/workflow/test-script/test-script-replay/bulk/run-batch/{runBatchId}/summary
+x-api-key: mai_sk_your_api_key_here
 ```
 
 ### Response
 
 ```json
 {
-  "runId": "run_abc123",
-  "summary": {
-    "total": 10,
-    "passed": 8,
-    "failed": 2,
-    "passRate": 80.0
-  },
-  "scripts": [
-    {
-      "scriptId": "script-123",
-      "name": "User Login",
-      "status": "passed",
-      "duration": 12500
-    },
-    {
-      "scriptId": "script-456",
-      "name": "Checkout Flow",
-      "status": "failed",
-      "failedStep": {
-        "index": 4,
-        "action": "Click 'Complete Purchase' button",
-        "error": "Element not found",
-        "screenshotUrl": "https://..."
-      }
-    }
-  ]
+  "successCount": 8,
+  "failedCount": 2,
+  "canceledCount": 0,
+  "runningCount": 0,
+  "pendingCount": 0
 }
 ```
 
-## CI/CD Integration Example
+| Field           | Description                  |
+| :-------------- | :--------------------------- |
+| `successCount`  | Scripts that passed          |
+| `failedCount`   | Scripts that failed          |
+| `canceledCount` | Scripts that were canceled   |
+| `runningCount`  | Still executing              |
+| `pendingCount`  | Queued, not yet started      |
 
-Use in CI/CD to gate deployments on test results:
+The batch is finished when `runningCount` and `pendingCount` are both `0`. Compute pass rate over executed runs only (skipped runs are excluded):
 
-```bash
-#!/bin/bash
-set -e
+```text
+passRate = successCount / (successCount + failedCount + canceledCount)
+```
 
-# Trigger run
-RESPONSE=$(curl -s -X POST \
-  "https://api.muggle-ai.com/api/muggle-test/projects/$PROJECT_ID/runs" \
-  -H "Authorization: Bearer $API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"runName": "CI Run"}')
+## Step 4 (Optional): Generate a Report
 
-RUN_ID=$(echo $RESPONSE | jq -r '.runId')
+After the batch finishes, generate and deliver a project report. Delivery channels come from the project's report preferences.
 
-# Poll until complete
-while true; do
-  STATUS=$(curl -s \
-    "https://api.muggle-ai.com/api/muggle-test/projects/$PROJECT_ID/runs/$RUN_ID" \
-    -H "Authorization: Bearer $API_KEY" | jq -r '.status')
-  
-  case $STATUS in
-    completed) echo "Tests passed"; exit 0 ;;
-    failed)    echo "Tests failed"; exit 1 ;;
-    cancelled) echo "Tests cancelled"; exit 1 ;;
-    *)         sleep 15 ;;
-  esac
-done
+```http
+POST /v1/protected/muggle-test/report/final/generate
+x-api-key: mai_sk_your_api_key_here
+Content-Type: application/json
+
+{ "projectId": "proj_abc123", "exportFormat": "html", "channels": [] }
 ```
 
 ## Error Responses
 
-| Error                   | Cause                  | Solution               |
-| :---------------------- | :--------------------- | :--------------------- |
-| `404 Project not found` | Invalid project ID     | Verify ID in dashboard |
-| `404 Run not found`     | Invalid run ID         | Check trigger response |
-| `400 No scripts`        | Project has no scripts | Generate scripts first |
-| `429 Rate limited`      | Too many requests      | Back off and retry     |
+| Status | Meaning                          | Action                                      |
+| :----: | :------------------------------- | :------------------------------------------ |
+|  401   | Missing or invalid API key       | Check the `x-api-key` header                |
+|  403   | No access to the project         | Verify the key's account can access it      |
+|  404   | Runtime or batch not yet ready   | Keep polling; it may not exist yet          |
+|  429   | Rate limited                     | Back off and retry                          |
 
 ## Next Steps
 
-| Goal                | Resource                                          |
-| :------------------ | :------------------------------------------------ |
-| Full CI/CD examples | [CI/CD Integration](mcp/mcp-cicd-integration.md)  |
-| Use AI assistants   | [Remote Testing Overview](mcp/overview.md)        |
-| Troubleshooting     | [Common Issues](troubleshooting/common-issues.md) |
+| Goal                 | Resource                                          |
+| :------------------- | :------------------------------------------------ |
+| Full CI/CD pipelines | [CI/CD Integration](mcp/mcp-cicd-integration.md)  |
+| Use AI assistants    | [Remote Testing Overview](mcp/overview.md)        |
+| Troubleshooting      | [Common Issues](troubleshooting/common-issues.md) |
