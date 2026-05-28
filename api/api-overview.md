@@ -40,7 +40,7 @@ x-api-key: YOUR_API_KEY
 ## Base URL
 
 ```text
-https://api.muggle-ai.com
+https://promptservice.muggle-ai.com
 ```
 
 All endpoints in this documentation are relative to this base URL.

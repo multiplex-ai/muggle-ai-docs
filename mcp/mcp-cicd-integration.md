@@ -66,7 +66,7 @@ on:
   workflow_dispatch:
 
 env:
-  MUGGLE_AI_API_BASE_URL: "https://api.muggle-ai.com"
+  MUGGLE_AI_API_BASE_URL: "https://promptservice.muggle-ai.com"
   PASS_RATE_THRESHOLD: "100"
   POLL_INTERVAL_SECONDS: "20"
   TIMEOUT_MINUTES: "45"

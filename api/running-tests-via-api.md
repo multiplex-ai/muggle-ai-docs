@@ -6,7 +6,7 @@ Trigger test runs and read results programmatically over the Muggle Test REST AP
 
 ## Base URL and Authentication
 
-All endpoints are under `https://api.muggle-ai.com` and require an API key header:
+All endpoints are under `https://promptservice.muggle-ai.com` and require an API key header:
 
 ```http
 x-api-key: mai_sk_your_api_key_here
