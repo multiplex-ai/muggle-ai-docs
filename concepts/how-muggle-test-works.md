@@ -57,7 +57,7 @@ Upload your requirements documents and let AI extract scenarios.
 
 | Phase        | Description                                                |
 | :----------- | :--------------------------------------------------------- |
-| **Upload**   | Provide a PRD file (PDF, DOCX, TXT, Markdown)              |
+| **Upload**   | Provide a PRD file (PDF, DOC, DOCX, TXT)                   |
 | **Extract**  | AI identifies user stories and acceptance criteria         |
 | **Generate** | Scenarios become use cases ready for test scripts          |
 

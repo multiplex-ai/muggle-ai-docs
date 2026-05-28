@@ -79,7 +79,7 @@ Muggle Doctor
 ✓ Electron App: Installed (v1.0.0)
 ✗ Authentication: Not authenticated
   └─ Run 'muggle login' to authenticate
-✓ API URL: https://api.muggle-ai.com
+✓ Prompt Service URL: https://promptservice.muggle-ai.com
 ```
 
 ## Step 2: Configure Your AI Assistant
