@@ -8,7 +8,7 @@ Connect your AI assistant to Muggle Test in under 5 minutes.
 | :------ | :---------- |
 | [Choose Your Platform](#choose-your-platform) | Install and configure for Claude Code, Cursor, or Antigravity |
 | [Verify Installation](#verify-installation) | Confirm everything is working |
-| [Authentication](#authentication-optional-for-local-testing) | Set up cloud access (optional for local testing) |
+| [Authentication](#authentication) | Sign in to run tests |
 | [Run Your First Test](#run-your-first-test) | Local and cloud testing walkthroughs |
 | [Example Conversation](#example-conversation) | End-to-end session example |
 | [Tool Overview](#tool-overview) | Available tool categories |
@@ -101,9 +101,9 @@ You can also add it via the Antigravity UI: open the **Agent panel** → **MCP S
 
 ---
 
-## Authentication (Optional for Local Testing)
+## Authentication
 
-For **local testing only**, no authentication is needed. For **cloud features**, authenticate:
+Running tests — local or cloud — requires signing in, because tests execute the test cases in your Muggle Test account. Connecting the server needs no credentials; authenticate before your first run:
 
 ### Option A: Agentic Authentication (Recommended)
 

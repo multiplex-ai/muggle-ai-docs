@@ -339,20 +339,16 @@ If you see errors, run `muggle doctor` to diagnose.
 
 ## Data Storage
 
-All local data is stored in `~/.muggle-ai/`:
+Run results, preferences, and credentials are stored in `~/.muggle-ai/`. Projects, use cases, and test cases live in your Muggle Test cloud account, not on disk.
 
 ```
 ~/.muggle-ai/
 ├── credentials.json           # API credentials
 ├── auth.json                  # Authentication tokens
+├── preferences.json           # Your testing preferences
 ├── electron-app/              # Browser automation engine
 │   └── {version}/
-└── projects/                  # Local test projects
-    └── {project_id}/
-        ├── project.json
-        ├── use-cases/
-        ├── test-cases/
-        └── test-scripts/
+└── sessions/                  # Local run results and screenshots
 ```
 
 ---

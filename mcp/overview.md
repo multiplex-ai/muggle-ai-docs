@@ -73,10 +73,10 @@ flowchart LR
     end
 ```
 
-Local testing runs entirely on your machine:
-- Browser automation engine executes tests
-- Results stored locally in `~/.muggle-ai/`
-- No cloud connection required
+Local testing runs the browser on your machine, against your localhost app:
+- The browser automation engine executes tests locally
+- Results are stored locally in `~/.muggle-ai/` and can be published to the cloud
+- Requires sign-in — tests use the test cases in your Muggle Test account
 
 ### Cloud E2E mode
 
