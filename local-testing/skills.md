@@ -176,6 +176,7 @@ Updates all Muggle AI components to the latest version and reports before/after 
 | `/muggle:import` | Brings existing tests into Muggle Test — Playwright, Cypress, Gherkin `.feature` files, PRDs, or test-plan docs. |
 | `/muggle:regenerate-missing` | Scans a project for test cases with no active script and bulk-generates the missing ones via the cloud. |
 | `/muggle:pr` | Renders a per-test-case visual walkthrough (dashboard links and step screenshots) and posts it to a PR. |
+| `/muggle:pr-followup` | Watches an open PR for new submitted reviews and hands them to `/muggle:do` to address. |
 | `/muggle:feedback` | Flags that a generated script — or one specific step — did the wrong thing, so Muggle can regenerate it. Also lists and deletes feedback. |
 | `/muggle:preferences` | Views, sets, or resets the preferences that control testing behavior, such as auto-login. |
 

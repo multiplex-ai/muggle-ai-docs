@@ -14,7 +14,7 @@ Install and configure Muggle Test to test your localhost applications.
 | [Running Your First Test](#running-your-first-test) | Create a project and test |
 | [CLI Commands](#cli-commands) | Available command-line utilities |
 | [Configuration Options](#configuration-options) | Environment variables and custom settings |
-| [Authentication](#authentication-optional) | Optional cloud authentication |
+| [Authentication](#authentication) | Sign in to run tests |
 | [Data Storage](#data-storage) | Where local data lives |
 | [Troubleshooting](#troubleshooting) | Common issues and fixes |
 | [Next Steps](#next-steps) | Further reading |
@@ -182,7 +182,7 @@ Once connected, try creating a project:
 > "Create a test project for my app at http://localhost:3000"
 
 The assistant will:
-1. Create a local project in `~/.muggle-ai/projects/`
+1. Sign you in if needed, then create the project in your Muggle Test account
 2. Return the project details
 3. Be ready for you to add use cases and test cases
 
@@ -232,12 +232,9 @@ You can customize behavior with environment variables in your MCP config:
 }
 ```
 
-## Authentication (Optional)
+## Authentication
 
-Authentication is **optional for local testing**. It's only needed if you want to:
-- Publish local projects to the cloud
-- Pull cloud projects to test locally
-- Use cloud E2E acceptance features
+Local testing is **cloud-first**: connecting the MCP server needs no credentials, but **running a test requires signing in**. Tests execute the test cases stored in your Muggle Test account, so the server authenticates you before launching the browser. Sign-in is also required to publish results and to use cloud E2E features.
 
 ### Device Code Flow
 
@@ -262,29 +259,19 @@ Authentication tokens are stored locally at `~/.muggle-ai/auth.json`.
 
 ## Data Storage
 
-All test data is stored locally in `~/.muggle-ai/`:
+Run results, preferences, and credentials are stored locally in `~/.muggle-ai/`. Projects, use cases, and test cases live in your Muggle Test cloud account, not on disk.
 
 ```
 ~/.muggle-ai/
 ├── auth.json                    # Authentication tokens
 ├── credentials.json             # API credentials
+├── preferences.json             # Your testing preferences
 ├── electron-app/                # Browser automation engine
 │   └── {version}/
-└── projects/
-    └── {project_id}/
-        ├── project.json         # Project definition
-        ├── use-cases/
-        │   └── {use_case_id}.json
-        ├── test-cases/
-        │   └── {test_case_id}.json
-        ├── test-scripts/
-        │   └── {test_script_id}/
-        │       ├── script.json
-        │       └── screenshots/
-        └── runs/
-            └── {run_id}/
-                ├── result.json
-                └── screenshots/
+└── sessions/                    # Local run results and screenshots
+    └── {session_id}/
+        ├── result.json
+        └── screenshots/
 ```
 
 ## Troubleshooting
