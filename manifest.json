@@ -101,6 +101,14 @@
                     "relativePath": "concepts/organization-roles-and-access.md",
                     "order": 6,
                     "tags": ["organization", "roles", "access", "permissions", "cascade", "effective-role", "enterprise"]
+                },
+                {
+                    "articleId": "how-muggle-do-works",
+                    "title": "How Muggle Do Works",
+                    "summary": "The autonomous build-test-PR workflow: requirements, implementation, real-browser acceptance tests, a visual PR, and review follow-up.",
+                    "relativePath": "concepts/how-muggle-do-works.md",
+                    "order": 7,
+                    "tags": ["muggle-do", "workflow", "automation", "pull-request", "concepts"]
                 }
             ]
         },
