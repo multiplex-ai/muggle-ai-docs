@@ -14,8 +14,7 @@ flowchart TD
     Gate -->|Not yet| Impl
     Gate -->|Yes| PR[Open a PR with a<br/>visual walkthrough]
     PR --> Watch{Watching the PR<br/>for review feedback}
-    Watch -->|Reviewer leaves feedback| Address[Apply changes, re-test,<br/>update the PR, and reply]
-    Address --> Watch
+    Watch -->|Reviewer leaves feedback| Req
     Watch -->|No new feedback| Watch
     Watch -->|PR merged or closed| Cleanup[Clean up]
     Cleanup --> Done([Done])
