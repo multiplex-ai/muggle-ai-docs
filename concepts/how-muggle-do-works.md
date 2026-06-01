@@ -5,7 +5,7 @@
 ## The Workflow
 
 ```mermaid
-flowchart TD
+flowchart LR
     Start([You run muggle do]) --> Req[Confirm what to build]
     Req --> Impl[Implement the change]
     Impl --> Unit[Run unit tests]
