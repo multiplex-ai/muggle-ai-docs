@@ -1,6 +1,6 @@
 {
-    "version": "v0.2.7",
-    "lastUpdatedAtUtc": "2026-05-28T00:00:00Z",
+    "version": "v0.2.8",
+    "lastUpdatedAtUtc": "2026-06-02T00:00:00Z",
     "sections": [
         {
             "sectionId": "getting-started",
@@ -95,11 +95,19 @@
                     "tags": ["captcha", "recaptcha", "hcaptcha", "automation"]
                 },
                 {
+                    "articleId": "testing-behind-walls",
+                    "title": "Testing Behind Payment, Login, and CAPTCHA Walls",
+                    "summary": "Test gated flows without charging a real card, leaking a password, or getting blocked: Stripe test cards for payment, stored credentials for login, and automatic CAPTCHA solving.",
+                    "relativePath": "concepts/testing-behind-walls.md",
+                    "order": 6,
+                    "tags": ["payment", "stripe", "test-cards", "login", "credentials", "captcha", "gated", "checkout", "authentication"]
+                },
+                {
                     "articleId": "organization-roles-and-access",
                     "title": "Organization Roles and Project Access",
                     "summary": "How organization roles cascade into project access, how direct and team grants stack with the cascade, and how to look up a member's effective role on a project.",
                     "relativePath": "concepts/organization-roles-and-access.md",
-                    "order": 6,
+                    "order": 7,
                     "tags": ["organization", "roles", "access", "permissions", "cascade", "effective-role", "enterprise"]
                 },
                 {
