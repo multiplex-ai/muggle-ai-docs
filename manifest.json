@@ -95,19 +95,35 @@
                     "tags": ["captcha", "recaptcha", "hcaptcha", "automation"]
                 },
                 {
-                    "articleId": "testing-behind-walls",
-                    "title": "Testing Behind Payment, Login, and CAPTCHA Walls",
-                    "summary": "Test gated flows without charging a real card, leaking a password, or getting blocked: Stripe test cards for payment, stored credentials for login, and automatic CAPTCHA solving.",
-                    "relativePath": "concepts/testing-behind-walls.md",
+                    "articleId": "testing-payment-wall",
+                    "title": "Testing Behind a Payment Wall",
+                    "summary": "Test checkout with Stripe test mode and test cards — success, decline, and 3D Secure — without charging a real card.",
+                    "relativePath": "concepts/testing-payment-wall.md",
                     "order": 6,
-                    "tags": ["payment", "stripe", "test-cards", "login", "credentials", "captcha", "gated", "checkout", "authentication"]
+                    "tags": ["payment", "stripe", "test-cards", "gated", "checkout", "billing"]
+                },
+                {
+                    "articleId": "testing-login-wall",
+                    "title": "Testing Behind a Login Wall",
+                    "summary": "Test authenticated flows by storing test-account credentials — Login Credentials, project secrets, or the autoLogin preference — with SSO and 2FA guidance.",
+                    "relativePath": "concepts/testing-login-wall.md",
+                    "order": 7,
+                    "tags": ["login", "credentials", "authentication", "autologin", "sso", "2fa", "gated"]
+                },
+                {
+                    "articleId": "testing-captcha-wall",
+                    "title": "Testing Behind a CAPTCHA Wall",
+                    "summary": "Test login and sign-up flows through CAPTCHAs — Muggle Test solves the common types automatically.",
+                    "relativePath": "concepts/testing-captcha-wall.md",
+                    "order": 8,
+                    "tags": ["captcha", "recaptcha", "hcaptcha", "signup", "gated", "automation"]
                 },
                 {
                     "articleId": "organization-roles-and-access",
                     "title": "Organization Roles and Project Access",
                     "summary": "How organization roles cascade into project access, how direct and team grants stack with the cascade, and how to look up a member's effective role on a project.",
                     "relativePath": "concepts/organization-roles-and-access.md",
-                    "order": 7,
+                    "order": 9,
                     "tags": ["organization", "roles", "access", "permissions", "cascade", "effective-role", "enterprise"]
                 },
                 {
@@ -115,7 +131,7 @@
                     "title": "How Muggle Do Works",
                     "summary": "The autonomous build-test-PR workflow: requirements, implementation, real-browser acceptance tests, a visual PR, and review follow-up.",
                     "relativePath": "concepts/how-muggle-do-works.md",
-                    "order": 7,
+                    "order": 10,
                     "tags": ["muggle-do", "workflow", "automation", "pull-request", "concepts"]
                 }
             ]
