@@ -8,7 +8,6 @@ For current pricing, see the [pricing page](https://muggle-ai.com/#pricing) or t
 
 | Feature | Free | Starter | Professional | Enterprise |
 | :------ | :--- | :------ | :----------- | :--------- |
-| **Projects** | 1 | 3 | Unlimited | Unlimited |
 | **Use Cases per Project** | 3 | 15 | 50 | Unlimited |
 | **Auto-detected Use Cases** | 10 | 30 | 100 | Unlimited |
 | **Test Cases per Project** | 15 | 50 | 300 | Unlimited |
@@ -167,7 +166,7 @@ The Enterprise tier is built for teams. Instead of every engineer paying for the
 
 **What's included**
 
-- Unlimited projects, use cases, and test cases (with generous starting caps)
+- Unlimited use cases and test cases (with generous starting caps)
 - 20+ concurrent workflows, configurable per organization
 - Shared org wallet and pooled token usage
 - Member roles (OWNER, ADMIN, MEMBER) for access control
