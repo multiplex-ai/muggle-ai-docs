@@ -78,12 +78,13 @@ A user's **effective role** on a project is the highest role across however many
 
 Organization Owners and Admins can look up any member's effective role on any project the organization owns, along with the full breakdown of which sources contributed.
 
-You will typically reach this from two places:
+The lookup is available through the API; the dashboard does not have a screen for it yet:
 
-- **Organization Settings → Members → (pick a member) → Access on this org's projects.** Useful when you are reviewing a specific person's access — for example, during a quarterly access review, or when someone has just changed teams internally.
-- **Project Settings → Members → (pick a member) → Why does this person have this role?** Useful when you are auditing a specific project and want to confirm nobody has more access than they should.
+```
+GET /v1/protected/organizations/{orgId}/projects/{projectId}/effective-role/{userId}
+```
 
-Either entry point returns the same thing:
+It returns:
 
 - **Effective role.** The single role that is actually enforced when this person tries to do something on this project.
 - **Contributing sources.** A list of every source (direct, team, owner, organization) that granted this person a role, and the role each one granted. If the user has no access, the list is empty.
@@ -100,7 +101,7 @@ Either entry point returns the same thing:
 
 ### Things to keep in mind
 
-- **This is a read-only view.** It only shows you what is currently true. Changing access still happens through the normal Project Settings and Organization Settings screens.
+- **This is a read-only lookup.** It only shows you what is currently true. Changing access still happens through project membership and **Organization → Members**.
 - **The view is privileged.** Because it surfaces another person's access, only organization Admins and Owners can see it. Regular Members cannot look up each other's roles.
 - **It cannot cross organizations.** An Admin in one org cannot use the lookup to probe projects owned by a different org, even if they happen to know the project's identifier. Projects outside the org are reported as not found.
 - **It matches what the system actually enforces.** The effective role returned by the lookup is computed by the exact same rules that gate access when a user tries to run a workflow or edit a test case. There is no "debug-only" shortcut — if the lookup says someone is a Maintainer, they are a Maintainer everywhere.
@@ -112,11 +113,13 @@ When you create a project from inside an organization context, you can associate
 To associate a project with an org at creation time:
 
 - You must be an active member of the organization (Owner, Admin, or Member). Members who have not accepted their invitation yet, or who have been deactivated, cannot create projects under an organization they "belong to" on paper.
-- You must have at least **Member** role on that organization. In other words, any active org member can create an org project — creation is not locked down to Owners and Admins by default. Organizations that want to restrict who creates projects can turn off member project creation in **Organization Settings**.
+- You must have at least **Member** role on that organization. In other words, any active org member can create an org project — creation is not restricted to Owners and Admins, and there is no setting to restrict it.
 
-Once the project is created under an organization:
+A personal project can also be moved into an organization later, under the same membership rule. That move is one-way.
 
-- **The ownership is permanent.** You cannot move a project between personal and org ownership, and you cannot move it from one organization to another. This is a deliberate restriction so that every bill and every audit log has an unambiguous owner over the life of the project. If you need to "move" a project, recreate it under the new owner.
+Once the project belongs to an organization:
+
+- **The ownership is permanent.** You cannot move an org project back to personal ownership, and you cannot move it from one organization to another. This is a deliberate restriction so that every bill and every audit log has an unambiguous owner over the life of the project. If you need to "move" an org project, recreate it under the new owner.
 - **The cascade starts immediately.** Every current member of the org gets their cascade role on the new project the moment it is created. Future members will get it the moment their invitation is accepted.
 - **Billing goes to the org wallet.** Workflow runs against the project debit the organization's wallet, not the creator's personal wallet, and the project's use cases and test cases count against the organization's quotas. See [Enterprise Organizations → Personal vs. Org Billing](billing/enterprise-organizations.md) for the full picture.
 

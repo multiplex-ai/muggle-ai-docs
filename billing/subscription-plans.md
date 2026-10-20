@@ -156,18 +156,18 @@ Changes take effect immediately, and new limits apply to all existing projects.
 
 ## Enterprise Tier
 
-The Enterprise tier is built for teams. Instead of every engineer paying for their own subscription, you create an **organization**, buy a pool of seats, invite teammates, and share a single token balance and a single set of projects.
+The Enterprise tier is built for teams. Instead of every engineer paying for their own subscription, your company gets an **organization** with a pool of seats, invites teammates, and shares a single token balance and a single set of projects. Enterprise is not available through self-serve checkout.
 
 **Pricing**
 
 - **$60 per seat per month**, with a minimum of **4 seats** ($240/month floor).
 - **Tokens are pay-as-you-go at $5 per 1,000,000 tokens**, totaled at the end of each billing period and added to the same invoice. Enterprise organization wallets do not have a monthly grant bucket — all token consumption is purely pay-per-use, metered through Stripe.
-- Seat count is adjustable. Adding seats is prorated and takes effect immediately. Seat count cannot be reduced below the number of currently active members.
+- Seat count is adjustable. Added seats are prorated.
 
 **What's included**
 
 - Unlimited use cases and test cases (with generous starting caps)
-- 20+ concurrent workflows, configurable per organization
+- 20+ concurrent workflows, raised on request
 - Shared org wallet and pooled token usage
 - Member roles (OWNER, ADMIN, MEMBER) for access control
 - Cost attribution by member and by project
