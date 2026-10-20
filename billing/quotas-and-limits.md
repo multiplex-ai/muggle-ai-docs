@@ -86,33 +86,31 @@ Exempt accounts see "unlimited" in quota displays.
 
 ## Enterprise Organizations
 
-Quotas work a little differently when an organization is involved. Org-owned projects consume the **organization's** quotas, not the individual member's personal plan quotas. Personal projects continue to consume the creator's personal plan quotas, even if that user is also a member of an org. The two are tracked separately.
+Enterprise limits apply **per member**: every quota check uses the limits on the account of the member doing the work — their personal plan's limits, or the Enterprise values where those have been applied to their account.
 
 ### Enterprise quotas
 
 | Resource | Enterprise limit |
 | :------- | :--------------- |
-| Projects | Unlimited (starting at 20) |
+| Projects | Unlimited |
 | Auto-detected use cases per project | Unlimited (starting at 100) |
 | Use cases per project | Unlimited (starting at 50) |
 | Test cases per project | Unlimited (starting at 300) |
-| Concurrent workflows | 20+ (configurable per organization) |
+| Concurrent workflows | 20+ (starting at 20 per member) |
 | Monthly tokens | Pay-per-use ($5 per 1,000,000 tokens) |
 | Seats | As purchased (minimum 4) |
 
-The starting caps shown above are soft limits that can be raised on request — they exist to prevent runaway usage in newly created organizations, not to throttle real-world team workloads. Contact support if you need higher limits.
+The starting caps shown above are soft limits that can be raised on request — they exist to prevent runaway usage, not to throttle real-world team workloads. Contact support if you need higher limits.
 
 ### How quota enforcement applies
 
 | Scope | What it counts against |
 | :--- | :--- |
-| Use cases and test cases in an org project | The organization's enterprise quotas |
-| Use cases and test cases in a personal project | The creator's personal plan quotas |
-| Workflow runs against an org project | The organization's concurrency limit and org wallet |
-| Workflow runs against a personal project | The creator's personal concurrency limit and personal wallet |
-| Project count | Tracked separately for personal projects and for each organization |
+| Use cases and test cases in a project | The limits of the member creating them |
+| Workflow runs against an org project | The running member's concurrency limit, and the org wallet |
+| Workflow runs against a personal project | The running member's concurrency limit, and their personal wallet |
 
-A user who belongs to multiple organizations sees a separate quota and concurrency budget for each one. Switching org context in the dashboard switches which set of quotas is shown.
+A member whose account still carries personal-plan limits hits those limits inside org projects too — for example, a Free account is capped at 3 use cases and 15 test cases per project.
 
 For the full picture of seats, roles, billing, and the personal-vs-org model, see the [Enterprise Organizations guide](enterprise-organizations.md).
 
