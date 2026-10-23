@@ -120,7 +120,9 @@ Errors from your endpoint can appear after the prefix `Failed to check or debit 
 ## FAQ
 
 **Can I use my Claude Pro or Max subscription?**
-No. Anthropic's terms reserve subscription sign-in for Anthropic's own applications: "Anthropic does not permit third-party developers to offer Claude.ai login into their own applications, or to route requests through Free, Pro, or Max plan credentials on behalf of their users" ([Claude Code legal and compliance](https://code.claude.com/docs/en/legal-and-compliance)). Muggle Test does not offer it.
+Not today. Anthropic's terms bar third-party products from handling subscription credentials: "Anthropic does not permit third-party developers to offer Claude.ai login into their own applications, or to route requests through Free, Pro, or Max plan credentials on behalf of their users," and developers "may not collect, store, or intermediate Claude.ai credentials or session tokens" ([Claude Code legal and compliance](https://code.claude.com/docs/en/legal-and-compliance)). Muggle Test never asks for a Claude sign-in or session token.
+
+The same terms let you sign in to the unmodified Claude Code with your own subscription. Muggle Test's model calls do not currently run through it.
 
 **Can I use my own Anthropic API key?**
 Not yet. Support is in development and not in any released version of `@muggleai/works`.
