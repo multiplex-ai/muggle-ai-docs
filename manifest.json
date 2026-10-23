@@ -1,6 +1,6 @@
 {
-    "version": "v0.2.8",
-    "lastUpdatedAtUtc": "2026-06-02T00:00:00Z",
+    "version": "v0.2.9",
+    "lastUpdatedAtUtc": "2026-10-23T00:00:00Z",
     "sections": [
         {
             "sectionId": "getting-started",
@@ -277,7 +277,7 @@
                 {
                     "articleId": "subscription-plans",
                     "title": "Subscription Plans",
-                    "summary": "Overview of plan tiers and included quotas for use cases, test cases, and workflows.",
+                    "summary": "Overview of plan tiers, included tokens, and concurrent workflow limits.",
                     "relativePath": "billing/subscription-plans.md",
                     "order": 1,
                     "tags": ["billing", "plans", "pricing", "quotas"]
@@ -285,10 +285,10 @@
                 {
                     "articleId": "quotas-and-limits",
                     "title": "Quotas and Limits",
-                    "summary": "How quota enforcement works, what counts toward limits, and managing your usage.",
+                    "summary": "How token metering and the concurrent workflow limit work, and what happens when you reach them.",
                     "relativePath": "billing/quotas-and-limits.md",
                     "order": 2,
-                    "tags": ["billing", "quotas", "limits", "usage"]
+                    "tags": ["billing", "quotas", "limits", "usage", "tokens", "concurrency"]
                 },
                 {
                     "articleId": "enterprise-organizations",

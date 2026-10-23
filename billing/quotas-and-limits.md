@@ -1,225 +1,86 @@
 # Quotas and Limits
 
-This page explains how quota enforcement works in Muggle Test and how to manage your resource usage effectively.
+Every plan includes unlimited use cases and test cases per project; usage is metered in tokens. Two limits apply to your account: your token balance and your concurrent workflow limit. For each plan's values, see [Subscription Plans](billing/subscription-plans.md).
 
-## Quota Model
+## Token Metering
 
-Quotas are enforced **per project**. Each project has its own usage count, and limits are based on your subscription plan.
+The AI work behind scans, test generation, replays, and reports draws tokens from your wallet as it runs.
+
+| Wallet Balance | Result |
+| :------------- | :----- |
+| Above zero | Work runs and is debited as it completes |
+| Zero | New AI work is refused until you add tokens |
+
+A step that starts while your balance is above zero finishes, even if it takes the balance below zero.
+
+[Subscription Plans](billing/subscription-plans.md) covers how grants refill, how purchased tokens work, and which balance is spent first.
+
+## Concurrent Workflows
+
+Your plan sets how many workflows (scans, test generations, replays) can run at the same time.
 
 ```mermaid
 flowchart LR
-    action["Create Use Case"] --> check["Check Quota"]
-    check -->|"Under limit"| allow["✅ Allow"]
-    check -->|"At/over limit"| deny["❌ Deny"]
-    allow --> increment["Increment Usage"]
+    start["Start Workflow"] --> check["Check Concurrent Limit"]
+    check -->|"Slot free"| run["✅ Run"]
+    check -->|"All slots busy"| wait["Wait in Queue"]
+    wait -->|"Slot frees up"| run
+    wait -->|"30 minutes pass"| fail["❌ Never Started"]
 ```
 
-### What's Counted
-
-| Resource | What Counts | What Doesn't Count |
-| :------- | :---------- | :----------------- |
-| **Use Cases** | All use cases regardless of status | Deleted use cases |
-| **Test Cases** | All test cases regardless of status | Deleted test cases |
-| **Candidates** | Active candidates in the review queue | Archived candidates |
-
-### Status Doesn't Matter
-
-All use cases and test cases count toward your quota, regardless of their status:
-
-| Status | Counts? |
-| :----- | :------ |
-| Draft | Yes |
-| In Review | Yes |
-| Approved | Yes |
-| Archived | Yes |
-| **Deleted** | **No** |
-
-## Quota Enforcement Scenarios
-
-### Creating a Single Item
-
-When you create a use case or test case manually:
-
-| Quota Status | Result |
-| :----------- | :----- |
-| Under limit | Item is created |
-| At limit | Error: "Use case limit reached. You have X/Y use cases." |
-
-### Batch Operations
-
-When approving multiple use case candidates:
-
-| Quota Status | Result |
-| :----------- | :----- |
-| All fit | All candidates are approved |
-| Partial fit | Candidates up to remaining quota are approved; rest are skipped |
-| None fit | No candidates are approved; error message shown |
-
-**Example**: You have 8/10 use cases and try to approve 5 candidates:
-- 2 candidates are approved (reaching your limit of 10)
-- 3 candidates are skipped
-- You see: "2 processed, 3 skipped due to quota limit"
-
-### Automated Workflows
-
-For test case detection workflows:
-
-| Phase | Behavior |
-| :---- | :------- |
-| **Start** | Checks if at least 1 test case can be created |
-| **Each iteration** | Checks quota before creating each test case |
-| **At limit** | Workflow completes with partial results |
-
-The workflow doesn't fail—it achieves **partial success** and reports what was created.
-
-## Quota Exemptions
-
-Some accounts and projects may be exempt from quota enforcement:
-
-| Exemption Type | When Applied |
-| :------------- | :----------- |
-| **User-level** | Enterprise accounts with unlimited plans |
-| **Project-level** | Projects migrated from before quota enforcement |
-| **Admin override** | Special cases granted by support |
-
-Exempt accounts see "unlimited" in quota displays.
+| Situation | Result |
+| :-------- | :----- |
+| Under your limit | The workflow starts immediately |
+| At your limit | The workflow waits and starts when a running workflow finishes |
+| Still waiting after 30 minutes | The run fails without starting |
 
 ## Enterprise Organizations
 
-Enterprise limits apply **per member**: every quota check uses the limits on the account of the member doing the work — their personal plan's limits, or the Enterprise values where those have been applied to their account.
+The concurrent workflow limit applies **per member**: it comes from the account of the member doing the work — their personal plan's limit, or the Enterprise value where it has been applied to their account.
 
 ### Enterprise quotas
 
 | Resource | Enterprise limit |
 | :------- | :--------------- |
 | Projects | Unlimited |
-| Auto-detected use cases per project | Unlimited (starting at 100) |
-| Use cases per project | Unlimited (starting at 50) |
-| Test cases per project | Unlimited (starting at 300) |
+| Use cases and test cases per project | Unlimited |
 | Concurrent workflows | 20+ (starting at 20 per member) |
 | Monthly tokens | Pay-per-use ($5 per 1,000,000 tokens) |
 | Seats | As purchased (minimum 4) |
 
-The starting caps shown above are soft limits that can be raised on request — they exist to prevent runaway usage, not to throttle real-world team workloads. Contact support if you need higher limits.
+The starting concurrency is a soft limit that can be raised on request. Contact support if you need more.
 
 ### How quota enforcement applies
 
 | Scope | What it counts against |
 | :--- | :--- |
-| Use cases and test cases in a project | The limits of the member creating them |
 | Workflow runs against an org project | The running member's concurrency limit, and the org wallet |
 | Workflow runs against a personal project | The running member's concurrency limit, and their personal wallet |
 
-A member whose account still carries personal-plan limits hits those limits inside org projects too — for example, a Free account is capped at 3 use cases and 15 test cases per project.
+A member whose account still carries a personal-plan limit runs at that limit inside org projects too — for example, a Free account runs at most 3 workflows at a time.
 
 For the full picture of seats, roles, billing, and the personal-vs-org model, see the [Enterprise Organizations guide](enterprise-organizations.md).
-
-## Managing Your Quota
-
-### Freeing Up Space
-
-To create room for new use cases or test cases:
-
-| Action | Effect |
-| :----- | :----- |
-| Delete unused use cases | Reduces use case count |
-| Delete unused test cases | Reduces test case count |
-| Archive candidates | Doesn't affect quota (candidates don't count) |
-
-### Best Practices
-
-| Practice | Benefit |
-| :------- | :------ |
-| Review before approving | Only approve candidates you'll actually use |
-| Delete obsolete items | Keep quota available for new tests |
-| Organize by project | Spread usage across multiple projects |
-| Monitor usage | Check quota before batch operations |
-
-## API Quota Information
-
-### Get Current Quota Status
-
-```
-GET /api/muggleTest/projects/{projectId}/useCaseDiscoveryMemory
-```
-
-**Response:**
-```json
-{
-  "memory": {
-    "id": "memory-123",
-    "projectId": "proj-456",
-    "useCaseCandidates": [...]
-  },
-  "useCaseQuota": {
-    "currentUsage": 7,
-    "limit": 10,
-    "remaining": 3,
-    "isExempt": false
-  }
-}
-```
-
-### Quota Fields Explained
-
-| Field | Description |
-| :---- | :---------- |
-| `currentUsage` | Number of use cases currently in the project |
-| `limit` | Maximum allowed based on your plan |
-| `remaining` | How many more you can create (`limit - currentUsage`) |
-| `isExempt` | Whether quota enforcement is disabled |
-
-### Graduation Response with Quota Info
-
-When approving candidates:
-
-```
-POST /api/muggleTest/projects/{projectId}/useCaseDiscoveryMemory/graduations
-```
-
-**Response includes quota info when limits apply:**
-```json
-{
-  "approved": [...],
-  "inReview": [...],
-  "memory": {...},
-  "quotaInfo": {
-    "resourceType": "USE_CASE",
-    "limitReached": true,
-    "processedCount": 2,
-    "skippedCount": 3,
-    "currentUsage": 10,
-    "limit": 10,
-    "message": "Quota limit reached. 2 processed, 3 skipped."
-  }
-}
-```
 
 ## Error Messages
 
 | Message | Meaning | Solution |
 | :------ | :------ | :------- |
-| "Use case limit reached" | You've hit your use case quota | Delete unused use cases or upgrade |
-| "Test case limit reached" | You've hit your test case quota | Delete unused test cases or upgrade |
-| "X processed, Y skipped" | Partial success due to quota | Review which items were skipped |
+| "Your token balance is insufficient to complete this request" | Your wallet balance is zero | Buy a token package or upgrade your plan |
+| "Never started: the account's concurrent workflow limit was saturated" | Every concurrency slot stayed busy for the 30 minutes the run could wait | Start the run again once running workflows finish, or upgrade for a higher limit |
 
 ## FAQ
 
-### Do archived items count toward quota?
+### Is there a limit on use cases or test cases?
 
-Yes, archived use cases and test cases still count. Only **deleted** items are removed from the count.
-
-### Can I move use cases between projects?
-
-Not currently. Each project has its own separate quota.
+No. Every plan includes unlimited use cases and test cases per project.
 
 ### What happens to my tests if I downgrade?
 
-Existing use cases and test cases remain, but you won't be able to create new ones until you're under the new limit.
+Your use cases and test cases are unaffected. The new plan's concurrency limit applies, and a downgrade never takes tokens away.
 
-### Is there a grace period when hitting limits?
+### Do plan changes take effect immediately?
 
-No. Limits are enforced immediately. Plan upgrades also take effect immediately.
+Yes. A new plan's concurrency limit applies as soon as the plan changes.
 
 ## Next Steps
 
