@@ -104,7 +104,7 @@ flowchart TD
 | **Browser runs on** | Your machine | Muggle AI cloud |
 | **Test results** | Local files (`~/.muggle-ai/`) | Cloud dashboard |
 | **Best for** | Development, debugging | CI/CD, production testing |
-| **Subscription** | Free (local only) | Requires plan |
+| **AI model usage** | Your token wallet, or your own model — see [Model Sources](local-testing/model-sources.md) | Your token wallet |
 
 ## When to Use Each
 

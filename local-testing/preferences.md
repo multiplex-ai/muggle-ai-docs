@@ -57,3 +57,4 @@ This restores every preference to its default — `ask` for most, `always` for `
 | :--- | :------- |
 | See the skills that read these | [Plugin Skills](local-testing/skills.md) |
 | Set up local testing | [Local Testing Setup](local-testing/setup.md) |
+| Run local tests on your own model (`llmEnv` block) | [Model Sources](local-testing/model-sources.md) |
