@@ -214,6 +214,7 @@ You can customize behavior with environment variables in your MCP config:
 | `ELECTRON_APP_PATH` | (auto-downloaded) | Custom path to browser engine executable |
 | `MCP_API_KEY` | - | API key for cloud features |
 | `PROMPT_SERVICE_BASE_URL` | (production) | Override the prompt service URL |
+| `MUGGLE_LLM_*` | - | Run local tests on your own model; see [Model Sources](local-testing/model-sources.md) |
 
 **Example with custom settings:**
 

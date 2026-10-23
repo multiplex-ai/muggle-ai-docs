@@ -235,6 +235,14 @@
                     "relativePath": "local-testing/preferences.md",
                     "order": 6,
                     "tags": ["preferences", "settings", "configuration", "autologin", "local"]
+                },
+                {
+                    "articleId": "model-sources",
+                    "title": "Model Sources",
+                    "summary": "Choose whose AI model runs your local tests — your token wallet or your own local or self-hosted model — and why a Claude subscription is not an option.",
+                    "relativePath": "local-testing/model-sources.md",
+                    "order": 7,
+                    "tags": ["model", "llm", "local-llm", "ollama", "lm-studio", "vllm", "self-hosted", "billing", "local"]
                 }
             ]
         },
