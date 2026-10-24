@@ -189,6 +189,14 @@
             "order": 4,
             "articles": [
                 {
+                    "articleId": "anthropic-api-key",
+                    "title": "Own Anthropic API Key",
+                    "summary": "Run local tests on Muggle's designated models with your own Anthropic API key, billed by Anthropic instead of your token wallet.",
+                    "relativePath": "local-testing/anthropic-api-key.md",
+                    "order": 8,
+                    "tags": ["model", "llm", "anthropic", "api-key", "billing", "local"]
+                },
+                {
                     "articleId": "overview",
                     "title": "Local Testing Overview",
                     "summary": "Test localhost and development applications directly from your AI assistant.",
