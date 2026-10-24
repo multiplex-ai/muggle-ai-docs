@@ -108,7 +108,7 @@ It returns:
 
 ## Creating a Project Inside an Organization
 
-When you create a project from inside an organization context, you can associate the project with that organization so it inherits everything on this page: the org's billing, the org's quotas, and the cascade from organization role to project role.
+When you create a project from inside an organization context, you can associate the project with that organization so it inherits everything on this page: the org's billing and the cascade from organization role to project role.
 
 To associate a project with an org at creation time:
 
@@ -121,7 +121,7 @@ Once the project belongs to an organization:
 
 - **The ownership is permanent.** You cannot move an org project back to personal ownership, and you cannot move it from one organization to another. This is a deliberate restriction so that every bill and every audit log has an unambiguous owner over the life of the project. If you need to "move" an org project, recreate it under the new owner.
 - **The cascade starts immediately.** Every current member of the org gets their cascade role on the new project the moment it is created. Future members will get it the moment their invitation is accepted.
-- **Billing goes to the org wallet.** Workflow runs against the project debit the organization's wallet, not the creator's personal wallet, and the project's use cases and test cases count against the organization's quotas. See [Enterprise Organizations → Personal vs. Org Billing](billing/enterprise-organizations.md) for the full picture.
+- **Billing goes to the org wallet.** Workflow runs against the project debit the organization's wallet, not the creator's personal wallet. See [Enterprise Organizations → Personal vs. Org Billing](billing/enterprise-organizations.md) for the full picture.
 
 ## Related Pages
 

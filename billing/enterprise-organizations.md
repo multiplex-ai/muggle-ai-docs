@@ -148,7 +148,7 @@ Personal user wallets in Muggle Test split their token balance into two buckets:
 
 ## Limits
 
-Enterprise limits start at 50 use cases, 100 auto-detected use cases, and 300 test cases per project, and 20 concurrent workflows. They apply per member, to the account of whoever does the work. There is no limit on the number of projects. See [Quotas and Limits](billing/quotas-and-limits.md) for the full table.
+Enterprise concurrency starts at 20 concurrent workflows. It applies per member, to the account of whoever does the work. There is no limit on the number of projects, use cases, or test cases. See [Quotas and Limits](billing/quotas-and-limits.md) for the full table.
 
 ## When a Payment Fails
 

@@ -1,6 +1,6 @@
 # Subscription Plans
 
-Muggle Test offers different subscription tiers to match your testing needs. Each plan includes specific quotas for use cases, test cases, and concurrent workflow execution.
+Muggle Test offers different subscription tiers to match your testing needs. Every plan includes unlimited use cases and test cases per project; usage is metered in tokens.
 
 For current pricing, see the [pricing page](https://muggle-ai.com/#pricing) or the product catalog API.
 
@@ -8,53 +8,15 @@ For current pricing, see the [pricing page](https://muggle-ai.com/#pricing) or t
 
 | Feature | Free | Starter | Professional | Enterprise |
 | :------ | :--- | :------ | :----------- | :--------- |
-| **Use Cases per Project** | 3 | 15 | 50 | Unlimited |
-| **Auto-detected Use Cases** | 10 | 30 | 100 | Unlimited |
-| **Test Cases per Project** | 15 | 50 | 300 | Unlimited |
 | **Concurrent Workflows** | 3 | 10 | 20 | 20+ |
 | **Included Tokens** | 1M (one-time grant) | 3M / month | 20M / month | Pay per use ($5/M) |
-| **Price** | $0 | $29/month | $199/month | $60/seat/month (min 4 seats) |
+| **Price** | $0 | $0 — verify your email to unlock | $199/month | $60/seat/month (min 4 seats) |
 | **Seats** | 1 | 1 | 1 | As purchased (minimum 4) |
 | **Shared team workspace** | — | — | — | Yes |
 | **CI/CD Integration** | — | — | Yes | Yes |
 | **Token Purchases** | — | Yes ($5/M) | Yes ($5/M) | Included (metered) |
 
-## Understanding Quotas
-
-### Journeys Scanned
-
-When you run a website scan, Muggle Test's AI agent discovers potential use cases (journeys). The scan limit determines how many journeys can be detected per scan.
-
-| Plan | Journeys Limit |
-| :--- | :------------- |
-| Free | 10 per scan |
-| Starter | 30 per scan |
-| Professional | 100 per scan |
-| Enterprise | 100+ (customizable) |
-
-### Use Cases
-
-Use cases represent the high-level user journeys you want to test (e.g., "User Login", "Add to Cart", "Checkout"). Each use case can have multiple test cases.
-
-| Plan | Use Case Limit |
-| :--- | :------------- |
-| Free | 3 per project |
-| Starter | 15 per project |
-| Professional | 50 per project |
-| Enterprise | Unlimited |
-
-### Test Cases
-
-Test cases are the specific test scenarios generated from use cases. Each use case typically generates multiple test cases covering different paths and edge cases.
-
-| Plan | Test Case Limit |
-| :--- | :-------------- |
-| Free | 15 per project |
-| Starter | 50 per project |
-| Professional | 300 per project |
-| Enterprise | Unlimited |
-
-### Concurrent Workflows
+## Concurrent Workflows
 
 This controls how many workflows (scans, test generations, replays) can run simultaneously.
 
@@ -65,75 +27,17 @@ This controls how many workflows (scans, test generations, replays) can run simu
 | Professional | 20 |
 | Enterprise | 20+ |
 
-## What Happens When You Hit a Limit
-
-### Use Case Limit
-
-When you reach your use case limit:
-
-| Scenario | Behavior |
-| :------- | :------- |
-| **Manual creation** | You'll see an error message and cannot create more use cases |
-| **Auto-detection approval** | Only the first N candidates (up to your remaining quota) will be approved |
-| **Existing use cases** | Continue to work normally |
-
-### Test Case Limit
-
-When you reach your test case limit:
-
-| Scenario | Behavior |
-| :------- | :------- |
-| **Manual creation** | You'll see an error message and cannot create more test cases |
-| **Auto-detection workflow** | The workflow will create test cases up to your limit and stop |
-| **Existing test cases** | Continue to work normally |
-
-### Partial Success
-
-For batch operations (like approving multiple use case candidates), Muggle Test uses **partial success**:
-
-- Items up to your remaining quota are processed
-- Excess items are skipped
-- You receive a message indicating how many were processed vs. skipped
+A workflow started while you are at your limit waits for a running one to finish. See [Quotas and Limits](billing/quotas-and-limits.md) for how long it waits.
 
 ## Checking Your Current Usage
 
-### In the Dashboard
-
-1. Navigate to your project
-2. Click **Add Use Cases** to open the candidates modal
-3. View your quota status: "Use Cases: X/Y"
-
-Hover over the quota display to see:
-- Current use case count in the project
-- Your plan's limit
-- Available slots remaining
-
-### Via API
-
-Use the use case discovery memory endpoint to get quota information:
-
-```
-GET /api/muggleTest/projects/{projectId}/useCaseDiscoveryMemory
-```
-
-Response includes:
-```json
-{
-  "memory": { ... },
-  "useCaseQuota": {
-    "currentUsage": 5,
-    "limit": 10,
-    "remaining": 5,
-    "isExempt": false
-  }
-}
-```
+Open **Billing** in the dashboard to see your token balance and your concurrent workflow usage.
 
 ## Monthly Token Grants
 
 The token allocation in your plan is credited to your wallet's **grant balance**. Here's how it behaves across each tier:
 
-- **Free tier:** Free users receive a **one-time** 1M token grant at signup. This grant is **never refreshed** — when it's exhausted, the only way to keep using the product is to upgrade to a paid plan. There is no monthly reset for Free users.
+- **Free tier:** Free users receive a **one-time** 1M token grant at signup. This grant is **never refreshed** — when it's exhausted, move to Starter, which is available for all once you verify your email and refills to 3M tokens every month, or to a paid plan. There is no monthly reset for Free users.
 - **Starter and Professional:** On every successful Stripe subscription invoice payment, your wallet's grant balance is **topped up to your plan amount**. If you have leftover grant from the previous cycle, it is **not** added to the new month's grant — instead, the grant balance is brought up to the plan amount (never reduced). Tokens you've purchased as top-ups are tracked separately and never expire.
 - **Enterprise:** Enterprise organization wallets do **not** have a monthly grant bucket. Token usage is metered through Stripe at $5 per 1M tokens and reconciled on each invoice. The grant balance on an Enterprise org wallet is structurally always 0.
 - **Plan upgrades:** When you upgrade mid-cycle (e.g., Starter → Professional), your wallet is credited the **difference** between the new and old plan amounts immediately on Stripe's proration invoice (e.g., upgrading from Starter to Pro mid-cycle credits 17M = 20M − 3M). Downgrades **never take tokens away**.
@@ -166,7 +70,6 @@ The Enterprise tier is built for teams. Instead of every engineer paying for the
 
 **What's included**
 
-- Unlimited use cases and test cases (with generous starting caps)
 - 20+ concurrent workflows, raised on request
 - Shared org wallet and pooled token usage
 - Member roles (OWNER, ADMIN, MEMBER) for access control
