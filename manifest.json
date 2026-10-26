@@ -1,10 +1,14 @@
 {
-    "version": "v0.2.9",
-    "lastUpdatedAtUtc": "2026-10-23T00:00:00Z",
+    "version": "v0.3.0",
+    "lastUpdatedAtUtc": "2026-10-24T00:00:00Z",
     "sections": [
         {
             "sectionId": "getting-started",
             "label": "Getting Started",
+            "translations": {
+                "zh-CN": { "label": "入门" },
+                "zh-TW": { "label": "入門" }
+            },
             "order": 1,
             "articles": [
                 {
@@ -13,7 +17,19 @@
                     "summary": "Quick orientation for the docs and recommended starting points.",
                     "relativePath": "getting-started/welcome.md",
                     "order": 0,
-                    "tags": ["intro", "welcome"]
+                    "tags": ["intro", "welcome"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "欢迎使用 Muggle Test",
+                            "summary": "快速了解本文档，以及推荐的入门起点。",
+                            "relativePath": "getting-started/welcome.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "歡迎使用 Muggle Test",
+                            "summary": "快速認識本文件，以及建議的起步方向。",
+                            "relativePath": "getting-started/welcome.zh-TW.md"
+                        }
+                    }
                 },
                 {
                     "articleId": "quickstart-by-role",
@@ -21,7 +37,19 @@
                     "summary": "Role-specific guides for Developers, Vibe Coders, and Product Teams.",
                     "relativePath": "getting-started/quickstart-by-role.md",
                     "order": 1,
-                    "tags": ["quickstart", "roles", "developers", "vibe-coders", "product"]
+                    "tags": ["quickstart", "roles", "developers", "vibe-coders", "product"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "按角色快速入门",
+                            "summary": "面向开发者、Vibe Coder 和产品团队的角色专属指南。",
+                            "relativePath": "getting-started/quickstart-by-role.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "依角色快速入門",
+                            "summary": "為開發人員、Vibe Coder 與產品團隊量身打造的指南。",
+                            "relativePath": "getting-started/quickstart-by-role.zh-TW.md"
+                        }
+                    }
                 },
                 {
                     "articleId": "overview",
@@ -29,7 +57,19 @@
                     "summary": "High-level introduction to Muggle Test and when to use it.",
                     "relativePath": "getting-started/overview.md",
                     "order": 2,
-                    "tags": ["intro", "overview"]
+                    "tags": ["intro", "overview"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "Muggle Test 概览",
+                            "summary": "Muggle Test 的整体介绍，以及适用场景。",
+                            "relativePath": "getting-started/overview.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "Muggle Test 總覽",
+                            "summary": "Muggle Test 的整體介紹，以及適用時機。",
+                            "relativePath": "getting-started/overview.zh-TW.md"
+                        }
+                    }
                 },
                 {
                     "articleId": "quickstart-running-tests",
@@ -37,7 +77,19 @@
                     "summary": "Step-by-step guide to create a project and run your first test suite.",
                     "relativePath": "getting-started/quickstart-running-tests.md",
                     "order": 3,
-                    "tags": ["quickstart"]
+                    "tags": ["quickstart"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "快速入门：运行你的第一批测试",
+                            "summary": "分步指南：创建项目并运行你的第一个测试套件。",
+                            "relativePath": "getting-started/quickstart-running-tests.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "快速入門：執行你的第一批測試",
+                            "summary": "逐步指南：建立專案並執行你的第一個測試套件。",
+                            "relativePath": "getting-started/quickstart-running-tests.zh-TW.md"
+                        }
+                    }
                 },
                 {
                     "articleId": "mcp-quickstart",
@@ -45,13 +97,29 @@
                     "summary": "Connect Claude, Cursor, or any MCP client to Muggle Test in 5 minutes.",
                     "relativePath": "getting-started/mcp-quickstart.md",
                     "order": 4,
-                    "tags": ["quickstart", "mcp", "ai"]
+                    "tags": ["quickstart", "mcp", "ai"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "MCP 快速入门：集成 AI 助手",
+                            "summary": "5 分钟内将 Claude、Cursor 或任意 MCP 客户端连接到 Muggle Test。",
+                            "relativePath": "getting-started/mcp-quickstart.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "MCP 快速入門：整合 AI 助理",
+                            "summary": "5 分鐘內將 Claude、Cursor 或任何 MCP 用戶端連接到 Muggle Test。",
+                            "relativePath": "getting-started/mcp-quickstart.zh-TW.md"
+                        }
+                    }
                 }
             ]
         },
         {
             "sectionId": "concepts",
             "label": "Key Concepts",
+            "translations": {
+                "zh-CN": { "label": "核心概念" },
+                "zh-TW": { "label": "核心概念" }
+            },
             "order": 2,
             "articles": [
                 {
@@ -60,7 +128,19 @@
                     "summary": "Core concepts: scanning, flows, scripts, runs, and reports.",
                     "relativePath": "concepts/how-muggle-test-works.md",
                     "order": 1,
-                    "tags": ["architecture", "concepts"]
+                    "tags": ["architecture", "concepts"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "Muggle Test 的工作原理",
+                            "summary": "核心概念：扫描、流程、脚本、运行和报告。",
+                            "relativePath": "concepts/how-muggle-test-works.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "Muggle Test 的運作方式",
+                            "summary": "核心概念：掃描、流程、腳本、執行與報告。",
+                            "relativePath": "concepts/how-muggle-test-works.zh-TW.md"
+                        }
+                    }
                 },
                 {
                     "articleId": "prd-upload",
@@ -68,7 +148,19 @@
                     "summary": "Extract test scenarios automatically from your Product Requirements Documents.",
                     "relativePath": "concepts/prd-upload.md",
                     "order": 2,
-                    "tags": ["prd", "upload", "use-cases", "concepts"]
+                    "tags": ["prd", "upload", "use-cases", "concepts"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "上传 PRD 文件",
+                            "summary": "从产品需求文档（PRD）中自动提取测试场景。",
+                            "relativePath": "concepts/prd-upload.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "上傳 PRD 檔案",
+                            "summary": "從產品需求文件（PRD）中自動擷取測試情境。",
+                            "relativePath": "concepts/prd-upload.zh-TW.md"
+                        }
+                    }
                 },
                 {
                     "articleId": "generating-from-instructions",
@@ -76,7 +168,19 @@
                     "summary": "Create use cases and test cases by describing what you want in plain language.",
                     "relativePath": "concepts/generating-from-instructions.md",
                     "order": 3,
-                    "tags": ["use-cases", "test-cases", "ai", "generate", "instructions"]
+                    "tags": ["use-cases", "test-cases", "ai", "generate", "instructions"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "根据指令生成",
+                            "summary": "用自然语言描述你的需求，即可创建用户旅程和测试用例。",
+                            "relativePath": "concepts/generating-from-instructions.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "依指示產生",
+                            "summary": "用日常語言描述你的需求，即可建立使用者旅程與測試案例。",
+                            "relativePath": "concepts/generating-from-instructions.zh-TW.md"
+                        }
+                    }
                 },
                 {
                     "articleId": "workflow-files",
@@ -84,7 +188,19 @@
                     "summary": "Upload files for your tests to use when testing file upload features.",
                     "relativePath": "concepts/workflow-files.md",
                     "order": 4,
-                    "tags": ["files", "upload", "file-input", "attachments"]
+                    "tags": ["files", "upload", "file-input", "attachments"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "工作流文件",
+                            "summary": "上传供测试使用的文件，用于测试文件上传功能。",
+                            "relativePath": "concepts/workflow-files.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "工作流程檔案",
+                            "summary": "上傳供測試使用的檔案，用於測試檔案上傳功能。",
+                            "relativePath": "concepts/workflow-files.zh-TW.md"
+                        }
+                    }
                 },
                 {
                     "articleId": "automated-captcha-handling",
@@ -92,7 +208,19 @@
                     "summary": "How Muggle Test automatically solves CAPTCHAs during test execution.",
                     "relativePath": "concepts/automated-captcha-handling.md",
                     "order": 5,
-                    "tags": ["captcha", "recaptcha", "hcaptcha", "automation"]
+                    "tags": ["captcha", "recaptcha", "hcaptcha", "automation"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "自动处理验证码",
+                            "summary": "Muggle Test 如何在测试执行过程中自动完成验证码。",
+                            "relativePath": "concepts/automated-captcha-handling.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "自動處理驗證碼",
+                            "summary": "Muggle Test 如何在測試執行過程中自動完成驗證碼。",
+                            "relativePath": "concepts/automated-captcha-handling.zh-TW.md"
+                        }
+                    }
                 },
                 {
                     "articleId": "testing-payment-wall",
@@ -100,7 +228,19 @@
                     "summary": "Test checkout with Stripe test mode and test cards — success, decline, and 3D Secure — without charging a real card.",
                     "relativePath": "concepts/testing-payment-wall.md",
                     "order": 6,
-                    "tags": ["payment", "stripe", "test-cards", "gated", "checkout", "billing"]
+                    "tags": ["payment", "stripe", "test-cards", "gated", "checkout", "billing"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "测试付费墙后的流程",
+                            "summary": "使用 Stripe 测试模式和测试卡测试结账流程（成功、被拒和 3D Secure），无需从真实银行卡扣款。",
+                            "relativePath": "concepts/testing-payment-wall.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "測試付費牆後的流程",
+                            "summary": "使用 Stripe 測試模式與測試卡測試結帳流程（成功、遭拒與 3D Secure），不會向真實信用卡收費。",
+                            "relativePath": "concepts/testing-payment-wall.zh-TW.md"
+                        }
+                    }
                 },
                 {
                     "articleId": "testing-login-wall",
@@ -108,7 +248,19 @@
                     "summary": "Test authenticated flows by storing test-account credentials — Login Credentials, project secrets, or the autoLogin preference — with SSO and 2FA guidance.",
                     "relativePath": "concepts/testing-login-wall.md",
                     "order": 7,
-                    "tags": ["login", "credentials", "authentication", "autologin", "sso", "2fa", "gated"]
+                    "tags": ["login", "credentials", "authentication", "autologin", "sso", "2fa", "gated"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "测试登录墙后的流程",
+                            "summary": "存储测试账户凭据来测试需要登录的流程（可使用“登录凭据”、项目密钥或 autoLogin 偏好设置），并附 SSO 和 2FA 指南。",
+                            "relativePath": "concepts/testing-login-wall.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "測試登入牆後的流程",
+                            "summary": "儲存測試帳戶憑證來測試需要登入的流程（可使用「登入憑證」、專案密鑰或 autoLogin 偏好設定），並附上 SSO 與 2FA 指引。",
+                            "relativePath": "concepts/testing-login-wall.zh-TW.md"
+                        }
+                    }
                 },
                 {
                     "articleId": "testing-captcha-wall",
@@ -116,7 +268,19 @@
                     "summary": "Test login and sign-up flows through CAPTCHAs — Muggle Test solves the common types automatically.",
                     "relativePath": "concepts/testing-captcha-wall.md",
                     "order": 8,
-                    "tags": ["captcha", "recaptcha", "hcaptcha", "signup", "gated", "automation"]
+                    "tags": ["captcha", "recaptcha", "hcaptcha", "signup", "gated", "automation"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "测试验证码后的流程",
+                            "summary": "测试带验证码的登录和注册流程——Muggle Test 会自动完成常见类型的验证码。",
+                            "relativePath": "concepts/testing-captcha-wall.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "測試驗證碼後的流程",
+                            "summary": "測試含驗證碼的登入與註冊流程——Muggle Test 會自動完成常見類型的驗證碼。",
+                            "relativePath": "concepts/testing-captcha-wall.zh-TW.md"
+                        }
+                    }
                 },
                 {
                     "articleId": "organization-roles-and-access",
@@ -124,7 +288,19 @@
                     "summary": "How organization roles cascade into project access, how direct and team grants stack with the cascade, and how to look up a member's effective role on a project.",
                     "relativePath": "concepts/organization-roles-and-access.md",
                     "order": 9,
-                    "tags": ["organization", "roles", "access", "permissions", "cascade", "effective-role", "enterprise"]
+                    "tags": ["organization", "roles", "access", "permissions", "cascade", "effective-role", "enterprise"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "组织角色与项目访问权限",
+                            "summary": "组织角色如何逐级传递到项目访问权限，直接授权和团队授权如何与之叠加，以及如何查询成员在项目中的实际角色。",
+                            "relativePath": "concepts/organization-roles-and-access.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "組織角色與專案存取權限",
+                            "summary": "組織角色如何向下套用到專案存取權限、直接授權與團隊授權如何與之疊加，以及如何查詢成員在專案中的實際角色。",
+                            "relativePath": "concepts/organization-roles-and-access.zh-TW.md"
+                        }
+                    }
                 },
                 {
                     "articleId": "how-muggle-do-works",
@@ -132,13 +308,29 @@
                     "summary": "The autonomous build-test-PR workflow: requirements, implementation, real-browser acceptance tests, a visual PR, and review follow-up.",
                     "relativePath": "concepts/how-muggle-do-works.md",
                     "order": 10,
-                    "tags": ["muggle-do", "workflow", "automation", "pull-request", "concepts"]
+                    "tags": ["muggle-do", "workflow", "automation", "pull-request", "concepts"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "Muggle Do 的工作原理",
+                            "summary": "从需求到 PR 自主完成的构建与测试工作流：需求、实现、真实浏览器验收测试、可视化 PR，以及评审跟进。",
+                            "relativePath": "concepts/how-muggle-do-works.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "Muggle Do 的運作方式",
+                            "summary": "從需求到 PR 自主完成的建置與測試工作流程：需求、實作、真實瀏覽器驗收測試、視覺化 PR，以及審查追蹤。",
+                            "relativePath": "concepts/how-muggle-do-works.zh-TW.md"
+                        }
+                    }
                 }
             ]
         },
         {
             "sectionId": "mcp",
             "label": "Remote Testing with MCP",
+            "translations": {
+                "zh-CN": { "label": "使用 MCP 进行远程测试" },
+                "zh-TW": { "label": "使用 MCP 進行遠端測試" }
+            },
             "order": 3,
             "articles": [
                 {
@@ -147,7 +339,19 @@
                     "summary": "Test preview, staging, and production environments through AI assistants using MCP.",
                     "relativePath": "mcp/overview.md",
                     "order": 1,
-                    "tags": ["mcp", "overview", "ai", "remote", "staging", "production"]
+                    "tags": ["mcp", "overview", "ai", "remote", "staging", "production"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "远程测试概览",
+                            "summary": "通过 MCP 让 AI 助手测试预览、预发布和生产环境。",
+                            "relativePath": "mcp/overview.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "遠端測試總覽",
+                            "summary": "透過 MCP 讓 AI 助理測試預覽、預備與正式環境。",
+                            "relativePath": "mcp/overview.zh-TW.md"
+                        }
+                    }
                 },
                 {
                     "articleId": "mcp-installation",
@@ -155,7 +359,19 @@
                     "summary": "Choose between hosted or local deployment. Install the npm package for lower latency.",
                     "relativePath": "mcp/mcp-installation.md",
                     "order": 2,
-                    "tags": ["mcp", "installation", "npm", "local", "hosted"]
+                    "tags": ["mcp", "installation", "npm", "local", "hosted"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "MCP 安装",
+                            "summary": "在托管部署和本地部署之间选择。安装 npm 包可降低延迟。",
+                            "relativePath": "mcp/mcp-installation.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "MCP 安裝",
+                            "summary": "在託管部署與本機部署之間選擇。安裝 npm 套件可降低延遲。",
+                            "relativePath": "mcp/mcp-installation.zh-TW.md"
+                        }
+                    }
                 },
                 {
                     "articleId": "mcp-concepts",
@@ -163,7 +379,19 @@
                     "summary": "Understanding workflows, tools, and how the MCP Gateway connects to Muggle Test.",
                     "relativePath": "mcp/mcp-concepts.md",
                     "order": 3,
-                    "tags": ["mcp", "architecture", "concepts"]
+                    "tags": ["mcp", "architecture", "concepts"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "MCP 概念与架构",
+                            "summary": "了解工作流、工具，以及 MCP Gateway 如何连接到 Muggle Test。",
+                            "relativePath": "mcp/mcp-concepts.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "MCP 概念與架構",
+                            "summary": "了解工作流程、工具，以及 MCP Gateway 如何連接到 Muggle Test。",
+                            "relativePath": "mcp/mcp-concepts.zh-TW.md"
+                        }
+                    }
                 },
                 {
                     "articleId": "mcp-api-reference",
@@ -171,7 +399,19 @@
                     "summary": "Complete reference for all 100+ MCP tools: projects, workflows, reports, and more.",
                     "relativePath": "mcp/mcp-api-reference.md",
                     "order": 4,
-                    "tags": ["mcp", "api", "reference"]
+                    "tags": ["mcp", "api", "reference"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "MCP API 参考",
+                            "summary": "全部 100 多个 MCP 工具的完整参考：项目、工作流、报告等。",
+                            "relativePath": "mcp/mcp-api-reference.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "MCP API 參考",
+                            "summary": "全部 100 多個 MCP 工具的完整參考：專案、工作流程、報告等。",
+                            "relativePath": "mcp/mcp-api-reference.zh-TW.md"
+                        }
+                    }
                 },
                 {
                     "articleId": "mcp-cicd-integration",
@@ -179,13 +419,29 @@
                     "summary": "Integrate Muggle Test into GitHub Actions, Azure DevOps, GitLab CI, and more.",
                     "relativePath": "mcp/mcp-cicd-integration.md",
                     "order": 5,
-                    "tags": ["mcp", "cicd", "automation", "github", "azure"]
+                    "tags": ["mcp", "cicd", "automation", "github", "azure"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "CI/CD 集成",
+                            "summary": "将 Muggle Test 集成到 GitHub Actions、Azure DevOps、GitLab CI 等平台。",
+                            "relativePath": "mcp/mcp-cicd-integration.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "CI/CD 整合",
+                            "summary": "將 Muggle Test 整合到 GitHub Actions、Azure DevOps、GitLab CI 等平台。",
+                            "relativePath": "mcp/mcp-cicd-integration.zh-TW.md"
+                        }
+                    }
                 }
             ]
         },
         {
             "sectionId": "local-testing",
             "label": "Local Testing with MCP",
+            "translations": {
+                "zh-CN": { "label": "使用 MCP 进行本地测试" },
+                "zh-TW": { "label": "使用 MCP 進行本機測試" }
+            },
             "order": 4,
             "articles": [
                 {
@@ -194,7 +450,19 @@
                     "summary": "Test localhost and development applications directly from your AI assistant.",
                     "relativePath": "local-testing/overview.md",
                     "order": 1,
-                    "tags": ["local", "localhost", "development", "mcp"]
+                    "tags": ["local", "localhost", "development", "mcp"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "本地测试概览",
+                            "summary": "直接通过 AI 助手测试 localhost 和开发中的应用。",
+                            "relativePath": "local-testing/overview.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "本機測試總覽",
+                            "summary": "直接透過 AI 助理測試 localhost 與開發中的應用程式。",
+                            "relativePath": "local-testing/overview.zh-TW.md"
+                        }
+                    }
                 },
                 {
                     "articleId": "setup",
@@ -202,7 +470,19 @@
                     "summary": "Install and configure Muggle Test Local to test your localhost applications.",
                     "relativePath": "local-testing/setup.md",
                     "order": 2,
-                    "tags": ["local", "installation", "setup", "configuration"]
+                    "tags": ["local", "installation", "setup", "configuration"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "本地测试安装与配置",
+                            "summary": "安装并配置 Muggle Test Local，测试你的 localhost 应用。",
+                            "relativePath": "local-testing/setup.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "本機測試安裝與設定",
+                            "summary": "安裝並設定 Muggle Test Local，測試你的 localhost 應用程式。",
+                            "relativePath": "local-testing/setup.zh-TW.md"
+                        }
+                    }
                 },
                 {
                     "articleId": "tools-reference",
@@ -210,7 +490,19 @@
                     "summary": "Complete reference for all Muggle Test Local MCP tools.",
                     "relativePath": "local-testing/tools-reference.md",
                     "order": 3,
-                    "tags": ["local", "tools", "api", "reference"]
+                    "tags": ["local", "tools", "api", "reference"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "本地测试工具参考",
+                            "summary": "Muggle Test Local 全部 MCP 工具的完整参考。",
+                            "relativePath": "local-testing/tools-reference.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "本機測試工具參考",
+                            "summary": "Muggle Test Local 全部 MCP 工具的完整參考。",
+                            "relativePath": "local-testing/tools-reference.zh-TW.md"
+                        }
+                    }
                 },
                 {
                     "articleId": "examples",
@@ -218,7 +510,19 @@
                     "summary": "Common testing scenarios and example prompts for testing localhost applications.",
                     "relativePath": "local-testing/examples.md",
                     "order": 4,
-                    "tags": ["local", "examples", "tutorials", "testing"]
+                    "tags": ["local", "examples", "tutorials", "testing"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "本地测试示例",
+                            "summary": "测试 localhost 应用的常见场景和示例提示词。",
+                            "relativePath": "local-testing/examples.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "本機測試範例",
+                            "summary": "測試 localhost 應用程式的常見情境與範例提示詞。",
+                            "relativePath": "local-testing/examples.zh-TW.md"
+                        }
+                    }
                 },
                 {
                     "articleId": "skills",
@@ -226,7 +530,19 @@
                     "summary": "Pre-built AI agent skills for testing and development workflows — /muggle:do, /muggle:test-feature-local, and more.",
                     "relativePath": "local-testing/skills.md",
                     "order": 5,
-                    "tags": ["local", "skills", "plugin", "agent", "workflows"]
+                    "tags": ["local", "skills", "plugin", "agent", "workflows"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "插件技能",
+                            "summary": "用于测试和开发工作流的预置 AI 智能体技能：/muggle:do、/muggle:test-feature-local 等。",
+                            "relativePath": "local-testing/skills.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "外掛程式技能",
+                            "summary": "用於測試與開發工作流程的預建 AI 代理程式技能：/muggle:do、/muggle:test-feature-local 等。",
+                            "relativePath": "local-testing/skills.zh-TW.md"
+                        }
+                    }
                 },
                 {
                     "articleId": "preferences",
@@ -234,7 +550,19 @@
                     "summary": "Configure testing behavior — autologin, execution mode, auto-publish, walkthroughs, and more.",
                     "relativePath": "local-testing/preferences.md",
                     "order": 6,
-                    "tags": ["preferences", "settings", "configuration", "autologin", "local"]
+                    "tags": ["preferences", "settings", "configuration", "autologin", "local"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "偏好设置",
+                            "summary": "配置测试行为：自动登录、执行模式、自动发布、可视化演示等。",
+                            "relativePath": "local-testing/preferences.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "偏好設定",
+                            "summary": "設定測試行為：自動登入、執行模式、自動發布、視覺化導覽等。",
+                            "relativePath": "local-testing/preferences.zh-TW.md"
+                        }
+                    }
                 },
                 {
                     "articleId": "model-sources",
@@ -242,13 +570,29 @@
                     "summary": "Choose whose AI model runs your local tests — your token wallet or your own local or self-hosted model — and why a Claude subscription is not an option.",
                     "relativePath": "local-testing/model-sources.md",
                     "order": 7,
-                    "tags": ["model", "llm", "local-llm", "ollama", "lm-studio", "vllm", "self-hosted", "billing", "local"]
+                    "tags": ["model", "llm", "local-llm", "ollama", "lm-studio", "vllm", "self-hosted", "billing", "local"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "模型来源",
+                            "summary": "选择由谁的 AI 模型运行你的本地测试（你的 Token 钱包，或你自己的本地或自托管模型），以及为什么不能使用 Claude 订阅。",
+                            "relativePath": "local-testing/model-sources.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "模型來源",
+                            "summary": "選擇由誰的 AI 模型執行你的本機測試（你的 Token 錢包，或你自己的本機或自行託管模型），以及為何無法使用 Claude 訂閱。",
+                            "relativePath": "local-testing/model-sources.zh-TW.md"
+                        }
+                    }
                 }
             ]
         },
         {
             "sectionId": "api",
             "label": "API Usage",
+            "translations": {
+                "zh-CN": { "label": "使用 API" },
+                "zh-TW": { "label": "使用 API" }
+            },
             "order": 5,
             "articles": [
                 {
@@ -257,7 +601,19 @@
                     "summary": "Authentication, base URLs, and general patterns for using the Muggle Test API.",
                     "relativePath": "api/api-overview.md",
                     "order": 1,
-                    "tags": ["api"]
+                    "tags": ["api"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "API 概览",
+                            "summary": "使用 Muggle Test API 的身份验证、基础 URL 和通用模式。",
+                            "relativePath": "api/api-overview.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "API 總覽",
+                            "summary": "使用 Muggle Test API 的身分驗證、基礎 URL 與通用模式。",
+                            "relativePath": "api/api-overview.zh-TW.md"
+                        }
+                    }
                 },
                 {
                     "articleId": "running-tests-via-api",
@@ -265,13 +621,29 @@
                     "summary": "How to trigger runs and fetch results programmatically.",
                     "relativePath": "api/running-tests-via-api.md",
                     "order": 2,
-                    "tags": ["api", "runs"]
+                    "tags": ["api", "runs"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "通过 API 运行测试",
+                            "summary": "如何以编程方式触发运行并获取结果。",
+                            "relativePath": "api/running-tests-via-api.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "透過 API 執行測試",
+                            "summary": "如何以程式方式觸發執行並取得結果。",
+                            "relativePath": "api/running-tests-via-api.zh-TW.md"
+                        }
+                    }
                 }
             ]
         },
         {
             "sectionId": "billing",
             "label": "Billing & Limits",
+            "translations": {
+                "zh-CN": { "label": "账单与限制" },
+                "zh-TW": { "label": "帳單與限制" }
+            },
             "order": 6,
             "articles": [
                 {
@@ -280,7 +652,19 @@
                     "summary": "Overview of plan tiers, included tokens, and concurrent workflow limits.",
                     "relativePath": "billing/subscription-plans.md",
                     "order": 1,
-                    "tags": ["billing", "plans", "pricing", "quotas"]
+                    "tags": ["billing", "plans", "pricing", "quotas"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "订阅套餐",
+                            "summary": "套餐档位、包含的 Token 和并发工作流上限概览。",
+                            "relativePath": "billing/subscription-plans.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "訂閱方案",
+                            "summary": "方案等級、內含 Token 與同時執行工作流程上限總覽。",
+                            "relativePath": "billing/subscription-plans.zh-TW.md"
+                        }
+                    }
                 },
                 {
                     "articleId": "quotas-and-limits",
@@ -288,7 +672,19 @@
                     "summary": "How token metering and the concurrent workflow limit work, and what happens when you reach them.",
                     "relativePath": "billing/quotas-and-limits.md",
                     "order": 2,
-                    "tags": ["billing", "quotas", "limits", "usage", "tokens", "concurrency"]
+                    "tags": ["billing", "quotas", "limits", "usage", "tokens", "concurrency"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "配额与限制",
+                            "summary": "Token 计量和并发工作流上限如何运作，以及达到上限后会发生什么。",
+                            "relativePath": "billing/quotas-and-limits.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "配額與限制",
+                            "summary": "Token 計量與同時執行工作流程上限如何運作，以及達到上限時會發生什麼事。",
+                            "relativePath": "billing/quotas-and-limits.zh-TW.md"
+                        }
+                    }
                 },
                 {
                     "articleId": "enterprise-organizations",
@@ -296,7 +692,19 @@
                     "summary": "Centralized billing, seat management, shared token wallet, and role-based access for companies.",
                     "relativePath": "billing/enterprise-organizations.md",
                     "order": 3,
-                    "tags": ["billing", "enterprise", "organization", "seats", "teams"]
+                    "tags": ["billing", "enterprise", "organization", "seats", "teams"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "企业组织",
+                            "summary": "面向企业的统一账单、席位管理、共享 Token 钱包和基于角色的访问控制。",
+                            "relativePath": "billing/enterprise-organizations.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "企業組織",
+                            "summary": "為企業提供集中帳單、席位管理、共用 Token 錢包與角色型存取控制。",
+                            "relativePath": "billing/enterprise-organizations.zh-TW.md"
+                        }
+                    }
                 },
                 {
                     "articleId": "billing-suspension-and-recovery",
@@ -304,13 +712,29 @@
                     "summary": "What happens when an enterprise organization's payment fails: immediate suspension, dunning email to owners, which routes stay reachable, and automatic recovery when a later payment succeeds.",
                     "relativePath": "billing/billing-suspension-and-recovery.md",
                     "order": 4,
-                    "tags": ["billing", "enterprise", "organization", "suspension", "dunning", "recovery", "payment", "stripe"]
+                    "tags": ["billing", "enterprise", "organization", "suspension", "dunning", "recovery", "payment", "stripe"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "账单暂停与恢复",
+                            "summary": "企业组织付款失败时会发生什么：立即暂停、向所有者发送催缴邮件、哪些页面仍可访问，以及后续付款成功后自动恢复。",
+                            "relativePath": "billing/billing-suspension-and-recovery.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "帳單停權與恢復",
+                            "summary": "企業組織付款失敗時會發生什麼事：立即停權、向擁有者寄送催繳電子郵件、哪些頁面仍可存取，以及後續付款成功後自動恢復。",
+                            "relativePath": "billing/billing-suspension-and-recovery.zh-TW.md"
+                        }
+                    }
                 }
             ]
         },
         {
             "sectionId": "troubleshooting",
             "label": "Troubleshooting",
+            "translations": {
+                "zh-CN": { "label": "故障排除" },
+                "zh-TW": { "label": "疑難排解" }
+            },
             "order": 7,
             "articles": [
                 {
@@ -319,7 +743,19 @@
                     "summary": "Answers for the most common setup and runtime problems.",
                     "relativePath": "troubleshooting/common-issues.md",
                     "order": 1,
-                    "tags": ["troubleshooting", "faq"]
+                    "tags": ["troubleshooting", "faq"],
+                    "translations": {
+                        "zh-CN": {
+                            "title": "常见问题与解决方法",
+                            "summary": "最常见的配置和运行问题解答。",
+                            "relativePath": "troubleshooting/common-issues.zh-CN.md"
+                        },
+                        "zh-TW": {
+                            "title": "常見問題與解決方法",
+                            "summary": "最常見的設定與執行問題解答。",
+                            "relativePath": "troubleshooting/common-issues.zh-TW.md"
+                        }
+                    }
                 }
             ]
         }

@@ -45,16 +45,29 @@ Each article must appear under a `section` entry:
 | `relativePath` | Path to markdown file from repo root      |
 | `order`        | Numeric sort order within section         |
 | `tags`         | Keywords for search                       |
+| `translations` | Optional; per-language `title`, `summary`, `relativePath` |
 
 Sections have:
 
-| Field       | Description               |
-| :---------- | :------------------------ |
-| `sectionId` | Unique section identifier |
-| `label`     | Display name in sidebar   |
-| `order`     | Sort order among sections |
+| Field          | Description                            |
+| :------------- | :------------------------------------- |
+| `sectionId`    | Unique section identifier              |
+| `label`        | Display name in sidebar                |
+| `order`        | Sort order among sections              |
+| `translations` | Optional; per-language `label`         |
 
-### 3. Push to Main Branch
+### 3. Add Translations
+
+A translated article sits beside its English file as `<name>.<locale>.md` (`zh-CN`, `zh-TW`) and is listed under the article's `translations` in the manifest. The UI shows the reader's language where a translation is listed, and the English article with an "English only" notice where none is.
+
+| Rule        | Detail                                                                                   |
+| :---------- | :--------------------------------------------------------------------------------------- |
+| Structure   | Same headings, tables, lists and code blocks as the English file                         |
+| Code blocks | Byte-identical to English; in Mermaid, translate only the labels                         |
+| Links       | Keep the English link target (`mcp/mcp-concepts.md`); translate the link text            |
+| Updates     | Update the translations with the English article, or drop them from `translations` so readers get English |
+
+### 4. Push to Main Branch
 
 The UI reads from the default branch (e.g., `main`) via raw Git URL. Changes are visible immediately after merge.
 
@@ -62,12 +75,16 @@ The UI reads from the default branch (e.g., `main`) via raw Git URL. Changes are
 
 ```jsonc
 {
-  "version": "v0.2.0",
-  "lastUpdatedAtUtc": "2026-02-01T00:00:00Z",
+  "version": "v0.3.0",
+  "lastUpdatedAtUtc": "2026-10-24T00:00:00Z",
   "sections": [
     {
       "sectionId": "getting-started",
       "label": "Getting Started",
+      "translations": {
+        "zh-CN": { "label": "入门" },
+        "zh-TW": { "label": "入門" }
+      },
       "order": 1,
       "articles": [
         {
@@ -76,7 +93,19 @@ The UI reads from the default branch (e.g., `main`) via raw Git URL. Changes are
           "summary": "High-level introduction to Muggle Test.",
           "relativePath": "getting-started/overview.md",
           "order": 1,
-          "tags": ["intro", "overview"]
+          "tags": ["intro", "overview"],
+          "translations": {
+            "zh-CN": {
+              "title": "Muggle Test 概览",
+              "summary": "Muggle Test 的整体介绍。",
+              "relativePath": "getting-started/overview.zh-CN.md"
+            },
+            "zh-TW": {
+              "title": "Muggle Test 總覽",
+              "summary": "Muggle Test 的整體介紹。",
+              "relativePath": "getting-started/overview.zh-TW.md"
+            }
+          }
         }
       ]
     }
