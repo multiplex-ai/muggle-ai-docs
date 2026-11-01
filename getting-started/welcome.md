@@ -1,6 +1,6 @@
 # Welcome to Muggle Test
 
-Muggle Test is an AI-powered web testing platform that discovers realistic user flows and keeps them covered with executable tests.
+Muggle Test is an acceptance test agent that keeps your AI agent team building to your taste. It discovers realistic user flows and keeps them covered with executable tests.
 
 This page helps you find the right documentation based on what you're trying to do.
 
