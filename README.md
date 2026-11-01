@@ -1,6 +1,6 @@
 # Muggle AI Documentation
 
-Muggle AI's customer-facing documentation repository for **Muggle Test** and related products.
+Muggle AI's customer-facing documentation repository for **Muggle Test**, an acceptance test agent that keeps your AI agent team building to your taste, and related products.
 
 This repo is consumed at runtime by the `muggle-prompt-ui` frontend, which:
 
