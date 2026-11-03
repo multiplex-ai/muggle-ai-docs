@@ -1,6 +1,6 @@
 {
     "version": "v0.3.0",
-    "lastUpdatedAtUtc": "2026-10-24T00:00:00Z",
+    "lastUpdatedAtUtc": "2026-11-03T00:00:00Z",
     "sections": [
         {
             "sectionId": "getting-started",
@@ -110,6 +110,38 @@
                             "relativePath": "getting-started/mcp-quickstart.zh-TW.md"
                         }
                     }
+                },
+                {
+                    "articleId": "install-claude-code",
+                    "title": "Install: Claude Code",
+                    "summary": "Install the Muggle Works plugin in Claude Code, then test and fix your app with /mtest and /mdo.",
+                    "relativePath": "getting-started/install-claude-code.md",
+                    "order": 5,
+                    "tags": ["install", "claude-code", "plugin", "agents"]
+                },
+                {
+                    "articleId": "install-codex",
+                    "title": "Install: Codex",
+                    "summary": "Install the Muggle Works plugin in Codex, then test and fix your app with $muggle:muggle-test and $muggle:muggle-do.",
+                    "relativePath": "getting-started/install-codex.md",
+                    "order": 6,
+                    "tags": ["install", "codex", "plugin", "agents"]
+                },
+                {
+                    "articleId": "install-cursor",
+                    "title": "Install: Cursor",
+                    "summary": "Install Muggle Works for Cursor with npm, then test and fix your app with the muggle-test and muggle-do skills.",
+                    "relativePath": "getting-started/install-cursor.md",
+                    "order": 7,
+                    "tags": ["install", "cursor", "mcp", "agents"]
+                },
+                {
+                    "articleId": "install-other-mcp-clients",
+                    "title": "Install: Windsurf and Other MCP Clients",
+                    "summary": "Register the Muggle MCP server in Windsurf or any MCP client and run real-browser tests from your agent.",
+                    "relativePath": "getting-started/install-other-mcp-clients.md",
+                    "order": 8,
+                    "tags": ["install", "windsurf", "mcp", "agents"]
                 }
             ]
         },
