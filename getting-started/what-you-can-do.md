@@ -1,4 +1,4 @@
-# Critical Tasks in Muggle Works
+# What You Can Do with Muggle Works
 
 Every task on the path from install to daily use, with the skill or command for each. Where the table says **Ask your agent**, describe the task in plain English and your agent uses the listed Muggle tools.
 

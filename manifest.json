@@ -144,10 +144,10 @@
                     "tags": ["install", "windsurf", "mcp", "agents"]
                 },
                 {
-                    "articleId": "critical-tasks",
-                    "title": "Critical Tasks in Muggle Works",
+                    "articleId": "what-you-can-do",
+                    "title": "What You Can Do with Muggle Works",
                     "summary": "Every task from install to daily use, with the skill or command for each.",
-                    "relativePath": "getting-started/critical-tasks.md",
+                    "relativePath": "getting-started/what-you-can-do.md",
                     "order": 9,
                     "tags": ["skills", "commands", "workflow", "agents"]
                 }
