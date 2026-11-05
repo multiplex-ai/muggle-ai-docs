@@ -179,6 +179,12 @@ Updates all Muggle AI components to the latest version and reports before/after 
 | `/muggle:pr-followup` | Watches an open PR for new submitted reviews and hands them to `/muggle:do` to address. |
 | `/muggle:feedback` | Flags that a generated script — or one specific step — did the wrong thing, so Muggle can regenerate it. Also lists and deletes feedback. |
 | `/muggle:preferences` | Views, sets, or resets the preferences that control testing behavior, such as auto-login. |
+| `/minit` | Runs the onboarding walkthrough in your agent and saves your preferences. |
+| `/mci` | Adds the Muggle walkthrough check to a repository's GitHub Actions. |
+| `/mlogin` | Signs you in to Muggle AI, or switches accounts. |
+| `/mlogout` | Signs you out and clears stored credentials. |
+| `/mrun` | Shows a local run's steps beside the frames they produced. |
+| `/mcleanup` | Removes old browser test runner versions and obsolete skills, after showing what it would delete. |
 
 ## Skills vs Direct MCP Tool Calls
 

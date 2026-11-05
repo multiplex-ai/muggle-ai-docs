@@ -179,6 +179,12 @@ OPEN_PRS      -> PR #42 opened
 | `/muggle:pr-followup` | 監看一個尚未關閉的 PR 是否有新送出的審查，並交給 `/muggle:do` 處理。 |
 | `/muggle:feedback` | 標記某個產生的腳本——或其中某個特定步驟——執行有誤，讓 Muggle 重新產生。也能列出及刪除意見回饋。 |
 | `/muggle:preferences` | 檢視、設定或重設控制測試行為的偏好設定，例如自動登入。 |
+| `/minit` | 在你的代理程式中執行入門引導，並儲存你的偏好設定。 |
+| `/mci` | 將 Muggle 視覺化導覽檢查新增至儲存庫的 GitHub Actions。 |
+| `/mlogin` | 登入 Muggle AI，或切換帳號。 |
+| `/mlogout` | 登出並清除已儲存的憑證。 |
+| `/mrun` | 將本機執行的步驟與其產生的畫面並排顯示。 |
+| `/mcleanup` | 先顯示將刪除的內容，再移除舊版瀏覽器測試執行器和已淘汰的技能。 |
 
 ## 技能與直接呼叫 MCP 工具
 

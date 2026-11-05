@@ -17,8 +17,8 @@ flowchart LR
 | Task | Use |
 | :--- | :-- |
 | Install Muggle Works | [Claude Code](getting-started/install-claude-code.md), [Codex](getting-started/install-codex.md), [Cursor](getting-started/install-cursor.md), or [other MCP clients](getting-started/install-other-mcp-clients.md) |
-| Save your preferences and add the CI check | `muggle init` |
-| Sign in | `muggle login`, or sign in when the first protected call opens your browser |
+| Save your preferences and add the CI check | `/minit` |
+| Sign in | `/mlogin`, or sign in when the first protected call opens your browser |
 | Confirm the install is healthy | `/mstatus` |
 
 ## Project Setup
@@ -45,7 +45,7 @@ flowchart LR
 | :--- | :-- |
 | Post screenshots and results to a pull request | `/mpr` |
 | Have reviews, red CI, and a stale base handled for you | `/mprfollowup` |
-| Fail pull requests with a missing or failed walkthrough | `muggle ci-install` |
+| Fail pull requests with a missing or failed walkthrough | `/mci` |
 
 ## Automation
 
@@ -61,7 +61,7 @@ flowchart LR
 | Flag a script or step that did the wrong thing | `/mfeedback` |
 | Generate scripts for test cases without one | `/mregen` |
 | Edit or delete a test case | **Ask your agent** (`muggle-remote-test-case-update`, `muggle-remote-test-case-delete`) |
-| Open the results of a local run | `muggle run-view` |
+| Open the results of a local run | `/mrun` |
 
 ## Account and Team
 
@@ -77,4 +77,6 @@ flowchart LR
 | Change how Muggle behaves | `/mprefs` |
 | Fix a broken install | `/mrepair`; see [Common Issues](troubleshooting/common-issues.md) |
 | Update to the latest version | `/mupgrade` |
+| Remove old runner versions | `/mcleanup` |
+| Sign out | `/mlogout` |
 | Find any other command | `/muggle` |
