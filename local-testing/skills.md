@@ -124,6 +124,14 @@ The skill asks which mode you want before proceeding. If your prompt mentions "l
 | Quick single-feature test on localhost | `/muggle:test-feature-local` |
 
 
+### iOS Apps
+
+`/muggle:test` also tests iOS simulator builds. Point it at a zipped `.app` and name what to check; it uploads the build, runs each behavior on a cloud simulator, and reports each run's verdict apart from its execution status. See [iOS App Testing](mcp/ios-app-testing.md).
+
+```
+Test my iOS app: upload build/MyApp.app.zip and check that adding a note works.
+```
+
 ## /muggle:test-feature-local
 
 Run a real-browser E2E acceptance test against localhost to verify a feature works correctly — signup flows, checkout, form validation, UI interactions, or any user-facing behavior. Launches a browser that executes test steps and captures screenshots.

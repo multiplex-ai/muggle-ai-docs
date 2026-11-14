@@ -195,6 +195,101 @@ After the summary reports success, you can generate and deliver a project report
             -d "{\"projectId\": \"${PROJECT_ID}\", \"exportFormat\": \"html\", \"channels\": []}"
 ```
 
+## iOS App Builds
+
+Upload each simulator build from CI, queue a run, and fail the job unless the run completes with a `passed` verdict. See [iOS App Testing](mcp/ios-app-testing.md) for what each status and verdict means.
+
+Create `.github/workflows/muggle-ios.yml`:
+
+```yaml
+name: Muggle Test iOS acceptance
+
+on:
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+env:
+  MUGGLE_AI_API_BASE_URL: "https://promptservice.muggle-ai.com"
+  BUNDLE_ID: "com.example.myapp"
+  DEVICE_TYPE: "iPhone-15"
+  TASK: "Sign in and add the first product to the cart"
+  POLL_INTERVAL_SECONDS: "30"
+  TIMEOUT_MINUTES: "45"
+
+jobs:
+  ios-acceptance:
+    runs-on: macos-15
+    env:
+      MUGGLE_AI_API_KEY: ${{ secrets.MUGGLE_AI_API_KEY }}
+      PROJECT_ID: ${{ vars.MUGGLE_PROJECT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build the simulator app
+        run: |
+          set -euo pipefail
+          xcodebuild -scheme MyApp -sdk iphonesimulator -configuration Debug \
+            -derivedDataPath build CODE_SIGNING_ALLOWED=NO
+          ditto -c -k --keepParent build/Build/Products/Debug-iphonesimulator/MyApp.app MyApp.app.zip
+
+      - name: Upload the build
+        run: |
+          set -euo pipefail
+          DIGEST=$(shasum -a 256 MyApp.app.zip | cut -d' ' -f1)
+          SIZE=$(stat -f%z MyApp.app.zip)
+          curl -sS --fail-with-body -X POST \
+            -H "x-api-key: ${MUGGLE_AI_API_KEY}" \
+            -H "Content-Type: application/octet-stream" \
+            --data-binary @MyApp.app.zip \
+            "${MUGGLE_AI_API_BASE_URL}/v1/protected/ios-pool/projects/${PROJECT_ID}/artifacts?digest=${DIGEST}&bundleId=${BUNDLE_ID}&targetRuntime=iOS-18-0&branch=${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}&commit=${GITHUB_SHA}&sizeBytes=${SIZE}&producer=ci_push"
+          echo "DIGEST=${DIGEST}" >> "$GITHUB_ENV"
+
+      - name: Queue the run
+        run: |
+          set -euo pipefail
+          RUN_ID=$(curl -sS --fail-with-body -X POST \
+            -H "x-api-key: ${MUGGLE_AI_API_KEY}" \
+            -H "Content-Type: application/json" \
+            -d "$(jq -n --arg projectId "$PROJECT_ID" --arg digest "$DIGEST" --arg task "$TASK" --arg device "$DEVICE_TYPE" \
+              '{projectId: $projectId, artifactDigest: $digest, task: $task, deviceType: $device, secretRefs: [],
+                caps: {maxSteps: 60, stepTimeoutMs: 120000, runTimeoutMs: 1800000}}')" \
+            "${MUGGLE_AI_API_BASE_URL}/v1/protected/ios-pool/runs" | jq -r '.run.record.runId')
+          echo "RUN_ID=${RUN_ID}" >> "$GITHUB_ENV"
+
+      # Exit 0: passed. Exit 1: the test found a problem. Exit 2: the run itself broke or never finished.
+      - name: Gate on the verdict
+        run: |
+          set -euo pipefail
+          DEADLINE=$(( $(date +%s) + TIMEOUT_MINUTES * 60 ))
+          while (( $(date +%s) < DEADLINE )); do
+            RUN=$(curl -sS --fail-with-body -H "x-api-key: ${MUGGLE_AI_API_KEY}" \
+              "${MUGGLE_AI_API_BASE_URL}/v1/protected/ios-pool/runs/${RUN_ID}")
+            STATUS=$(echo "$RUN" | jq -r '.run.state.status')
+            case "$STATUS" in
+              completed)
+                VERDICT=$(echo "$RUN" | jq -r '.run.result.verdict // "none"')
+                echo "Run ${RUN_ID} completed with verdict ${VERDICT}"
+                [[ "$VERDICT" == "passed" ]] && exit 0 || exit 1 ;;
+              infra_error|timed_out|cancelled)
+                echo "::error::Run ${RUN_ID} ended with status ${STATUS}"
+                exit 2 ;;
+            esac
+            sleep "${POLL_INTERVAL_SECONDS}"
+          done
+          echo "::error::Run ${RUN_ID} did not finish within ${TIMEOUT_MINUTES} minutes"
+          exit 2
+```
+
+| Step | Action                                                         |
+| :--- | :------------------------------------------------------------- |
+| 1    | Add `MUGGLE_AI_API_KEY` to repository **Secrets**              |
+| 2    | Add `MUGGLE_PROJECT_ID` to repository **Variables**            |
+| 3    | Set `BUNDLE_ID`, `DEVICE_TYPE`, `TASK` and the Xcode scheme    |
+| 4    | Commit the workflow file                                       |
+
+Read a failed run's steps and screenshots with `GET /v1/protected/ios-pool/runs/{runId}/steps`. Uploading an unchanged build again reuses the stored one.
+
 ## Azure DevOps and GitLab CI
 
 Both platforms follow the same three-phase pattern shown above: **trigger → wait for `runBatchId` → poll `/run-batch/{id}/summary` → compute pass rate**.
@@ -287,3 +382,4 @@ schedules:
 
 - **[MCP Quickstart](getting-started/mcp-quickstart.md)** - Interactive setup
 - **[MCP API Reference](mcp/mcp-api-reference.md)** - Complete documentation
+- **[iOS App Testing](mcp/ios-app-testing.md)** - Test iOS simulator builds

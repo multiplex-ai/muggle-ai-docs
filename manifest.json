@@ -472,6 +472,14 @@
                             "relativePath": "mcp/mcp-cicd-integration.zh-TW.md"
                         }
                     }
+                },
+                {
+                    "articleId": "ios-app-testing",
+                    "title": "iOS App Testing",
+                    "summary": "Upload iOS simulator builds, run acceptance tests on cloud simulators, and gate CI on the verdict.",
+                    "relativePath": "mcp/ios-app-testing.md",
+                    "order": 6,
+                    "tags": ["ios", "mobile", "simulator", "ci-cd"]
                 }
             ]
         },

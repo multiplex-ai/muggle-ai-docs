@@ -12,6 +12,7 @@ Complete reference for cloud E2E acceptance tools in the `@muggleai/works` packa
 | [Authentication Tools](#authentication-tools) | Device code flow, API key management |
 | [Project Tools](#project-tools) | Create, update, list, delete projects |
 | [PRD File Tools](#prd-file-tools) | Upload and process PRD documents |
+| [iOS App Tools](#ios-app-tools) | Upload iOS simulator builds, run and read iOS tests |
 | [Secret Tools](#secret-tools) | Manage encrypted test credentials |
 | [Wallet Tools](#wallet-tools) | Payment methods and credits |
 | [Use Case Tools](#use-case-tools) | Discover, generate, create, and approve use cases |
@@ -34,6 +35,7 @@ The cloud E2E acceptance tools are organized into these categories:
 | Authentication  |     8 | Authenticate and manage API keys   | [Jump](#authentication-tools) |
 | Project         |     5 | Create and manage testing projects | [Jump](#project-tools)        |
 | PRD Files       |     5 | Upload and process PRD documents   | [Jump](#prd-file-tools)       |
+| iOS Apps        |     5 | Upload iOS builds, run and read iOS tests | [Jump](#ios-app-tools) |
 | Secrets         |     5 | Manage test credentials            | [Jump](#secret-tools)         |
 | Wallet          |     5 | Manage payment methods and topups  | [Jump](#wallet-tools)         |
 | Use Cases       |    10 | Discover, generate, create, and update use cases | [Jump](#use-case-tools) |
@@ -451,6 +453,156 @@ List all PRD files for a project.
 ### muggle-remote-prd-file-delete
 
 Delete a PRD file.
+
+---
+
+## iOS App Tools
+
+Test iOS simulator builds. See [iOS App Testing](mcp/ios-app-testing.md) for the workflow and how to read a result.
+
+### muggle-remote-ios-build-upload
+
+Upload a zipped `.app` simulator build from a path on the machine running the MCP. The tool hashes the file and streams it from disk.
+
+**Input:**
+
+```json
+{
+  "projectId": "proj_abc123",
+  "appZipPath": "/Users/me/MyApp/build/MyApp.app.zip",
+  "bundleId": "com.example.myapp",
+  "targetRuntime": "iOS-18-0",
+  "branch": "main",
+  "commit": "9f8e7d6c5b4a"
+}
+```
+
+| Field           | Type   | Required | Description                                                          |
+| :-------------- | :----- | :------: | :------------------------------------------------------------------- |
+| `projectId`     | string |    ✓     | Project the build belongs to                                         |
+| `appZipPath`    | string |    ✓     | Absolute path of the zipped `.app` (`.zip`, at most 512 MB)          |
+| `bundleId`      | string |    ✓     | The app's bundle identifier                                          |
+| `targetRuntime` | string |    ✓     | Simulator runtime the build targets                                  |
+| `branch`        | string |    ✓     | Git branch the build was made from                                   |
+| `commit`        | string |    ✓     | Git commit the build was made from                                   |
+| `producer`      | string |          | `ci_push` (default) for automated uploads, `dashboard_upload` for manual |
+
+**Output:**
+
+```json
+{
+  "artifact": {
+    "digest": "3b1f…e9a0",
+    "projectId": "proj_abc123",
+    "bundleId": "com.example.myapp",
+    "targetRuntime": "iOS-18-0",
+    "branch": "main",
+    "commit": "9f8e7d6c5b4a",
+    "sizeBytes": 48211337,
+    "producer": "ci_push",
+    "uploadedAtMs": 1763112000000
+  },
+  "deduplicated": false
+}
+```
+
+`deduplicated` is `true` when the same build was already stored.
+
+### muggle-remote-ios-build-list
+
+List a project's stored builds, newest first.
+
+| Field       | Type   | Required | Description |
+| :---------- | :----- | :------: | :---------- |
+| `projectId` | string |    ✓     | Project ID  |
+
+**Output:** `{ "artifacts": [ … ] }`, each entry shaped like `artifact` above.
+
+### muggle-remote-ios-run-create
+
+Queue a run of an uploaded build.
+
+**Input:**
+
+```json
+{
+  "projectId": "proj_abc123",
+  "artifactDigest": "3b1f…e9a0",
+  "task": "Sign in and add the first product to the cart",
+  "deviceType": "iPhone-15",
+  "secretRefs": ["shopper-password"]
+}
+```
+
+| Field            | Type     | Required | Description                                                  |
+| :--------------- | :------- | :------: | :----------------------------------------------------------- |
+| `projectId`      | string   |    ✓     | Project ID                                                   |
+| `artifactDigest` | string   |    ✓     | `artifact.digest` from the upload                            |
+| `task`           | string   |    *     | Plain-language goal to verify                                |
+| `useCaseId`      | string   |    *     | Existing use case to run instead of a task                   |
+| `testCaseId`     | string   |    *     | Existing test case to run instead of a task                  |
+| `deviceType`     | string   |    ✓     | Simulator device type                                        |
+| `secretRefs`     | string[] |          | Names of project secrets the run may use                     |
+| `maxSteps`       | number   |          | Step cap (default 60, at most 500)                           |
+| `stepTimeoutMs`  | number   |          | Per-step timeout (default 120000, at most 600000)            |
+| `runTimeoutMs`   | number   |          | Whole-run timeout (default 1800000, at most 7200000)         |
+
+\* One of `task`, `useCaseId`, or `testCaseId` is required.
+
+**Output:** the queued run, shaped like the `muggle-remote-ios-run-get` output with `status: "queued"`.
+
+### muggle-remote-ios-run-get
+
+Read a run's status and verdict.
+
+| Field   | Type   | Required | Description |
+| :------ | :----- | :------: | :---------- |
+| `runId` | string |    ✓     | Run ID      |
+
+**Output:**
+
+```json
+{
+  "run": {
+    "runId": "run_7c1e",
+    "projectId": "proj_abc123",
+    "artifactDigest": "3b1f…e9a0",
+    "deviceType": "iPhone-15",
+    "task": "Sign in and add the first product to the cart",
+    "status": "completed",
+    "isFinished": true,
+    "verdict": "passed",
+    "summary": "Signed in and the cart shows one item.",
+    "stepCount": 9
+  }
+}
+```
+
+`verdict` is `null` until the run completes, and stays `null` for a run that ended `infra_error`, `timed_out`, or `cancelled`. Poll until `isFinished` is `true`.
+
+### muggle-remote-ios-run-steps-get
+
+Read a run's steps in order.
+
+| Field   | Type   | Required | Description |
+| :------ | :----- | :------: | :---------- |
+| `runId` | string |    ✓     | Run ID      |
+
+**Output:**
+
+```json
+{
+  "events": [
+    {
+      "stepIndex": 0,
+      "occurredAtMs": 1763112030000,
+      "description": "Tapped Sign In",
+      "outcome": "ok",
+      "screenshotUrl": "https://…"
+    }
+  ]
+}
+```
 
 ---
 
