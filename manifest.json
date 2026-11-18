@@ -1,6 +1,6 @@
 {
     "version": "v0.3.0",
-    "lastUpdatedAtUtc": "2026-11-04T00:00:00Z",
+    "lastUpdatedAtUtc": "2026-11-18T00:00:00Z",
     "sections": [
         {
             "sectionId": "getting-started",
@@ -745,19 +745,19 @@
                 {
                     "articleId": "enterprise-organizations",
                     "title": "Enterprise Organizations",
-                    "summary": "Centralized billing, seat management, shared token wallet, and role-based access for companies.",
+                    "summary": "Set up a team organization yourself: contributor seats, concurrency blocks, prepaid tokens, roles, and per-project limits.",
                     "relativePath": "billing/enterprise-organizations.md",
                     "order": 3,
-                    "tags": ["billing", "enterprise", "organization", "seats", "teams"],
+                    "tags": ["billing", "enterprise", "organization", "seats", "concurrency", "tokens", "teams"],
                     "translations": {
                         "zh-CN": {
                             "title": "企业组织",
-                            "summary": "面向企业的统一账单、席位管理、共享 Token 钱包和基于角色的访问控制。",
+                            "summary": "自助创建团队组织：贡献者席位、并发块、预付 Token、角色与按项目限额。",
                             "relativePath": "billing/enterprise-organizations.zh-CN.md"
                         },
                         "zh-TW": {
                             "title": "企業組織",
-                            "summary": "為企業提供集中帳單、席位管理、共用 Token 錢包與角色型存取控制。",
+                            "summary": "自助建立團隊組織：貢獻者席位、同時執行區塊、預付 Token、角色與每個專案的限額。",
                             "relativePath": "billing/enterprise-organizations.zh-TW.md"
                         }
                     }

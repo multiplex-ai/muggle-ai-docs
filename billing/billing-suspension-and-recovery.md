@@ -6,7 +6,7 @@ For general billing information, see [Enterprise Organizations](billing/enterpri
 
 ## Why Suspension Exists
 
-An organization pays Stripe for two things: its seat subscription (a recurring charge per seat, billed monthly) and its token usage (metered, reconciled on the next invoice). Payments can fail for ordinary reasons — a card expires, a bank declines a transaction, a billing address does not match — and Muggle Test has to decide what to do while the account is unpaid.
+An organization pays Stripe for its monthly subscription (contributor seats and concurrency blocks) and for the tokens it buys in advance. Payments can fail for ordinary reasons — a card expires, a bank declines a transaction, a billing address does not match — and Muggle Test has to decide what to do while the account is unpaid.
 
 The rule is deliberately simple: **when an invoice payment fails, the organization is suspended immediately**. There is no grace period, no reduced-service window, and no soft warning before the gate closes.
 
@@ -21,14 +21,14 @@ We made this choice for three reasons:
 When Stripe tells Muggle Test that a scheduled payment on an organization has failed, three things happen at once:
 
 1. **The organization is flipped to a suspended state.** Until the bill is paid, the organization is treated as unavailable.
-2. **Every active Owner receives a dunning email.** The email names the organization and explains that a payment failed. Admins and Members are not emailed, on the assumption that billing is the Owner's responsibility and a wider blast just adds noise.
+2. **Every active Owner receives a dunning email.** The email names the organization, explains that a payment failed, and links to the organization's billing page. Admins and Members are not emailed, on the assumption that billing is the Owner's responsibility and a wider blast just adds noise.
 3. **Org-scoped API calls and workflows are refused.** Any request that needs organization context — running a workflow on an org project, editing an org project's test cases, inviting a new member, changing settings — is blocked with a clear error while the organization is suspended.
 
 A blocked request returns a forbidden response with the message **"Organization is suspended."** This is the error Members and Admins are most likely to see first, and it is the signal to tell the Owner that billing needs attention.
 
 ### What still works while suspended
 
-Anyone with membership can still open the organization in the dashboard and see that it is suspended. Without this, a suspended org would simply "disappear" from the dashboard and nobody would know who to chase.
+Anyone with membership can still open the organization in the dashboard and see that it is suspended: the dashboard shows a **Payment failed** banner with **Manage billing**. Without this, a suspended org would simply "disappear" from the dashboard and nobody would know who to chase.
 
 Personal projects and personal accounts are completely unaffected. If Alice is a Member of a suspended org, her personal projects, her personal wallet, and any other organizations she belongs to continue working normally. Only the suspended organization is gated.
 
@@ -83,15 +83,15 @@ A few details worth knowing:
 
 ## Resolving a Suspension
 
-The dashboard does not have an organization billing page yet. Once one of Stripe's automatic retries succeeds, the organization flips back to active on its own and blocked actions start working again immediately.
+The Owner chooses **Manage billing**, on the banner or the organization's **Billing** page, to update the card or pay the open invoice. **Manage billing** stays available while the organization is suspended. Once a payment succeeds, whether from the Owner or one of Stripe's automatic retries, the organization flips back to active and blocked actions start working again immediately.
 
-If the card keeps failing and you need to change providers, contact [sales@muggle-ai.com](mailto:sales@muggle-ai.com) and an operator can help you sort it out.
+If the card keeps failing and you need help, contact [sales@muggle-ai.com](mailto:sales@muggle-ai.com).
 
 ## Seat Count and Billing
 
-Seat changes made on the organization are applied to the subscription first, with proration, and then to the organization.
+The Owner buys seats ahead of use. Added seats are available at once and prorated; reductions apply at the next renewal.
 
-The consequence you will actually notice is the invite limit. When active members and pending invitations fill every seat, new invitations are rejected with "No available seats. Purchase more seats to invite new members." Revoke invitations you no longer need, or add seats.
+The consequence you will actually notice is the invite limit. When Owners, Admins, Contributors and unexpired pending invitations for those roles fill every seat, inviting another Admin or Contributor is refused with **No seats available**. Revoke invitations you no longer need, invite as Member (no seat), or have the Owner add seats.
 
 Suspension does not change the seat count and does not free up seats. Members who were active when the organization was suspended are still counted against the seat cap, which is deliberate: they still belong to the organization and will be fully re-enabled the moment billing recovers.
 
