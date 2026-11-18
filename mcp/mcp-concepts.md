@@ -271,7 +271,7 @@ The gateway enforces rate limits to ensure fair usage:
 | Free       |           20 |                    3 |
 | Starter    |           40 |                   10 |
 | Pro        |           60 |                   20 |
-| Enterprise |          300 |                  20+ |
+| Enterprise |          300 |      20 per block, pooled |
 
 **Rate limit headers:**
 

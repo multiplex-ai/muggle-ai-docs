@@ -17,13 +17,14 @@ When more than one of these is true at the same time, Muggle Test resolves them 
 
 ## Organization Roles at a Glance
 
-An organization has three roles:
+An organization has four roles. Owners, Admins and Contributors each use one of the organization's paid seats; Members use none.
 
 | Organization role | Intent |
 | :--- | :--- |
-| **Owner** | Runs the organization. Controls billing, can invite and remove anyone, has full control over every org project. |
-| **Admin** | Day-to-day operator. Manages members and projects, but does not touch billing and cannot delete projects outright. |
-| **Member** | Regular org user. Can work inside projects they have been given access to, and gets read-only visibility into every org project by default. |
+| **Owner** | Runs the organization. Controls billing, seats and capacity, can invite and remove anyone, has full control over every org project. |
+| **Admin** | Day-to-day operator. Manages members, tokens and project limits, but does not touch billing and cannot delete projects outright. |
+| **Contributor** | Builds and runs tests. Edits every org project. |
+| **Member** | Follows results. Sees every org project, its runs and its reports, but cannot make changes. |
 
 See [Enterprise Organizations → Roles](billing/enterprise-organizations.md) for the full capability matrix at the organization level (who can invite members, who can manage billing, and so on).
 
@@ -35,13 +36,15 @@ Every project owned by an organization automatically grants a baseline project r
 | :--- | :--- |
 | Owner | Project **Owner** — full control, including destructive actions like deleting the project |
 | Admin | Project **Maintainer** — can edit the project, manage runs, manage test cases, and manage collaborators, but cannot delete the project or transfer it out of the org |
+| Contributor | Project **Editor** — can edit the project, its use cases and test cases, and run workflows |
 | Member | Project **Viewer** — can see the project, its runs, and its reports, but cannot make changes |
 
 The rationale, briefly:
 
 - **Owners** paid for the organization. They should never be locked out of something the org owns.
 - **Admins** handle operations. They need broad write access but should not be able to walk off with a project or delete it on a bad day.
-- **Members** are the default. They can see what the org is working on, but turning a new hire into an editor on every project on day one is rarely what you want. Writing access should be granted deliberately.
+- **Contributors** build the suite. Editing and running is what the organization pays a seat for.
+- **Members** are the default. They can see what the org is working on without using a seat, so results reach everyone who needs them. Writing access is granted deliberately, by making someone a Contributor.
 
 This cascade is a fixed policy — it cannot be reconfigured per organization. A consistent cascade across every org is easier to explain, easier to audit, and easier to support than a bespoke permission matrix for each customer. If there is a concrete permissions need the cascade does not cover, the right answer is to grant that person a direct role on the specific project.
 
@@ -53,7 +56,7 @@ When both a cascade and a direct grant apply, Muggle Test picks the **higher** o
 
 Three quick examples:
 
-1. **Promoting a Member on one project.** Priya is a Member of the org (cascade: Viewer). She is the lead on the checkout rewrite, so an Admin gives her a direct **Editor** role on the `checkout-flow-tests` project. Her effective role on that one project becomes **Editor**. Her role on every other org project stays Viewer via the cascade.
+1. **Letting a Member edit.** Priya is a Member of the org (cascade: Viewer). She joins the checkout rewrite, so the Owner changes her organization role to **Contributor**, which uses a seat. Her cascade becomes **Editor** on every org project.
 
 2. **Redundant grants are harmless.** Diego is an Admin of the org (cascade: Maintainer). Someone also adds him as a direct **Editor** on a specific project. His effective role on that project is still **Maintainer**, because the cascade is higher. The direct grant is effectively a no-op, but it does not break anything.
 
@@ -108,20 +111,20 @@ It returns:
 
 ## Creating a Project Inside an Organization
 
-When you create a project from inside an organization context, you can associate the project with that organization so it inherits everything on this page: the org's billing and the cascade from organization role to project role.
+When you create a project, **Project owner** chooses Personal or one of your organizations. An org project inherits everything on this page: the org's billing and the cascade from organization role to project role.
 
-To associate a project with an org at creation time:
+To create a project in an organization:
 
-- You must be an active member of the organization (Owner, Admin, or Member). Members who have not accepted their invitation yet, or who have been deactivated, cannot create projects under an organization they "belong to" on paper.
-- You must have at least **Member** role on that organization. In other words, any active org member can create an org project — creation is not restricted to Owners and Admins, and there is no setting to restrict it.
+- You must be an active member of the organization. People who have not accepted their invitation yet, or who have been deactivated, cannot create projects under it.
+- You must be an Owner, Admin or Contributor. Members view org projects but do not create them.
 
-A personal project can also be moved into an organization later, under the same membership rule. That move is one-way.
+A personal project can also be moved into an organization later, under the same rule, through the projects API. That move is one-way.
 
 Once the project belongs to an organization:
 
 - **The ownership is permanent.** You cannot move an org project back to personal ownership, and you cannot move it from one organization to another. This is a deliberate restriction so that every bill and every audit log has an unambiguous owner over the life of the project. If you need to "move" an org project, recreate it under the new owner.
 - **The cascade starts immediately.** Every current member of the org gets their cascade role on the new project the moment it is created. Future members will get it the moment their invitation is accepted.
-- **Billing goes to the org wallet.** Workflow runs against the project debit the organization's wallet, not the creator's personal wallet. See [Enterprise Organizations → Personal vs. Org Billing](billing/enterprise-organizations.md) for the full picture.
+- **Billing goes to the org.** Workflow runs against the project draw the organization's prepaid token balance and concurrency pool, not the creator's personal wallet. See [Enterprise Organizations → Personal vs. Org Billing](billing/enterprise-organizations.md) for the full picture.
 
 ## Related Pages
 

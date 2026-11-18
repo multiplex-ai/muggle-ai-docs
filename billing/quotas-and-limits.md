@@ -36,7 +36,7 @@ flowchart LR
 
 ## Enterprise Organizations
 
-The concurrent workflow limit applies **per member**: it comes from the account of the member doing the work — their personal plan's limit, or the Enterprise value where it has been applied to their account.
+An organization's concurrency blocks form **one pool** of 20 workflows per block, shared by every run on every org project, whoever starts it. A run that finds the pool full waits for a free slot, as above. Enterprise runs start ahead of Free and Starter runs when the shared runners are busy.
 
 ### Enterprise quotas
 
@@ -44,22 +44,21 @@ The concurrent workflow limit applies **per member**: it comes from the account 
 | :------- | :--------------- |
 | Projects | Unlimited |
 | Use cases and test cases per project | Unlimited |
-| Concurrent workflows | 20+ (starting at 20 per member) |
-| Monthly tokens | Pay-per-use ($5 per 1,000,000 tokens) |
-| Seats | As purchased (minimum 4) |
-
-The starting concurrency is a soft limit that can be raised on request. Contact support if you need more.
+| Concurrent workflows | 20 per block; 1 to 3 blocks self-serve, more through sales |
+| Per-project concurrency and monthly tokens | Optional cap on each org project, set by the Owner or an Admin |
+| Tokens | Prepaid balance, no monthly grant |
+| Seats | As purchased (minimum 3); members who only view use none |
 
 ### How quota enforcement applies
 
 | Scope | What it counts against |
 | :--- | :--- |
-| Workflow runs against an org project | The running member's concurrency limit, and the org wallet |
-| Workflow runs against a personal project | The running member's concurrency limit, and their personal wallet |
+| Workflow runs against an org project | The organization's block pool, the project's caps if set, and the organization's token balance |
+| Workflow runs against a personal project | The running member's personal plan concurrency, and their personal wallet |
 
-A member whose account still carries a personal-plan limit runs at that limit inside org projects too — for example, a Free account runs at most 3 workflows at a time.
+A project at its monthly token cap refuses new work until the calendar month (UTC) turns. When the organization's balance reaches zero, new work on org projects is refused until tokens are bought.
 
-For the full picture of seats, roles, billing, and the personal-vs-org model, see the [Enterprise Organizations guide](enterprise-organizations.md).
+For the full picture of seats, roles, billing, and the personal-vs-org model, see the [Enterprise Organizations guide](billing/enterprise-organizations.md).
 
 ## Error Messages
 
