@@ -8,7 +8,7 @@ For current pricing, see the [pricing page](https://muggle-ai.com/#pricing) or t
 
 | Feature | Free | Starter | Professional | Enterprise |
 | :------ | :--- | :------ | :----------- | :--------- |
-| **Concurrent Workflows** | 3 | 10 | 20 | 20 per concurrency block, pooled |
+| **Concurrent Workflows** | 2 | 3 | 20 | 20 per concurrency block, pooled |
 | **Included Tokens** | 2M (one-time grant) | 1.5M / month | 20M / month | None; all tokens prepaid |
 | **Price** | $0 | $0 — verify your email to unlock | $199/month | $29/seat/month for seats 1–10, $24 for 11–50, $19 from 51 (minimum 3 seats), plus $99/month per block of 20 concurrent workflows |
 | **Seats** | 1 | 1 | 1 | Bought ahead (minimum 3); members who only view use none |
@@ -22,8 +22,8 @@ This controls how many workflows (scans, test generations, replays) can run simu
 
 | Plan | Concurrent Limit |
 | :--- | :--------------- |
-| Free | 3 |
-| Starter | 10 |
+| Free | 2 |
+| Starter | 3 |
 | Professional | 20 |
 | Enterprise | 20 per concurrency block, shared by the whole organization |
 

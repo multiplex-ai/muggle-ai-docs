@@ -173,6 +173,8 @@ The Owner opens **Manage billing** on the **Billing** page to update the card, s
 
 A cancelled organization's members lose access to its projects. Personal accounts and personal projects are unaffected. To reduce spend without cancelling, lower the seats or blocks; the reduction applies at the next renewal.
 
+The Owner can also delete the organization with **Delete organization** on its overview page. Deleting cancels the subscription immediately, removes every member and deletes the organization's saved card and billing details.
+
 ## Not Yet Supported
 
 - **SSO / SAML.** Members sign in with their normal Muggle Test credentials.
