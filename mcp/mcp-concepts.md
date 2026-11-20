@@ -268,8 +268,8 @@ The gateway enforces rate limits to ensure fair usage:
 
 | Tier       | Requests/min | Concurrent Workflows |
 | :--------- | -----------: | -------------------: |
-| Free       |           20 |                    3 |
-| Starter    |           40 |                   10 |
+| Free       |           20 |                    2 |
+| Starter    |           40 |                    3 |
 | Pro        |           60 |                   20 |
 | Enterprise |          300 |      20 per block, pooled |
 
